@@ -15,7 +15,7 @@ SRC_DIR=src
 
 SRC = main.cpp 
 #your compiler
-CXX = g++
+CXX = c++
 
 #your flags
 CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include 
@@ -45,7 +45,7 @@ all: $(MAIN_RULE)
 #   NB: it compiles also main object files that are not needed for the current
 #       rule. A future fix will be to compile only the correct main object
 $(MAIN_RULE): $(BIN_DIR) $(OBJ_DIR) $(OBJECTS_PATH) $(MAIN_OBJ_PATH) 
-	$(CXX) $(OBJECTS_PATH) -o $@ $(CXXFLAGS) $(LDPATHS) $(LDFLAGS)
+	$(CXX) $(OBJECTS_PATH) -o $@ $(CXXFLAGS) $(STATIC_LIBS) $(LDFLAGS)
 
 #build objects taking source from src dir
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
