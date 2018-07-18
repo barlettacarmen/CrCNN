@@ -3,6 +3,8 @@
 #include "globals.h"
 #include "convolutionalLayer.h"
 
+#include <ostream>
+
 using namespace std;
 using namespace seal;
 
@@ -11,7 +13,7 @@ int main(){
     cout<<"Cazzo fai"<<endl;
     cout<<"Done"<<endl;
     ConvolutionalLayer * layer= new ConvolutionalLayer("prova",28,28,1,2,2,5,5,20);
-    cout<<"done";
+    cout<<"done"<<endl<<flush;
     plaintext3D kernel(layer->xf, plaintext2D(layer->yf,vector<Plaintext>(layer->zd)));
     ciphertext2D convolved(layer->xo,vector<Ciphertext>(layer->yo));
     ciphertext3D image(layer->xd,ciphertext2D(layer->yd,vector<Ciphertext>(layer->zd)));
@@ -21,8 +23,10 @@ int main(){
         for(int j=0;j<layer->yd;j++)
             for(int z=0;z<layer->zd;z++){
                 image[i][j].emplace_back(*parms);
-                encryptor->encrypt(intencoder.encode(5),image[i][j][z]);              
+                encryptor->encrypt(intencoder.encode(5),image[i][j][z]); 
+                //cout << "encrypting for x:" << i << "y:" << j << "z:" << z <<endl << flush;           
             }
+    cout<<"end of encryption"<<endl << flush;
     //Encoding fractional kernel in plaintext 
    
     FractionalEncoder fraencoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
@@ -31,7 +35,7 @@ int main(){
     for(int i=0;i<layer->xf;i++)
         for(int j=0;j<layer->yf;j++)
             for(int z=0;z<layer->zd;z++){
-            kernel[i][j].emplace_back(fraencoder.encode(0.15));
+            kernel[i][j][z]=fraencoder.encode(0.15);
             
     }
     cout<<"Done";

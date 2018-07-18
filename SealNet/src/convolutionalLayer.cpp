@@ -40,7 +40,7 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
     //da iterare sui 50 kernel
     ciphertext2D ConvolutionalLayer::convolution3d(ciphertext3D image, plaintext3D kernel){
         //bisogna aggiungere il bias
-        int i,j,kx,ky,z,xlast,ylast;
+        int i,j,kx,ky,z,xlast,ylast,p;
         vector<Ciphertext> pixels(xf*yf*zd);
         ciphertext2D result(xo, vector<Ciphertext>(yo));
 
@@ -48,10 +48,13 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 
         for(i=0;i<xlast;i+=xs)
             for(j=0;j<ylast;j+=ys){
+                p=0;
                 for(kx=0;kx<xf;kx++)
                     for(ky=0;ky<yf;ky++)
                         for(z=0;z<zd;z++){
-                            evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[(kx*xf*yf)+(ky*yf)+z]);
+                            //evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[(kx*xf*yf)+(ky*yf)+z]);
+                            evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[p]);
+                            p++;
             }
             evaluator->add_many(pixels,result[i/xs][j/ys]);
                         }

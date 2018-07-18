@@ -18,7 +18,7 @@ SRC = convolutionalLayer.cpp layer.cpp ciphertextIO.cpp globals.cpp prova.cpp
 CXX = c++
 
 #your flags
-CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include 
+CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -g
 
 LDFLAGS=-lseal -lpthread
 STATIC_LIBS=./lib/libseal.a
