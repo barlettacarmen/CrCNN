@@ -10,6 +10,7 @@
 #include <limits>
 
 #include "seal/seal.h"
+#include "mnist/mnist_reader.h"
 
 using namespace std;
 using namespace seal;
@@ -35,7 +36,20 @@ void print_parameters(const SEALContext &context)
 }
 
 int main()
-{
+{ //Import MNIST
+    mnist::MNIST_dataset<std::vector, std::vector<uint8_t>, uint8_t> dataset =
+    mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>("/Users/carmen/Desktop/UNI/Tesi/Tools/Pytorch/MNISTdata/raw");
+
+    cout << "Nbr of training images = " << dataset.training_images.size() << endl;
+    cout << "Nbr of training labels = " << dataset.training_labels.size() << endl;
+    cout << "Nbr of test images = " << dataset.test_images.size() << endl;
+    cout << "Nbr of test labels = " << dataset.test_labels.size() << endl;
+    cout<<"'"<<(short)dataset.test_images[0][1]<<""<< endl;
+
+
+
+
+
     /*
     In this fundamental example we discuss and demonstrate a powerful technique 
     called `batching'. If N denotes the degree of the polynomial modulus, and T
@@ -45,16 +59,16 @@ int main()
     */
     EncryptionParameters parms;
 
-    parms.set_poly_modulus("1x^1024 + 1");
-    parms.set_coeff_modulus(coeff_modulus_128(1024));
+    parms.set_poly_modulus("1x^8192 + 1");
+    parms.set_coeff_modulus(coeff_modulus_128(8192));
 
     /*
     Note that 40961 is a prime number and 2*1024 divides 40960.
 
-    P | primo e P % 2*1024 = 1
-    P = 12289
+    t| primo e P % 2*1024 = 1
+    t = 12289
     */
-    parms.set_plain_modulus(12289);
+    parms.set_plain_modulus(1099511922689);
 
     SEALContext context(parms);
     print_parameters(context);
@@ -65,6 +79,8 @@ int main()
     */
     auto qualifiers = context.qualifiers();
     cout << "Batching enabled: " << boolalpha << qualifiers.enable_batching << endl;
+    cout <<"NTT enabled: " <<boolalpha <<qualifiers.enable_ntt <<endl;
+    cout <<"Fast pain lift enabled: " <<boolalpha <<qualifiers.enable_fast_plain_lift <<endl;
 
     KeyGenerator keygen(context);
     auto public_key = keygen.public_key();
@@ -153,15 +169,15 @@ int main()
         [ 0,  1,  2,  3,  0,  0, ...,  0 ]
         [ 4,  5,  6,  7,  0,  0, ...,  0 ]
     */
+
     vector<uint64_t> pod_matrix(slot_count, 0);
-    pod_matrix[0] = 0;
-    pod_matrix[1] = 1;
-    pod_matrix[2] = 2;
-    pod_matrix[3] = 3;
-    pod_matrix[row_size] = 4;
-    pod_matrix[row_size + 1] = 5;
-    pod_matrix[row_size + 2] = 6;
-    pod_matrix[row_size + 3] = 7;
+    for(int i=0;i<10;i++){
+        for(int j=0;j<28*28;j++){
+            //pod_matrix[i*28*28+j]=dataset.test_images[i][j];
+            pod_matrix[i*28*28+j]=i+j;
+
+        }
+    }
 
     cout << "Input plaintext matrix:" << endl;
     print_matrix(pod_matrix);
@@ -179,8 +195,12 @@ int main()
     cout << "Encrypting: ";
     encryptor.encrypt(plain_matrix, encrypted_matrix);
     cout << "Done" << endl;
+    cout<<encrypted_matrix[0]<<endl;
     cout << "Noise budget in fresh encryption: "
         << decryptor.invariant_noise_budget(encrypted_matrix) << " bits" << endl;
+
+
+
 
     /*
     Operating on the ciphertext results in homomorphic operations being performed
@@ -192,22 +212,30 @@ int main()
 
     and compose it into a plaintext.
     */
-    vector<uint64_t> pod_matrix2;
+    FractionalEncoder encoder(context.plain_modulus(), context.poly_modulus(), 64, 32, 3);
+    vector<double> pod_matrix2;
     for (int i = 0; i < slot_count; i++)
     {
-        pod_matrix2.push_back((i % 2) + 1);
+        pod_matrix2.push_back((i % 2) + 100.1);
     }
     Plaintext plain_matrix2;
-    crtbuilder.compose(pod_matrix2, plain_matrix2);
-    cout << "Second input plaintext matrix:" << endl;
-    print_matrix(pod_matrix2);
+    vector<Plaintext> encoded_coefficients;
+    cout << "Encoding plaintext coefficients: ";
+    for (int i = 0; i < slot_count; i++)
+    {
+        encoded_coefficients.emplace_back(encoder.encode(pod_matrix2[i]));
+    }
+
+    //crtbuilder.compose(pod_matrix2, plain_matrix2);
+    //cout << "Second input plaintext matrix:" << endl;
+    //print_matrix(pod_matrix2);
 
     /*
     We now add the second (plaintext) matrix to the encrypted one using another 
     new operation -- plain addition -- and square the sum.
     */
-    cout << "Adding and squaring: ";
-    evaluator.add_plain(encrypted_matrix, plain_matrix2);
+    cout << "MUl and squaring: ";
+    evaluator.multiply_plain(encrypted_matrix, plain_matrix2);
     evaluator.square(encrypted_matrix);
     evaluator.relinearize(encrypted_matrix, ev_keys);
     cout << "Done" << endl;

@@ -1,0 +1,13 @@
+#ifndef MNIST_ARCHITECTURE_H
+#define MNIST_ARCHITECTURE_H
+
+#define INPUT_X 28
+#define INPUT_Y 28
+#define INPUT_Z 1
+
+#define CONV1_SIZE 5
+#define CONV1_STRIDE 2
+#define CONV1_CHANNELS 1
+#define CONV1_FILTERS 20
+#define CONV1_PADDING 2
+

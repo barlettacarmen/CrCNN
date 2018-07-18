@@ -13,7 +13,7 @@
 #put source here
 SRC_DIR=src
 
-SRC = main.cpp 
+SRC = convolutionalLayer.cpp layer.cpp ciphertextIO.cpp globals.cpp prova.cpp
 #your compiler
 CXX = c++
 
