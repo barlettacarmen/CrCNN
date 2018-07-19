@@ -52,7 +52,6 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
                 for(kx=0;kx<xf;kx++)
                     for(ky=0;ky<yf;ky++)
                         for(z=0;z<zd;z++){
-                            //evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[(kx*xf*yf)+(ky*yf)+z]);
                             evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[p]);
                             p++;
             }

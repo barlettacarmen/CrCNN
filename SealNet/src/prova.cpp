@@ -4,29 +4,65 @@
 #include "convolutionalLayer.h"
 
 #include <ostream>
+#include <fstream>
+#include <chrono>
 
 using namespace std;
 using namespace seal;
 
 int main(){
-    setParameters();
-    cout<<"Cazzo fai"<<endl;
-    cout<<"Done"<<endl;
+    //setParameters();
+    initFromKeys("keys.txt");
+    //dovresti runnare il test qualche volta per fare la media dei tempi
+    chrono::high_resolution_clock::time_point time_start, time_end;
+    //ostream
+    /*std::ofstream outfile("ciphertexts.txt", std::ofstream::binary);
+    std::ofstream outkeyfile("keys.txt", std::ofstream::binary);
+    keygen->public_key().save(outkeyfile);
+    keygen->secret_key().save(outkeyfile);*/
+    //istream
+    std::ifstream infile("ciphertexts.txt", std::ifstream::binary);
+            /*
+        These will hold the total times used by each operation.
+        */
+        chrono::microseconds time_encrypt_sum(0);
+        chrono::microseconds time_decrypt_sum(0);
+        chrono::microseconds time_convolve(0);
+
     ConvolutionalLayer * layer= new ConvolutionalLayer("prova",28,28,1,2,2,5,5,20);
-    cout<<"done"<<endl<<flush;
     plaintext3D kernel(layer->xf, plaintext2D(layer->yf,vector<Plaintext>(layer->zd)));
     ciphertext2D convolved(layer->xo,vector<Ciphertext>(layer->yo));
     ciphertext3D image(layer->xd,ciphertext2D(layer->yd,vector<Ciphertext>(layer->zd)));
+    plaintext2D convolved_plain(layer->xo,vector<Plaintext>(layer->yo));
+    vector<vector<float> >  result(layer->xo, vector<float> (layer->yo));
     //toy image with each data=5, encrypted
-    IntegerEncoder intencoder(context->plain_modulus(),3);
+    /*IntegerEncoder intencoder(context->plain_modulus(),3);
+
+    time_start = chrono::high_resolution_clock::now();
+    
     for(int i=0;i<layer->xd;i++)
         for(int j=0;j<layer->yd;j++)
             for(int z=0;z<layer->zd;z++){
                 image[i][j].emplace_back(*parms);
                 encryptor->encrypt(intencoder.encode(5),image[i][j][z]); 
+                image[i][j][z].save(outfile);
                 //cout << "encrypting for x:" << i << "y:" << j << "z:" << z <<endl << flush;           
             }
+    time_end = chrono::high_resolution_clock::now();
+
+    time_encrypt_sum += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+
+
     cout<<"end of encryption"<<endl << flush;
+    cout << "Noise budget in fresh encrypted pixel: ";
+    cout<< decryptor->invariant_noise_budget(image[0][0][0]) << " bits"<<endl;
+    */
+        for(int i=0;i<layer->xd;i++)
+            for(int j=0;j<layer->yd;j++)
+                for(int z=0;z<layer->zd;z++){
+                    image[i][j].emplace_back(*parms);
+                    image[i][j][z].load(infile);
+                }
     //Encoding fractional kernel in plaintext 
    
     FractionalEncoder fraencoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
@@ -38,14 +74,45 @@ int main(){
             kernel[i][j][z]=fraencoder.encode(0.15);
             
     }
-    cout<<"Done";
+    cout<<"Done Encoding Kernel"<<endl;
+    //Do convolution
+
+    time_start = chrono::high_resolution_clock::now();
 
     convolved=layer->convolution3d(image,kernel);
 
+    time_end = chrono::high_resolution_clock::now();
+
+    time_convolve += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+
+    cout << "Noise budget in a pixel of the convolved image: ";
+    cout<< decryptor->invariant_noise_budget(convolved[0][0]) << " bits"<<endl;
+    //Decrypting result
+
+    time_start = chrono::high_resolution_clock::now();
+
+    for(int i=0;i<layer->xo;i++){
+        for(int j=0;j<layer->yo;j++){    
+    decryptor->decrypt(convolved[i][j], convolved_plain[i][j]);
+    result[i][j]=fraencoder.decode(convolved_plain[i][j]);
+    cout<<result[i][j]<<" ";
+        }
+    cout<<""<<endl;
+    }
+
+    time_end = chrono::high_resolution_clock::now();
+
+    time_decrypt_sum += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+
+    cout << "Encrypt: " << time_encrypt_sum.count()<< " microseconds" << endl;
+    cout << "Decrypt: " << time_decrypt_sum.count() << " microseconds" << endl;
+    cout<<"Convolution 1 kernel 2D: "<< time_convolve.count() << " microseconds" <<endl;
+    cout.flush();
+
     delete layer;
     delParameters();
-}
 
+}
 /*int main(){
 
     setParameters();
