@@ -13,15 +13,15 @@
 #put source here
 SRC_DIR=src
 
-SRC = convolutionalLayer.cpp layer.cpp ciphertextIO.cpp globals.cpp prova.cpp
+SRC = convolutionalLayer.cpp layer.cpp ciphertextIO.cpp globals.cpp cnnBuilder.cpp ReadH5Model.cpp
 #your compiler
 CXX = c++
 
 #your flags
-CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include 
+CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -I/Users/carmen/anaconda3/include
 
-LDFLAGS=-lseal -lpthread
-STATIC_LIBS=./lib/libseal.a
+LDFLAGS=-lseal -lpthread -Wl,-rpath,/Users/carmen/anaconda3/lib -lz -ldl -lm
+STATIC_LIBS=./lib/libseal.a -L/Users/carmen/anaconda3/lib /Users/carmen/anaconda3/lib/libhdf5_hl_cpp.a /Users/carmen/anaconda3/lib/libhdf5_cpp.a /Users/carmen/anaconda3/lib/libhdf5_hl.a /Users/carmen/anaconda3/lib/libhdf5.a -L/Users/carmen/anaconda3/lib
 
 #executables will be saved here
 BIN_DIR=bin

@@ -3,12 +3,13 @@
 #include "ciphertextIO.h"
 #include "seal/seal.h"
 #include "globals.h"
+#include <cassert>
 
 using namespace std;
 using namespace seal;
 
 
-ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,vector<float> filters):
+ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, floatHypercube & filters, vector<float> & biases):
 	Layer(name), xd(xd), yd(yd), zd(zd),
 	xs(xs), ys(ys),
 	xf(xf), yf(yf),
@@ -19,7 +20,8 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 	xo( (xd-xf+2*xpad) / xs + 1 ), yo( (yd-yf+2*ypad) / ys + 1 ), zo(  nf),
 	xpad(0),
 	ypad(0),
-	filters(filters){
+	filters(filters),
+    biases(biases){
 
 }
 //solo per prova
@@ -39,6 +41,9 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 
     //da iterare sui 50 kernel
     ciphertext2D ConvolutionalLayer::convolution3d(ciphertext3D image, plaintext3D kernel){
+        assert(kernel.size()==zd);
+        assert(kernel[0].size()==xf);
+        assert(kernel[0][0].size()==yf);
         //bisogna aggiungere il bias
         int i,j,kx,ky,z,xlast,ylast,p;
         vector<Ciphertext> pixels(xf*yf*zd);
@@ -46,26 +51,28 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 
         Layer::computeBoundaries(xd,yd,xs,ys,xf,yf, &xlast, &ylast);
 
-        for(i=0;i<xlast;i+=xs)
+        for(i=0;i<xlast;i+=xs){
+            assert(i<image[0].size());
             for(j=0;j<ylast;j+=ys){
+                assert(j<image[0][0].size());
                 p=0;
-                for(kx=0;kx<xf;kx++)
-                    for(ky=0;ky<yf;ky++)
-                        for(z=0;z<zd;z++){
-                            evaluator->multiply_plain(image[i+kx][j+ky][z],kernel[kx][ky][z],pixels[p]);
-                            p++;
+                for(z=0;z<zd;z++)
+                    for(kx=0;kx<xf;kx++)
+                        for(ky=0;ky<yf;ky++){
+                                evaluator->multiply_plain(image[z][i+kx][j+ky],kernel[z][kx][ky],pixels[p]);
+                                p++;
             }
             evaluator->add_many(pixels,result[i/xs][j/ys]);
                         }
-
+        }
         return result;
 
     }
 
-//da controllae assegnamento finale
+//da controllare assegnamento finale
 ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
-	plaintext3D kernel(xf, plaintext2D(yf,vector<Plaintext>(zd)));
-    ciphertext3D convolved(xo,ciphertext2D(yo,vector<Ciphertext>(zo)));
+	plaintext3D kernel(zd, plaintext2D(xf,vector<Plaintext>(yf)));
+    ciphertext3D convolved(zo,ciphertext2D(xo,vector<Ciphertext>(yo)));
 	for(int k=0;k<nf;k++){
 		kernel=getKernel(k);
         convolved[k]=convolution3d(input,kernel);

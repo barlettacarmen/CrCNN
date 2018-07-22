@@ -16,12 +16,12 @@ int main(){
     //dovresti runnare il test qualche volta per fare la media dei tempi
     chrono::high_resolution_clock::time_point time_start, time_end;
     //ostream
-    /*std::ofstream outfile("ciphertexts.txt", std::ofstream::binary);
-    std::ofstream outkeyfile("keys.txt", std::ofstream::binary);
+    /*ofstream outfile("ciphertexts.txt", ofstream::binary);
+    ofstream outkeyfile("keys.txt", ofstream::binary);
     keygen->public_key().save(outkeyfile);
     keygen->secret_key().save(outkeyfile);*/
     //istream
-    std::ifstream infile("ciphertexts.txt", std::ifstream::binary);
+    ifstream infile("ciphertexts.txt", ifstream::binary);
             /*
         These will hold the total times used by each operation.
         */
@@ -30,11 +30,11 @@ int main(){
         chrono::microseconds time_convolve(0);
 
     ConvolutionalLayer * layer= new ConvolutionalLayer("prova",28,28,1,2,2,5,5,20);
-    plaintext3D kernel(layer->xf, plaintext2D(layer->yf,vector<Plaintext>(layer->zd)));
-    ciphertext2D convolved(layer->xo,vector<Ciphertext>(layer->yo));
-    ciphertext3D image(layer->xd,ciphertext2D(layer->yd,vector<Ciphertext>(layer->zd)));
-    plaintext2D convolved_plain(layer->xo,vector<Plaintext>(layer->yo));
-    vector<vector<float> >  result(layer->xo, vector<float> (layer->yo));
+    plaintext3D kernel(layer->zd, plaintext2D(layer->xf,vector<Plaintext>(layer->yf)));
+    ciphertext3D convolved(layer->nf, ciphertext2D(layer->xo,vector<Ciphertext>(layer->yo)));
+    ciphertext3D image(layer->zd,ciphertext2D(layer->xd,vector<Ciphertext>(layer->yd)));
+    plaintext2D convolved_plain(layer->xo, vector<Plaintext>(layer->yo));
+    vector<vector<float> > result(layer->xo, vector<float>(layer->yo));
     //toy image with each data=5, encrypted
     /*IntegerEncoder intencoder(context->plain_modulus(),3);
 
@@ -56,46 +56,46 @@ int main(){
     cout<<"end of encryption"<<endl << flush;
     cout << "Noise budget in fresh encrypted pixel: ";
     cout<< decryptor->invariant_noise_budget(image[0][0][0]) << " bits"<<endl;
-    */
+    */ 
+    for(int z=0;z<layer->zd;z++)
         for(int i=0;i<layer->xd;i++)
-            for(int j=0;j<layer->yd;j++)
-                for(int z=0;z<layer->zd;z++){
-                    image[i][j].emplace_back(*parms);
-                    image[i][j][z].load(infile);
+            for(int j=0;j<layer->yd;j++){
+                    image[z][i].emplace_back(*parms);
+                    image[z][i][j].load(infile);
                 }
     //Encoding fractional kernel in plaintext 
    
     FractionalEncoder fraencoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
     
-
+for(int z=0;z<layer->zd;z++)
     for(int i=0;i<layer->xf;i++)
-        for(int j=0;j<layer->yf;j++)
-            for(int z=0;z<layer->zd;z++){
-            kernel[i][j][z]=fraencoder.encode(0.15);
+        for(int j=0;j<layer->yf;j++){
+            kernel[z][i][j]=fraencoder.encode(0.15);
             
     }
     cout<<"Done Encoding Kernel"<<endl;
     //Do convolution
 
     time_start = chrono::high_resolution_clock::now();
-
-    convolved=layer->convolution3d(image,kernel);
+     for(int z=0; z<layer->nf;z++)
+        convolved[z]=layer->convolution3d(image,kernel);
 
     time_end = chrono::high_resolution_clock::now();
 
     time_convolve += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
 
     cout << "Noise budget in a pixel of the convolved image: ";
-    cout<< decryptor->invariant_noise_budget(convolved[0][0]) << " bits"<<endl;
+    cout<< decryptor->invariant_noise_budget(convolved[0][0][0]) << " bits"<<endl<<flush;
     //Decrypting result
 
     time_start = chrono::high_resolution_clock::now();
 
-    for(int i=0;i<layer->xo;i++){
-        for(int j=0;j<layer->yo;j++){    
-    decryptor->decrypt(convolved[i][j], convolved_plain[i][j]);
-    result[i][j]=fraencoder.decode(convolved_plain[i][j]);
-    cout<<result[i][j]<<" ";
+    for(int z=0;z<layer->nf;z++)
+        for(int i=0;i<layer->xo;i++){
+            for(int j=0;j<layer->yo;j++){
+                    decryptor->decrypt(convolved[z][i][j], convolved_plain[i][j]);
+                    result[i][j]=fraencoder.decode(convolved_plain[i][j]);
+                    cout<<result[i][j]<<" ";
         }
     cout<<""<<endl;
     }

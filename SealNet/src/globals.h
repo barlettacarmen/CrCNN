@@ -9,6 +9,7 @@ typedef vector<vector<vector<Ciphertext> > > ciphertext3D;
 typedef vector<vector<vector<Plaintext> > >  plaintext3D;
 typedef vector<vector<Ciphertext> >	 ciphertext2D;
 typedef vector<vector<Plaintext> >   plaintext2D;
+typedef vector<vector<vector<vector<float> > > >  floatHypercube;
 
 extern EncryptionParameters * parms;
 extern KeyGenerator * keygen;

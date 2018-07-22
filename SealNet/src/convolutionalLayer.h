@@ -29,9 +29,9 @@ public:
 	int xo,yo;
 	int xpad, ypad,zo;
 	//float filter[xf*yf*zf*nf];
-	vector<float> filters; 
-	vector<float> bias;
-	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,vector<float> filters);
+	floatHypercube filters; 
+	vector<float> biases;
+	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, floatHypercube & filters, vector<float> & biases);
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf);
 	~ConvolutionalLayer();
 
