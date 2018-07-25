@@ -13,7 +13,7 @@
 #put source here
 SRC_DIR=src
 
-SRC = convolutionalLayer.cpp layer.cpp ciphertextIO.cpp globals.cpp cnnBuilder.cpp ReadH5Model.cpp
+SRC = convolutionalLayer.cpp layer.cpp  globals.cpp cnnBuilder.cpp H5Easy.cpp main.cpp
 #your compiler
 CXX = c++
 
