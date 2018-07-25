@@ -30,7 +30,7 @@ using namespace std;
 				for(i=0;i<xf;i++)
 					for(j=0;j<yf;j++){
 						reshaped_weights[n][z][i][j]=weights[w];
-						cout<<n<<" "<<z<<" "<<i<<" "<<j<<" -> "<<weights[w]<<endl;
+						//cout<<n<<" "<<z<<" "<<i<<" "<<j<<" -> "<<weights[w]<<endl;
 						w++;
 					}
 

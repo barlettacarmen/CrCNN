@@ -37,7 +37,8 @@ public:
 
 	ciphertext3D forward (ciphertext3D input);
 	plaintext3D getKernel(int kernel_index);
-	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel);
+	Plaintext getBias(int bias_index);
+	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel,Plaintext bias);
 };
 
 

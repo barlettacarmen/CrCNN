@@ -17,11 +17,13 @@ extern SEALContext * context;
 extern Encryptor * encryptor;
 extern Decryptor * decryptor;
 extern Evaluator * evaluator;
+extern IntegerEncoder *intencoder;
+extern FractionalEncoder *fraencoder;
 //extern PolyCRTBuilder * crtbuilder;
 
 void setParameters();
 void initFromKeys(string key_pair_path);
-
+void print_parameters(const SEALContext &context);
 void delParameters();
 
 #endif

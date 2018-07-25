@@ -1,6 +1,5 @@
 #include "convolutionalLayer.h"
 #include "layer.h"
-#include "ciphertextIO.h"
 #include "seal/seal.h"
 #include "globals.h"
 #include <cassert>
@@ -40,7 +39,7 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 }
 
     //da iterare sui 50 kernel
-    ciphertext2D ConvolutionalLayer::convolution3d(ciphertext3D image, plaintext3D kernel){
+    ciphertext2D ConvolutionalLayer::convolution3d(ciphertext3D image, plaintext3D kernel, Plaintext bias){
         assert(kernel.size()==zd);
         assert(kernel[0].size()==xf);
         assert(kernel[0][0].size()==yf);
@@ -62,6 +61,8 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
                                 evaluator->multiply_plain(image[z][i+kx][j+ky],kernel[z][kx][ky],pixels[p]);
                                 p++;
             }
+            //adding bias
+            evaluator->add_plain(pixels[0],bias);
             evaluator->add_many(pixels,result[i/xs][j/ys]);
                         }
         }
@@ -71,15 +72,29 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 
 //da controllare assegnamento finale
 ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
+    Plaintext bias;
 	plaintext3D kernel(zd, plaintext2D(xf,vector<Plaintext>(yf)));
     ciphertext3D convolved(zo,ciphertext2D(xo,vector<Ciphertext>(yo)));
 	for(int k=0;k<nf;k++){
 		kernel=getKernel(k);
-        convolved[k]=convolution3d(input,kernel);
+        bias=getBias(k);
+        convolved[k]=convolution3d(input,kernel,bias);
 	}
     return convolved;
 }
 
-plaintext3D ConvolutionalLayer::getKernel(int kernel_index){return plaintext3D();}
+plaintext3D ConvolutionalLayer::getKernel(int kernel_index){
+    plaintext3D kernel(zd, plaintext2D(xf,vector<Plaintext>(yf)));
+    for(int z=0;z<zd;z++)
+        for(int i=0;i<xf;i++)
+            for(int j=0;j<yf;j++){
+                kernel[z][i][j]=fraencoder->encode(filters[kernel_index][z][i][j]);        
+    }
+    cout<<"Done Encoding Kernel"<<endl;
+    return kernel;}
+
+Plaintext ConvolutionalLayer::getBias(int bias_index){
+   return fraencoder->encode(biases[bias_index]);
+ }
 
 ConvolutionalLayer::~ConvolutionalLayer(){}
