@@ -9,9 +9,12 @@ class Layer
 {
 public: 
 	string name;
-
+	Layer();
     Layer(string layer_name);
-	~Layer();
+	virtual ~Layer();
+
+	string getName(){return name;}
+	virtual void printLayerStructure()=0;
 	virtual ciphertext3D forward (ciphertext3D input)=0;
 	
 	/* Compute the last x and y coordinates of a xd*yd image in which is possible to

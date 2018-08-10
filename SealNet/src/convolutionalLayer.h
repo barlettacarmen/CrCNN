@@ -26,10 +26,8 @@ class ConvolutionalLayer : public Layer
 
 public:
 	int xd,yd,zd,xs,ys,xf,yf,nf;
-	int xo,yo;
-	int xpad, ypad,zo;
-	//float filter[xf*yf*zf*nf];
-	floatHypercube filters; 
+	int xo,yo,zo;
+	floatHypercube filters; //nf,zd,xf,yf
 	vector<float> biases;
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, floatHypercube & filters, vector<float> & biases);
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf);
@@ -39,6 +37,7 @@ public:
 	plaintext3D getKernel(int kernel_index);
 	Plaintext getBias(int bias_index);
 	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel,Plaintext bias);
+	void printLayerStructure();
 };
 
 

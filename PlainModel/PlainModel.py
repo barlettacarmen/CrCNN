@@ -14,14 +14,15 @@ from collections import OrderedDict
 class PlainNet(nn.Module):
 	def __init__(self):
 		super(PlainNet,self).__init__()
-		#Input 28 x 28 x 1 --> 13 x 13 x 20 --> 13 x 13 x 20
+		#Input 28 x 28 x 1 --> 12 x 12 x 20 --> 11 x 11 x 20
 		self.pool1_features = nn.Sequential(OrderedDict([
-			('conv1', nn.Conv2d(1,20, kernel_size=5, stride=2, padding=2)),
+			#('conv1', nn.Conv2d(1,20, kernel_size=5, stride=2, padding=2)),
+			('conv1', nn.Conv2d(1,20, kernel_size=5, stride=2)),
 			#('pool1', nn.AvgPool2d(kernel_size=2,stride=1)),
 			('pool1', CustomAvgPooling()),
 			('norm1', nn.BatchNorm2d(20, affine=False)),
 			]))
-		# 13 x 13 x 20 --> 5 x 5 x 50 --> 5 x 5 x 50
+		# 11 x 11 x 20 --> 5 x 5 x 50 --> 4 x 4 x 50
 		self.pool2_features = nn.Sequential(OrderedDict([
 			('conv2', nn.Conv2d(20,50, kernel_size=3, stride=2)),
 			#potresti  doverla spostare dopo norm2
@@ -31,9 +32,9 @@ class PlainNet(nn.Module):
 			#('pool2', nn.AvgPool2d(kernel_size=2,stride=1)),
 			('norm2', nn.BatchNorm2d(50, affine=False)),
 			]))
-		# 5 x 5 x 50 --> 500 --> 10
+		# 4 x 4 x 50 --> 500 --> 10
 		self.classifier = nn.Sequential(OrderedDict([
-			('fc3', nn.Linear(5*5*50, 500)),
+			('fc3', nn.Linear(4*4*50, 500)),
 			('fc4', nn.Linear(500,10)),
 			]))
 		
@@ -59,7 +60,7 @@ class PlainNet(nn.Module):
 	def fc_forward(self, x):
 		x = self.pool2_forward(x)
 		#print(x.shape,"before x.view")
-		x = x.view(-1, 5 * 5 * 50)
+		x = x.view(-1, 4 * 4 * 50)
 		#print(x.shape,"after x.view")
 		x = self.classifier(x)
 		#print(x.shape,"after classifier")
@@ -71,7 +72,8 @@ class PlainNet(nn.Module):
 # MNIST Dataset with features in range [0,255]
 transform=transforms.Compose(
 	[transforms.ToTensor(),
-	transforms.Lambda(lambda x: x*255)
+	 transforms.Normalize((0.1307,), (0.3081,))
+	#transforms.Lambda(lambda x: x*255)
 	])
 
 trainset=torchvision.datasets.MNIST(root='./MNISTdata',train=True,download=True,transform=transform)
@@ -122,7 +124,8 @@ for epoch in range(2):
 			running_loss = 0.0
 
 print('Finished Training')
-torch.save(net.state_dict(),'./PlainModel.pth')
+#torch.save(net.state_dict(),'./PlainModel.pth')
+torch.save(net.state_dict(),'./PlainModelWoPad.pth')
 #Test
 #net=PlainNet()
 #net.load_state_dict(torch.load('./PlainModel.pth'))

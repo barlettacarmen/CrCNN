@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-
+Layer::Layer(){}
 Layer::Layer(string layer_name):name(layer_name){}
 Layer::~Layer(){}
 

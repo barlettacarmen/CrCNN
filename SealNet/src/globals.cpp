@@ -14,18 +14,18 @@ Decryptor * decryptor;
 Evaluator * evaluator;
 IntegerEncoder * intencoder;
 FractionalEncoder * fraencoder;
-//PolyCRTBuilder * crtbuilder;
+EvaluationKeys * ev_keys16;
 
 void setParameters(){
 	parms = new EncryptionParameters();
 	parms->set_poly_modulus("1x^4096 + 1");
-    parms->set_coeff_modulus(coeff_modulus_128(4096));
+  parms->set_coeff_modulus(coeff_modulus_128(4096));
     //parms->set_poly_modulus("1x^32768 + 1");
     //parms->set_coeff_modulus(coeff_modulus_128(32768));
 
     //parms->set_plain_modulus(1099511922689);
-    parms->set_plain_modulus(4000000000);
-    //parms->set_plain_modulus(1<<20);
+    //parms->set_plain_modulus(4000000000);
+  parms->set_plain_modulus(1<<20);
 
 
     context = new SEALContext(*parms);
@@ -37,44 +37,56 @@ void setParameters(){
     evaluator = new Evaluator(*context);
     intencoder = new IntegerEncoder(context->plain_modulus(),3);
     fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
-   	//crtbuilder = new PolyCRTBuilder(*context);
+   	ev_keys16 = new EvaluationKeys();
+    keygen->generate_evaluation_keys(16, *ev_keys16);
    
 }
 
 
-void initFromKeys(string key_pair_path){
-	ifstream infile(key_pair_path, ifstream::binary);
+void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path){
+	ifstream pubfile(public_key_path, ifstream::binary);
+  ifstream secfile(secret_key_path, ifstream::binary);
+  ifstream evalfile(evaluation_key_path, ifstream::binary);
 
 	parms = new EncryptionParameters();
 	parms->set_poly_modulus("1x^4096 + 1");
-    parms->set_coeff_modulus(coeff_modulus_128(4096));
+  parms->set_coeff_modulus(coeff_modulus_128(4096));
 
    
-    parms->set_plain_modulus(4000000000);
+    //parms->set_plain_modulus(4000000000);
+  parms->set_plain_modulus(1<<20);
 
 
-    context = new SEALContext(*parms);
-    
+  context = new SEALContext(*parms);
 
-    PublicKey public_key;
-    public_key.load(infile);
-   	SecretKey secret_key;
-   	secret_key.load(infile);
 
-   	keygen=new KeyGenerator(*context,secret_key,public_key);
+  PublicKey public_key;
+  public_key.load(pubfile);
+  SecretKey secret_key;
+  secret_key.load(secfile);
 
-    encryptor = new Encryptor(*context, public_key);
-    decryptor = new Decryptor(*context,secret_key);
-    evaluator = new Evaluator(*context);
-    intencoder = new IntegerEncoder(context->plain_modulus(),3);
-    fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
-   	//crtbuilder = new PolyCRTBuilder(*context);
+  keygen=new KeyGenerator(*context,secret_key,public_key);
+
+  encryptor = new Encryptor(*context, public_key);
+  decryptor = new Decryptor(*context,secret_key);
+  evaluator = new Evaluator(*context);
+  intencoder = new IntegerEncoder(context->plain_modulus(),3);
+  fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
+
+
+  ev_keys16 = new EvaluationKeys();
+  ev_keys16->load(evalfile);
+
+  pubfile.close();
+  secfile.close();
+  evalfile.close();
+  
    
 }
 
 
 void delParameters(){
-  // delete crtbuilder;
+   delete ev_keys16;
    delete fraencoder;
    delete intencoder;
    delete evaluator;

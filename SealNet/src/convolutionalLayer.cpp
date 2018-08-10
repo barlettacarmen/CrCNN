@@ -14,11 +14,9 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 	xf(xf), yf(yf),
 	nf(nf),
 	/* Compute the output dimensions of the convolved ciphertext image.
-	The function requires the dimensions of the image, the strides, the padding and
+	The function requires the dimensions of the image, the strides, (the padding) and
 	the dimensions of the filters. The output is returned through xo,yo and zo. */
-	xo( (xd-xf+2*xpad) / xs + 1 ), yo( (yd-yf+2*ypad) / ys + 1 ), zo(  nf),
-	xpad(0),
-	ypad(0),
+	xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf),
 	filters(filters),
     biases(biases){
 
@@ -30,11 +28,10 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
     xf(xf), yf(yf),
     nf(nf),
     /* Compute the output dimensions of the convolved ciphertext image.
-    The function requires the dimensions of the image, the strides, the padding and
+    The function requires the dimensions of the image, the strides, (the padding) and
     the dimensions of the filters. The output is returned through xo,yo and zo. */
-    xo( (xd-xf+2*xpad) / xs + 1 ), yo( (yd-yf+2*ypad) / ys + 1 ), zo(  nf),
-    xpad(0),
-    ypad(0){
+    xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf)
+    {
 
 }
 
@@ -70,7 +67,7 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 
     }
 
-//da controllare assegnamento finale
+
 ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
     Plaintext bias;
 	plaintext3D kernel(zd, plaintext2D(xf,vector<Plaintext>(yf)));
@@ -90,11 +87,16 @@ plaintext3D ConvolutionalLayer::getKernel(int kernel_index){
             for(int j=0;j<yf;j++){
                 kernel[z][i][j]=fraencoder->encode(filters[kernel_index][z][i][j]);        
     }
-    cout<<"Done Encoding Kernel"<<endl;
+    cout<<"Done Encoding Kernel "<< kernel_index<<endl;
     return kernel;}
 
 Plaintext ConvolutionalLayer::getBias(int bias_index){
-   return fraencoder->encode(biases[bias_index]);
+   return fraencoder->encode(biases[bias_index]); 
  }
+
+void ConvolutionalLayer::printLayerStructure(){
+    cout<<"Convolutional "<<name<<" : input ("<<zd<<","<<xd<<","<<yd<<"); kernel("<<nf<<","<<xf<<","<<yf<<"); stride("<<xs<<","<<ys<<"); output("<<
+    zo<<","<<xo<<","<<yo<<")"<<endl;
+}
 
 ConvolutionalLayer::~ConvolutionalLayer(){}
