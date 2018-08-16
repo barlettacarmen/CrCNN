@@ -5,6 +5,7 @@
 #include "network.h"
 #include <string>
 #include <vector>
+#include <cmath>
 
 
 using namespace std;
@@ -68,6 +69,22 @@ using namespace std;
 	SquareLayer *CnnBuilder::buildSquareLayer(string name){
 		return new SquareLayer(name);
 	}
+	
+	//Encoding in plaintext mean and variance as 1/sqrt(var+1e-05)
+	BatchNormLayer * CnnBuilder::buildBatchNormLayer(string name, int num_channels){
+		vector<float> mean,var;
+		vector<Plaintext> encoded_mean(num_channels),encoded_var(num_channels);
+
+		mean=getPretrained(name+".running_mean");
+		var=getPretrained(name+".running_var");
+
+		for(int i=0; i<num_channels;i++){
+			encoded_mean[i]=fraencoder->encode(mean[i]);
+			var[i]=1/sqrt(var[i] + 0.00001);
+			encoded_var[i]=fraencoder->encode(var[i]);
+		}
+		return new BatchNormLayer(name,num_channels,encoded_mean,encoded_var);
+	}
 
 
 	Network CnnBuilder::buildNetwork(){
@@ -78,12 +95,16 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		PoolingLayer *pool1 = buildPoolingLayer("pool1",12,12,20,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
+		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20);
+		net.getLayers().push_back(shared_ptr<Layer> (bn1));
 		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50);
 		net.getLayers().push_back(shared_ptr<Layer> (conv2));
 		SquareLayer *act1= buildSquareLayer("act1");
 		net.getLayers().push_back(shared_ptr<Layer> (act1));
 		PoolingLayer *pool2= buildPoolingLayer("pool2",5,5,50,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool2));
+		BatchNormLayer *bn2=buildBatchNormLayer("pool2_features.norm2",50);
+		net.getLayers().push_back(shared_ptr<Layer> (bn2));
 		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
 		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10);

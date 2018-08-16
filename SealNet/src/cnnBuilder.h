@@ -5,6 +5,7 @@
 #include "fullyConnectedLayer.h"
 #include "poolingLayer.h"
 #include "squareLayer.h"
+#include "batchNormLayer.h"
 #include "network.h"
 #include <string>
 #include <vector>
@@ -21,6 +22,7 @@ public:
 	FullyConnectedLayer * buildFullyConnectedLayer(string name, int in_dim, int out_dim);
 	PoolingLayer * buildPoolingLayer(string name,int xd,int yd, int zd, int xs, int ys,int xf, int yf);
 	SquareLayer *  buildSquareLayer(string name);
+	BatchNormLayer * buildBatchNormLayer(string name, int num_channels);
 	/* Define all necessary layers with their parameters in this function*/
 	Network buildNetwork();
 
