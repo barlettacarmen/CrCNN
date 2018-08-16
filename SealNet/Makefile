@@ -13,15 +13,16 @@
 #put source here
 SRC_DIR=src
 
-SRC = convolutionalLayer.cpp layer.cpp  globals.cpp cnnBuilder.cpp H5Easy.cpp main.cpp
+SRC = convolutionalLayer.cpp poolingLayer.cpp fullyConnectedLayer.cpp squareLayer.cpp batchNormLayer.cpp layer.cpp  globals.cpp utils.cpp cnnBuilder.cpp network.cpp H5Easy.cpp mainnet.cpp
 #your compiler
 CXX = c++
 
 #your flags
-CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -I/Users/carmen/anaconda3/include
+CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -I./include/h5
 
-LDFLAGS=-lseal -lpthread -Wl,-rpath,/Users/carmen/anaconda3/lib -lz -ldl -lm
-STATIC_LIBS=./lib/libseal.a -L/Users/carmen/anaconda3/lib /Users/carmen/anaconda3/lib/libhdf5_hl_cpp.a /Users/carmen/anaconda3/lib/libhdf5_cpp.a /Users/carmen/anaconda3/lib/libhdf5_hl.a /Users/carmen/anaconda3/lib/libhdf5.a -L/Users/carmen/anaconda3/lib
+
+LDFLAGS=-lseal -lpthread -Wl,-rpath,./lib -lz -ldl -lm
+STATIC_LIBS=./lib/libseal.a -L./lib ./lib/libhdf5_hl_cpp.a ./lib/libhdf5_cpp.a ./lib/libhdf5_hl.a ./lib/libhdf5.a 
 
 #executables will be saved here
 BIN_DIR=bin

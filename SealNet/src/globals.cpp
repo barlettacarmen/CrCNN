@@ -2,6 +2,7 @@
 #include "seal/seal.h"
 #include <fstream>
 #include <string>
+#include <ostream>
 
 using namespace seal;
 using namespace std;
@@ -17,6 +18,7 @@ FractionalEncoder * fraencoder;
 EvaluationKeys * ev_keys16;
 
 void setParameters(){
+  //4096,1<<20
 	parms = new EncryptionParameters();
 	parms->set_poly_modulus("1x^4096 + 1");
   parms->set_coeff_modulus(coeff_modulus_128(4096));
@@ -36,10 +38,29 @@ void setParameters(){
     decryptor = new Decryptor(*context,secret_key);
     evaluator = new Evaluator(*context);
     intencoder = new IntegerEncoder(context->plain_modulus(),3);
+    //64,32
     fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
    	ev_keys16 = new EvaluationKeys();
     keygen->generate_evaluation_keys(16, *ev_keys16);
    
+}
+
+void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path){
+    ofstream pubfile(public_key_path, ofstream::binary);
+    ofstream secfile(secret_key_path, ofstream::binary);
+    ofstream evalfile(evaluation_key_path, ofstream::binary);
+
+    setParameters();
+
+    keygen->public_key().save(pubfile);
+    keygen->secret_key().save(secfile);
+    ev_keys16->save(evalfile);
+    
+    pubfile.close();
+    secfile.close();
+    evalfile.close();
+
+
 }
 
 
@@ -95,6 +116,68 @@ void delParameters(){
    delete keygen;
    delete context;
    delete parms;
+}
+//Precondition: setParameters() or initFromKeys() must be called before
+//Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd
+ciphertext3D encryptImage(vector<float> image, int zd, int xd, int yd){
+
+  ciphertext3D encrypted_image(zd,ciphertext2D(xd,vector<Ciphertext>(yd)));
+  
+    for(int z=0;z<zd;z++)
+      for(int i=0;i<xd;i++)
+        for(int j=0;j<yd;j++){
+            encryptor->encrypt(fraencoder->encode(image[i*xd+j]),encrypted_image[z][i][j]);          
+            }
+
+  cout << "Noise budget in fresh encrypted pixel: ";
+  cout<< decryptor->invariant_noise_budget(encrypted_image[0][0][0]) << " bits"<<endl;
+
+  return encrypted_image;
+
+}
+//Precondition: setParameters() or initFromKeys() must be called before
+//Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd and save it in file file_name
+ciphertext3D encryptAndSaveImage(vector<float> image, int zd, int xd, int yd, string file_name){
+  ofstream outfile(file_name, ofstream::binary);
+  ciphertext3D encrypted_image(zd,ciphertext2D(xd,vector<Ciphertext>(yd)));
+  
+    for(int z=0;z<zd;z++)
+      for(int i=0;i<xd;i++)
+        for(int j=0;j<yd;j++){
+            encryptor->encrypt(fraencoder->encode(image[i*xd+j]),encrypted_image[z][i][j]);
+            encrypted_image[z][i][j].save(outfile);       
+            }
+
+  outfile.close();
+  cout << "Noise budget in fresh encrypted pixel: ";
+  cout<< decryptor->invariant_noise_budget(encrypted_image[0][0][0]) << " bits"<<endl;
+
+  return encrypted_image;
+}
+//Decrypt a fractional encrypted 3d image
+floatCube decryptImage(ciphertext3D encrypted_image){
+    int zd=encrypted_image.size();
+    int xd=encrypted_image[0].size();
+    int yd=encrypted_image[0][0].size();
+    cout<<zd<<","<<xd<<","<<yd<<endl;
+
+    Plaintext tmp;
+    floatCube image(zd, vector<vector<float> > (xd,vector<float>(yd)));
+
+    for(int z=0;z<zd;z++){
+        cout<<z<<endl;
+        for(int i=0;i<xd;i++){
+            for(int j=0;j<yd;j++){
+                    decryptor->decrypt(encrypted_image[z][i][j], tmp);
+                    image[z][i][j]=fraencoder->decode(tmp);
+                    cout<<image[z][i][j]<<" ";
+        }
+    cout<<endl;
+    }
+    cout<<endl;
+    cout<<endl;
+  }
+  return image;
 }
 
 
