@@ -16,6 +16,9 @@ public:
 	string getName(){return name;}
 	virtual void printLayerStructure()=0;
 	virtual ciphertext3D forward (ciphertext3D input)=0;
+	/*If a layer has Plaintext parameters it saves/ loades it in file_name*/
+	virtual void savePlaintextParameters(string file_name)=0;
+	virtual void loadPlaintextParameters(string file_name)=0;
 	
 	/* Compute the last x and y coordinates of a xd*yd image in which is possible to
 	apply a filter xf*yf, given a stride [xs,ys].

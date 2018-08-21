@@ -38,7 +38,7 @@ testloader=torch.utils.data.DataLoader(testset, batch_size=4,shuffle=False,num_w
 
 net=pm.plain_net(weights_path='PlainModelWoPad.pth')
 net.eval()
-image,label=testset[2]
+image,label=testset[23]
 output=net(image.unsqueeze_(0))
 print(output)
 

@@ -25,18 +25,20 @@ class ConvolutionalLayer : public Layer
 	Note: it is applied only one filter, thus the z-dimension is 1. */
 
 public:
-	int xd,yd,zd,xs,ys,xf,yf,nf;
+	int xd,yd,zd,xs,ys,xf,yf,nf,th_count;
 	int xo,yo,zo;
-	floatHypercube filters; //nf,zd,xf,yf
-	vector<float> biases;
-	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, floatHypercube & filters, vector<float> & biases);
-	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf);
+	plaintext4D filters; //nf,zd,xf,yf
+	vector<Plaintext> biases;
+	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,plaintext4D & filters, vector<Plaintext> & biases);
+	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,int th_count,string file_name);
 	~ConvolutionalLayer();
 
 	ciphertext3D forward (ciphertext3D input);
 	plaintext3D getKernel(int kernel_index);
 	Plaintext getBias(int bias_index);
 	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel,Plaintext bias);
+	void savePlaintextParameters(string file_name);
+	void loadPlaintextParameters(string file_name);
 	void printLayerStructure();
 };
 

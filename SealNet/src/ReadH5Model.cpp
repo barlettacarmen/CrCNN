@@ -8,9 +8,9 @@ using namespace std;
 
 int main()
 { //le norm non dovrebbero servire
-/*
+
    LoadH5 ldata;
-   ldata.setFileName("PlainModel.h5");
+   ldata.setFileName("PlainModelWoPad.h5");
    ldata.setVarName("classifier.fc3.bias");
    vector<float>f3bias = ldata.getData();
    ldata.setVarName("classifier.fc3.weight");
@@ -35,16 +35,18 @@ int main()
    vector<float>n2mean = ldata.getData();
    ldata.setVarName("pool2_features.norm2.running_var");
    vector<float>n2var = ldata.getData();
-*/
-   //for ( vector<float>::iterator it = fdta.begin(); it != fdta.end(); ++it )
-   //   cout << *it << endl;
-   //for(int i=0;i<c1weight.size();i++)
-  	//cout<< c1weight[i] <<endl;
 
+   cout<<"var"<<endl;
+   for ( vector<float>::iterator it = n1var.begin(); it != n1var.end(); ++it )
+     cout << *it << endl;
+   cout<<"mean"<<endl;
+   for(int i=0;i<n1mean.size();i++)
+  	cout<<n1mean[i] <<endl;
+/*
    CnnBuilder b("PlainModel.h5");
-   b.buildConvolutionalLayer("pool1_features.conv1",28,28,1,5,5,3,3,20);
+   b.buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20);
 
-
+*/
   
    return 0;
 }

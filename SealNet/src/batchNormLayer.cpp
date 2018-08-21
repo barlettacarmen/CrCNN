@@ -4,6 +4,8 @@
 #include "globals.h"
 #include <cassert>
 #include <vector>
+#include <ostream>
+#include <fstream>
 
 using namespace std;
 using namespace seal;
@@ -15,7 +17,12 @@ BatchNormLayer::BatchNormLayer(string name, int num_channels,vector<Plaintext> m
 	mean(mean), var(var){
 	}
 
-
+BatchNormLayer::BatchNormLayer(string name, int num_channels,string file_name):
+	Layer(name),
+	num_channels(num_channels)
+	{
+		loadPlaintextParameters(file_name);
+}
 BatchNormLayer::~BatchNormLayer(){}
 
 ciphertext3D BatchNormLayer::forward (ciphertext3D input){
@@ -31,6 +38,28 @@ ciphertext3D BatchNormLayer::forward (ciphertext3D input){
 	return input;
 }
 
+void BatchNormLayer::savePlaintextParameters(string file_name){
+	ofstream outfile(file_name, ofstream::binary);
+	for(int i=0; i<num_channels;i++){
+		mean[i].save(outfile);
+		var[i].save(outfile);
+	}
+
+	outfile.close();
+}
+void BatchNormLayer::loadPlaintextParameters(string file_name){
+	ifstream infile(file_name, ifstream::binary);
+	vector<Plaintext> encoded_mean(num_channels),encoded_var(num_channels);
+
+		for(int i=0; i<num_channels;i++){
+			encoded_mean[i].load(infile);
+			encoded_var[i].load(infile);
+		}
+	infile.close();
+	mean=encoded_mean;
+	var=encoded_var;
+
+}
 
 void BatchNormLayer::printLayerStructure(){
 	cout<<"BatchNormLayer2D "<<name<<" :num_channels "<<num_channels<<endl;

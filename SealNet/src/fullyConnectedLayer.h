@@ -12,11 +12,13 @@ class FullyConnectedLayer: public Layer
 {
 public:
 	string name;
-	int in_dim, out_dim;
-	//Potrebbero diventare vettori di plaintexts 
-	vector<vector<float> > weights;
-	vector<float> biases;
-	FullyConnectedLayer(string name, int in_dim, int out_dim, vector<vector<float> >  & weights, vector<float> & biases );
+	//th_count = # of threads to use to split the workload
+	int in_dim, out_dim, th_count;
+	plaintext2D weights;
+	vector<Plaintext> biases;
+	FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, plaintext2D  & weights, vector<Plaintext> & biases );
+	//Weights and biases are loaded from file_name
+	FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, string file_name);
 	~FullyConnectedLayer();
 
 	ciphertext3D forward (ciphertext3D input);
@@ -24,7 +26,13 @@ public:
 	ciphertext3D reshapeInput(ciphertext3D input);
 	Plaintext getWeight(int x_index,int y_index);
 	Plaintext getBias(int x_index);
+	void savePlaintextParameters(string file_name);
+	void loadPlaintextParameters(string file_name);
+
 	void printLayerStructure();
+	//
+	//ciphertext3D forward_mod(ciphertext3D input);
+
 	
 	
 };

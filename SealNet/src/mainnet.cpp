@@ -23,7 +23,7 @@ using namespace std;
 using namespace seal;
 
 int main(){
-	int index=2;
+	int index=23;
 	int zd=1,xd=28,yd=28;
 	//Import MNIST dataset
     mnist::MNIST_dataset<vector, vector<float>, uint8_t> dataset =

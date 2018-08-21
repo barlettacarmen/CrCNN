@@ -15,6 +15,7 @@
 #include "globals.h"
 #include "convolutionalLayer.h"
 #include "cnnBuilder.h"
+#include "poolingLayer.h"
 
 
 using namespace std;
@@ -39,13 +40,18 @@ int main()
 
     setParameters();
 
-    CnnBuilder build("PlainModel.h5");
-    ConvolutionalLayer layer= build.buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20);
+    //CnnBuilder build("PlainModel.h5");
+    //ConvolutionalLayer layer= build.buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20);
+    PoolingLayer layer= PoolingLayer("pool1", 28 ,28, 2 , 2 , 2, 2);
 
-    ciphertext3D image(layer.zd,ciphertext2D(layer.xd,vector<Ciphertext>(layer.yd)));
+    //1-->layer.zd
+    ciphertext3D image(1,ciphertext2D(layer.xd,vector<Ciphertext>(layer.yd)));
+    ciphertext3D convolved(layer.zo, ciphertext2D(layer.xo,vector<Ciphertext>(layer.yo)));
+    Plaintext tmp;
+    vector<vector<vector<float> > >  result(layer.zo,vector<vector<float> > (layer.xo,vector<float>(layer.yo)));
     
-    //encrypting first image of test data
-    for(int z=0;z<layer.zd;z++)
+    //encrypting first image of test data 1-->layer.zd
+    for(int z=0;z<1;z++)
         for(int i=0;i<layer.xd;i++)
             for(int j=0;j<layer.yd;j++){
                 image[z][i].emplace_back(*parms);
@@ -53,5 +59,28 @@ int main()
                 //image[i][j][z].save(outfile);
                 //cout << "encrypting for x:" << i << "y:" << j << "z:" << z <<endl << flush;           
             }
+    cout << "Noise budget in fresh encrypted pixel: ";
+    cout<< decryptor->invariant_noise_budget(image[0][0][0]) << " bits"<<endl;
+
+
+    convolved=layer.forward(image);
+    cout<<"xo: "<<layer.xo<<" yo: "<<layer.yo<<" zo:"<<layer.zo<<endl<<flush;
+
+    cout << "Noise budget in a convolved pixel: ";
+    cout<< decryptor->invariant_noise_budget(convolved[0][10][10]) << " bits"<<endl<<flush;
+
+    for(int z=0;z<layer.zo;z++){
+        for(int i=0;i<layer.xo;i++){
+            for(int j=0;j<layer.yo;j++){
+                    decryptor->decrypt(convolved[z][i][j], tmp);
+                    result[z][i][j]= fraencoder->decode(tmp);
+                    cout<<result[z][i][j]<<"\t";
+        }
+        cout<<endl;
+    }
+cout<<endl;
+}
+
+delParameters();
 
 }

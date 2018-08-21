@@ -18,10 +18,12 @@ FractionalEncoder * fraencoder;
 EvaluationKeys * ev_keys16;
 
 void setParameters(){
+
   //4096,1<<20
 	parms = new EncryptionParameters();
 	parms->set_poly_modulus("1x^4096 + 1");
   parms->set_coeff_modulus(coeff_modulus_128(4096));
+  //parms->set_coeff_modulus(*small_mods_60bits);
     //parms->set_poly_modulus("1x^32768 + 1");
     //parms->set_coeff_modulus(coeff_modulus_128(32768));
 
@@ -154,6 +156,21 @@ ciphertext3D encryptAndSaveImage(vector<float> image, int zd, int xd, int yd, st
 
   return encrypted_image;
 }
+//Precondition: initFromKeys() must be called before and encryptAndSaveImage() with that parameters must have been called before
+//Load a normalized image saved it in file file_name in a 3d ciphertext of dim zd,xd,yd and 
+ciphertext3D loadEncryptedImage(int zd, int xd, int yd, string file_name){
+    ifstream imagefile(file_name, ifstream::binary);
+    ciphertext3D encrypted_image(zd,ciphertext2D(xd,vector<Ciphertext>(yd)));
+
+    for(int z=0;z<zd;z++)
+      for(int i=0;i<xd;i++)
+        for(int j=0;j<yd;j++){
+            encrypted_image[z][i][j].load(imagefile);       
+            }
+
+    imagefile.close();
+    return encrypted_image;
+}
 //Decrypt a fractional encrypted 3d image
 floatCube decryptImage(ciphertext3D encrypted_image){
     int zd=encrypted_image.size();
@@ -184,18 +201,18 @@ floatCube decryptImage(ciphertext3D encrypted_image){
 /*
 Helper function: Prints the parameters in a SEALContext.
 */
-void print_parameters(const SEALContext &context)
+void print_parameters()
 {
     cout << "/ Encryption parameters:" << endl;
-    cout << "| poly_modulus: " << context.poly_modulus().to_string() << endl;
+    cout << "| poly_modulus: " << context->poly_modulus().to_string() << endl;
 
     /*
     Print the size of the true (product) coefficient modulus
     */
     cout << "| coeff_modulus size: " 
-        << context.total_coeff_modulus().significant_bit_count() << " bits" << endl;
+        << context->total_coeff_modulus().significant_bit_count() << " bits" << endl;
 
-    cout << "| plain_modulus: " << context.plain_modulus().value() << endl;
-    cout << "\\ noise_standard_deviation: " << context.noise_standard_deviation() << endl;
+    cout << "| plain_modulus: " << context->plain_modulus().value() << endl;
+    cout << "\\ noise_standard_deviation: " << context->noise_standard_deviation() << endl;
     cout << endl;
 }

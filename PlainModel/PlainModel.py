@@ -10,6 +10,7 @@ import numpy as np
 from CustomAvgPool2dModule import CustomAvgPooling
 from SquareModule import Square
 from collections import OrderedDict
+import pickle as pkl
 
 class PlainNet(nn.Module):
 	def __init__(self):
@@ -20,7 +21,7 @@ class PlainNet(nn.Module):
 			('conv1', nn.Conv2d(1,20, kernel_size=5, stride=2)),
 			#('pool1', nn.AvgPool2d(kernel_size=2,stride=1)),
 			('pool1', CustomAvgPooling()),
-			('norm1', nn.BatchNorm2d(20, affine=False)),
+			#('norm1', nn.BatchNorm2d(20, affine=False)),
 			]))
 		# 11 x 11 x 20 --> 5 x 5 x 50 --> 4 x 4 x 50
 		self.pool2_features = nn.Sequential(OrderedDict([
@@ -30,7 +31,7 @@ class PlainNet(nn.Module):
 			('act1',Square()),
 			('pool2', CustomAvgPooling()),
 			#('pool2', nn.AvgPool2d(kernel_size=2,stride=1)),
-			('norm2', nn.BatchNorm2d(50, affine=False)),
+			#('norm2', nn.BatchNorm2d(50, affine=False)),
 			]))
 		# 4 x 4 x 50 --> 500 --> 10
 		self.classifier = nn.Sequential(OrderedDict([
@@ -66,7 +67,12 @@ class PlainNet(nn.Module):
 		#print(x.shape,"after classifier")
 		return x
 
-	def forward(self, x):
+	def forward(self, x): 
+		# x=self.pool1_features._modules['conv1'](x)
+		# x=self.pool1_features._modules['pool1'](x)
+		# x=self.pool1_features._modules['norm1'](x)
+		# return x
+		#return self.pool1_forward(x)
 		return self.fc_forward(x)
 
 # MNIST Dataset with features in range [0,255]
@@ -78,14 +84,13 @@ transform=transforms.Compose(
 
 trainset=torchvision.datasets.MNIST(root='./MNISTdata',train=True,download=True,transform=transform)
 trainloader=torch.utils.data.DataLoader(trainset, batch_size=4,shuffle=True,num_workers=2)
-testset = torchvision.datasets.MNIST(root='./MNISTdata', train=False,download=True,transform=transform)
-testloader=torch.utils.data.DataLoader(testset, batch_size=4,shuffle=True,num_workers=2)
-
+#------------------------------
 #Setting for Training
 net=PlainNet()
 #Define loss function and optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
 #Train
 for epoch in range(2):
 
@@ -124,31 +129,23 @@ for epoch in range(2):
 			running_loss = 0.0
 
 print('Finished Training')
-#torch.save(net.state_dict(),'./PlainModel.pth')
-torch.save(net.state_dict(),'./PlainModelWoPad.pth')
-#Test
-#net=PlainNet()
-#net.load_state_dict(torch.load('./PlainModel.pth'))
-class_correct = list(0. for i in range(10))
-class_total = list(0. for i in range(10))
-correct=0
-total=0
-with torch.no_grad():
-	for data in testloader:
-		images, labels = data
-		outputs = net(images)
-		_, predicted = torch.max(outputs.data, 1)
-		total += labels.size(0)
-		correct += (predicted == labels).sum().item()
-		c = (predicted == labels).squeeze()
-		for i in range(4):
-			label = labels[i]
-			class_correct[label] += c[i].item()
-			class_total[label] += 1
+torch.save(net.state_dict(),'./PlainModelWoBatchNorm.pth')
 
 
-print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
-for i in range(10):
-	print('Accuracy of %5s : %2d %%' % (i, 100 * class_correct[i] / class_total[i]))
+def plain_net(weights_path=None):
+	model = PlainNet()
+	# original saved file with DataParallel
+	state_dict = torch.load(weights_path)
+	# create new OrderedDict that does not contain `module.`
+	new_state_dict = OrderedDict()
+	for k, v in state_dict.items():
+		if(k != "pool1_features.norm1.num_batches_tracked" and k!="pool2_features.norm2.num_batches_tracked"):
+			new_state_dict[k] = v
+	# load params
+	model.load_state_dict(new_state_dict)
+	return model
+
+
+
 
 

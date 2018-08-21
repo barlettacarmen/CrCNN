@@ -3,17 +3,27 @@
 #include "seal/seal.h"
 #include "globals.h"
 #include <cassert>
+#include <thread>
+#include <ostream>
+#include <fstream>
 
 using namespace std;
 using namespace seal;
 
 
-FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim, vector<vector<float> >  & weights, vector<float> & biases):
+FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, plaintext2D  & weights, vector<Plaintext> & biases):
 	Layer(name),
 	in_dim(in_dim),out_dim(out_dim),
+	th_count(th_count),
 	weights(weights), biases(biases){
 
 	}
+FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, string file_name):
+	Layer(name),
+	in_dim(in_dim),out_dim(out_dim),
+	th_count(th_count){
+		loadPlaintextParameters(file_name);
+}
 ciphertext3D FullyConnectedLayer::reshapeInput(ciphertext3D input){
 	int x_size=input[0].size(), y_size=input[0][0].size(), z_size=input.size();
 	//cout<<z_size<<" "<<x_size<<" "<<y_size<<endl;
@@ -35,13 +45,62 @@ ciphertext3D FullyConnectedLayer::reshapeInput(ciphertext3D input){
 }
 
 Plaintext FullyConnectedLayer::getWeight(int x_index,int y_index){
-   return fraencoder->encode(weights[x_index][y_index]); 
+   return weights[x_index][y_index]; 
  }
 
 Plaintext FullyConnectedLayer::getBias(int x_index){
-   return fraencoder->encode(biases[x_index]); 
+   return biases[x_index]; 
  }
 
+
+//Forward implemented with threads
+ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
+
+	int from=0,to=0,thread_rows=0;
+	ciphertext3D result(1,ciphertext2D(out_dim,vector<Ciphertext>(1)));
+	vector<thread> th_vector;
+
+	//Each thread will work on a portion of computation (ax+b) making matrix product of rows from index "form" to intex "to"
+	auto parallelForward=[&](ciphertext3D &input,ciphertext3D &result,int from, int to){
+		vector<Ciphertext> tmp(in_dim);
+
+		for(int i=from; i<to; i++){
+			for(int j=0;j<in_dim;j++){
+				//weight=getWeight(i,j);
+				evaluator->multiply_plain(input[0][j][0],weights[i][j],tmp[j],MemoryPoolHandle::Global());
+			}
+		evaluator->add_plain(tmp[0],biases[i]);
+		evaluator->add_many(tmp,result[0][i][0]);
+		}
+
+	};
+	input=reshapeInput(input);
+
+	if(th_count>out_dim)
+		th_count=out_dim;
+
+	thread_rows=out_dim/th_count;
+	
+	
+	for (int i = 0; i < th_count; i++){
+		from=to;
+    	if(i<th_count-1)
+    		to+=thread_rows;
+    	else
+    		to+=thread_rows + (out_dim%th_count);
+
+      	th_vector.emplace_back(parallelForward, ref(input),ref(result),from,to);
+
+    }
+    for (size_t i = 0; i < th_vector.size(); i++)
+    {
+        th_vector[i].join();
+    }
+    return result;
+
+}
+//Forward implemented without threads
+/*
 ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
 	cout<<"Begin forward"<<endl<<flush;
 	Plaintext weight;
@@ -50,27 +109,55 @@ ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
 
 	input=reshapeInput(input);
 
-	cout<<decryptor->invariant_noise_budget(input[0][6][0])<<endl;
+	//cout<<decryptor->invariant_noise_budget(input[0][6][0])<<endl;
 	//cout<<input[0].size()<<endl;
 	for(int i=0; i<out_dim; i++){
 		for(int j=0;j<in_dim;j++){
 			weight=getWeight(i,j);
-			cout<<decryptor->invariant_noise_budget(input[0][j][0])<<endl;
+			//cout<<decryptor->invariant_noise_budget(input[0][j][0])<<endl;
 			assert(decryptor->invariant_noise_budget(input[0][j][0])>0);
 			evaluator->multiply_plain(input[0][j][0],weight,tmp[j]);
-			cout<<decryptor->invariant_noise_budget(tmp[j])<<endl;
-			cout<<"Multiply"<<i<<endl<<flush;
+			//cout<<decryptor->invariant_noise_budget(tmp[j])<<endl;
+			//cout<<"Multiply"<<i<<endl<<flush;
 		}
 	//adding bias
 	evaluator->add_plain(tmp[0],getBias(i));
 	evaluator->add_many(tmp,result[0][i][0]);
-	cout<<decryptor->invariant_noise_budget(result[0][i][0])<<endl;
+	//cout<<decryptor->invariant_noise_budget(result[0][i][0])<<endl;
 	}
 	return result;
+}*/
+
+void FullyConnectedLayer::savePlaintextParameters(string file_name){
+	ofstream outfile(file_name, ofstream::binary);
+		int i,j;
+		for(i=0;i<out_dim;i++){
+			for(j=0;j<in_dim;j++){
+				weights[i][j].save(outfile);
+			}
+			biases[i].save(outfile);
+		}
+	outfile.close();
+}
+void FullyConnectedLayer::loadPlaintextParameters(string file_name){		
+		int i,j;
+		vector<Plaintext> encoded_biases(out_dim);
+		plaintext2D encoded_weights(out_dim,vector<Plaintext> (in_dim));
+		ifstream infile(file_name, ifstream::binary);
+
+		for(i=0;i<out_dim;i++){
+			for(j=0;j<in_dim;j++){
+				encoded_weights[i][j].load(infile);
+				}
+			encoded_biases[i].load(infile);
+		}
+		infile.close();
+		weights=encoded_weights;
+		biases=encoded_biases;
 }
 
 void FullyConnectedLayer::printLayerStructure(){
-    cout<<"Fully connected "<<name<<" : ("<<in_dim<<" -> "<<out_dim<<")"<<endl;
+    cout<<"Fully connected "<<name<<" : ("<<in_dim<<" -> "<<out_dim<<")"<<"run with "<<th_count<<" threads"<<endl;
 
 }
 
