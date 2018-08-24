@@ -21,12 +21,12 @@ using namespace seal;
 
 int main(){
 	setParameters();
-	int z_img=2,x_img=6,y_img=6;
+	int z_img=4,x_img=6,y_img=6;
 	float result_dec;
 	Plaintext tmp;
 	ciphertext3D image(z_img,ciphertext2D(x_img,vector<Ciphertext>(y_img)));
 
-	SquareLayer sq_layer("square");
+	SquareLayer sq_layer("square",4);
 
 	for(int z=0;z<z_img;z++){
 		for(int x=0;x<x_img;x++){

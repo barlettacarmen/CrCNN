@@ -17,13 +17,15 @@ public:
  
 	BatchNormLayer(string name, int num_channels,vector<Plaintext> mean,vector<Plaintext> var);
 	//Initilaize from file
-	BatchNormLayer(string name, int num_channels,string file_name);
+	BatchNormLayer(string name, int num_channels,istream * infile);
 	~BatchNormLayer();
 	//For each pixel x--> x'=[x-mean(x)]*(1/sqrt(var(x)+1e-05))
 	//The mean and standard-deviation are calculated per-dimension over the mini-batches see: https://pytorch.org/docs/stable/nn.html#batchnorm2d
 	ciphertext3D forward (ciphertext3D input);
-	void savePlaintextParameters(string file_name);
-	void loadPlaintextParameters(string file_name);
+	Plaintext getMean(int index);
+	Plaintext getVar(int index);
+	void savePlaintextParameters(ostream * outfile);
+	void loadPlaintextParameters(istream * infile);
 	void printLayerStructure();
 
 	

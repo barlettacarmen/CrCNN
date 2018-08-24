@@ -21,11 +21,24 @@
 
 int main(int argc, char const *argv[])
 {
-	setParameters();
+	Plaintext before,after;
+	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt");
 	CnnBuilder build("PlainModelWoPad.h5");
-	BatchNormLayer *bn=build.buildBatchNormLayer("pool1_features.norm1",20);
-	cout<<bn->mean.size()<<endl;
-	cout<<fraencoder->decode(bn->mean[0])<<endl;
+	BatchNormLayer *bn1=build.buildBatchNormLayer("pool1_features.norm1",20);
+	bn1->savePlaintextParameters("bn_params.txt");
+	BatchNormLayer *bn2=build.buildBatchNormLayer("pool1_features.norm1",20,"bn_params.txt");
+
+	for(int i=0;i<20;i++){
+		before=bn1->getMean(i);
+		after=bn2->getMean(i);
+		cout<<"before mean"<<fraencoder->decode(before)<<endl<<flush;
+		cout<<"after mean "<<fraencoder->decode(after)<<endl<<flush;
+		before=bn1->getVar(i);
+		after=bn2->getVar(i);
+		cout<<"before var"<<fraencoder->decode(before)<<endl<<flush;
+		cout<<"after var "<<fraencoder->decode(after)<<endl<<flush;
+
+	}
 
 	delParameters();
 

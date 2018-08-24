@@ -30,15 +30,15 @@ public:
 	plaintext4D filters; //nf,zd,xf,yf
 	vector<Plaintext> biases;
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,plaintext4D & filters, vector<Plaintext> & biases);
-	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,int th_count,string file_name);
+	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,int th_count,istream * infile);
 	~ConvolutionalLayer();
 
 	ciphertext3D forward (ciphertext3D input);
 	plaintext3D getKernel(int kernel_index);
 	Plaintext getBias(int bias_index);
 	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel,Plaintext bias);
-	void savePlaintextParameters(string file_name);
-	void loadPlaintextParameters(string file_name);
+	void savePlaintextParameters(ostream * outfile);
+	void loadPlaintextParameters(istream * infile);
 	void printLayerStructure();
 };
 

@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 #include <cmath>
-
+#include <ostream>
+#include <fstream>
 
 using namespace std;
 
@@ -21,9 +22,9 @@ using namespace std;
    		return ldata.getData();
 	}
 
-	ConvolutionalLayer * CnnBuilder::buildConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,string file_name){
-		if(file_name!="")
-			return new ConvolutionalLayer(name,xd,yd,zd,xs,ys,xf,yf,nf,th_count,file_name);
+	ConvolutionalLayer * CnnBuilder::buildConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,istream * infile){
+		if(infile!=NULL)
+			return new ConvolutionalLayer(name,xd,yd,zd,xs,ys,xf,yf,nf,th_count,infile);
 
 		int n,z,i,j,w;
 		vector<float> weights,biases;
@@ -49,9 +50,9 @@ using namespace std;
 	}
 
 
-	FullyConnectedLayer * CnnBuilder::buildFullyConnectedLayer(string name, int in_dim, int out_dim, int th_count,string file_name){
-		if(file_name!="")
-			return new FullyConnectedLayer(name,in_dim,out_dim,th_count,file_name);
+	FullyConnectedLayer * CnnBuilder::buildFullyConnectedLayer(string name, int in_dim, int out_dim, int th_count,istream * infile){
+		if(infile!=NULL)
+			return new FullyConnectedLayer(name,in_dim,out_dim,th_count,infile);
 
 		int i,j,w;
 		vector<float> weights,biases;
@@ -77,14 +78,14 @@ using namespace std;
 	PoolingLayer * CnnBuilder::buildPoolingLayer(string name,int xd,int yd, int zd, int xs, int ys,int xf, int yf){
 		return new PoolingLayer(name,xd,yd,zd,xs,ys,xf,yf);
 	}
-	SquareLayer *CnnBuilder::buildSquareLayer(string name){
-		return new SquareLayer(name);
+	SquareLayer *CnnBuilder::buildSquareLayer(string name, int th_count){
+		return new SquareLayer(name,th_count);
 	}
 	
 	//Encoding in plaintext mean and variance as 1/sqrt(var+1e-05)
-	BatchNormLayer * CnnBuilder::buildBatchNormLayer(string name, int num_channels, string file_name){
-		if(file_name!="")
-			return new BatchNormLayer(name,num_channels,file_name);
+	BatchNormLayer * CnnBuilder::buildBatchNormLayer(string name, int num_channels,istream * infile){
+		if(infile!=NULL)
+			return new BatchNormLayer(name,num_channels,infile);
 
 		vector<float> mean,var;
 		vector<Plaintext> encoded_mean(num_channels),encoded_var(num_channels);
@@ -104,36 +105,50 @@ using namespace std;
 	Network CnnBuilder::buildNetwork(string file_name){
 
 		Network net;
+		ifstream *infile=NULL;
+		if(file_name!=""){
+			infile = new ifstream(file_name, ifstream::binary);
+		}
 
-		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,8,file_name);
+		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,8,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		PoolingLayer *pool1 = buildPoolingLayer("pool1",12,12,20,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
-		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20,file_name);
+		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (bn1));
-		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,8,file_name);
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,8,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv2));
-		SquareLayer *act1= buildSquareLayer("act1");
+		SquareLayer *act1= buildSquareLayer("act1",8);
 		net.getLayers().push_back(shared_ptr<Layer> (act1));
 		PoolingLayer *pool2= buildPoolingLayer("pool2",5,5,50,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool2));
-		BatchNormLayer *bn2=buildBatchNormLayer("pool2_features.norm2",50,file_name);
+		BatchNormLayer *bn2=buildBatchNormLayer("pool2_features.norm2",50,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (bn2));
-		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,8,file_name);
+		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,8,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
-		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,8,file_name);
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,8,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+
+		if(infile!=NULL){
+			infile->close();
+			delete infile;
+		}
 
 		return net;
 	}
 	//Precondition: setAndSaveParamters() or initFromKeys() must have been called before
 	Network CnnBuilder::buildAndSaveNetwork(string file_name){
+		ofstream * outfile = new ofstream(file_name, ofstream::binary);
 
 		Network net=buildNetwork();
 		for(int i=0; i<net.getNumLayers();i++){
 			cout<<i<<endl<<flush;
-			net.getLayer(i)->savePlaintextParameters(file_name);
+			net.getLayer(i)->savePlaintextParameters(outfile);
 		}
+
+		outfile->close();
+
+		delete outfile;
 
 		return net;
 

@@ -17,12 +17,21 @@ FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,in
 	th_count(th_count),
 	weights(weights), biases(biases){
 
+	if(th_count>out_dim)
+		th_count=out_dim;	
+	else if(th_count<=0)
+	 		th_count=1;
+
 	}
-FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, string file_name):
+FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, istream * infile):
 	Layer(name),
 	in_dim(in_dim),out_dim(out_dim),
 	th_count(th_count){
-		loadPlaintextParameters(file_name);
+		loadPlaintextParameters(infile);
+		if(th_count>out_dim)
+			th_count=out_dim;	
+	else if(th_count<=0)
+	 		th_count=1;
 }
 ciphertext3D FullyConnectedLayer::reshapeInput(ciphertext3D input){
 	int x_size=input[0].size(), y_size=input[0][0].size(), z_size=input.size();
@@ -76,8 +85,6 @@ ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
 	};
 	input=reshapeInput(input);
 
-	if(th_count>out_dim)
-		th_count=out_dim;
 
 	thread_rows=out_dim/th_count;
 	
@@ -128,30 +135,30 @@ ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
 	return result;
 }*/
 
-void FullyConnectedLayer::savePlaintextParameters(string file_name){
-	ofstream outfile(file_name, ofstream::binary);
+void FullyConnectedLayer::savePlaintextParameters(ostream * outfile){
 		int i,j;
 		for(i=0;i<out_dim;i++){
 			for(j=0;j<in_dim;j++){
-				weights[i][j].save(outfile);
+				weights[i][j].save(*outfile);
+				outfile->flush();
 			}
-			biases[i].save(outfile);
+			biases[i].save(*outfile);
+			outfile->flush();
 		}
-	outfile.close();
 }
-void FullyConnectedLayer::loadPlaintextParameters(string file_name){		
+void FullyConnectedLayer::loadPlaintextParameters(istream * infile){		
 		int i,j;
 		vector<Plaintext> encoded_biases(out_dim);
 		plaintext2D encoded_weights(out_dim,vector<Plaintext> (in_dim));
-		ifstream infile(file_name, ifstream::binary);
 
 		for(i=0;i<out_dim;i++){
 			for(j=0;j<in_dim;j++){
-				encoded_weights[i][j].load(infile);
+				encoded_weights[i][j].load(*infile);
+				//weights[i][j].load(infile);
 				}
-			encoded_biases[i].load(infile);
+			encoded_biases[i].load(*infile);
+			//biases[i].load(infile);
 		}
-		infile.close();
 		weights=encoded_weights;
 		biases=encoded_biases;
 }

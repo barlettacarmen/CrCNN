@@ -17,11 +17,11 @@ BatchNormLayer::BatchNormLayer(string name, int num_channels,vector<Plaintext> m
 	mean(mean), var(var){
 	}
 
-BatchNormLayer::BatchNormLayer(string name, int num_channels,string file_name):
+BatchNormLayer::BatchNormLayer(string name, int num_channels,istream * infile):
 	Layer(name),
 	num_channels(num_channels)
 	{
-		loadPlaintextParameters(file_name);
+		loadPlaintextParameters(infile);
 }
 BatchNormLayer::~BatchNormLayer(){}
 
@@ -38,28 +38,33 @@ ciphertext3D BatchNormLayer::forward (ciphertext3D input){
 	return input;
 }
 
-void BatchNormLayer::savePlaintextParameters(string file_name){
-	ofstream outfile(file_name, ofstream::binary);
+void BatchNormLayer::savePlaintextParameters(ostream * outfile){
 	for(int i=0; i<num_channels;i++){
-		mean[i].save(outfile);
-		var[i].save(outfile);
+		mean[i].save(*outfile);
+		var[i].save(*outfile);
+		outfile->flush();
 	}
 
-	outfile.close();
 }
-void BatchNormLayer::loadPlaintextParameters(string file_name){
-	ifstream infile(file_name, ifstream::binary);
+void BatchNormLayer::loadPlaintextParameters(istream * infile){
 	vector<Plaintext> encoded_mean(num_channels),encoded_var(num_channels);
 
 		for(int i=0; i<num_channels;i++){
-			encoded_mean[i].load(infile);
-			encoded_var[i].load(infile);
+			encoded_mean[i].load(*infile);
+			encoded_var[i].load(*infile);
 		}
-	infile.close();
+
 	mean=encoded_mean;
 	var=encoded_var;
 
 }
+
+	Plaintext BatchNormLayer:: getMean(int index){
+		return mean[index];
+	}
+	Plaintext BatchNormLayer:: getVar(int index){
+		return var[index];
+	}
 
 void BatchNormLayer::printLayerStructure(){
 	cout<<"BatchNormLayer2D "<<name<<" :num_channels "<<num_channels<<endl;

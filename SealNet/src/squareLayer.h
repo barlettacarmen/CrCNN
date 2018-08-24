@@ -8,15 +8,16 @@
 class SquareLayer: public Layer
 { /*This class  implements an approximate activation function (the square function) by just calling SEAL square function*/
 public:
-	SquareLayer(string name);
+	int th_count;
+	SquareLayer(string name,int th_count);
 	SquareLayer();
 	~SquareLayer();
 
 	ciphertext3D forward (ciphertext3D input);
 	void printLayerStructure();
 	//No parameters, so no need to implement these methods
-	void savePlaintextParameters(string file_name){};
-	void loadPlaintextParameters(string file_name){};
+	void savePlaintextParameters(ostream * outfile){};
+	void loadPlaintextParameters(istream * infile){};
 };
 
 

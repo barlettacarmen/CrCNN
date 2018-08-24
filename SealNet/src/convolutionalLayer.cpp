@@ -24,10 +24,14 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 	xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf),
 	filters(filters),
     biases(biases){
+        if(th_count>nf)
+            th_count=nf;
+    else if(th_count<=0)
+           th_count=1;
 
 }
 //Initializes weighs and biases by loading them from file_name, where they are saved
-ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,string file_name):
+ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,istream * infile):
     Layer(name), xd(xd), yd(yd), zd(zd),
     xs(xs), ys(ys),
     xf(xf), yf(yf),
@@ -38,7 +42,11 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
     the dimensions of the filters. The output is returned through xo,yo and zo. */
     xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf)
     {
-        loadPlaintextParameters(file_name);
+        loadPlaintextParameters(infile);
+        if(th_count>nf)
+            th_count=nf;
+    else if(th_count<=0)
+           th_count=1;
 
 }
 
@@ -87,8 +95,6 @@ ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
 
     };
 
-    if(th_count>nf)
-        th_count=nf;
 
     thread_kernels=nf/th_count;
     
@@ -125,25 +131,25 @@ ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
     return convolved;
 }*/
 
-void ConvolutionalLayer::savePlaintextParameters(string file_name){
+void ConvolutionalLayer::savePlaintextParameters(ostream * outfile){
     int i,j,z,n;
-    ofstream outfile(file_name, ofstream::binary);
+
     for(n=0;n<nf;n++){
         for(z=0;z<zd;z++){
             for(i=0;i<xf;i++){
                 for(j=0;j<yf;j++){
-                    filters[n][z][i][j].save(outfile);
+                    filters[n][z][i][j].save(*outfile);
+                    outfile->flush();
                 }
             }
         }
-        biases[n].save(outfile);
+        biases[n].save(*outfile);
+        outfile->flush();
     }
-    outfile.close();
+
 
 }
-void ConvolutionalLayer::loadPlaintextParameters(string file_name){
-    ifstream infile(file_name, ifstream::binary);
-
+void ConvolutionalLayer::loadPlaintextParameters(istream * infile){
     int n,z,i,j;
     plaintext4D encoded_weights(nf, plaintext3D(zd, plaintext2D (xf, vector<Plaintext> (yf ) )));
     vector<Plaintext> encoded_biases(nf);
@@ -152,13 +158,12 @@ void ConvolutionalLayer::loadPlaintextParameters(string file_name){
         for(z=0;z<zd;z++){
             for(i=0;i<xf;i++){
                 for(j=0;j<yf;j++){
-                    encoded_weights[n][z][i][j].load(infile);
+                    encoded_weights[n][z][i][j].load(*infile);
                 }
             }
         }
-        encoded_biases[n].load(infile);
+        encoded_biases[n].load(*infile);
     }
-    infile.close();
     filters=encoded_weights;
     biases=encoded_biases;
 }

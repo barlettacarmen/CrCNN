@@ -5,6 +5,8 @@
 #include "seal/seal.h"
 #include "layer.h"
 #include "globals.h"
+#include <ostream>
+#include <fstream>
 
 using namespace seal;
 
@@ -18,7 +20,7 @@ public:
 	vector<Plaintext> biases;
 	FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, plaintext2D  & weights, vector<Plaintext> & biases );
 	//Weights and biases are loaded from file_name
-	FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, string file_name);
+	FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, istream * infile);
 	~FullyConnectedLayer();
 
 	ciphertext3D forward (ciphertext3D input);
@@ -26,8 +28,8 @@ public:
 	ciphertext3D reshapeInput(ciphertext3D input);
 	Plaintext getWeight(int x_index,int y_index);
 	Plaintext getBias(int x_index);
-	void savePlaintextParameters(string file_name);
-	void loadPlaintextParameters(string file_name);
+	void savePlaintextParameters(ostream * outfile);
+	void loadPlaintextParameters(istream * infile);
 
 	void printLayerStructure();
 	//
