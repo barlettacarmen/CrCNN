@@ -11,7 +11,7 @@ using namespace seal;
 	
 	void Network::printNetworkStructure(){
 		for(int i=0; i<layers.size();i++){
-			cout<<"("<<i<<") : ";
+			cerr<<"("<<i<<") : ";
 			layers[i]->printLayerStructure();
 			cout<<endl;
 		}
@@ -21,7 +21,7 @@ using namespace seal;
 
 	ciphertext3D Network::forward (ciphertext3D input){
 		for(int i=0; i<layers.size();i++){
-			cout<<i<<" "<<decryptor->invariant_noise_budget(input[0][0][0])<<endl;
+			//cerr<<i<<" "<<decryptor->invariant_noise_budget(input[0][0][0])<<endl;
 			assert(decryptor->invariant_noise_budget(input[0][0][0])>0);
 			input=layers[i]->forward(input);
 		}

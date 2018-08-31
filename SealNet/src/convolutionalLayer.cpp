@@ -178,7 +178,7 @@ Plaintext ConvolutionalLayer::getBias(int bias_index){
  }
 
 void ConvolutionalLayer::printLayerStructure(){
-    cout<<"Convolutional "<<name<<" : input ("<<zd<<","<<xd<<","<<yd<<"); kernel("<<nf<<","<<xf<<","<<yf<<"); stride("<<xs<<","<<ys<<"); output("<<
+    cerr<<"Convolutional "<<name<<" : input ("<<zd<<","<<xd<<","<<yd<<"); kernel("<<nf<<","<<xf<<","<<yf<<"); stride("<<xs<<","<<ys<<"); output("<<
     zo<<","<<xo<<","<<yo<<") "<<"run with "<<th_count<<" threads"<<endl;
 }
 

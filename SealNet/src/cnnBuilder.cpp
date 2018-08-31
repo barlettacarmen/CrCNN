@@ -103,30 +103,30 @@ using namespace std;
 
 
 	Network CnnBuilder::buildNetwork(string file_name){
-
+		int th_count=10;
 		Network net;
 		ifstream *infile=NULL;
 		if(file_name!=""){
 			infile = new ifstream(file_name, ifstream::binary);
 		}
 
-		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,8,infile);
+		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		PoolingLayer *pool1 = buildPoolingLayer("pool1",12,12,20,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
 		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (bn1));
-		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,8,infile);
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv2));
-		SquareLayer *act1= buildSquareLayer("act1",8);
+		SquareLayer *act1= buildSquareLayer("act1",th_count);
 		net.getLayers().push_back(shared_ptr<Layer> (act1));
 		PoolingLayer *pool2= buildPoolingLayer("pool2",5,5,50,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool2));
 		BatchNormLayer *bn2=buildBatchNormLayer("pool2_features.norm2",50,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (bn2));
-		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,8,infile);
+		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
-		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,8,infile);
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));
 
 		if(infile!=NULL){
@@ -142,7 +142,7 @@ using namespace std;
 
 		Network net=buildNetwork();
 		for(int i=0; i<net.getNumLayers();i++){
-			cout<<i<<endl<<flush;
+			cerr<<i<<endl<<flush;
 			net.getLayer(i)->savePlaintextParameters(outfile);
 		}
 

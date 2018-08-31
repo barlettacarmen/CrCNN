@@ -176,23 +176,23 @@ floatCube decryptImage(ciphertext3D encrypted_image){
     int zd=encrypted_image.size();
     int xd=encrypted_image[0].size();
     int yd=encrypted_image[0][0].size();
-    cout<<zd<<","<<xd<<","<<yd<<endl;
+    //cerr<<zd<<","<<xd<<","<<yd<<endl;
 
     Plaintext tmp;
     floatCube image(zd, vector<vector<float> > (xd,vector<float>(yd)));
 
     for(int z=0;z<zd;z++){
-        cout<<z<<endl;
+        //cerr<<z<<endl;
         for(int i=0;i<xd;i++){
             for(int j=0;j<yd;j++){
                     decryptor->decrypt(encrypted_image[z][i][j], tmp);
                     image[z][i][j]=fraencoder->decode(tmp);
-                    cout<<image[z][i][j]<<" ";
+                    cout<<image[z][i][j]<<",";
         }
-    cout<<endl;
+    //cout<<endl;
     }
-    cout<<endl;
-    cout<<endl;
+    //cout<<endl;
+    //cout<<endl;
   }
   return image;
 }

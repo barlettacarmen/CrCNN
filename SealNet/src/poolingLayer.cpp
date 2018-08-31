@@ -44,7 +44,7 @@ ciphertext3D PoolingLayer::forward (ciphertext3D input){
 }
 
  void PoolingLayer::printLayerStructure(){
-    cout<<"Pooling "<<name<<" : input ("<<zo<<","<<xd<<","<<yd<<"); kernel("<<xf<<","<<yf<<"); stride("<<xs<<","<<ys<<"); output("<<
+    cerr<<"Pooling "<<name<<" : input ("<<zo<<","<<xd<<","<<yd<<"); kernel("<<xf<<","<<yf<<"); stride("<<xs<<","<<ys<<"); output("<<
     zo<<","<<xo<<","<<yo<<")"<<endl;
 
 }

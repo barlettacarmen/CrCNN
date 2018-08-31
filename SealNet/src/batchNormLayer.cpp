@@ -67,6 +67,6 @@ void BatchNormLayer::loadPlaintextParameters(istream * infile){
 	}
 
 void BatchNormLayer::printLayerStructure(){
-	cout<<"BatchNormLayer2D "<<name<<" :num_channels "<<num_channels<<endl;
+	cerr<<"BatchNormLayer2D "<<name<<" :num_channels "<<num_channels<<endl;
 
 }

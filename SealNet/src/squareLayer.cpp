@@ -118,5 +118,5 @@ ciphertext3D SquareLayer::forward (ciphertext3D input){
 
 void SquareLayer::printLayerStructure(){
 	//The real number of threads used can be determined after the 1st forward
-	cout<<"Square run with "<<th_count<<" threads"<<endl;
+	cerr<<"Square run with "<<th_count<<" threads"<<endl;
 }

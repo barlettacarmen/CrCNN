@@ -164,7 +164,7 @@ void FullyConnectedLayer::loadPlaintextParameters(istream * infile){
 }
 
 void FullyConnectedLayer::printLayerStructure(){
-    cout<<"Fully connected "<<name<<" : ("<<in_dim<<" -> "<<out_dim<<")"<<"run with "<<th_count<<" threads"<<endl;
+    cerr<<"Fully connected "<<name<<" : ("<<in_dim<<" -> "<<out_dim<<")"<<"run with "<<th_count<<" threads"<<endl;
 
 }
 

@@ -27,3 +27,12 @@ vector<vector<float> > loadAndNormalizeMNISTestSet(string dataset_path){
 
     return dataset.test_images;
 } 
+
+vector<unsigned char> loadMNISTestLabels(string dataset_path){
+
+	mnist::MNIST_dataset<vector, vector<float>, uint8_t> dataset =
+    mnist::read_dataset<vector, vector, float, uint8_t>(dataset_path);
+
+    return dataset.test_labels;
+
+}
