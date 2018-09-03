@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <ostream>
+#include <cassert>
 
 using namespace seal;
 using namespace std;
@@ -33,6 +34,9 @@ void setParameters(){
 
 
     context = new SEALContext(*parms);
+    //Check if ntt is enabled, throw an error and abort, is not enabled
+    assert(context->qualifiers().enable_ntt && "Ntt is not enabled: set valid encryption parameters (parameters_set==true) and set poly_modulus to be a power of 2 (enable_fft==true)");
+
     keygen= new KeyGenerator(*context);
     auto public_key = keygen->public_key();
     auto secret_key= keygen->secret_key();

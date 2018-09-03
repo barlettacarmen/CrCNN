@@ -19,8 +19,8 @@
 
 using namespace std;
 using namespace seal;
-//about 1.56 min needed
-Network setParametersAndNetworkFirstTime(){
+//about 1.56 min needed (da rimisuarare)
+Network setParametersAndSaveNetwork(){
 	setAndSaveParameters("pub_key.txt","sec_key.txt","eval_key.txt");
 	//Build Network structure reading model weights form file 
 	cout<<"keys done"<<endl<<flush;
@@ -30,11 +30,19 @@ Network setParametersAndNetworkFirstTime(){
 	return net;
 
 }
-// about 0.935s 
-Network getParametersAndNetworkSecondTime(){
+// about 0.935s
+Network getParametersAndReadNetwork(){
 	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt");
 	CnnBuilder build("PlainModelWoPad.h5");
 	Network net=build.buildNetwork("encoded_model.txt");
+	//net.printNetworkStructure();
+	return net;
+}
+//about 1m47.044s
+Network getParametersAndSaveNetwork(){
+	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt");
+	CnnBuilder build("PlainModelWoPad.h5");
+	Network net=build.buildAndSaveNetwork("encoded_model.txt");
 	//net.printNetworkStructure();
 	return net;
 }
@@ -49,15 +57,13 @@ void getParametersAndSaveImages(int from, int to){
 
 int main(){
 
-	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt");
-	cout<<context->qualifiers().enable_ntt<<endl;
-	/*vector<unsigned char>labels=loadMNISTestLabels("../PlainModel/MNISTdata/raw");
+	vector<unsigned char>labels=loadMNISTestLabels("../PlainModel/MNISTdata/raw");
 	floatCube image(1, vector<vector<float> > (10,vector<float>(1)));
 	
 	chrono::high_resolution_clock::time_point time_start, time_end;
 	chrono::microseconds time_forward(0);
 
-	 Network net=getParametersAndNetworkSecondTime();
+	 Network net=getParametersAndReadNetwork();
 
 	for(int i=0;i<2;i++){
 		ciphertext3D encrypted_image=loadEncryptedImage(1, 28, 28, "./Cipher_Imgs/cipher_image_"+to_string(i+1)+".txt");
@@ -67,6 +73,8 @@ int main(){
 		time_end = chrono::high_resolution_clock::now();
 
 		time_forward += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+
+		cout<<chrono::duration_cast<chrono::microseconds>(time_end - time_start).count()<<endl;
 
 		//Decrypt Image
 		
@@ -81,7 +89,7 @@ int main(){
 	    cout<<','<<(unsigned short)labels[i]<<endl;
 	}
 
-    cout<<"avg_forward_time= "<<time_forward.count()/500.0<<endl;*/
+    cout<<"avg_forward_time= "<<time_forward.count()/2<<endl;
 	
 	delParameters();
 

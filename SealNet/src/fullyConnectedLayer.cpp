@@ -4,6 +4,7 @@
 #include "globals.h"
 #include <cassert>
 #include <thread>
+#include <mutex>
 #include <ostream>
 #include <fstream>
 
@@ -15,8 +16,8 @@ FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,in
 	Layer(name),
 	in_dim(in_dim),out_dim(out_dim),
 	th_count(th_count),
-	weights(weights), biases(biases){
-
+	weights(weights), biases(biases),
+	weights_already_ntt(false){
 	if(th_count>out_dim)
 		th_count=out_dim;	
 	else if(th_count<=0)
@@ -26,31 +27,94 @@ FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,in
 FullyConnectedLayer::FullyConnectedLayer(string name, int in_dim, int out_dim,int th_count, istream * infile):
 	Layer(name),
 	in_dim(in_dim),out_dim(out_dim),
-	th_count(th_count){
+	th_count(th_count),
+	weights_already_ntt(false){
 		loadPlaintextParameters(infile);
 		if(th_count>out_dim)
 			th_count=out_dim;	
 	else if(th_count<=0)
 	 		th_count=1;
 }
-ciphertext3D FullyConnectedLayer::reshapeInput(ciphertext3D input){
+ciphertext3D FullyConnectedLayer::reshapeInputAndTransformToNtt(ciphertext3D input){
 	int x_size=input[0].size(), y_size=input[0][0].size(), z_size=input.size();
-	//cout<<z_size<<" "<<x_size<<" "<<y_size<<endl;
-	int z,x,y;
-	if(z_size!=1 && y_size!=1){
-		ciphertext3D reshaped_input(1,ciphertext2D(in_dim,vector<Ciphertext>(1)));
-		for (int i = 0; i < in_dim; ++i)
-		{
-			z=i/(x_size*y_size);
-			x=i/y_size - (x_size * z);
-			y=i%y_size;
-			//cout<<z<<" "<<x<<" "<<y<<endl;
-			reshaped_input[0][i][0]= Ciphertext(input[z][x][y]);
+	int from=0,to=0;
+	int threads=th_count;
+	mutex mtx;
+
+	vector<thread> th_vector;
+	ciphertext3D reshaped_input(1,ciphertext2D(1,vector<Ciphertext>(1)));
+	
+	if(threads>in_dim)
+		threads=in_dim;
+
+	int thread_rows=in_dim/threads;
+
+	for (int i = 0; i < threads; i++){
+		from=to;
+    	if(i<threads-1)
+    		to+=thread_rows;
+    	else
+    		to+=thread_rows + (in_dim%threads);
+
+
+		if(z_size!=1 && y_size!=1){
+			reshaped_input=ciphertext3D(1,ciphertext2D(in_dim,vector<Ciphertext>(1)));
+
+			auto parallelReshapeTransform=[&](ciphertext3D &input,ciphertext3D &reshaped_input, mutex & mtx,int from, int to){
+			int x_size=input[0].size(), y_size=input[0][0].size(), z_size=input.size();
+			int z,x,y;
+			vector<Ciphertext> tmp(to-from);
+
+			for (int i = from; i < to; ++i)
+			{
+				z=i/(x_size*y_size);
+				x=i/y_size - (x_size * z);
+				y=i%y_size;
+				//cout<<z<<" "<<x<<" "<<y<<endl;
+				tmp[i-from]=Ciphertext(input[z][x][y]);
+				evaluator->transform_to_ntt(tmp[i-from]);
+			}
+
+			while (!mtx.try_lock());
+			for(int i=from;i<to;i++){
+				reshaped_input[0][i][0]=Ciphertext(tmp[i-from]);
+			}
+			mtx.unlock();
+			};
+
+		th_vector.emplace_back(parallelReshapeTransform, ref(input),ref(reshaped_input), ref(mtx),from,to);
+
 		}
-		return reshaped_input;
+		//The input is already a vector
+		else{
+			auto parallelTransform=[&](ciphertext3D &input, mutex &mtx,int from, int to){
+				vector<Ciphertext> tmp(to-from);
+				for(int i=from ;i<to;i++){
+					tmp[i-from]=Ciphertext(input[0][i][0]);
+					evaluator->transform_to_ntt(tmp[i-from]);
+				}
+
+				while (!mtx.try_lock());
+				for(int i=from;i<to;i++){
+					input[0][i][0]=Ciphertext(tmp[i-from]);
+				}
+				mtx.unlock();
+
+			};
+
+			th_vector.emplace_back(parallelTransform, ref(input), ref(mtx),from,to);
+
+		}
+
 	}
 
-	return input;
+	for (size_t i = 0; i < th_vector.size(); i++){
+        th_vector[i].join();
+    }
+
+    if(z_size!=1 && y_size!=1)
+    	return reshaped_input;
+    return input;
 }
 
 Plaintext FullyConnectedLayer::getWeight(int x_index,int y_index){
@@ -60,7 +124,13 @@ Plaintext FullyConnectedLayer::getWeight(int x_index,int y_index){
 Plaintext FullyConnectedLayer::getBias(int x_index){
    return biases[x_index]; 
  }
+//Transform weight to ntt to speedup the multiply_plain in forward phase
+// void FullyConnectedLayer::transform_weights_to_ntt(){
+// 	for(int i=0;i<out_dim;i++)
+// 		for(int j=0;j<in_dim;j++)
+// 			evaluator->transform_to_ntt(weights[i][j],MemoryPoolHandle::Global());
 
+// }
 
 //Forward implemented with threads
 ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
@@ -72,19 +142,30 @@ ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
 	//Each thread will work on a portion of computation (ax+b) making matrix product of rows from index "form" to intex "to"
 	auto parallelForward=[&](ciphertext3D &input,ciphertext3D &result,int from, int to){
 		vector<Ciphertext> tmp(in_dim);
+		Ciphertext input_copy;
 
 		for(int i=from; i<to; i++){
 			for(int j=0;j<in_dim;j++){
-				//weight=getWeight(i,j);
-				evaluator->multiply_plain(input[0][j][0],weights[i][j],tmp[j],MemoryPoolHandle::Global());
+				//Temporary copy the input ntt
+				input_copy=Ciphertext(input[0][j][0]);
+				//Performed optimized multiply_plain
+				if(!weights_already_ntt){
+					evaluator->transform_to_ntt(weights[i][j],MemoryPoolHandle::Global());
+				}
+				evaluator->multiply_plain_ntt(input_copy,weights[i][j]);
+				//Transform the result back to normal Ciphertext
+				evaluator->transform_from_ntt(input_copy);
+				//Insert the result in tmp vector
+				tmp[j]=Ciphertext(input_copy);
 			}
 		evaluator->add_plain(tmp[0],biases[i]);
 		evaluator->add_many(tmp,result[0][i][0]);
 		}
 
 	};
-	input=reshapeInput(input);
+	input=reshapeInputAndTransformToNtt(input);
 
+	//transform_weights_to_ntt();
 
 	thread_rows=out_dim/th_count;
 	
@@ -103,6 +184,7 @@ ciphertext3D FullyConnectedLayer::forward(ciphertext3D input){
     {
         th_vector[i].join();
     }
+    weights_already_ntt=true;
     return result;
 
 }
@@ -146,6 +228,7 @@ void FullyConnectedLayer::savePlaintextParameters(ostream * outfile){
 			outfile->flush();
 		}
 }
+//Load and transform weights to ntt
 void FullyConnectedLayer::loadPlaintextParameters(istream * infile){		
 		int i,j;
 		vector<Plaintext> encoded_biases(out_dim);

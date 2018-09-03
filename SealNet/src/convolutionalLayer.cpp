@@ -23,7 +23,8 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
 	the dimensions of the filters. The output is returned through xo,yo and zo. */
 	xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf),
 	filters(filters),
-    biases(biases){
+    biases(biases),
+    filters_already_ntt(false){
         if(th_count>nf)
             th_count=nf;
     else if(th_count<=0)
@@ -40,7 +41,8 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
     /* Compute the output dimensions of the convolved ciphertext image.
     The function requires the dimensions of the image, the strides, (the padding) and
     the dimensions of the filters. The output is returned through xo,yo and zo. */
-    xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf)
+    xo( (xd-xf) / xs + 1 ), yo( (yd-yf) / ys + 1 ), zo(  nf),
+    filters_already_ntt(false)
     {
         loadPlaintextParameters(infile);
         if(th_count>nf)
@@ -59,6 +61,7 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
         int i,j,kx,ky,z,xlast,ylast,p;
         vector<Ciphertext> pixels(xf*yf*zd);
         ciphertext2D result(xo, vector<Ciphertext>(yo));
+        Ciphertext image_copy;
 
         Layer::computeBoundaries(xd,yd,xs,ys,xf,yf, &xlast, &ylast);
 
@@ -70,7 +73,14 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
                 for(z=0;z<zd;z++)
                     for(kx=0;kx<xf;kx++)
                         for(ky=0;ky<yf;ky++){
-                                evaluator->multiply_plain(image[z][i+kx][j+ky],kernel[z][kx][ky],pixels[p],MemoryPoolHandle::Global());
+                                //Temporary copy the input ntt Ciphertext
+                                image_copy=Ciphertext(image[z][i+kx][j+ky]);
+                                //Perform ntt multiplication, with previously ntt transformed kernel
+                                evaluator->multiply_plain_ntt(image_copy,kernel[z][kx][ky]);
+                                //Transform back the result to a normal Ciphertext
+                                evaluator->transform_from_ntt(image_copy);
+                                //Insert it in vector pixels
+                                pixels[p]=Ciphertext(image_copy);
                                 p++;
             }
             //adding bias
@@ -81,6 +91,69 @@ ConvolutionalLayer::ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,i
         return result;
 
     }
+//Transform input in ntt to speedup the multiply_plain, before to start the computation
+void ConvolutionalLayer::transform_input_to_ntt(ciphertext3D &input){
+    int from=0,to=0;
+    int threads=th_count;
+    mutex mtx;
+
+    vector<thread> th_vector;
+
+
+    auto parallelTransform=[&](ciphertext3D &input,mutex &mtx,int from, int to){
+       // vector<Ciphertext> tmp(xd*yd*(to-from));
+        //int t=0;
+
+        for(int z=from;z<to;z++)
+            for(int x=0;x<xd;x++)
+                for(int y=0;y<yd;y++){
+                    //tmp[t]=Ciphertext(input[z][x][y]);
+                    //evaluator->transform_to_ntt(tmp[t]);
+                    //t++;
+                    evaluator->transform_to_ntt(input[z][x][y]);
+                }
+
+       /* while (!mtx.try_lock());
+        t=0;
+        for(int z=from;z<to;z++)
+            for(int x=0;x<xd;x++)
+                for(int y=0;y<yd;y++){                
+                    input[z][x][y]=Ciphertext(tmp[t]);
+                    t++;
+                }
+        mtx.unlock();*/
+
+    };
+    
+    if(threads>zd)
+        threads=zd;
+
+    int thread_depth=zd/threads;
+
+    for (int i = 0; i < threads; i++){
+        from=to;
+        if(i<threads-1)
+            to+=thread_depth;
+        else
+            to+=thread_depth + (zd%threads);
+
+        th_vector.emplace_back(parallelTransform, ref(input),ref(mtx),from,to);
+    }
+
+    for (int i = 0; i < threads; i++){
+        th_vector[i].join();
+    }
+
+
+}
+
+//Transform kernel to ntt to speedup the multiply_plain in forward phase
+void ConvolutionalLayer::transform_kernel_to_ntt(int kernel_index){
+        for(int z=0;z<zd;z++)
+            for(int x=0;x<xf;x++)
+                for(int y=0;y<yf;y++)
+                    evaluator->transform_to_ntt(filters[kernel_index][z][x][y],MemoryPoolHandle::Global());
+}
 
 //Forward with threads
 ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
@@ -90,12 +163,17 @@ ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
 
     auto parallelForward=[&](ciphertext3D &input,ciphertext3D &convolved,int from, int to){
         for(int k=from;k<to;k++){
+            if(!filters_already_ntt)
+                transform_kernel_to_ntt(k);
             convolved[k]=convolution3d(input,filters[k],biases[k]);
         }
 
     };
+    //Transform input in ntt to speedup the multiply_plain, before to start the computation
+    transform_input_to_ntt(input);
 
 
+    //Each thread will compute the forward on a number of filters
     thread_kernels=nf/th_count;
     
     
@@ -113,7 +191,8 @@ ciphertext3D ConvolutionalLayer::forward (ciphertext3D input){
     {
         th_vector[i].join();
     }
-
+    
+    filters_already_ntt=true;
     return convolved;
 }
 
@@ -149,6 +228,7 @@ void ConvolutionalLayer::savePlaintextParameters(ostream * outfile){
 
 
 }
+//Load and transform weights in ntt
 void ConvolutionalLayer::loadPlaintextParameters(istream * infile){
     int n,z,i,j;
     plaintext4D encoded_weights(nf, plaintext3D(zd, plaintext2D (xf, vector<Plaintext> (yf ) )));

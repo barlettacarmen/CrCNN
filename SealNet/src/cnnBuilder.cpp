@@ -103,7 +103,7 @@ using namespace std;
 
 
 	Network CnnBuilder::buildNetwork(string file_name){
-		int th_count=10;
+		int th_count=8;
 		Network net;
 		ifstream *infile=NULL;
 		if(file_name!=""){

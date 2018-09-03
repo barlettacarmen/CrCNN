@@ -29,6 +29,7 @@ public:
 	int xo,yo,zo;
 	plaintext4D filters; //nf,zd,xf,yf
 	vector<Plaintext> biases;
+	bool filters_already_ntt;
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf, int th_count,plaintext4D & filters, vector<Plaintext> & biases);
 	ConvolutionalLayer(string name,int xd,int yd,int zd,int xs,int ys,int xf,int yf,int nf,int th_count,istream * infile);
 	~ConvolutionalLayer();
@@ -37,6 +38,8 @@ public:
 	plaintext3D getKernel(int kernel_index);
 	Plaintext getBias(int bias_index);
 	ciphertext2D convolution3d(ciphertext3D image, plaintext3D kernel,Plaintext bias);
+	void transform_input_to_ntt(ciphertext3D &input);
+	void transform_kernel_to_ntt(int kernel_index);
 	void savePlaintextParameters(ostream * outfile);
 	void loadPlaintextParameters(istream * infile);
 	void printLayerStructure();
