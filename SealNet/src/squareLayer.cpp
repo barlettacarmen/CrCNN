@@ -22,21 +22,19 @@ SquareLayer::~SquareLayer(){}
 ciphertext3D SquareLayer::forward (ciphertext3D input){
 	//Each thread computes the suare on images from z=from to z=to
 	auto parallelForward=[&](ciphertext3D &input,ciphertext3D &result,int from, int to){
-		Plaintext tmp;
-		float dec;
-		Ciphertext input_bis;
+
 
 		for(int z=from;z<to;z++)
 			for(int x=0;x<input[0].size();x++)
 				for(int y=0;y<input[0][0].size();y++){
-					assert(decryptor->invariant_noise_budget(input[z][x][y])>0);
+					/*assert(decryptor->invariant_noise_budget(input[z][x][y])>0);
 					//decrypt
 					decryptor->decrypt(input[z][x][y], tmp);
 					dec=fraencoder->decode(tmp);
 					//encrypt again
-					encryptor->encrypt(fraencoder->encode(dec),input_bis);
+					encryptor->encrypt(fraencoder->encode(dec),input_bis);*/
 					//square and relinerize
-					evaluator->square(input_bis,result[z][x][y],MemoryPoolHandle::Global());
+					evaluator->square(input[z][x][y],result[z][x][y],MemoryPoolHandle::Global());
 					evaluator->relinearize(result[z][x][y],*ev_keys16);
 				}
 

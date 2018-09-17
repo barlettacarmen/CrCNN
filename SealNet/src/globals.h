@@ -25,7 +25,7 @@ extern IntegerEncoder *intencoder;
 extern FractionalEncoder *fraencoder;
 extern EvaluationKeys * ev_keys16;
 
-void setParameters();
+void setParameters(int poly_modulus=4096, uint64_t plain_modulus=1<<20);
 void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path);
 void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path);
 void print_parameters();
@@ -33,6 +33,8 @@ void delParameters();
 //Precondition: setParameters() or initFromKeys() must be called before
 //Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd
 ciphertext3D encryptImage(vector<float> image, int zd, int xd, int yd);
+ciphertext3D encryptImage(floatCube image);
+ciphertext3D deepCopyImage(ciphertext3D image);
 //Precondition: setParameters() or initFromKeys() must be called before
 //Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd and save it in file file_name
 ciphertext3D encryptAndSaveImage(vector<float> image, int zd, int xd, int yd, string file_name);

@@ -18,19 +18,19 @@ IntegerEncoder * intencoder;
 FractionalEncoder * fraencoder;
 EvaluationKeys * ev_keys16;
 
-void setParameters(){
+void setParameters(int poly_modulus, uint64_t plain_modulus){
 
   //4096,1<<20
 	parms = new EncryptionParameters();
-	parms->set_poly_modulus("1x^4096 + 1");
-  parms->set_coeff_modulus(coeff_modulus_128(4096));
+	parms->set_poly_modulus("1x^"+to_string(poly_modulus)+" + 1");
+  parms->set_coeff_modulus(coeff_modulus_128(poly_modulus));
   //parms->set_coeff_modulus(*small_mods_60bits);
     //parms->set_poly_modulus("1x^32768 + 1");
     //parms->set_coeff_modulus(coeff_modulus_128(32768));
 
     //parms->set_plain_modulus(1099511922689);
     //parms->set_plain_modulus(4000000000);
-  parms->set_plain_modulus(1<<20);
+  parms->set_plain_modulus(plain_modulus);
 
 
     context = new SEALContext(*parms);
@@ -43,7 +43,7 @@ void setParameters(){
     encryptor = new Encryptor(*context, public_key);
     decryptor = new Decryptor(*context,secret_key);
     evaluator = new Evaluator(*context);
-    intencoder = new IntegerEncoder(context->plain_modulus(),3);
+    //intencoder = new IntegerEncoder(context->plain_modulus(),3);
     //64,32
     fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
    	ev_keys16 = new EvaluationKeys();
@@ -141,6 +141,35 @@ ciphertext3D encryptImage(vector<float> image, int zd, int xd, int yd){
   return encrypted_image;
 
 }
+
+ciphertext3D encryptImage(floatCube image){
+
+  int zd=image.size(), xd=image[0].size(), yd=image[0][0].size();
+  ciphertext3D encrypted_image(zd,ciphertext2D(xd,vector<Ciphertext>(yd)));
+
+  for(int z=0;z<zd;z++)
+    for(int i=0;i<xd;i++)
+      for(int j=0;j<yd;j++){
+          encryptor->encrypt(fraencoder->encode(image[z][i][j]),encrypted_image[z][i][j]);          
+          }
+
+  return encrypted_image;
+
+}
+
+ciphertext3D deepCopyImage(ciphertext3D image){
+    int zd=image.size(), xd=image[0].size(), yd=image[0][0].size();
+    ciphertext3D encrypted_image(zd,ciphertext2D(xd,vector<Ciphertext>(yd)));
+
+    for(int z=0;z<zd;z++)
+      for(int i=0;i<xd;i++)
+        for(int j=0;j<yd;j++){
+          encrypted_image[z][i][j]=Ciphertext(image[z][i][j]);         
+          }
+
+  return encrypted_image;
+}
+
 //Precondition: setParameters() or initFromKeys() must be called before
 //Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd and save it in file file_name
 ciphertext3D encryptAndSaveImage(vector<float> image, int zd, int xd, int yd, string file_name){
@@ -191,7 +220,7 @@ floatCube decryptImage(ciphertext3D encrypted_image){
             for(int j=0;j<yd;j++){
                     decryptor->decrypt(encrypted_image[z][i][j], tmp);
                     image[z][i][j]=fraencoder->decode(tmp);
-                    cout<<image[z][i][j]<<",";
+                    //cout<<image[z][i][j]<<",";
         }
     //cout<<endl;
     }

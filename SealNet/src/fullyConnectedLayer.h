@@ -27,7 +27,8 @@ public:
 	ciphertext3D forward (ciphertext3D input);
 	/*Given a ciphertext3D z,x,y, reshapes it with z=1, x= z*x*y , y=1. Row-by-row and transform the ciphertext in ntt
 	If no rashping is needed, it only transforms the ciphertext to ntt*/
-	ciphertext3D reshapeInputAndTransformToNtt(ciphertext3D input);
+	ciphertext3D reshapeInput(ciphertext3D input);
+	void transform_input_to_ntt(ciphertext3D &input);
 	Plaintext getWeight(int x_index,int y_index);
 	Plaintext getBias(int x_index);
 	//void transform_weights_to_ntt();
