@@ -26,8 +26,9 @@ def square(range_in):
 	
 
 import torch
-range_min=(0,255)
-range_max=(0,255)
+import math
+range_min=(-0.424,2.821)
+range_max=(-0.424,2.821)
 path_to_model="../PlainModel/PlainModelWoPad.pth"
 model=torch.load(path_to_model)
 
@@ -64,14 +65,97 @@ def convolutionalRange(channel_ranges,layer_name):
 		tmp_index=0
 	return channel_ranges_out
 
+'''Input=list of ranges of len= number of channels in input
+Output=list of ranges of len= number of channels in output=channels in input
+Computation= multiply each range for the size of the original pooling window.  
+Keep updated global min and max after all single range multiplications.
+Simulates a pooling summation, but all the pixels of the same channel are simbolyzed by a range of values, thus that range is only summed to itself'''
 def poolingRange(channel_ranges,window_size):
-	return [mul(c,window_size) for c in channel_ranges]
-	
+	channel_ranges=[mul(c,window_size) for c in channel_ranges]
+	[compareMinMaxglobal(c) for c in channel_ranges]
+	return channel_ranges
 
-channel_ranges=[(0,255)]
-channel_ranges_out= convolutionalRange(channel_ranges, "pool1_features.conv1")
-print("ranges", channel_ranges_out," range min ", range_min, "range_max " ,range_max)
-print(len(channel_ranges_out))
+'''Input=list of ranges of len= number of channels in input
+Output=list of ranges of len= number of channels in output=channels in input
+Computation= each range is batch normalized for its mean and var.  
+Keep updated global min and max after all single range normalizations.
+Simulates a BN summation, but all the pixels of the same channel are simbolyzed by a range of values.'''
+def batchNormalizationRange(channel_ranges,layer_name):
+	means=model.get(layer_name+".running_mean")
+	variances=model.get(layer_name+".running_var")
+	channel_ranges=[mul(add(c,-m),1/math.sqrt(v + 0.00001)) for c,m,v in zip(channel_ranges,means,variances)]
+	[compareMinMaxglobal(c) for c in channel_ranges]
+	return channel_ranges
+
+'''Input=list of ranges of len= number of channels in input or = to #rows of prev fully connected
+Output=list of ranges of len= to #rows of weights matrix
+Computation= reshape if the dimension in input i smaller than the required one (eg 1st fully connected) by copying the same value of a channel
+to obrain the dimension of an input image.
+Keep updated global min and max after all single range computation.
+Simulate a fully connected calculus.'''
+def fullyConnectedRange(channel_ranges,layer_name):
+	weights=model.get(layer_name+".weight")
+	biases=model.get(layer_name+".bias")
+	sizes=weights.size()
+	tmp_ranges=[(0,0) for i in range(sizes[1])]
+	channel_ranges_out=[(0,0) for i in range(sizes[0])]
+
+	if(len(channel_ranges)<sizes[1]):
+		num_copies=int(sizes[1]/len(channel_ranges))
+		channel_ranges=[t for t in channel_ranges for i in range(num_copies)]
+
+	for r in range(0,sizes[0]):
+		for c in range(0,sizes[1]):
+			tmp_ranges[c]=mul(channel_ranges[c],weights[r][c])
+			compareMinMaxglobal(tmp_ranges[c])
+		channel_ranges_out[r]=tuple([sum(x) for x in zip(*tmp_ranges)])
+		compareMinMaxglobal(channel_ranges_out[r])
+		channel_ranges_out[r]=add(channel_ranges_out[r],biases[r])
+		compareMinMaxglobal(channel_ranges_out[r])
+	return channel_ranges_out
+
+'''Input=list of ranges of len= number of channels in input
+Output=list of ranges of len= number of channels in output=channels in input
+Computation= recompute ranges after square.
+Keep updated global min and max after all square.
+Simulates a square function on an image'''
+def squareRange(channel_ranges):
+	channel_ranges=[square(c) for c in channel_ranges]	
+	[compareMinMaxglobal(c) for c in channel_ranges]
+	return channel_ranges
+
+channel_ranges=[(-0.424,2.821)]
+channel_ranges= convolutionalRange(channel_ranges, "pool1_features.conv1")
+print("After CONV1 ",len(channel_ranges))
+#print("ranges CONV ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=poolingRange(channel_ranges,2*2)
+print("After POOL1 ",len(channel_ranges))
+#print("ranges POOL ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=batchNormalizationRange(channel_ranges,"pool1_features.norm1")
+print("After BN1 ",len(channel_ranges))
+#print("ranges BN ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges= convolutionalRange(channel_ranges, "pool2_features.conv2")
+print("After CONV2 ",len(channel_ranges))
+#print("ranges CONV ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=squareRange(channel_ranges)
+print("After SQUARE ", len(channel_ranges))
+#print("ranges SQUARE", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=poolingRange(channel_ranges,2*2)
+print("After POOL2 ",len(channel_ranges))
+#print("ranges POOL ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=batchNormalizationRange(channel_ranges,"pool2_features.norm2")
+print("After BN2 ",len(channel_ranges))
+#print("ranges BN ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=fullyConnectedRange(channel_ranges,"classifier.fc3")
+print("After FC1 ",len(channel_ranges))
+#print("ranges FC ", channel_ranges," range min ", range_min, "range_max " ,range_max)
+channel_ranges=fullyConnectedRange(channel_ranges,"classifier.fc4")
+print("After FC2 ",len(channel_ranges))
+print("range min ", range_min, "range_max " ,range_max)
+
+
+
+
 
 
 
