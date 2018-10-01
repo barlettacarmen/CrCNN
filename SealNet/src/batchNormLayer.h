@@ -15,7 +15,7 @@ public:
 	vector<Plaintext> mean;
 	vector<Plaintext> var;
  
-	BatchNormLayer(string name, int num_channels,vector<Plaintext> mean,vector<Plaintext> var);
+	BatchNormLayer(string name, int num_channels,vector<Plaintext> & mean,vector<Plaintext>  & var);
 	//Initilaize from file
 	BatchNormLayer(string name, int num_channels,istream * infile);
 	~BatchNormLayer();
@@ -27,6 +27,14 @@ public:
 	void savePlaintextParameters(ostream * outfile);
 	void loadPlaintextParameters(istream * infile);
 	void printLayerStructure();
+
+	/*Simulates batch norm computation during forward. The input is not a real chipertext image but it is a representation given by
+	an upper bound on the number of non-zero coefficients in the Plaintext polynomial and the max_abs_value of these coefficients 
+	(=1 if freshly encryption with base=3 or base=2)
+	Input=The sim_input simulates an image and has just one pixel for each channel in input.
+	Computation=  as in forward, but only one computation for each channel
+	Output= one pixel for each channel in output (len=sim_input.size())*/
+	static vector<ChooserPoly> batchNormSimulator(vector<ChooserPoly> sim_input, vector<float> & mean, vector<float> & var);
 
 	
 };

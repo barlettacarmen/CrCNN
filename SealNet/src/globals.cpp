@@ -18,6 +18,9 @@ IntegerEncoder * intencoder;
 FractionalEncoder * fraencoder;
 EvaluationKeys * ev_keys16;
 
+ChooserEncoder * chooser_encoder;
+ChooserEvaluator * chooser_evaluator;
+
 void setParameters(int poly_modulus, uint64_t plain_modulus){
 
   //4096,1<<20
@@ -230,22 +233,42 @@ floatCube decryptImage(ciphertext3D encrypted_image){
   return image;
 }
 
+void setChooserParameters(uint64_t base){
+  chooser_encoder = new ChooserEncoder(base);
+  chooser_evaluator = new ChooserEvaluator;
+
+}
+
+void delChooserParameters(){
+  delete chooser_evaluator;
+  delete chooser_encoder;
+}
+
 
 /*
 Helper function: Prints the parameters in a SEALContext.
 */
-void print_parameters()
+void print_parameters(const SEALContext &context)
 {
     cout << "/ Encryption parameters:" << endl;
-    cout << "| poly_modulus: " << context->poly_modulus().to_string() << endl;
+    cout << "| poly_modulus: " << context.poly_modulus().to_string() << endl;
 
     /*
     Print the size of the true (product) coefficient modulus
     */
     cout << "| coeff_modulus size: " 
-        << context->total_coeff_modulus().significant_bit_count() << " bits" << endl;
+        << context.total_coeff_modulus().significant_bit_count() << " bits" << endl;
 
-    cout << "| plain_modulus: " << context->plain_modulus().value() << endl;
-    cout << "\\ noise_standard_deviation: " << context->noise_standard_deviation() << endl;
+    //Number of qi in coeff_count 
+    int coeff_mod_count = static_cast<int>(context.coeff_modulus().size());
+
+    cout << "| coeff_modulus qi: ";
+    for (int i = 0; i < coeff_mod_count; i++)
+      cout<<"coeff "<<context.coeff_modulus()[i].value();
+      cout<<endl;
+
+
+    cout << "| plain_modulus: " << context.plain_modulus().value() << endl;
+    cout << "\\ noise_standard_deviation: " << context.noise_standard_deviation() << endl;
     cout << endl;
 }

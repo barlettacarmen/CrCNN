@@ -6,12 +6,13 @@
 #include <vector>
 #include <ostream>
 #include <fstream>
+#include <cmath>
 
 using namespace std;
 using namespace seal;
 
 //The variance is already encoded as 1/sqrt(var+1e-05) in buildBatchNormLayer() in CnnBuilder class
-BatchNormLayer::BatchNormLayer(string name, int num_channels,vector<Plaintext> mean,vector<Plaintext> var):
+BatchNormLayer::BatchNormLayer(string name, int num_channels,vector<Plaintext> & mean,vector<Plaintext> & var):
 	Layer(name),
 	num_channels(num_channels),
 	mean(mean), var(var){
@@ -68,5 +69,18 @@ void BatchNormLayer::loadPlaintextParameters(istream * infile){
 
 void BatchNormLayer::printLayerStructure(){
 	cerr<<"BatchNormLayer2D "<<name<<" :num_channels "<<num_channels<<endl;
+
+}
+
+vector<ChooserPoly> BatchNormLayer::batchNormSimulator(vector<ChooserPoly> sim_input, vector<float> & mean, vector<float> & var){
+
+	int approx=1000;
+
+	for(int i=0; i<sim_input.size();i++){
+		chooser_evaluator->sub_plain(sim_input[i],chooser_encoder->encode(int(mean[i]*approx)));
+		chooser_evaluator->multiply_plain(sim_input[i],chooser_encoder->encode(int(approx*1/sqrt(var[i] + 0.00001))));
+	}
+
+	return sim_input;
 
 }

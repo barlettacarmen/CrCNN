@@ -43,6 +43,13 @@ public:
 	void savePlaintextParameters(ostream * outfile);
 	void loadPlaintextParameters(istream * infile);
 	void printLayerStructure();
+	/*Simulates convolutional computation during forward. The input is not a real chipertext image but it is a representation given by
+	an upper bound on the number of non-zero coefficients in the Plaintext polynomial and the max_abs_value of these coefficients 
+	(=1 if freshly encryption with base=3 or base=2) 
+	Input=The sim_input simulates an image and has just one pixel for each channel in input.
+	Compitation= as a normal forward but without the stride. Only one pixel for each kernel is produced.
+	Output= one pixel for each channel in output (len=nf)*/
+	static  vector<ChooserPoly> convolutionalSimulator(vector<ChooserPoly> sim_input, int xf,int yf, int nf, vector<float> & weights, vector<float> & biases);
 };
 
 

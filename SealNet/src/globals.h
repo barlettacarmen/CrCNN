@@ -25,10 +25,13 @@ extern IntegerEncoder *intencoder;
 extern FractionalEncoder *fraencoder;
 extern EvaluationKeys * ev_keys16;
 
+extern ChooserEncoder * chooser_encoder;
+extern ChooserEvaluator * chooser_evaluator;
+
 void setParameters(int poly_modulus=4096, uint64_t plain_modulus=1<<20);
 void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path);
 void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path);
-void print_parameters();
+void print_parameters(const SEALContext &context);
 void delParameters();
 //Precondition: setParameters() or initFromKeys() must be called before
 //Encrypt a normalized image(that is a vector of float) using Fractional encoder in a 3d ciphertext of dim zd,xd,yd
@@ -43,5 +46,7 @@ ciphertext3D encryptAndSaveImage(vector<float> image, int zd, int xd, int yd, st
 ciphertext3D loadEncryptedImage(int zd, int xd, int yd, string file_name);
 //Decrypt a fractional encrypted 3d image
 floatCube decryptImage(ciphertext3D encrypted_image);
-
+//Sets ChooserEncoder with the given base (to simulate the IntegerEncoder with the given base). To be used only to find optimal parameters
+void setChooserParameters(uint64_t base);
+void delChooserParameters();
 #endif
