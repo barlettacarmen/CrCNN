@@ -26,11 +26,17 @@ public:
 	SquareLayer *  buildSquareLayer(string name, int th_count);
 	BatchNormLayer * buildBatchNormLayer(string name, int num_channels,istream * infile);
 	/* Define all necessary layers with their parameters in this function
-	If the encoded Network has been already saved in file_name, then it should be the right path of encoded net*/
+	If the encoded Network has been already saved in file_name, then it should be the right path of encoded net,
+	In this case it loads the encoded network by calling the approptiate constructors*/
 	Network buildNetwork(string file_name="");
 	/*---------------------*/
 	Network buildAndSaveNetwork(string file_name);
-	//Loads the encoded network by calling the approptiate constructors
+	
+	/*---SIMULATOR-BUILDER---*/
+	/*Input= maximum number of coefficients in the polynomial that has to simulate the input,
+			num_channels=depth of the image supposed to be given in input
+	Output= simulated output  */
+	vector<ChooserPoly> buildSimulatedNetwork(int max_num_coefficients, int num_channels);
 	
 
 };

@@ -47,6 +47,6 @@ ciphertext3D loadEncryptedImage(int zd, int xd, int yd, string file_name);
 //Decrypt a fractional encrypted 3d image
 floatCube decryptImage(ciphertext3D encrypted_image);
 //Sets ChooserEncoder with the given base (to simulate the IntegerEncoder with the given base). To be used only to find optimal parameters
-void setChooserParameters(uint64_t base);
+void setChooserParameters(uint64_t base=3);
 void delChooserParameters();
 #endif

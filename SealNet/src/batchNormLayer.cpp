@@ -73,14 +73,24 @@ void BatchNormLayer::printLayerStructure(){
 }
 
 vector<ChooserPoly> BatchNormLayer::batchNormSimulator(vector<ChooserPoly> sim_input, vector<float> & mean, vector<float> & var){
-
+	cout<<"bn"<<flush;
 	int approx=1000;
 
 	for(int i=0; i<sim_input.size();i++){
-		chooser_evaluator->sub_plain(sim_input[i],chooser_encoder->encode(int(mean[i]*approx)));
-		chooser_evaluator->multiply_plain(sim_input[i],chooser_encoder->encode(int(approx*1/sqrt(var[i] + 0.00001))));
+		int m=mean[i]*approx;
+		if(m==0)
+			sim_input[i]=chooser_evaluator->sub_plain(sim_input[i],96,1);
+		else
+			sim_input[i]=chooser_evaluator->sub_plain(sim_input[i],chooser_encoder->encode(m));
+
+		int v=approx/sqrt(var[i] + 0.00001);
+		if(v==0)
+			sim_input[i]=chooser_evaluator->multiply_plain(sim_input[i],96,1);
+		else
+			sim_input[i]=chooser_evaluator->multiply_plain(sim_input[i],chooser_encoder->encode(v));
 	}
 
+	cout<<" ended bn"<<flush;
 	return sim_input;
 
 }

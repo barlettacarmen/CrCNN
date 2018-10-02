@@ -154,4 +154,36 @@ using namespace std;
 
 	}
 
+	/*---SIMULATOR-BUILDER---*/
+	//Precondition=setChooserParameters() must have been called
+	vector<ChooserPoly> CnnBuilder::buildSimulatedNetwork(int max_num_coefficients, int num_channels){
+
+		vector<ChooserPoly> sim_input(num_channels);
+		/*
+	    First we create INPUT: a ChooserPoly representing the input data. You can think of 
+	    this modeling a freshly encrypted ciphertext of a plaintext polynomial of
+	    length at most max_num_coefficients, where the coefficients have absolute value 
+	    at most 1 (as is the case when using IntegerEncoder with base 3).
+	    */
+		for(int i=0;i<num_channels;i++)
+			sim_input[i]=ChooserPoly(max_num_coefficients,1);
+		/*
+		Then we simulate the forward by calling appropriate methods
+		*/
+		vector<float> w,b;
+		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 20, w=getPretrained("pool1_features.conv1.weight"), b=getPretrained("pool1_features.conv1.bias"));
+		sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool1_features.norm1.running_mean"),b=getPretrained("pool1_features.norm1.running_var"));
+		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,3,3, 50, w=getPretrained("pool2_features.conv2.weight"), b=getPretrained("pool2_features.conv2.bias"));
+		sim_input=SquareLayer::squareSimulator(sim_input);
+		sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool2_features.norm2.running_mean"),b=getPretrained("pool2_features.norm2.running_var"));
+		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc3.weight"), b=getPretrained("classifier.fc3.bias"));
+		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc4.weight"), b=getPretrained("classifier.fc4.bias"));
+
+		return sim_input;
+
+
+	}
+
 	CnnBuilder::~CnnBuilder(){};
