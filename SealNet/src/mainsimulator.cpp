@@ -26,7 +26,7 @@ int main(){
 
     setChooserParameters();
     CnnBuilder build("PlainModelWoPad.h5");
-    vector<ChooserPoly> sim_out=build.buildSimulatedNetwork(24,1);
+    vector<ChooserPoly> sim_out=build.buildSimulatedNetwork(1,1);
 
     /*
     The optimal parameters are now computed using the select_parameters 
@@ -37,8 +37,9 @@ int main(){
     */
 
     EncryptionParameters optimal_parms;
-    chooser_evaluator->select_parameters(sim_out, 0, optimal_parms);
+    bool found_params=chooser_evaluator->select_parameters({sim_out[0]}, 0, optimal_parms);
     cout << "Done" << endl;
+    cout << "Encryption parameters found? "<<found_params<< endl;
     
     /*
     Create an SEALContext object for the returned parameters

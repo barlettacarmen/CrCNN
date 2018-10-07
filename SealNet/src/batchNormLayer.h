@@ -34,8 +34,8 @@ public:
 	Input=The sim_input simulates an image and has just one pixel for each channel in input.
 	Computation=  as in forward, but only one computation for each channel
 	Output= one pixel for each channel in output (len=sim_input.size())*/
-	static vector<ChooserPoly> batchNormSimulator(vector<ChooserPoly> sim_input, vector<float> & mean, vector<float> & var);
-
+	static vector<ChooserPoly> batchNormSimulator(vector<ChooserPoly> & sim_input, vector<float> & mean, vector<float> & var);
+	static ChooserPoly batchNormSimulator(ChooserPoly sim_input);
 	
 };
 #endif

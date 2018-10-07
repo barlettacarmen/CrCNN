@@ -49,7 +49,21 @@ ciphertext3D PoolingLayer::forward (ciphertext3D input){
 
 }
 
-vector<ChooserPoly> PoolingLayer::poolingSimulator(vector<ChooserPoly> sim_input, int xf, int yf){
+ChooserPoly PoolingLayer::poolingSimulator(ChooserPoly sim_input, int xf, int yf){
+	cout<<"pool"<<flush;
+	vector<ChooserPoly> tmp_sim(xf*yf);
+	
+	for(int p=0;p<xf*yf;p++)
+		tmp_sim[p]=ChooserPoly(sim_input);
+	
+	sim_input=chooser_evaluator->add_many(tmp_sim);
+	
+	cout<<" ended pool"<<flush;
+	return sim_input;
+}
+
+
+vector<ChooserPoly> PoolingLayer::poolingSimulator(vector<ChooserPoly> & sim_input, int xf, int yf){
 	cout<<"pool"<<flush;
 	vector<ChooserPoly> tmp_sim(xf*yf);
 

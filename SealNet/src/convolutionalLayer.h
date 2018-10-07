@@ -49,7 +49,9 @@ public:
 	Input=The sim_input simulates an image and has just one pixel for each channel in input.
 	Compitation= as a normal forward but without the stride. Only one pixel for each kernel is produced.
 	Output= one pixel for each channel in output (len=nf)*/
-	static  vector<ChooserPoly> convolutionalSimulator(vector<ChooserPoly> sim_input, int xf,int yf, int nf, vector<float> & weights, vector<float> & biases);
+	static  vector<ChooserPoly> convolutionalSimulator(vector<ChooserPoly> & sim_input, int xf,int yf, int nf, vector<float> & weights, vector<float> & biases);
+	static  ChooserPoly convolutionalSimulator(ChooserPoly sim_input, int xf,int yf,int zf);
+
 };
 
 

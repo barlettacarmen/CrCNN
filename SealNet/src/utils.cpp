@@ -2,7 +2,8 @@
 #include "mnist/mnist_reader.h"
 #include <vector>
 #include <string>
-
+#include <ostream>
+#include <fstream>
 
 //The division by 255 is to have coerency with pythorch normalization of MNIST dataset
 vector<vector<float> > normalize(vector<vector<float> > dataset, float mean, float stdv){
@@ -35,4 +36,18 @@ vector<unsigned char> loadMNISTestLabels(string dataset_path){
 
     return dataset.test_labels;
 
+}
+
+vector<unsigned char> loadMNISTPlainModelPredictions(string file_path){
+    ifstream file(file_path, ifstream::in);
+    vector<unsigned char> predictions;
+    if(file.is_open()){
+        while(!file.eof()){
+            int data;
+            file>>data;
+            file.get();
+            predictions.emplace_back(data);
+        }
+    }
+    return predictions;
 }

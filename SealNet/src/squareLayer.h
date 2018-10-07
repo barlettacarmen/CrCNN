@@ -24,7 +24,8 @@ public:
 	Input=The sim_input simulates an image and has just one pixel for each channel in input.
 	Computation=  as in forward, but only one computation for each channel
 	Output= one pixel for each channel in output (len=sim_input.size())*/
-	static vector<ChooserPoly> squareSimulator(vector<ChooserPoly> sim_input);
+	static ChooserPoly squareSimulator(ChooserPoly  sim_input);
+	static vector<ChooserPoly> squareSimulator(vector<ChooserPoly> &  sim_input);
 };
 
 

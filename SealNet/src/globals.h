@@ -49,4 +49,5 @@ floatCube decryptImage(ciphertext3D encrypted_image);
 //Sets ChooserEncoder with the given base (to simulate the IntegerEncoder with the given base). To be used only to find optimal parameters
 void setChooserParameters(uint64_t base=3);
 void delChooserParameters();
+ChooserPoly encodeFractionalChooser(float value);
 #endif

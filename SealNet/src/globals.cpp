@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "seal/seal.h"
+#include "seal/util/polyarithsmallmod.h"
 #include <fstream>
 #include <string>
 #include <ostream>
@@ -235,13 +236,26 @@ floatCube decryptImage(ciphertext3D encrypted_image){
 
 void setChooserParameters(uint64_t base){
   chooser_encoder = new ChooserEncoder(base);
+  fraencoder =  new FractionalEncoder(SmallModulus(base), BigPoly("1x^1024 + 1"), 64, 32, 3);
   chooser_evaluator = new ChooserEvaluator;
 
 }
 
 void delChooserParameters(){
   delete chooser_evaluator;
+  delete fraencoder;
   delete chooser_encoder;
+}
+
+ChooserPoly encodeFractionalChooser(float value){
+  ChooserPoly c_poly;
+  Plaintext value_poly;
+  value_poly=fraencoder->encode(value);
+  c_poly.reset();
+  c_poly.max_coeff_count() = value_poly.significant_coeff_count();
+  c_poly.max_abs_value() = util::poly_infty_norm_coeffmod(
+  value_poly.data(), value_poly.coeff_count(), fraencoder->plain_modulus());
+  return c_poly;
 }
 
 

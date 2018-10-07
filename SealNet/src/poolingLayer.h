@@ -27,7 +27,8 @@ public:
 	Computation=  each pixel in the sim_input is copied xf*yf times and then sum up them, because we suppose that all the pixels belonging to the same 
 	channel are the same. Mathematically it is like multipling the pixel xf*yf. The copy is necessary to simulate exactly all the computations on a single pixel.
 	Output= one pixel for each channel in output (len=sim_input.size())*/
-	static vector<ChooserPoly> poolingSimulator(vector<ChooserPoly> sim_input, int xf, int yf);
+	static vector<ChooserPoly> poolingSimulator(vector<ChooserPoly> & sim_input, int xf, int yf);
+	static ChooserPoly poolingSimulator(ChooserPoly sim_input, int xf, int yf);
 	
 };
 

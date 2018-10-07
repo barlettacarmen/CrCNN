@@ -7,40 +7,42 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
-#include <cassert>  
+#include <cassert> 
+#include <random>
+#include <chrono>
 using namespace std;
 using namespace seal;
 
 vector<vector<float> > test_set;
-vector<unsigned char>labels;
+vector<unsigned char> predicted_labels;
 int calls=0;
 
 enum exit_status_forward{SUCCESS, OUT_OF_BUDGET,MISPREDICTED};
 
-uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_modulus, uint64_t max_plain_modulus, int max_poly_modulus, bool pow);
-exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,int max_poly_modulus);
+uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_modulus, uint64_t max_plain_modulus, int max_poly_modulus, bool pow, int num_images_to_test);
+exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,int max_poly_modulus, int num_images_to_test);
 uint64_t minSmallModulusinCoeffModulus(int max_poly_modulus);
 
 
 //path_to_model="PlainModelWoPad.h5"
-uint64_t plainModulusBinarySearch(uint64_t min_plain_modulus, uint64_t max_plain_modulus, string path_to_model){
+uint64_t plainModulusBinarySearch(int num_images_to_test,uint64_t min_plain_modulus, uint64_t max_plain_modulus, string path_to_model){
 
 	int max_poly_modulus=4096;
-	bool pow=true;
+	bool pow=false;
 	uint64_t plain_modulus;
 
 
 	/*Load and normalize your dataset*/
 	test_set=loadAndNormalizeMNISTestSet("../PlainModel/MNISTdata/raw");
-	/*Load labels*/
-	labels=loadMNISTestLabels("../PlainModel/MNISTdata/raw");
+	/*Load predictions of plain model*/
+	predicted_labels=loadMNISTPlainModelPredictions("../PlainModel/predictionsPlainModelWoPad.csv");
 
 	CnnBuilder build(path_to_model);
 	/*Search between powers of two*/
-	plain_modulus=plainModulusBinarySearchInternal(build,min_plain_modulus,max_plain_modulus,max_poly_modulus,pow);
+	plain_modulus=plainModulusBinarySearchInternal(build,min_plain_modulus,max_plain_modulus,max_poly_modulus,pow,num_images_to_test);
 	/*Take the smallest SmallModulus betwen the prime numbers (qi) associated to the default 128 coeff_modulus parameter*/
 	uint64_t min_prime_coeff_mod=minSmallModulusinCoeffModulus(max_poly_modulus);
-	/*If a plain_modulus if found, but it is bigger than at least one of the qi, fast_plain_lift won't be enabled, and multiply_plain will be slower.
+	/*If a plain_modulus is found, but it is bigger than at least one of the qi, fast_plain_lift won't be enabled, and multiply_plain will be slower.
 	To enable it all the small moduli {q1,q2,...,qk} which construct the coefficient modulus must be smaller than plaintext modulus t.
 	If this is true, then Evaluator::multiply_plain becomes significantly faster.*/
 	if(plain_modulus>0 && plain_modulus>=min_prime_coeff_mod){
@@ -52,7 +54,7 @@ uint64_t plainModulusBinarySearch(uint64_t min_plain_modulus, uint64_t max_plain
 		min_plain_modulus= 1UL<<int(floor(log2(min_prime_coeff_mod)));
 		cout<<"continue searching between "<<min_plain_modulus<<" and "<<max_plain_modulus<<endl;
 		pow=false;
-		uint64_t plain_modulus_fast=plainModulusBinarySearchInternal(build,min_plain_modulus,max_plain_modulus,max_poly_modulus,pow);
+		uint64_t plain_modulus_fast=plainModulusBinarySearchInternal(build,min_plain_modulus,max_plain_modulus,max_poly_modulus,pow,num_images_to_test);
 		if(plain_modulus_fast>0)
 			return plain_modulus_fast;
 	}
@@ -71,7 +73,7 @@ uint64_t minSmallModulusinCoeffModulus(int max_poly_modulus){
 }
 
 //Bool pow, indicates if we search between powers of two(pow=true)or not.
-uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_modulus, uint64_t max_plain_modulus, int max_poly_modulus, bool pow){
+uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_modulus, uint64_t max_plain_modulus, int max_poly_modulus, bool pow, int num_images_to_test){
 	uint64_t plain_modulus;
     assert(min_plain_modulus<=max_plain_modulus);
 	cout<<"level "<<calls++<<"  ";
@@ -91,7 +93,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 		cout<<"!!base!!  ";
 		cout<<"min_plain_modulus: "<<min_plain_modulus;
 		cout<<"  max_plain_modulus: "<<max_plain_modulus<<endl;
-		test_plain=testPlainModulus(build,min_plain_modulus,max_poly_modulus);
+		test_plain=testPlainModulus(build,min_plain_modulus,max_poly_modulus, num_images_to_test);
 		cout<<"level "<<calls<<" returning ";
 		if(test_plain==SUCCESS){
 			calls--;
@@ -111,7 +113,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 			if(pow){
 				max_plain_modulus=1UL<<max_plain_modulus;
 			}
-			test_plain=testPlainModulus(build,max_plain_modulus,max_poly_modulus);
+			test_plain=testPlainModulus(build,max_plain_modulus,max_poly_modulus,num_images_to_test);
 			if(test_plain==SUCCESS){
 				calls--;
 			    cout<<max_plain_modulus<< " due to Success"<<endl;
@@ -135,7 +137,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 	cout<<"  min_plain_modulus: "<<min_plain_modulus;
 	cout<<"  max_plain_modulus: "<<max_plain_modulus<<endl;
 
-	test_plain=testPlainModulus(build,plain_modulus,max_poly_modulus);
+	test_plain=testPlainModulus(build,plain_modulus,max_poly_modulus,num_images_to_test);
 
 	/*If SUCCESS we go left to try to find a smaller plain_mod, so if we find it we return it, otherwise we return the aldeady found plain mod*/
 	/*If OUT_OF_BUDGET we go left to try with a smaller plain_mod, so to have a bigger noise budget. If we find a good enough plain_mod we return it,
@@ -143,7 +145,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 
 
 	if(test_plain==SUCCESS||test_plain==OUT_OF_BUDGET){
-		uint64_t recursion_result= plainModulusBinarySearchInternal(build,min_plain_modulus,plain_modulus-1,max_poly_modulus,pow);
+		uint64_t recursion_result= plainModulusBinarySearchInternal(build,min_plain_modulus,plain_modulus-1,max_poly_modulus,pow,num_images_to_test);
 		cout<<"level "<<calls<<" returning ";
 		if(recursion_result>0){
 			calls--;
@@ -167,7 +169,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 	    cout<<"0 from lower base mispredicted"<<endl;
 	    return 0;
 	}
-    auto ret_value = plainModulusBinarySearchInternal(build,plain_modulus+1,max_plain_modulus,max_poly_modulus,pow);
+    auto ret_value = plainModulusBinarySearchInternal(build,plain_modulus+1,max_plain_modulus,max_poly_modulus,pow,num_images_to_test);
 	cout<<"level "<<calls<<" returning ";
 	calls--;
 	cout<<ret_value<<" from lower level right"<<endl;
@@ -175,26 +177,13 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 
 }
 
-// exit_status_forward testPlainModulus(int build, uint64_t plain_modulus,int max_poly_modulus){
-//     uint64_t target_num = (1UL<<30)+1;
-//     uint64_t oob_num = (1UL<<30);
-
-//     cout<<"Testing "<<plain_modulus<< " against "<< target_num << " and " << oob_num << ": ";
-//     exit_status_forward ret_code;
-// 	if(plain_modulus>(oob_num))
-// 		ret_code = OUT_OF_BUDGET;
-// 	else if(plain_modulus<target_num)
-// 		ret_code = MISPREDICTED;
-// 	else ret_code = SUCCESS;
-//     cout<< (ret_code == SUCCESS ? "Success" : (ret_code == OUT_OF_BUDGET ? "Out of Budget" : "Mispredicted") ) << endl;
-// 	return ret_code;
-
-// }
 
 
-exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,int max_poly_modulus){
+exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,int max_poly_modulus, int num_images_to_test){
 
-	int num_images_to_test=10;
+	unsigned seed=num_images_to_test;
+	default_random_engine generator(seed);
+	uniform_int_distribution<int> distribution(0,predicted_labels.size());
 	exit_status_forward ret_value=SUCCESS;
 
 	cout<<"Testing "<<plain_modulus<<endl;
@@ -206,9 +195,10 @@ exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,in
 	cout<<"Built network"<<endl;
 	/*Encrypt and test "num_images_to_test"*/
 	for(int i=0;i<num_images_to_test;i++){
-		cout<<"Encrypting image "<<i<<" ";
-		ciphertext3D encrypted_image=encryptImage(test_set[i], 1, 28, 28);
-		cout<<"Testing image "<<i<<endl;
+		int img_test= distribution(generator);
+		cout<<"Encrypting image "<<img_test<<" "<<flush;
+		ciphertext3D encrypted_image=encryptImage(test_set[img_test], 1, 28, 28);
+		cout<<"Testing image "<<img_test<<endl;
 		try{
 			encrypted_image = net.forward(encrypted_image);
 			}
@@ -223,7 +213,8 @@ exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,in
 		auto it = max_element(begin(image[0]), end(image[0]));
 		auto predicted = it - image[0].begin();
 		/*If one of the tested images returns a wrong prediction, we need to find new plain_modulus*/
-		if(predicted!=labels[i]){
+		cout<<"Comparing: predicted= "<<(uint32_t)predicted<<" plain res= "<<(uint32_t)predicted_labels[img_test]<<endl;
+		if(predicted!=predicted_labels[img_test]){
 			ret_value=MISPREDICTED;
 			break;
 			}
@@ -237,8 +228,16 @@ exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,in
 
 int main(){
 
+	chrono::high_resolution_clock::time_point time_start, time_end;
+	chrono::microseconds time_binary_search(0);
 	uint64_t found_plain_mod;
-	found_plain_mod= plainModulusBinarySearch(1UL<<1,1UL<<59, "PlainModelWoPad.h5");
-	cout<<"Final plain_modulus found is: "<<found_plain_mod<<endl;
+	for(int num_images_to_test=2;num_images_to_test<17;num_images_to_test=num_images_to_test+2){
+		time_start = chrono::high_resolution_clock::now();
+		found_plain_mod= plainModulusBinarySearch(num_images_to_test,1UL<<1,1UL<<59, "PlainModelWoPad.h5");
+		time_end = chrono::high_resolution_clock::now();
+		time_binary_search = chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+		cout<<"OUTPUT:"<<num_images_to_test<<","<<found_plain_mod<<","<<time_binary_search.count()<<" µs"<<endl;
+	}
+	
 	return 0;
 }

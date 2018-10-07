@@ -263,7 +263,7 @@ void ConvolutionalLayer::printLayerStructure(){
 }
 
 
-vector<ChooserPoly> ConvolutionalLayer::convolutionalSimulator(vector<ChooserPoly> sim_input, int xf,int yf, int nf, vector<float> & weights, vector<float> & biases){
+vector<ChooserPoly> ConvolutionalLayer::convolutionalSimulator(vector<ChooserPoly> & sim_input, int xf,int yf, int nf, vector<float> & weights, vector<float> & biases){
     cout<<"conv"<<flush;
     int zf=sim_input.size(), kernel_size=xf*yf*zf, approx=1000;
     vector<ChooserPoly> tmp_sim(kernel_size);
@@ -274,21 +274,44 @@ vector<ChooserPoly> ConvolutionalLayer::convolutionalSimulator(vector<ChooserPol
         int span=kernel_size*n;
             for(int i=0;i<xf*yf*zf;i++){
                     cout<<n<<","<<i<<","<<weights[i+span]*approx<<flush<<endl;
-                    int weight=weights[i+span]*approx;
-                    if(weight==0)
-                        tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],96,1);
-                    else    
-                        tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],chooser_encoder->encode(weight));
+                    // int weight=weights[i+span]*approx;
+                    // if(weight==0)
+                    //     tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],31,1);
+                    // else    
+                    //     tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],chooser_encoder->encode(weight));
+                    tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],encodeFractionalChooser(weights[i+span]));  
                 }
-            int bias=biases[n]*approx;
-            if(bias==0)
-                tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],96,1);
-            else
-                tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+            // int bias=biases[n]*approx;
+            // if(bias==0)
+            //     tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],31,1);
+            // else
+            //     tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+            tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],encodeFractionalChooser(biases[n]));
             out_sim[n]=chooser_evaluator->add_many(tmp_sim);
     }
     cout<<"ended conv"<<flush;
     return out_sim;
+
+}
+
+ChooserPoly ConvolutionalLayer::convolutionalSimulator(ChooserPoly sim_input, int xf,int yf,int zf){
+    cout<<"conv"<<flush;
+    int kernel_size=xf*yf*zf;
+    vector<ChooserPoly> tmp_sim(kernel_size);
+    
+
+    sim_input=chooser_evaluator->multiply_plain(sim_input,10,1);
+    
+    for(int i=0;i<kernel_size;i++){
+        tmp_sim[i]=ChooserPoly(sim_input);
+
+        }
+    tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0], 10,1);
+
+    sim_input=chooser_evaluator->add_many(tmp_sim);
+    
+    cout<<"ended conv"<<flush;
+    return sim_input;
 
 }
 

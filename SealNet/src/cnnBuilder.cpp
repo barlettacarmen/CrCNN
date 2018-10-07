@@ -176,10 +176,22 @@ using namespace std;
 		sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool1_features.norm1.running_mean"),b=getPretrained("pool1_features.norm1.running_var"));
 		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,3,3, 50, w=getPretrained("pool2_features.conv2.weight"), b=getPretrained("pool2_features.conv2.bias"));
 		sim_input=SquareLayer::squareSimulator(sim_input);
-		sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
-		sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool2_features.norm2.running_mean"),b=getPretrained("pool2_features.norm2.running_var"));
-		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc3.weight"), b=getPretrained("classifier.fc3.bias"));
-		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc4.weight"), b=getPretrained("classifier.fc4.bias"));
+		// sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		// sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool2_features.norm2.running_mean"),b=getPretrained("pool2_features.norm2.running_var"));
+		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc3.weight"), b=getPretrained("classifier.fc3.bias"));
+		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc4.weight"), b=getPretrained("classifier.fc4.bias"));
+
+		// ChooserPoly sim_input(10,1);
+		// sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 1);
+		// sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		// sim_input=BatchNormLayer::batchNormSimulator(sim_input);
+		// sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,3,3, 20);
+		// sim_input=SquareLayer::squareSimulator(sim_input);
+		// sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		// sim_input=BatchNormLayer::batchNormSimulator(sim_input);
+		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input,800);
+		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, 500);
+
 
 		return sim_input;
 

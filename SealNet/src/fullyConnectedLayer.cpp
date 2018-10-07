@@ -229,39 +229,48 @@ void FullyConnectedLayer::printLayerStructure(){
 
 }
 
-vector<ChooserPoly> FullyConnectedLayer::fullyConnectedSimulator(vector<ChooserPoly> sim_input, vector<float> & weights, vector<float> & biases){
+vector<ChooserPoly> FullyConnectedLayer::fullyConnectedSimulator(vector<ChooserPoly> & sim_input, vector<float> & weights, vector<float> & biases){
 	cout<<"fc"<<flush;
 	int approx=1000;
 	int out_dim=biases.size();
 	int in_dim=weights.size()/out_dim;
-	vector<ChooserPoly> * sim_input_ptr;
+	cout<<"in_dim "<<in_dim<<endl;
+	vector<ChooserPoly> *sim_input_ptr;
 	vector<ChooserPoly> tmp_sim(in_dim);
 	vector<ChooserPoly> sim_out(out_dim);
 
 	if(sim_input.size()<in_dim){
 		sim_input_ptr = new vector<ChooserPoly> (in_dim);
 		int num_copies=in_dim/sim_input.size();
-		for(int i=0;i<in_dim;i++)
-			(*sim_input_ptr)[i]=ChooserPoly(sim_input[int(i/num_copies)]);
+		for(int i=0;i<in_dim;i++){
+			cout<<i/num_copies<<","<<i<<","<<num_copies<<endl;
+			(*sim_input_ptr)[i]=ChooserPoly(sim_input[int(i/num_copies)]);	
+		}
 	}
 	else sim_input_ptr=&sim_input;
 
 	for(int i=0;i<out_dim;i++){
 		for(int j=0; j<in_dim;j++){
-			cout<<i<<","<<j<<flush<<endl;
-			int weight=weights[j+(i*in_dim)]*approx;
-			if(weight==0)
-				tmp_sim[j]=chooser_evaluator->multiply_plain((*sim_input_ptr)[j],96,1);
-			else
-				tmp_sim[j]=chooser_evaluator->multiply_plain((*sim_input_ptr)[j],chooser_encoder->encode(weight));
+	 		cout<<i<<","<<j<<flush<<endl;
+	 		cout<<"w "<<j+(i*in_dim)<<endl;
+	 		//int weight=weights[j+(i*in_dim)]*approx;
+			// if(weight==0)
+	 	// 		tmp_sim[j]=chooser_evaluator->multiply_plain(sim_input_ptr[j],31,1);
+	 	// 	else
+	 	// 		tmp_sim[j]=chooser_evaluator->multiply_plain(sim_input_ptr[j],chooser_encoder->encode(weight));
+	 		tmp_sim[j]=chooser_evaluator->multiply_plain((*sim_input_ptr)[j],encodeFractionalChooser(weights[j+(i*in_dim)]));
+
 			}
-		int bias=biases[i]*approx;
-		if(bias==0)
-			tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],96,1);
-		else
-			tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+		cout<<"b "<<i<<endl;
+		// int bias=biases[i]*approx;
+		// if(bias==0)
+		// 	tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],31,1);
+		// else
+		// 	tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+		tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],encodeFractionalChooser(biases[i]));
 		sim_out[i]=chooser_evaluator->add_many(tmp_sim);
-		}
+	 	}
+
 
 	if(sim_input_ptr!=&sim_input)
 		delete sim_input_ptr;
@@ -271,6 +280,76 @@ vector<ChooserPoly> FullyConnectedLayer::fullyConnectedSimulator(vector<ChooserP
 	return sim_out;
 }
 
+ChooserPoly FullyConnectedLayer::fullyConnectedSimulator(ChooserPoly sim_input, int in_dim){
+	cout<<"fc"<<flush;
+	cout<<"in_dim "<<in_dim<<endl;
+	vector<ChooserPoly> tmp_sim(in_dim);
+
+
+	sim_input=chooser_evaluator->multiply_plain(sim_input,10,1);
+
+	for(int i=0;i<in_dim;i++){
+		tmp_sim[i]=ChooserPoly(sim_input);
+	}
+	
+	tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],10,1);
+
+	sim_input=chooser_evaluator->add_many(tmp_sim);
+	
+	cout<<" ended fc"<<flush<<endl;
+	
+	return sim_input;
+}
+
+
+/*vector<ChooserPoly> FullyConnectedLayer::fullyConnectedSimulator(vector<ChooserPoly> sim_input, vector<float> & weights, vector<float> & biases){
+	cout<<"fc"<<flush;
+	int approx=1000;
+	int out_dim=biases.size();
+	int in_dim=weights.size()/out_dim;
+	//vector<ChooserPoly> *sim_input_ptr;
+	vector<ChooserPoly> sim_input_ptr(in_dim);
+	vector<ChooserPoly> tmp_sim(in_dim);
+	vector<ChooserPoly> sim_out(1);
+
+	if(sim_input.size()<in_dim){
+		//sim_input_ptr = new vector<ChooserPoly> (in_dim);
+		int num_copies=in_dim/sim_input.size();
+		for(int i=0;i<in_dim;i++)
+			//(*sim_input_ptr)[i]=ChooserPoly(sim_input[int(i/num_copies)]);
+			sim_input_ptr[i]=ChooserPoly(sim_input[int(i/num_copies)]);
+
+	}
+	//else sim_input_ptr=&sim_input;
+
+	for(int i=0;i<1;i++){
+		for(int j=0; j<in_dim;j++){
+			cout<<i<<","<<j<<flush<<endl;
+			int weight=weights[j+(i*in_dim)]*approx;
+			if(weight==0)
+				//tmp_sim[j]=chooser_evaluator->multiply_plain((*sim_input_ptr)[j],96,1);
+				tmp_sim[j]=chooser_evaluator->multiply_plain(sim_input_ptr[j],96,1);
+			else
+				//tmp_sim[j]=chooser_evaluator->multiply_plain((*sim_input_ptr)[j],chooser_encoder->encode(weight));
+				tmp_sim[j]=chooser_evaluator->multiply_plain(sim_input_ptr[j],chooser_encoder->encode(weight));
+			}
+		int bias=biases[i]*approx;
+		if(bias==0)
+			tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],96,1);
+		else
+			tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+		sim_out[i]=chooser_evaluator->add_many(tmp_sim);
+		}
+
+
+	// if(sim_input_ptr!=&sim_input)
+	// 	delete sim_input_ptr;
+	
+	cout<<" ended fc"<<flush<<endl;
+	
+	return sim_out;
+}
+*/
 
 
 

@@ -31,15 +31,18 @@ public:
 	void transform_input_to_ntt(ciphertext3D &input);
 	Plaintext getWeight(int x_index,int y_index);
 	Plaintext getBias(int x_index);
-	//void transform_weights_to_ntt();
 	void savePlaintextParameters(ostream * outfile);
 	void loadPlaintextParameters(istream * infile);
-
 	void printLayerStructure();
-	//
-	//ciphertext3D forward_mod(ciphertext3D input);
-
-	
+	/*Simulates fully connected computation during forward. The input is not a real chipertext image but it is a representation given by
+	an upper bound on the number of non-zero coefficients in the Plaintext polynomial and the max_abs_value of these coefficients 
+	(=1 if freshly encryption with base=3 or base=2) 
+	Input=The sim_input simulates an image and has just one pixel for each channel in input.
+	Compitation= as a normal forward. Reshape if the dimension in input i smaller than the required one (eg 1st fully connected) by copying the same value of a channel
+	to obtain the dimension of an input image.
+	Output= as in normal fully connected (array of dimension equal to out_dim)*/
+	static vector<ChooserPoly> fullyConnectedSimulator(vector<ChooserPoly> & sim_input, vector<float> & weights, vector<float> & biases);
+	static ChooserPoly fullyConnectedSimulator(ChooserPoly sim_input, int in_dim);	
 	
 };
 

@@ -78,8 +78,20 @@ void SquareLayer::printLayerStructure(){
 	cerr<<"Square run with "<<th_count<<" threads"<<endl;
 }
 
-vector<ChooserPoly> SquareLayer::squareSimulator(vector<ChooserPoly> sim_input){
+ChooserPoly SquareLayer::squareSimulator(ChooserPoly  sim_input){
 	cout<<"square"<<flush;
+
+	sim_input=chooser_evaluator->square(sim_input);
+	//16=decomposition_bit_count
+	sim_input=chooser_evaluator->relinearize(sim_input,16);
+	cout<<" end square"<<flush;
+	return sim_input;
+
+}
+
+vector<ChooserPoly> SquareLayer::squareSimulator(vector<ChooserPoly> & sim_input){
+	cout<<"square"<<flush;
+
 	for(int i=0;i<sim_input.size();i++){
 		sim_input[i]=chooser_evaluator->square(sim_input[i]);
 		//16=decomposition_bit_count
