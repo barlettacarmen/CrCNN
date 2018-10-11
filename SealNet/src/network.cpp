@@ -35,7 +35,7 @@ using namespace seal;
 					input=encryptImage(image);
 					i--;
 					max_num_of_reencryptions--;
-					cout<<"Reencrypt due to out of noise budget. Still remaning "<<max_num_of_reencryptions<<endl;
+					cout<<"Reencrypt due to out of noise budget. Still remaining "<<max_num_of_reencryptions<<endl;
 					continue;
 				}
 				/* Used for optimalParametrsChooser: If max num of reencryptions has been reached throw exception telling which is the maximum layer that can be computed correclty*/

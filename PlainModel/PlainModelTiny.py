@@ -13,12 +13,14 @@ class PlainTinyNet(nn.Module):
 		#Input 28 x 28 x 1 ---> 24 x 24 x 32 ---> 12 x 12 x 32
 		self.pool1_features=nn.Sequential(OrderedDict([
 			('conv1', nn.Conv2d(1,32, kernel_size=5, stride=1)),
-			('pool1', CustomAvgPooling(kernel_size=2,stride=2)),
+			#('pool1', CustomAvgPooling(kernel_size=2,stride=2)),
+			('pool1', nn.AvgPool2d(2,stride=2)),
 			]))
 		#12 x 12 x 32 ---> 8 x 8 x 64 ---> 4 x 4 x 64
 		self.pool2_features=nn.Sequential(OrderedDict([
 			('conv2', nn.Conv2d(32,64, kernel_size=5, stride=1)),
-			('pool2', CustomAvgPooling(kernel_size=2,stride=2)),
+			#('pool2', CustomAvgPooling(kernel_size=2,stride=2)),
+			('pool2', nn.AvgPool2d(2,stride=2)),
 			]))
 		# 4 x 4 x 64 ---> 512 ---> 10
 		self.classifier=nn.Sequential(OrderedDict([
@@ -91,3 +93,15 @@ for epoch in range(2):
 print('Finished Training')
 torch.save(net.state_dict(),'./PlainModelTiny.pth')
 
+def plain_net(weights_path=None):
+	model = PlainTinyNet()
+	# original saved file with DataParallel
+	state_dict = torch.load(weights_path)
+	# create new OrderedDict that does not contain `module.`
+	new_state_dict = OrderedDict()
+	for k, v in state_dict.items():
+		#if(k != "pool1_features.norm1.num_batches_tracked" and k!="pool2_features.norm2.num_batches_tracked"):
+		new_state_dict[k] = v
+	# load params
+	model.load_state_dict(new_state_dict)
+	return model

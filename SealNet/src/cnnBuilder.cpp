@@ -78,6 +78,9 @@ using namespace std;
 	PoolingLayer * CnnBuilder::buildPoolingLayer(string name,int xd,int yd, int zd, int xs, int ys,int xf, int yf){
 		return new PoolingLayer(name,xd,yd,zd,xs,ys,xf,yf);
 	}
+	AvgPoolingLayer * CnnBuilder::buildAvgPoolingLayer(string name,int xd,int yd, int zd, int xs, int ys,int xf, int yf){
+		return new AvgPoolingLayer(name,xd,yd,zd,xs,ys,xf,yf);
+	}
 	SquareLayer *CnnBuilder::buildSquareLayer(string name, int th_count){
 		return new SquareLayer(name,th_count);
 	}
@@ -109,7 +112,8 @@ using namespace std;
 		if(file_name!=""){
 			infile = new ifstream(file_name, ifstream::binary);
 		}
-
+		//----PlainNetWoPad.h5-------
+		/*
 		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		PoolingLayer *pool1 = buildPoolingLayer("pool1",12,12,20,1,1,2,2);
@@ -128,6 +132,22 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
 		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+		//------------------------------ */
+		//----PlainNetTiny.h5---------
+		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,1,1,5,5,32,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (conv1));
+		AvgPoolingLayer *pool1 = buildAvgPoolingLayer("pool1",24,24,32,2,2,2,2);
+		net.getLayers().push_back(shared_ptr<Layer> (pool1));
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",12,12,32,1,1,5,5,64,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (conv2));
+		AvgPoolingLayer *pool2= buildAvgPoolingLayer("pool2",8,8,64,2,2,2,2);
+		net.getLayers().push_back(shared_ptr<Layer> (pool2));
+		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*64,512,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (fc1));
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",512,10,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+
+
 
 		if(infile!=NULL){
 			infile->close();
