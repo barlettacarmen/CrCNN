@@ -236,14 +236,14 @@ floatCube decryptImage(ciphertext3D encrypted_image){
 
 void setChooserParameters(uint64_t base){
   chooser_encoder = new ChooserEncoder(base);
-  fraencoder =  new FractionalEncoder(SmallModulus(base), BigPoly("1x^1024 + 1"), 64, 32, 3);
+  //fraencoder =  new FractionalEncoder(SmallModulus(base), BigPoly("1x^1024 + 1"), 64, 32, 3);
   chooser_evaluator = new ChooserEvaluator;
 
 }
 
 void delChooserParameters(){
   delete chooser_evaluator;
-  delete fraencoder;
+  //delete fraencoder;
   delete chooser_encoder;
 }
 
