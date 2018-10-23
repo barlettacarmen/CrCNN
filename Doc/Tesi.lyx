@@ -1,0 +1,5021 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass book
+\begin_preamble
+\fancyhf{}               % Clear fancy header/footer
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\leftmark}
+\fancyfoot[RE]{\thepage}
+\fancyfoot[LO]{\thepage}
+\fancyfoot[LE]{Carmen Barletta}   % My name in Left footer
+\fancyfoot[RO]{Carmen Barletta}   % My name in Left footer
+\makeatletter
+\let\ps@plain\ps@fancy   % Plain page style = fancy page style
+\makeatother
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\renewcommand*\Call[2]{\textproc{#1}(#2)}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "auto"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Problem and Motivations
+\end_layout
+
+\begin_layout Subsubsection
+Artificial Intelligence and Privacy
+\end_layout
+
+\begin_layout Standard
+Artificial intelligence (AI) is the concept used to describe computer systems
+ that are able to learn from their own experiences and solve complex problems
+ in different situations – abilities we previously thought were unique to
+ mankind.
+ And it is data, in many cases personal data, that fuels these systems,
+ enabling them to learn and become intelligent.
+ The AI spring has dawned thanks to the availability of huge amounts of
+ data, coupled with an increase in processing power and access to cheaper
+ and greater storage capacity.
+ Big Data often refers to vast volumes of data, extracted from multiple
+ sources, often in real time.
+ These enormous data streams can be utilized for the benefit of society
+ by means of analysis and finding patterns and connections.
+ Due to its potential, AI is starting to play a leading role in many different
+ fields, such as: improve the efficiency of public sectors, provide new
+ methods of climate and environmental protection, build a safer society,
+ and perhaps even find a cure for cancer.
+ Today we see that AI is used to solve specific tasks such as, for example,
+ image and speech recognition.
+\begin_inset Newline newline
+\end_inset
+
+Deep learning is a form of machine learning, whose mechanism of functioning
+ is inspired by the human brain's and are focused on learning data representatio
+n as opposed to task-specific algorithms.
+ Besides the many advantages that AI can bring, we should consider its privacy
+ implications, that arise from the usage of Big Data.
+ This is a crucial point since, if people cannot trust that information
+ about them is being handled properly, it may limit their willingness to
+ share information in their everyday life.
+ If we find ourselves in a situation in which sections of the population
+ refuse to share information because they feel that their personal integrity
+ is being violated, we will be faced with major challenges to our freedom
+ of speech and to people’s trust in the authorities.
+ A refusal to share personal information will also represent a considerable
+ challenge with regard to the commercial use of such data in sectors such
+ as the media, retail trade and finance services.
+ The answer to the question as to whether it is possible to use AI, and
+ protect people’s data while doing so, is yes.
+ It is both possible and necessary in order to safeguard fundamental personal
+ data protection rights.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+The EU-GDPR
+\end_layout
+
+\begin_layout Standard
+The necessity to take into account privacy when dealing with Artificial
+ Intelligence has been strengthen by the entry into force on 24 May 2016
+ of the 
+\series bold
+EU's General Data Protection Regulation (GDPR)
+\series default
+, which, following a two year post-adoption grace period, has been directly
+ applied in all EU Member States starting form 25 May 2018
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GDPR"
+
+\end_inset
+
+.
+ Organizations have less than a year to prepare for compliance.
+ The GDPR replaces the Data Protection Directive 95/46/EC and was designed
+ to harmonize data privacy laws across Europe, to protect and empower all
+ EU citizens data privacy and to reshape the way organizations across the
+ region approach data privacy.
+ The GDPR has a broad territorial scope.
+ It applies not only to all organizations established in the EU that handles
+ personal data but also to any non-EU established organization that processes
+ personal data of individuals who are in the EU in order to: offer them
+ goods or services, irrespective of whether a payment is required; monitor
+ their behavior within the EU.
+ The GDPR aims to protect personal data at all stages of data processing
+ and it identifies two different entities that both have obligations: data
+ controllers and data processors.The provisions of the GDPR govern the data
+ controller’s duties and the rights of the data subject when personal informatio
+n is processed.
+ The GDPR therefore applies when artificial intelligence is 
+\emph on
+under development
+\emph default
+ with the help of personal data, and also when it is used to 
+\emph on
+analyze
+\emph default
+ or 
+\emph on
+reach
+\emph default
+ 
+\emph on
+decisions
+\emph default
+ about individuals.
+ 
+\end_layout
+
+\begin_layout Standard
+Before going deeper into the details of the newness introduced, it is useful
+ to make some clarifications about the terminology and the entities involved.
+ First of all, it is important to clarify what we mean when we speak about
+ 
+\emph on
+personal data
+\emph default
+.
+ Personal data means any information relating to an identified or identifiable
+ natural person (GDPR Article 4 (1)).
+ The data may be directly linked to a person, such as a name, identification
+ number or location data.
+ The data may also be indirectly linked to a person.
+ This means that the person can be identified on the basis of a combination
+ of one or more elements that are specific to a person’s physical, physiological
+, genetic, mental, economic, cultural or social identity.
+ 
+\emph on
+Sensitive data
+\emph default
+ is a special sub-category of personal data which holds extra consideration
+ and protection in GDPR as they may give rise to strong stigmatization or
+ discrimination in society; they include information about racial or ethnic
+ origin, political convictions, religious or philosophical beliefs or trade
+ union membership, as well as the processing of genetic and biometric data
+ with the aim of uniquely identifying a natural person, health details or
+ information regarding a person’s sexual relationships or sexual orientation
+ (GDPR Article 4).
+ Secondly the 
+\emph on
+data controller
+\emph default
+ is the natural or legal person, public authority, agency or other body
+ which, alone or jointly with others, determines the purposes and means
+ of processing of personal data (GDPR Article 4 (7)), where 
+\emph on
+processing
+\emph default
+ means any operation or set of operations which is performed on personal
+ data, such as collection, recording, organization, structuring, storage,
+ adaptation or alteration, retrieval, consultation, use, disclosure by transmiss
+ion, dissemination or otherwise making available, alignment or combination,
+ restriction, erasure or destruction (GDPR Article 4 (2)).
+\end_layout
+
+\begin_layout Standard
+The rules governing the processing of personal data have their basis in
+ some fundamental principles.
+ Article 5 of the GDPR lists the principles that apply to all personal data
+ processing.
+ The essence of these principles is that personal information shall be utilized
+ in a way that protects the privacy of the data subject in the best possible
+ way, and that each individual has the right to decide how his or her personal
+ data is used.
+ The use of personal data in the development of artificial intelligence
+ challenges several of these principles.
+ In summary, these principles require that personal data is: 
+\end_layout
+
+\begin_layout Itemize
+processed in a lawful, fair and transparent manner (principle of legality,
+ fairness and transparency)
+\end_layout
+
+\begin_layout Itemize
+collected for specific, expressly stated and justified purposes and not
+ treated in a new way that is incompatible with these purposes (principle
+ of purpose limitation)
+\end_layout
+
+\begin_layout Itemize
+adequate, relevant and limited to what is necessary for fulfilling the purposes
+ for which it is being processed (principle of data minimization)
+\end_layout
+
+\begin_layout Itemize
+correct and, if necessary, updated (accuracy principle)
+\end_layout
+
+\begin_layout Itemize
+not stored in identifiable form for longer periods than is necessary for
+ the purposes (principle relating to data retention periods)
+\end_layout
+
+\begin_layout Itemize
+processed in a way that ensures adequate personal data protection (principle
+ of integrity and confidentiality)
+\end_layout
+
+\begin_layout Standard
+In addition, the data controller is responsible for, and shall be able to
+ prove, compliance with the principles (accountability principle).
+\end_layout
+
+\begin_layout Standard
+The new data protection regulations will enhance the rights of individuals.
+ At the same time, the duties of organizations will be tightened up.
+ Two new requirements that are especially relevant for organizations using
+ AI, are the requirements 
+\emph on
+privacy by design
+\emph default
+ and the 
+\emph on
+Data Protection Impact Assessment (DPIA).
+
+\emph default
+ To enable privacy by design, the data controller shall build privacy protection
+ into the system and ensure that data protection is safeguarded in the system’s
+ standard settings.
+ These requirements are described in Article 25 of the GDPR and apply when
+ developing software, ordering new systems, solutions and services, as well
+ as when developing these further.
+ The rules require that data protection is given due consideration in all
+ stages of system development, in routines and in daily use.
+ Standard settings shall be as protective of privacy as possible, and data
+ protection features shall be embedded at the design stage.
+ The principle of data minimization is expressly mentioned in the provision
+ relating to privacy by design.
+ 
+\emph on
+Data minimization
+\emph default
+ is a principle aiming to limit the amount of detail included in training
+ or in the use of a model.
+ This may be achieved by making it difficult to identify the individuals
+ contained in the basic data.
+ The degree of identification is restricted by both the amount and the nature
+ of the information used, as some details reveal more about a person than
+ others.
+ The use of pseudonymization or encryption techniques protect the data subject’s
+ identity and help limit the extent of intervention.
+ This principle also forces developers to thoroughly examine the intended
+ area of application of the model to facilitate selection of relevant data
+ necessary for the purpose.
+ Furthermore, the developer must consider how to achieve the objective in
+ a way that is least invasive for the data subjects.
+ The assessments performed need to be documented, so that they can be presented
+ to the Data Protection Authority, that should monitor, in the event of
+ an inspection, or in connection with a preliminary discussion.
+ The Data Protection Impact Assessment (DPIA) must be conduct by anyone
+ processing personal data, for example by an enterprise that believes that
+ a planned process is likely to pose a high risk to natural persons’ rights
+ and freedoms.
+ This is described in Article 35 of the GDPR.
+ Moreover, there is a requirement to assess the impact on personal privacy
+ by systematically and extensively considering all personal details in cases
+ where this data is used in automated decision making, or when special categorie
+s of personal data (sensitive personal data) are used in on a large scale.
+ The systematic and large-scale monitoring of public areas also requires
+ documentation showing that a DPIA has been conducted.
+ The impact assessment should include the following as a minimum:
+\end_layout
+
+\begin_layout Itemize
+a systematic description of the process, its purpose and which justified
+ interest it protects
+\end_layout
+
+\begin_layout Itemize
+an assessment of whether the process is necessary and proportional, given
+ its purpose
+\end_layout
+
+\begin_layout Itemize
+an assessment of the risk that processing involves for people’s rights,
+ including the right to privacy
+\end_layout
+
+\begin_layout Itemize
+the measures selected for managing risk identified
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+When personal data is collected, the data controller must always provide
+ some 
+\emph on
+general information
+\emph default
+ such as:
+\end_layout
+
+\begin_layout Itemize
+the identity of the data controller
+\end_layout
+
+\begin_layout Itemize
+how the data controller can be contacted
+\end_layout
+
+\begin_layout Itemize
+the purpose of processing
+\end_layout
+
+\begin_layout Itemize
+the legal basis for processing
+\end_layout
+
+\begin_layout Itemize
+the categories of personal data that are processed
+\end_layout
+
+\begin_layout Itemize
+the data subjects' right to inspect the data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Information must also be provided regarding risks, rules, safeguards, and
+ the rights of the data subjects in connection with processing, as well
+ as how these rights can be exercised.
+ In addition, an 
+\emph on
+extended duty to inform
+\emph default
+ will apply when personal data is collected for automated decision- making.
+ The use of artificial intelligence is a form of automated processing, and,
+ moreover, in some cases the decision is taken by the model.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AIPrivacy"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Objectives
+\end_layout
+
+\begin_layout Standard
+This study focuses on Convolutional Neural Networks (CNNs) and presents
+ both a methodology and a library to convert a learned neural network to
+ a network that can be applied on encrypted data (Encoded Network), by employing
+ a Homomorphic Encryption scheme.
+ This allows a data owner to encrypt his data, with his public key, before
+ to send them to a cloud service that hosts the network.
+ The encryption ensures that the data remain confidential since the cloud
+ doesn't have access to the, secret key needed to decrypt the data, but
+ at the same time, it is able to perform the computations required by the
+ neural network on the encrypted data, to make encrypted predictions and
+ to return them to the data owner in an encrypted form.
+ Thus, only the data owner in the end will be able to decrypt the result
+ and obtain his predictions.
+ Therefore the cloud service does not gain any information about the raw
+ data nor about the prediction it made.
+\begin_inset Newline newline
+\end_inset
+
+Moreover, since the usage of HE decreases the performances of the model,
+ in the sense that computations are much slower than computations done on
+ plain data and require much more memory, the study proposes a mathematical
+ formulation, to understand which is the optimal neural network, to convert
+ in an Encoded Network, given some constraints for the encryption parameters
+ and provide an heuristic algorithm to solve the problem stated by the given
+ mathematical formulation .
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Eventuale elenco puntato che spieghi meglio i vari punti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Results
+\end_layout
+
+\begin_layout Chapter
+Background
+\end_layout
+
+\begin_layout Section
+Homomorphic Encryption
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Homomorphic-Encryption"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The typical mantra frequently heard in connection with machine learning
+ is: the more training data we can feed into a model, the better will be
+ the results.
+ It is worth noting that the quality of the training data, as well as the
+ features used, can in many instances be substantially more important than
+ the quantity.
+ For this reason, the optimal solution to be compliant with the new rules
+ about data protection, would be if one could use as much data as one wished
+ for machine learning, without compromising privacy.
+ The field of cryptology offers some promising possibilities in this area.
+ Traditional encryption schemes, both symmetric and asymmetric, were not
+ designed to respect any algebraic structure of the plaintext and ciphertext
+ spaces, i.e.
+ no computations can be performed on the ciphertext in a way that would
+ pass through the encryption to the underlying plaintext without using the
+ secret key, and such a property would in many contexts be considered a
+ vulnerability.
+ An encryption scheme that allows computations to be done directly on the
+ encrypted data is said to be a 
+\emph on
+homomorphic encryption scheme
+\emph default
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+In mathematics, a homomorphism is a 
+\emph on
+structure-preserving
+\emph default
+ transformation.
+ For example, consider the map 
+\begin_inset Formula $\varPhi:\mathbb{Z}\longrightarrow\mathbb{Z}_{7}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\varPhi(z):=z(mod7)$
+\end_inset
+
+ .
+ This map 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+preserves both the additive and the multiplicative structure of the integers
+ in the sense that for every 
+\begin_inset Formula $z_{1},z_{2}\in\mathbb{Z}$
+\end_inset
+
+ we have that 
+\begin_inset Formula $\Phi(z_{1}+z_{2})=\Phi(z_{1})\oplus\Phi(z_{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $\Phi(z_{1}\cdot z_{2})=\Phi(z_{1})\otimes\Phi(z_{2})$
+\end_inset
+
+ where 
+\begin_inset Formula $\oplus$
+\end_inset
+
+ and 
+\begin_inset Formula $\otimes$
+\end_inset
+
+ are the addition and multiplication operations in 
+\begin_inset Formula $\mathbb{Z}_{7}$
+\end_inset
+
+.
+ The map 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+is a ring homomorphism between the rings 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbb{\mathbb{Z}}_{7}$
+\end_inset
+
+.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+Finding a general method for computing on encrypted data had been a goal
+ in cryptography since it was proposed in 1978 by Rivest, Adleman and Dertouzos
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+.
+ Since there the interest in this topic is grown due to its numerous application
+s.
+ Craig Gentry 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentry:2009:FHE:1536414.1536440"
+
+\end_inset
+
+was the first to propose a plausible construction for a fully homomorphic
+ that respects both addition and multiplication and since then new and more
+ efficient schemes has been proposed, but despite the promising theoretical
+ power of homomorphic encryption, the practical side remained underdeveloped
+ for a long time.
+ 
+\end_layout
+
+\begin_layout Subsection
+Classification of HE Schemes
+\end_layout
+
+\begin_layout Standard
+It is worth to analyze different classes of homomorphic schemes to clarify
+ the potentiality of this type of encryption.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "journals/iacr/ArmknechtBCGJRS15"
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+Given that a circuit 
+\emph on
+C 
+\emph default
+is a series of computations made on some inputs, it is possible to state
+ some preliminary definitions
+\begin_inset CommandInset citation
+LatexCommand cite
+key "brakerski2014efficient"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+(
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+-Evaluation Scheme).
+ Let 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+be a set of circuits.
+ A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ -
+\emph default
+evaluation scheme for 
+\emph on
+C 
+\emph default
+is a tuple of probabilistic polynomial-time algorithms 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ such that:
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathsf{Gen}(1^{\lambda},\alpha)$
+\end_inset
+
+ is the key generation algorithm.
+ It takes two inputs, security parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and auxiliary input 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, and outputs a key tuple 
+\begin_inset Formula $(pk,sk,evk)$
+\end_inset
+
+, where 
+\emph on
+pk 
+\emph default
+is the public key used for encryption, 
+\emph on
+sk 
+\emph default
+is the secret key used foe decryption and 
+\emph on
+evk 
+\emph default
+is used for evaluation.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathsf{Enc}(pk,m)$
+\end_inset
+
+ is the encryption algorithm.
+ As input takes the encryption key 
+\emph on
+pk 
+\emph default
+and a plaintext 
+\emph on
+m.
+ 
+\emph default
+It outputs a ciphertext c.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathsf{Eval}(evk,C,c_{1},...,c_{n})$
+\end_inset
+
+ is the evaluation algorithm.
+ Il takes as input the evaluation key 
+\emph on
+evk
+\emph default
+, a circuit 
+\emph on
+C
+\emph default
+ 
+\emph on
+
+\begin_inset Formula $\in\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+and a tuple of inputs that can be a mix of ciphertexts and previous evaluation
+ results.
+ It produces an evaluation output.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathsf{Dec}(sk,c)$
+\end_inset
+
+ is the decryption algorithm.
+ It takes as input the decryption key 
+\emph on
+sk 
+\emph default
+and either a ciphertext or an evaluation output and produces a plaintext
+ 
+\emph on
+m.
+\end_layout
+
+\begin_layout Definition
+(Correct Decryption).
+ A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+
+\emph default
+-evaluation scheme 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ is said to 
+\emph on
+correctly decrypt 
+\emph default
+if for all 
+\emph on
+m 
+\emph default
+in the plaintext space,
+\begin_inset Formula 
+\[
+\mathsf{Pr[Dec(\mathit{sk,}\mathsf{Enc}(\mathit{pk,m})=m]=1}
+\]
+
+\end_inset
+
+This means that it mist be able to decrypt a ciphertext to the correct plaintext
+ without error.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(Correct Evaluation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "brakerski2014efficient"
+
+\end_inset
+
+) A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ -
+\emph default
+ evaluation scheme 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ 
+\emph on
+correctly evaluates 
+\emph default
+all circuits in 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+if for all inputs 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+, where 
+\begin_inset Formula $m_{i}\gets\mathsf{Dec}(sk,c_{i})$
+\end_inset
+
+, for every 
+\emph on
+C
+\emph default
+ 
+\emph on
+
+\begin_inset Formula $\in\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+, and some negligible function 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+\mathsf{Pr[Dec(\mathit{sk,\mathsf{Eval}(evk,C,c_{1},...,c_{n})})}=C(m_{1,...,m_{n}})]=1-\epsilon(\lambda)
+\]
+
+\end_inset
+
+This means that with overwhelming probability, decryption of the homomorphic
+ evaluation of a permitted circuit yields the correct result.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ -
+\emph default
+evaluation scheme is 
+\emph on
+correct 
+\emph default
+if it has the properties of both correct evaluation and correct decryption.
+ It is also 
+\emph on
+compact 
+\emph default
+if the ciphertext size does not grow too much through homomorphic operations
+ and the output length only depends on the security parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The classification of schemes is based on what circuits they can evaluate.
+ 
+\end_layout
+
+\begin_layout Definition
+(Somewhat Homomorphic).
+ A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+
+\emph default
+-evaluation scheme 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ with correctness property is called 
+\emph on
+somewhat homomorphic 
+\emph default
+encryption scheme (SHE).
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SHE"
+description "Somewhat Homomorphic Encryption"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are no guarantees for compactness and also the set 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+of permitted circuits consists of 
+\emph on
+some 
+\emph default
+circuits.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(Leveled Homomorphic 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "brakerski2014efficient"
+
+\end_inset
+
+).
+ A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+
+\emph default
+-evaluation scheme 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ is called a 
+\emph on
+leveled homomorphic scheme 
+\emph default
+if it takes an auxiliary input 
+\begin_inset Formula $\alpha=d$
+\end_inset
+
+ to 
+\begin_inset Formula $\mathsf{Gen}$
+\end_inset
+
+ with specifies the maximum depth of circuits that can be evaluated.
+ Correctness, compactness and that the 
+\emph on
+length of the evaluation output 
+\emph default
+does not depend on d are also required.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The difference between SHE and leveled HE is that the depth of circuits
+ which a SHE can handle can be increased through parameters choice - this
+ usually means that the ciphertext size increases with the depth of the
+ circuit allowed, while for a leveled HE the maximum depth is an input parameter
+ and the length of the ciphertext does not depend on it.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(Fully Homomorphic Encryption 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "brakerski2014efficient"
+
+\end_inset
+
+).
+ A 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+
+\emph default
+-evaluation scheme 
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\end_inset
+
+ that is compact, correct, and where 
+\emph on
+
+\begin_inset Formula $\mathscr{\mathcal{C}}$
+\end_inset
+
+ 
+\emph default
+is the set of all circuits is called 
+\emph on
+fully homomorphic 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "FHE"
+description "Fully Homomorphic Encryption"
+
+\end_inset
+
+ 
+\emph default
+encryption scheme.
+\begin_inset Newline newline
+\end_inset
+
+This definition means that the chem can evaluate any circuit of arbitrary
+ size, which does not need to be known when setting the parameters.
+\begin_inset Newline newline
+\end_inset
+
+However it is fail to say that FHE mostly exists on papers.
+\end_layout
+
+\begin_layout Subsection
+Limitations of HE
+\end_layout
+
+\begin_layout Standard
+Even if HE is a powerful instrument with many possible applications in real-worl
+d scenarios, it has some limitations which must be taken into account.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Support 
+\series bold
+for multiple users
+\series default
+.
+ Traditional FHE schemes are are 
+\emph on
+single-key 
+\emph default
+in the sense that they can perform (arbitrarily complex) computations on
+ inputs encrypted under the same key.
+ Nevertheless, Gentry 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "homenc"
+
+\end_inset
+
+ proposed a way of using single key FHE scheme in order to do multiparty
+ computation, by using a joint public key and a 
+\emph on
+shared-secret key 
+\emph default
+among all parties.
+ However it requires an 
+\emph on
+interactive 
+\emph default
+cooperations of all parties during computations.
+ López-Alt et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lopez-Alt:2012:OMC:2213977.2214086"
+
+\end_inset
+
+ have shown promising direction to address this problem by proposing an
+ 
+\emph on
+N-key fully homomorphic encryption scheme.
+
+\emph default
+ Despite these results, at the time of writing, 
+\emph on
+multi-key
+\emph default
+ FHE are not very efficient and there are no practical implementations in
+ any library.
+\end_layout
+
+\begin_layout Description
+Large 
+\series bold
+computational overhead
+\series default
+.
+ It describes the ratio between the computation time in the encrypted version
+ versus computation time in the clear.
+ Although polynomial in size, this overhead tends to be a rather large polynomia
+l, which increases runtimes substantially and makes homomorphic computation
+ of complex functions impractical.
+\end_layout
+
+\begin_layout Description
+Some 
+\series bold
+inefficient operations.
+
+\series default
+ For example there is no efficient way to implement the comparison operation,
+ because it requires dealing with binary messages 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "migliore:hal-01394362"
+
+\end_inset
+
+.This latter representation brings two important issues.
+ First, to perform an integer addition or multiplication with the binary
+ representation, one must reconstruct the binary circuit of the operators.
+ Second, the size of ciphertexts is strongly impacted.
+\end_layout
+
+\begin_layout Description
+FHE 
+\series bold
+does not necessarily imply secret function evaluation
+\series default
+.
+ Indeed its goal is to allow the evaluation of arithmetic circuits on encrypted
+ inputs, without revealing the input wire values to the evaluator.
+ In particular, no attempt is made to keep any information hidden from the
+ owner of the secret key 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+ However it is possible to solve this problem and obtain 
+\emph on
+function privacy 
+\emph default
+in a number of ways.
+ One way already described by Gentry in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentry:2009:FHE:1536414.1536440"
+
+\end_inset
+
+ is to flood additional noise in the ciphertext.
+ An other way is to use the GSW cryptosystem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "crypto-2013-24633"
+
+\end_inset
+
+ as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "journals/iacr/BoursePMW16"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Brakerski/Fan-Vercauteren scheme (BFV) 
+\end_layout
+
+\begin_layout Standard
+One of the practical implementations of Gentry scheme
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentry:2009:FHE:1536414.1536440"
+
+\end_inset
+
+, is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+ that is a SHE.
+ In this section this homomorphic scheme will be described in details since
+ it is the one used for the practical part of this thesis.
+ 
+\end_layout
+
+\begin_layout Subsection
+Basic Notation
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R=\mathbb{Z}[x]/(f(x))$
+\end_inset
+
+ is the polynomial ring where 
+\begin_inset Formula $f(x)\text{∈}\mathbb{Z}[x]$
+\end_inset
+
+ is a monic irreducible polynomial of degree 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ In practice the cyclotomic polynomial 
+\begin_inset Formula $\text{Φ}m(x)$
+\end_inset
+
+ , i.e.
+ the minimal polynomial of the primitive m-th roots of unity is used.
+ The most popular choice for expository purposes is to take 
+\begin_inset Formula $f(x)=x^{d}+1$
+\end_inset
+
+ with 
+\begin_inset Formula $d=2^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Elements of the ring 
+\begin_inset Formula $R$
+\end_inset
+
+ will be denoted in lowercase bold, e.g.
+ 
+\begin_inset Formula ${\normalcolor \mathbf{a}}\text{∈}R$
+\end_inset
+
+.
+ The coefficients of an element 
+\begin_inset Formula ${\normalcolor \mathbf{a}}\text{∈}R$
+\end_inset
+
+ will be denoted by 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $\mathbf{a}=\sum_{i=0}^{d-1}a_{i}\cdot x^{i}$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\parallel\mathbf{a}\parallel=max_{i}\mid a_{i}\mid$
+\end_inset
+
+ is the infinity norm.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $δ_{R}=max\left\{ ||\mathbf{a}\text{·}\mathbf{b}||/(||\mathbf{a}||\text{·}||\mathbf{b}||):\mathbf{a},\mathbf{b}\text{∈}R\right\} $
+\end_inset
+
+ is the expansion factor of 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $q>1$
+\end_inset
+
+ be an integer, then by 
+\begin_inset Formula $\mathbb{Z}_{q}$
+\end_inset
+
+ we denote the 
+\emph on
+set
+\emph default
+ of integers 
+\begin_inset Formula $(\text{−}q/2,q/2]$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{q}$
+\end_inset
+
+ the set of polynomials in 
+\begin_inset Formula $R$
+\end_inset
+
+ with coefficients in 
+\begin_inset Formula $\mathbb{Z}_{q}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $a\text{∈}\mathbb{Z}$
+\end_inset
+
+ we denote by 
+\begin_inset Formula $\left[a\right]_{q}$
+\end_inset
+
+ the unique integer in 
+\begin_inset Formula $\mathbb{Z}_{q}$
+\end_inset
+
+ with 
+\begin_inset Formula $\left[a\right]_{q}=a$
+\end_inset
+
+ mod 
+\begin_inset Formula $q$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The reduction to the interval 
+\begin_inset Formula $[0,q)$
+\end_inset
+
+ will be denoted as 
+\begin_inset Formula $r_{q}(a)$
+\end_inset
+
+ (reminder modulo q).
+\end_layout
+
+\begin_layout Itemize
+Given a probability distribution 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+, 
+\begin_inset Formula $x\longleftarrow\mathcal{D}$
+\end_inset
+
+ denotes that 
+\begin_inset Formula $x$
+\end_inset
+
+ is sampled from 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+, while for a set S, 
+\begin_inset Formula $x\longleftarrow$
+\end_inset
+
+ S denotes that 
+\begin_inset Formula $x$
+\end_inset
+
+ is sampled uniformly from S.
+\end_layout
+
+\begin_layout Itemize
+The discrete Gaussian distribution 
+\begin_inset Formula $D_{\mathbb{Z},σ}$
+\end_inset
+
+ over the integers is the probability distribution that assigns a probability
+ proportional to 
+\begin_inset Formula $exp(\text{−}π|x|^{2}/σ^{2})$
+\end_inset
+
+ to each 
+\begin_inset Formula $x\text{∈}\mathbb{Z}$
+\end_inset
+
+.
+ It is used to define a distribution 
+\begin_inset Formula $\chi$
+\end_inset
+
+ on 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma$
+\end_inset
+
+is the standard deviation of the discrete Gaussian distribution, with default
+ value of 
+\begin_inset Formula $3.19≈8/2π$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+RLWE Problem 
+\end_layout
+
+\begin_layout Standard
+Most of HE schemas base their security on the hardness of the Ring-Learning
+ With Errors problem.
+ The RLWE 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "RLWE"
+description "Ring Learnig With Error"
+
+\end_inset
+
+ problem is a ring based version of the LWE problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Regev:2005:LLE:1060590.1060603"
+
+\end_inset
+
+.
+ Regev gave a quantum reduction of certain approximate 
+\emph on
+Shortest Vector Problem
+\emph default
+ (SVP) to LWE, i.e.
+ if one can solve LWE, then there is a quantum algorithm to solve certain
+ approximate SVP.
+ Informally, the SVP requires a player to provide a shortest possible vector
+ in a given lattice and it is NP-hard.
+ Thus, the only evidence supporting the conjecture that LWE is as hard as
+ SVP is the fact that there are no known quantum algorithms for lattice
+ problems that outperform classical algorithms, even though this is probably
+ one of the most important open questions in the field of quantum computing.
+\end_layout
+
+\begin_layout Definition
+(
+\series bold
+Decision-RLWE
+\series default
+) For a security parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, let 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ be a cyclotomic polynomial 
+\begin_inset Formula $\Phi_{m}(x)$
+\end_inset
+
+ with deg(f) = φ(m) depending on λ and set 
+\begin_inset Formula $R=\mathbb{Z}[x]/(f(x))$
+\end_inset
+
+ .
+ Let 
+\begin_inset Formula $q=q(λ)≥2$
+\end_inset
+
+ be an integer.
+ For a random element 
+\begin_inset Formula $\mathbf{s}∈R_{q}$
+\end_inset
+
+ and a distribution 
+\begin_inset Formula $χ=χ(λ)$
+\end_inset
+
+ over 
+\begin_inset Formula $R$
+\end_inset
+
+, denote with 
+\begin_inset Formula $A_{\mathbf{s},\chi}^{(q)}$
+\end_inset
+
+ the distribution obtained by choosing a uniformly random element 
+\begin_inset Formula $\mathbf{a}\longleftarrow R_{q}$
+\end_inset
+
+ and a noise term 
+\begin_inset Formula $\mathbf{e}\longleftarrow\chi$
+\end_inset
+
+ and outputting 
+\begin_inset Formula $(\mathbf{a},[\mathbf{a}\text{·}\mathbf{s}+\mathbf{e}]_{q})$
+\end_inset
+
+.
+ The decision-RLWE problem is to distinguish 
+\begin_inset Formula $A_{\mathbf{s},\chi}^{(q)}$
+\end_inset
+
+ and the uniform distribution 
+\begin_inset Formula $U(R_{q}^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Encryption Scheme and Operations
+\end_layout
+
+\begin_layout Standard
+From the above decision problem it is possible to derive the following encryptio
+n scheme originally described in the extended version of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eurocrypt-2010-24000"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The plaintext space is taken as 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ for some integer 
+\begin_inset Formula $t>1$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $∆=\left\lfloor q/t\right\rfloor $
+\end_inset
+
+ and denote with
+\begin_inset Formula $r_{t}(q)=q\;mod\;t$
+\end_inset
+
+, it follows that 
+\begin_inset Formula $q=∆·t+r_{t}(q)$
+\end_inset
+
+, with 
+\emph on
+q 
+\emph default
+and 
+\emph on
+t 
+\emph default
+that don't have to be prime nor coprime.
+ The definition of the scheme mostly follows the one given in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\mathsf{SH.SecretKeyGen}(1^{\lambda})$
+\end_inset
+
+ sample 
+\begin_inset Formula $\mathbf{s}\getsχ$
+\end_inset
+
+ and output 
+\begin_inset Formula $sk=\boldsymbol{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathsf{SH.PublicKeyGen(sk)}$
+\end_inset
+
+ set 
+\begin_inset Formula $\boldsymbol{s}=sk$
+\end_inset
+
+, sample 
+\begin_inset Formula $\boldsymbol{a}\gets R_{q}$
+\end_inset
+
+, small error 
+\begin_inset Formula $\boldsymbol{e}\getsχ$
+\end_inset
+
+ and output 
+\begin_inset Formula 
+\[
+pk=(\boldsymbol{p}_{0},\boldsymbol{p}_{1})\coloneqq([\text{−}(\boldsymbol{a}\text{·}\boldsymbol{s}+\boldsymbol{e})]_{q},\boldsymbol{a})
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\mathsf{SH.EvalateKeyGen(sk,T)}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=0,...,l=\lfloor logT(q)\rfloor$
+\end_inset
+
+ and 
+\emph on
+T 
+\emph default
+is a base (independent of 
+\emph on
+t
+\emph default
+), sample 
+\begin_inset Formula $\boldsymbol{a}_{i}\gets R_{q}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{e}_{i}\gets\chi$
+\end_inset
+
+ and output 
+\begin_inset Formula 
+\[
+rlk=\Bigg[\Big([-(\boldsymbol{a}_{i}\text{·}\boldsymbol{s}+\boldsymbol{e}_{i})+T^{i}\cdot\boldsymbol{s}^{2}]_{q},\boldsymbol{a}_{i}\Big):i\in[0..l]\Bigg]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+evaluation keys 
+\emph default
+are used in the relinearization phase which goal is to decrease the size
+ of the ciphertext back to (at least) 2 after it has been increased by multiplic
+ations.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\mathsf{SH.Encrypt(pk,\boldsymbol{m})}$
+\end_inset
+
+ to encrypt a message 
+\begin_inset Formula $\boldsymbol{m}\in R_{t}$
+\end_inset
+
+, sample 
+\begin_inset Formula $\boldsymbol{u},\boldsymbol{e}_{1},\boldsymbol{e}_{2}\gets\chi$
+\end_inset
+
+ and output 
+\begin_inset Formula 
+\[
+ct=(\boldsymbol{c}_{0},\boldsymbol{c}_{1})\coloneqq([\boldsymbol{p}_{0}\text{·}\boldsymbol{u}+\boldsymbol{e}_{1}+\text{∆·}\boldsymbol{m}]_{q},[\boldsymbol{p}_{1}\text{·}\boldsymbol{u}+\boldsymbol{e_{2}}]_{q})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\end_inset
+
+ set 
+\begin_inset Formula $\boldsymbol{s}=sk$
+\end_inset
+
+ and 
+\begin_inset Formula $ct=(\boldsymbol{c}_{0},\boldsymbol{c}_{1})$
+\end_inset
+
+ and compute 
+\begin_inset Formula 
+\[
+\Bigg[\Biggl\lfloor\frac{t\cdot[\boldsymbol{c}_{0}+\boldsymbol{c}_{1}\cdot\boldsymbol{s}]_{q}}{q}\Biggr\rceil\Biggr]_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The above scheme can be shown to be semantically secure assuming the hardness
+ of RLWE given 3 samples 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eurocrypt-2010-24000"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+It is possible to show that the decryption is correct as long as the error
+ terms are not too large.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Potremmo rimuoverlo 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Assuming that 
+\begin_inset Formula $||\chi||<B$
+\end_inset
+
+, it follows that 
+\begin_inset Formula 
+\begin{equation}
+[\boldsymbol{c}_{0}+\boldsymbol{c}_{1}\cdot\boldsymbol{s}]_{q}=\Delta\cdot\boldsymbol{m}+\boldsymbol{v}\label{eq:ciphertext}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+with 
+\begin_inset Formula $||\boldsymbol{v}||\text{≤}2\text{·}δ_{R}\text{·}B^{2}+B$
+\end_inset
+
+.
+ This implies that for 
+\begin_inset Formula $2·δ_{R}·B^{2}+B<∆/2$
+\end_inset
+
+, decryption works correctly.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The term 
+\series bold
+\emph on
+v
+\series default
+\emph default
+ is called the noise contained in the ciphertext.
+\begin_inset Newline newline
+\end_inset
+
+Given the interpretation of the ciphertext 
+\begin_inset Formula $ct(\boldsymbol{s})$
+\end_inset
+
+ as in formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ciphertext"
+
+\end_inset
+
+ it is possible to derive homomorphic addition 
+\begin_inset Formula $\mathsf{SH.ADD}$
+\end_inset
+
+ and multiplication 
+\begin_inset Formula $\mathsf{SH.MUL}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})\coloneqq([ct_{1}[0]+ct_{2}[0]]_{q},[ct_{1}[1]+ct_{2}[1]]_{q})}$
+\end_inset
+
+ where is possible to show that the noise in the sum has grown 
+\emph on
+additively 
+\emph default
+by a maximum of 
+\emph on
+t.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\align left
+\begin_inset Formula $\mathsf{SH.MUL(ct_{1,}ct_{2},rlk)}$
+\end_inset
+
+: compute 
+\begin_inset Formula 
+\[
+\boldsymbol{c}_{0}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]+\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boldsymbol{c}_{1}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]\cdot ct_{2}[1]+ct_{1}[1]\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boldsymbol{c}_{2}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[1]+\cdot ct_{2}[1])}{q}\Biggr\rceil\Biggr]_{q}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where is possible to show that the noise does not grow quadratically but
+ it is only multiplied roughly by the factor 
+\begin_inset Formula $2\cdot t\cdot\delta_{R}^{2}\cdot||\boldsymbol{s}||$
+\end_inset
+
+, thus is important to keep small 
+\emph on
+t 
+\emph default
+and to have a secret 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\mathsf{SH.RELIN}$
+\end_inset
+
+: write 
+\begin_inset Formula $\boldsymbol{c}_{2}$
+\end_inset
+
+ in base 
+\emph on
+T, 
+\emph default
+i.e.
+ write 
+\begin_inset Formula $\boldsymbol{c}_{2}=\sum_{i=0}^{l}\boldsymbol{c}_{2}^{(i)}T^{i}\;\text{with }\boldsymbol{c}_{2}^{(i)}\in R_{T}$
+\end_inset
+
+ and set: 
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\boldsymbol{c}_{0}^{\prime}=\Bigg[\boldsymbol{c}_{0}+\sum_{i=0}^{l}rlk[i][0]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{c}_{1}^{\prime}=\Bigg[\boldsymbol{c}_{1}+\sum_{i=0}^{l}rlk[i][1]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}$
+\end_inset
+
+where the noise added depends on 
+\emph on
+T
+\end_layout
+
+\end_deeper
+\begin_layout Chapter
+Parameters Estimation Methodology
+\end_layout
+
+\begin_layout Section
+Encryption Parameters
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Encryption-Parameters"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The choice of encryption parameters is crucial since it significantly affects
+ the performance, capabilities, and security of the encryption scheme.
+ Some choices of parameters may be insecure, give poor performance, yield
+ ciphertexts that will not work with any homomorphic operations, or a combinatio
+n of all of these.
+ In the practical implementation of the BFV encryption scheme SEAL 2.3.1 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+, it is possible to find their list with their corresponding names Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:SEALnotation"
+
+\end_inset
+
+ and below it is explained how these parameters are practically implemented
+ and which are their relations.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing double
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Notation used
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:SEALnotation"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="7cm">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Parameter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Name in SEAL
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+q
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Modulus in the ciphertext space of the form q1 × ...
+ × qk, where qi are prime
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\size footnotesize
+coeff_modulus
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+t
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Modulus in the plaintext space
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\size footnotesize
+plain_modulus
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+n
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+A power of 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Before to encrypt a number it must be encoded as a plaintext polynomial,
+ indeed 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+in BFV
+\end_layout
+
+\end_inset
+
+the plaintext space is 
+\begin_inset Formula $R_{t}=\mathbb{Z}_{t}[x]/(x^{n}+1)$
+\end_inset
+
+, that is, polynomials of degree less than 
+\emph on
+n
+\emph default
+ with coefficients modulo 
+\emph on
+t
+\emph default
+.
+ Thus, it is important that the coefficients of the polynomials appearing
+ throughout the computations never experience coefficients larger than the
+ plaintext modulus
+\emph on
+ t
+\emph default
+, otherwise the decryption procedure will lead to incorrect results.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+plaintext modulus 
+\emph on
+t
+\series default
+ 
+\emph default
+in SEAL can be any positive integer at least 2 and at most 60 bits length,
+ thus 
+\begin_inset Formula $2\leq t\leq2^{59}$
+\end_inset
+
+.
+ There is not a prescribed plaintext polynomial that is better than others,
+ because it depends on the calculus and data that is needed to perform.
+ Nevertheless, it is not easy to understand which is the maximum infinity
+ norm 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Mettere esempio di somma che sovrastima
+\end_layout
+
+\end_inset
+
+of a polynomial that is reached throughout the computations, but it is a
+ key point not to lose integrity of the expected result.
+ The plaintext modulus influences also the so called Noise budget NB, 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NB"
+description "Noise Budget"
+
+\end_inset
+
+ which determines the number of operations one can perform on a ciphertext
+ (multiplications, additions, exponentiations, both with another ciphertext
+ or plaintext ) without compromising the final result.
+ More precisely, the noise budget in a freshly encrypted ciphertext is:
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+NB\backsim log_{2}(\textrm{coeff\_modulus (q)}/\textrm{plain\_modulus (t)) (bits)}\label{eq:NOISE_BUDGET}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The polynomial 
+\begin_inset Formula $(x^{n}+1)$
+\end_inset
+
+ is the 
+\series bold
+polynomial modulus
+\series default
+, where
+\series bold
+ 
+\emph on
+n
+\series default
+\emph default
+ is a power of 2.
+ This is both for security and performance reasons.
+ Using a larger
+\emph on
+ n
+\emph default
+ allows for a larger 
+\emph on
+q
+\emph default
+ to be used without decreasing the security level 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+, which in turn increases the noise ceiling and thus allows for larger 
+\emph on
+t
+\emph default
+ to be used.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If the polynomial modulus is held fixed, then the choice of the 
+\series bold
+coefficient modulus 
+\emph on
+q
+\series default
+ 
+\emph default
+affect: the noise budget in a freshly encrypted ciphertext 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NOISE_BUDGET"
+
+\end_inset
+
+ and the security level 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+.
+ In general it is possible to take as 
+\emph on
+q 
+\emph default
+any integer as long as it is not too large to cause security problems.
+ For performance reasons in SEAL 
+\emph on
+q 
+\emph default
+is a product of multiple small primes 
+\begin_inset Formula $q_{1}\times...\times q_{k}$
+\end_inset
+
+ , even if taking these 
+\begin_inset Formula $q_{k}$
+\end_inset
+
+ to be of special form does not provide any additional performance improvement.
+ Therefore, it is possible to choose a set of arbitrary primes regarding
+ their requirements as long as they are at most 60-bits long and 
+\begin_inset Formula $q_{i}=1\;(mod\;2n)\;\text{for }i\in\{1,2,...,k\}$
+\end_inset
+
+.
+ Decreasing 
+\emph on
+q 
+\emph default
+with all the other parameters held fixed, only increases the security level.
+ Indeed according to the most recent homomorphic encryption security standards
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HomomorphicEncryptionSecurityStandard"
+
+\end_inset
+
+, that assume 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ to be the default value, for each chosen 
+\emph on
+n 
+\emph default
+and security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ there is an upper bound for the bit length of 
+\emph on
+q 
+\emph default
+(i.e.
+ 
+\begin_inset Formula $\sum_{i=1}^{k}log_{2}(q_{i})$
+\end_inset
+
+) as written in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+per un certo problema BKZ
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing double
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Default pairs (n,q) for 128-bit, 192-bit, and 256-bit security levels.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Bit-length of 
+\emph on
+q
+\emph default
+
+\begin_inset Formula ${\normalcolor =\sum_{i=1}^{k}log_{2}(q_{i})}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+n
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+128-bit security
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+192-bit security
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+256-bit security
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1024
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2048
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+37
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4096
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+109 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+58
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8192
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+218 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+152
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+118
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16384
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+438 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+237
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32768
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+881
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+600
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+476
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the other hand, given a certain 
+\emph on
+q
+\emph default
+, choosing a big 
+\emph on
+t
+\emph default
+ allows to reach bigger infinity norm for polynomials during the computation,
+ but at the same time decreases the initial NB and thus the possibility
+ to evaluate a longer circuit (number of operations) on input data.
+ Indeed, each operation performed adds a certain amount of noise to the
+ initial ciphertext 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Inserire nella cosa teorica NB per ogni operazione
+\end_layout
+
+\end_inset
+
+ and the NB in a freshly encrypted number is the max amount of noise is
+ it possible to add.
+ Note that the NB computed is a pessimistic estimate and not a precise computed
+ value and that the NB consumed depends not only on the type of operation
+ performed (multiplication rather than addition), but also on the encryption
+ parameters q and t chosen.
+\end_layout
+
+\begin_layout Section
+Optimization Problem
+\end_layout
+
+\begin_layout Standard
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ gives a hint of how difficult is, in general, to find valid encryption
+ parameters.
+ This becomes even more difficult if the field of application of the HE
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "HE "
+description "Homomorphic Encryption"
+
+\end_inset
+
+ is the one of Deep Learning and CNNs 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CNN"
+description "Convolutional Neural Network"
+
+\end_inset
+
+ where the depth of the circuit to compute on input data is generally high,
+ the number of weights that composes the CNN's model is huge as shown in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Alippi:2018:MCN:3207947.3207995"
+
+\end_inset
+
+ and the input data seen as vector is of big dimension.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Let 
+\emph on
+
+\begin_inset Formula $I$
+\end_inset
+
+
+\emph default
+ be a 
+\begin_inset Formula $r\times c\times d$
+\end_inset
+
+ input image of 
+\emph on
+r 
+\emph default
+rows, 
+\emph on
+c
+\emph default
+ columns and 
+\emph on
+d 
+\emph default
+channels (i.e.
+ 
+\emph on
+d=
+\emph default
+3 for RGB images and 
+\emph on
+d=1 
+\emph default
+for grey-scale images).
+ Let 
+\begin_inset Formula $y\in\varPsi=\{w_{1},...,w_{\varPsi}\}$
+\end_inset
+
+ be the output of the CNN representing the multi-class classification of
+ 
+\emph on
+I.
+ 
+\emph default
+Let the pre-trained model of a CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+, defined as 
+\begin_inset Formula $y=\varPhi(I)$
+\end_inset
+
+, the objective to be pursued is not only to find suitable encryption parameters
+ able to perform the CNN's transformation in the encryption world in order
+ to accomplish the same classification task for which it has been trained
+ but on encrypted input data, but also to find the optimal ones.
+ In other words, the goal is to find a function 
+\emph on
+f
+\emph default
+ that finds the best possible transformation for 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ and therefore the optimal parameters 
+\emph on
+n 
+\emph default
+and 
+\emph on
+t 
+\emph default
+to generate this transformation and that together with 
+\emph on
+q 
+\emph default
+must be used to encrypt input data 
+\emph on
+I
+\emph default
+.
+\begin_inset Newline newline
+\end_inset
+
+More formally, given the CNN's model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+, the plain input dataset 
+\emph on
+D 
+\emph default
+such that 
+\begin_inset Formula $I\in D$
+\end_inset
+
+ with their corresponding classifications 
+\emph on
+Y
+\emph default
+ given by the model, the set of allowed coefficient modulus 
+\emph on
+
+\begin_inset Formula $Q_{set}$
+\end_inset
+
+, 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+or range
+\end_layout
+
+\end_inset
+
+ 
+\emph default
+the upper bound for the degree 
+\begin_inset Formula $n$
+\end_inset
+
+ of the polynomial modulus 
+\begin_inset Formula $N_{max}$
+\end_inset
+
+ ,the range for the values in which the plaintext modulus 
+\emph on
+t 
+\emph default
+can vary 
+\begin_inset Formula $T_{range}$
+\end_inset
+
+ and the desirable level of security 
+\begin_inset Formula $\lambda$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\varPhi}{}_{n,q,t}=f(\varPhi,D,Y,N_{max},Q_{set},T_{range},\lambda)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ is the CNN's model encoded with the optimal 
+\emph on
+n 
+\emph default
+and 
+\emph on
+t 
+\emph default
+found by 
+\emph on
+f.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+An encoded CNN is a CNN where each of its parameters 
+\begin_inset Formula $\theta$
+\end_inset
+
+ has been transformed to 
+\begin_inset Formula $\tilde{\theta}$
+\end_inset
+
+ that is, a polynomial in the plaintext space 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Transformation"
+
+\end_inset
+
+ shows a normal CNN with 
+\emph on
+l 
+\emph default
+layers, where 
+\begin_inset Formula $\phi_{\theta_{i}}^{(i)}$
+\end_inset
+
+ with 
+\begin_inset Formula $i=1,...,l$
+\end_inset
+
+ is the function with parameters 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ computed in the 
+\emph on
+i-
+\emph default
+th layer, that receives as input the computation of the previous layer 
+\begin_inset Formula $i-1$
+\end_inset
+
+.
+ Below there is the CNN transformed by the function 
+\emph on
+f
+\emph default
+ in a way that allows it to perform homomorphically the same computations
+ but on encrypted data 
+\begin_inset Formula $Enc(I)$
+\end_inset
+
+.
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The general structure of a CNN and its transformation in the encryption
+ world
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Transformation"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Img/trs2.pdf
+	display false
+	scale 60
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The task of function 
+\emph on
+f
+\emph default
+ can be modeled by the following optimization problem:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align}   
+\end_layout
+
+\begin_layout Plain Layout
+
+ &
+\backslash
+min_{n,q,t} 
+\backslash
+;    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{aligned}[t]     
+\end_layout
+
+\begin_layout Plain Layout
+
+  &
+\backslash
+alpha 
+\backslash
+sum_i^{D}(y_i-
+\backslash
+tilde{y_i})^2 + 
+\backslash
+gamma{t} + 
+\backslash
+delta{n} + 
+\backslash
+beta q    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{aligned} 
+\backslash
+notag 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+&
+\backslash
+text{subject to} 
+\backslash
+notag 
+\backslash
+
+\backslash
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+& t<q 
+\backslash
+
+\backslash
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+& 2
+\backslash
+leq t 
+\backslash
+leq 2^{59} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:infinityNorm}
+\end_layout
+
+\begin_layout Plain Layout
+
+& t > 
+\backslash
+max{||p||} 
+\backslash
+;
+\backslash
+;
+\backslash
+text{with } p 
+\backslash
+in R_t 
+\backslash
+text{ and generic intermediate result of } 
+\backslash
+tilde{
+\backslash
+varPhi}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:TOTAL_NB}
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+log_2{(
+\backslash
+frac{q}{t})} > 
+\backslash
+sum_{i=1}^lNB_{n,q,t}(
+\backslash
+phi^{(i)}_{
+\backslash
+tilde{
+\backslash
+theta_i}}) 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:q1} 
+\end_layout
+
+\begin_layout Plain Layout
+
+& q=
+\backslash
+prod_{i=1}^k q_i
+\backslash
+; s.t.
+ 
+\backslash
+; q_i= 1
+\backslash
+:(mod
+\backslash
+,2n)
+\backslash
+; 
+\backslash
+textmd{and}
+\backslash
+; q_i 
+\backslash
+; 
+\backslash
+text{prime} 
+\backslash
+;
+\backslash
+forall{i=1,...,k}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:q2}
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+sum_{i=1}^k
+\backslash
+log_2q_i
+\backslash
+leq 
+\backslash
+lambda(n)
+\backslash
+
+\backslash
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:n} 
+\end_layout
+
+\begin_layout Plain Layout
+
+& n=2^d 
+\backslash
+; s.t.
+ 
+\backslash
+;d
+\backslash
+in N 
+\backslash
+;
+\backslash
+textmd{and} 
+\backslash
+; d
+\backslash
+geq 10
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+& t,q,n 
+\backslash
+in 
+\backslash
+mathbb N 
+\backslash
+notag 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+lambda 
+\backslash
+in 
+\backslash
+left
+\backslash
+{128,192,256 
+\backslash
+right
+\backslash
+} 
+\backslash
+notag
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align}
+\end_layout
+
+\end_inset
+
+The first term of the objective function is the prediction error of the
+ encoded CNN 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+, that causes a significantly loss of accuracy with respect to the one of
+ the original model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ if not properly minimized with a big parameter 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ However, there is also the need to find the minimal 
+\emph on
+n, q
+\emph default
+ and 
+\emph on
+t
+\emph default
+ (by using appropriate big parameters)
+\emph on
+ 
+\emph default
+that preserve the original accuracy of the model in order to introduce the
+ smallest possible performance's overhead in terms of memory and computational
+ complexity required by the encoded model 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+These parameters are subject to a number of constraints given both by the
+ BFV HE scheme 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Homomorphic-Encryption"
+
+\end_inset
+
+ and by its practical implementation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In details, as mentioned before in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ the plaintext modulus 
+\emph on
+t 
+\emph default
+must be smaller than the coefficient modulus 
+\emph on
+q 
+\emph default
+and be a number between 
+\begin_inset Formula $2$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{59}$
+\end_inset
+
+.
+ The constraint 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NB}
+\end_layout
+
+\end_inset
+
+ refers to the one introduced in equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NOISE_BUDGET"
+
+\end_inset
+
+ and states that the NB in the freshly encrypted image must be sufficiently
+ large to support all the operations performed by each layer in 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+, thus the NB consumed by each computation that depends itself by the encryption
+ parameters selected.
+ Constraint 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:q1}
+\end_layout
+
+\end_inset
+
+ refers to the practical shape of 
+\emph on
+q 
+\emph default
+to implement efficient modular arithmetic and to use David Harvey’s algorithm
+ for NTT 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NTT"
+description "Number-Theoretic Transform"
+
+\end_inset
+
+ as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/abs-1205-2926"
+
+\end_inset
+
+, while constraint 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:q2}
+\end_layout
+
+\end_inset
+
+ is referred to the security of the encryption since the total bit count
+ of the 
+\begin_inset Formula $q_{i}$
+\end_inset
+
+ that compose 
+\emph on
+q 
+\emph default
+must be smaller than the security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ given 
+\emph on
+n 
+\emph default
+as shown in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+.
+ The last constraint 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:n}
+\end_layout
+
+\end_inset
+
+ states that
+\emph on
+ n
+\emph default
+ must be a power of 
+\begin_inset Formula $2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Constraint 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infinityNorm}
+\end_layout
+
+\end_inset
+
+ is of crucial importance as written in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ and requires that the infinity norm of every generic computation in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ , both internal to a single layer or at the end of it, and thus the encrypted
+ polynomial that represent this result, never exceed the plaintext modulus
+ 
+\emph on
+t.
+ 
+\emph default
+The real hard problem to solve is the exact calculus of the right term of
+ this constraint that is valid for every possible input data.
+ Indeed each operation in the model 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+ on an input polynomial 
+\emph on
+p
+\emph default
+ causes a grow of the initial infinity norm of 
+\emph on
+p
+\emph default
+, but since operations are performed homomorphically, i.e.
+ the polynomial in input as first is encoded as a polynomial in 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ and then encrypted as a polynomial in 
+\begin_inset Formula $R_{q}$
+\end_inset
+
+, only after decryption and then the conversion of 
+\emph on
+p 
+\emph default
+in 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ is achievable to understand if a reduction modulo 
+\emph on
+t 
+\emph default
+has occurred, since the result is different from the expected one.
+ One can observe that is possible to estimate the grow of such infinity
+ norm by considering the specific operation to perform (e.g.
+ addition) and considering the shape of the two polynomials in input, before
+ to encrypt them.
+ However this approach can be useful only if a very small number of operations
+ should be evaluated on the input ciphertext and this is not the case of
+ CNNs, because otherwise this estimate would be so rough that no valid plaintext
+ modulus 
+\emph on
+t 
+\emph default
+would be found (e.g.
+ 
+\begin_inset Formula $t>2^{59}$
+\end_inset
+
+).
+ For example, in SEAL 2.3.1 there is the possibility to use an automatic parameter
+ selection module that given a computation to perform basically builds a
+ graph of that computation instead of actually calculating it and tries
+ to estimates the grow of infinity norm and noise so to find appropriate
+ overall parameters.
+ The problem is that, for example, given an addition operation and two polynomia
+ls 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+ to sum with infinity norm respectively 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ the infinity norm of 
+\begin_inset Formula $p_{3}=p_{1}+p_{2}$
+\end_inset
+
+ is computed as 
+\begin_inset Formula $||p_{3}||=a_{1}+a_{2}$
+\end_inset
+
+ that is a really pessimistic case, since it true only if coefficients 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ are associated to the same power in their respective polynomials 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+.
+ It is important to underline the fact that this estimate is used also to
+ calculate the noise added to the resulting polynomial and thus that will
+ induce a rough computation also of the right term in 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NB}
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+This leads to the impossibility of writing in a closed form the constraints
+ in 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infinityNorm}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NB}
+\end_layout
+
+\end_inset
+
+ and suggests the need to find an alternative solution for the problem that
+ function 
+\emph on
+f 
+\emph default
+should solve
+\emph on
+.
+\end_layout
+
+\begin_layout Section
+Heuristic: Binary Search of plaintext modulus
+\end_layout
+
+\begin_layout Standard
+The idea is to implement a heuristic method able to find a suboptimal plaintext
+ modulus 
+\emph on
+
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+, 
+\emph default
+that approximates the optimal 
+\emph on
+t 
+\emph default
+with a certain error 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The heuristic is a sort of binary search that gets as inputs: the model
+ 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+, a number of images to test 
+\begin_inset Formula $|D|$
+\end_inset
+
+, an ordered list 
+\begin_inset Formula $t_{list}$
+\end_inset
+
+ of possible plaintext moduli 
+\emph on
+t
+\emph default
+ with two indexes pointing to the minimum and maximum value of that list,
+ a security parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and a tentative staring big coefficient modulus 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+.
+ It recursively testes as 
+\emph on
+t 
+\emph default
+the number in the middle of the two boundaries.
+ By testing, is intended the execution of the forward phase on 
+\begin_inset Formula $|D|$
+\end_inset
+
+ images sampled uniformly from the dataset 
+\emph on
+D 
+\emph default
+as showed by the pseudocode 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Test-plaintext-modulus"
+
+\end_inset
+
+ on 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\tilde{y_{i}}=Dec(\tilde{\varPhi}(Enc(I))=Dec(Enc(y_{i}))$
+\end_inset
+
+, if the testing for a given 
+\emph on
+t 
+\emph default
+is successful, i.e.
+ for all tested images 
+\emph on
+i 
+\begin_inset Formula $\tilde{y_{i}}=y_{i}$
+\end_inset
+
+, 
+\emph default
+(that is the prediction for image 
+\emph on
+i 
+\emph default
+is the same given by the original CNN for the same 
+\emph on
+i
+\emph default
+) or if the starting NB in the ciphertext is not sufficient to carry on
+ the entire computation util the final layer,
+\emph on
+ 
+\emph default
+the search continues on the left interval, to find if it exists, a smaller
+ plaintext modulus.
+ Instead, if exists an image 
+\emph on
+i
+\emph default
+ such that 
+\emph on
+
+\begin_inset Formula $\tilde{y_{i}}\neq y_{i}$
+\end_inset
+
+
+\emph default
+, i.
+ e.
+ there is a misprediction with respect to the original CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+, the search continues on the right interval.
+ Note that if the search is performed only on the powers of two, i.e.
+ 
+\begin_inset Formula $t_{list}=[2,2^{2},2^{3}..,2^{59}]$
+\end_inset
+
+ , for the formula of the NB 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NOISE_BUDGET"
+
+\end_inset
+
+, the initial amount of NB changes significantly between different runs
+ of the binary search, while if the search is carried on all integers i.e.
+ 
+\begin_inset Formula $t_{list}=[2,3,4..,2^{59}]$
+\end_inset
+
+ the difference in NB between different runs of the algorithm is not really
+ significant.
+ Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Plain-Modulus-Binary"
+
+\end_inset
+
+ shows the pseudocode of the described binary search, while Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Test-plaintext-modulus"
+
+\end_inset
+
+ describe in details how the testing is performed.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Require{Model $
+\backslash
+varPhi$, sorted list $t_{list}$ of possible plain modulus $t$, five integers
+ $t_{min}$ and $t_{max}$ s.t.
+ $T_{range}=[t_{list}[t_{min}],t_{list}[t_{max}]]$, secuity level $
+\backslash
+lambda$, given upper bound for the coefficient modulus $q_0$, number of
+ images to test $|D|$  } 
+\backslash
+Ensure{Plain modulus $
+\backslash
+tilde{t}$ or NOT
+\backslash
+_FOUND
+\backslash
+_T }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{search
+\backslash
+_t}{$
+\backslash
+varPhi,t_{list},t_{min},t_{max},
+\backslash
+lambda,q_0,|D|$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{$t_{max}-t_{min}=1$} 
+\backslash
+Comment{Base Case}
+\end_layout
+
+\begin_layout Plain Layout
+
+    	
+\backslash
+State{$test
+\backslash
+gets$ TEST
+\backslash
+_PLAIN
+\backslash
+_MOD($
+\backslash
+varPhi,t_{list}[t_{min}],
+\backslash
+lambda,q_0,|D|$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+    	
+\backslash
+If{$test$=SUCCESS}
+\end_layout
+
+\begin_layout Plain Layout
+
+        	
+\backslash
+State{
+\backslash
+Return{$t_{list}[t_{min}]$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+If{$test$=OUT
+\backslash
+_OF
+\backslash
+_BUDGET}
+\end_layout
+
+\begin_layout Plain Layout
+
+        	
+\backslash
+State{
+\backslash
+Return{NOT
+\backslash
+_FOUND
+\backslash
+_T}}
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+If{TEST
+\backslash
+_PLAIN
+\backslash
+_MOD($
+\backslash
+varPhi,t_{list}[t_{max}],
+\backslash
+lambda,q_0,|D|$)=SUCCESS}
+\end_layout
+
+\begin_layout Plain Layout
+
+        	
+\backslash
+State{
+\backslash
+Return{$t_{list}[t_{max}]$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+State{
+\backslash
+Return{NOT
+\backslash
+_FOUND
+\backslash
+_T}}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State{$t_{index}
+\backslash
+gets t_{min}+(t_{max}-t_{min})/2$}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State{$test
+\backslash
+gets$ TEST
+\backslash
+_PLAIN
+\backslash
+_MOD($
+\backslash
+varPhi,t_{list}[t_{index}],
+\backslash
+lambda,q_0,|D|$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+If{$test$=SUCCESS or $test$=OUT
+\backslash
+_OF
+\backslash
+_BUDGET} 
+\backslash
+Comment{Go Left}
+\end_layout
+
+\begin_layout Plain Layout
+
+    	
+\backslash
+State{$t_{smaller}
+\backslash
+gets$ SEARCH
+\backslash
+_T($
+\backslash
+varPhi,t_{list},t_{min},t_{max}-1,
+\backslash
+lambda,q_0,|D|$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+       	
+\backslash
+If{$t_{smaller}>0$} 
+\backslash
+Comment{smaller p
+\backslash
+_mod found}
+\end_layout
+
+\begin_layout Plain Layout
+
+    		
+\backslash
+State{
+\backslash
+Return{$t_{smaller}$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+     	
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+     	
+\backslash
+If{$test$=SUCCESS}
+\backslash
+Comment{smaller p
+\backslash
+_mod not found, prev ok}
+\end_layout
+
+\begin_layout Plain Layout
+
+    		
+\backslash
+State{
+\backslash
+Return{$t_{list}[t_{index}]$}}
+\end_layout
+
+\begin_layout Plain Layout
+
+     	
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+State{
+\backslash
+Return{NOT
+\backslash
+_FOUND
+\backslash
+_T
+\backslash
+Comment{smaller p
+\backslash
+_mod not found, prev not ok}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+If{$t_{index}
+\backslash
+geq t_{max}$} 
+\backslash
+Comment{p
+\backslash
+_mod needed $
+\backslash
+notin T_{range}$ }
+\end_layout
+
+\begin_layout Plain Layout
+
+     	
+\backslash
+State{
+\backslash
+Return{NOT
+\backslash
+_FOUND
+\backslash
+_T}}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+State{
+\backslash
+Return{SEARCH
+\backslash
+_T($
+\backslash
+varPhi,t_{list},t_{min}+1,t_{max},
+\backslash
+lambda,q_0,|D|$)}} 
+\backslash
+Comment{Go Right}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Plaintext Modulus Binary Search
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Plain-Modulus-Binary"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+algdef{SE}[VARIABLES]{Variables}{EndVariables}    {
+\backslash
+algorithmicvariables}    {
+\backslash
+algorithmicend
+\backslash
+ 
+\backslash
+algorithmicvariables} 
+\backslash
+algnewcommand{
+\backslash
+algorithmicvariables}{
+\backslash
+textbf{global variables}} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+algblock[TryCatchFinally]{try}{endtry} 
+\backslash
+algcblockdefx[TryCatchFinally]{TryCatchFinally}{catch}{endtry} 	[1]{
+\backslash
+textbf{catch} #1} 	{
+\backslash
+textbf{end try}}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Variables
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{$Y$} 
+\backslash
+Comment{predicions given by model $
+\backslash
+varPhi$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{$D$} 
+\backslash
+Comment{dataset}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndVariables
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Require{Model $
+\backslash
+varPhi$, four integers plain modulus to test $t_{test}$, secuity level $
+\backslash
+lambda$, upper bound for the coefficient modulus $q_0$, number of images
+ to test $|D|$  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Ensure{SUCCESS, OUT
+\backslash
+_OF
+\backslash
+_BUDGET or MISPREDICTED}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Function{test
+\backslash
+_plain
+\backslash
+_mod}{$
+\backslash
+varPhi,t_{test},
+\backslash
+lambda,q_0,|D|$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$t 
+\backslash
+gets t_{test}$}  
+\backslash
+Comment{set encryption parameters}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$q 
+\backslash
+gets q_0$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$n 
+\backslash
+gets 
+\backslash
+lambda(q_0)$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$sk 
+\backslash
+gets$ GEN
+\backslash
+_SEC
+\backslash
+_KEY($n,q,t$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$pk 
+\backslash
+gets$ GEN
+\backslash
+_PUB
+\backslash
+_KEY($sk$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{$
+\backslash
+tilde{
+\backslash
+varPhi} 
+\backslash
+gets$ ENCODE($
+\backslash
+varPhi,n,t$)} 
+\backslash
+Comment{Transform each $
+\backslash
+theta_i$ in $
+\backslash
+tilde{
+\backslash
+theta_i}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{$i 
+\backslash
+gets 0
+\backslash
+;{
+\backslash
+bf to }
+\backslash
+; |D|$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{$I 
+\backslash
+gets$ RANDOMLY
+\backslash
+_SAMPLE
+\backslash
+_AT
+\backslash
+_UNIFORM($D$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{$Enc(I) 
+\backslash
+gets$ ENCRYPT(ENCODE($I,n,t),pk$)} 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+try
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+State{$Enc(y_i)
+\backslash
+gets$ $
+\backslash
+tilde{
+\backslash
+varPhi}(Enc(I))$)} 
+\backslash
+Comment{Forward}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+catch{Out
+\backslash
+_Of
+\backslash
+_Budget
+\backslash
+_Exception}   
+\end_layout
+
+\begin_layout Plain Layout
+
+		 
+\backslash
+State{
+\backslash
+Return{OUT
+\backslash
+_OF
+\backslash
+_BUDGET} }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+endtry
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{$
+\backslash
+tilde{y_i} 
+\backslash
+gets$ DECRYPT($Enc(y_i),sk$)}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{$
+\backslash
+tilde{y_i} 
+\backslash
+neq y_i$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+State{
+\backslash
+Return{MISPREDICTED}}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+EndIf
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State{
+\backslash
+Return{SUCCESS}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFunction
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test plaintext modulus 
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Test-plaintext-modulus"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Plain-Modulus-Binary"
+
+\end_inset
+
+ is able to find a parameter 
+\emph on
+
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+
+\emph default
+ for every given CNN in input if a subdivision as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Binary-Search-Cases"
+
+\end_inset
+
+ (a) is possible for the numbers in the given range.
+ The found 
+\emph on
+
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+ 
+\emph default
+lies in the 
+\noun on
+success 
+\noun default
+interval and tends to be as close as possible to the optimal 
+\emph on
+t.
+
+\emph default
+ The case of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Binary-Search-Cases"
+
+\end_inset
+
+ (b) instead, shows the worst scenario where is not found any valid 
+\emph on
+
+\begin_inset Formula $\tilde{t}$
+\end_inset
+
+
+\emph default
+ .
+ The only possible solution is to increase the stating 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+, so to reduce the 
+\noun on
+out of budget interval 
+\noun default
+and run again the binary search, to bring back to case (a).
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing double
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Search Cases
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Binary-Search-Cases"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Img/bsok.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(a) Optimal case
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Img/bsko.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+(b) Worst case
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Citations/Kuri0OOAP0M17"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
