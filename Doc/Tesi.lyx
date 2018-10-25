@@ -1296,7 +1296,7 @@ key "journals/iacr/BoursePMW16"
 \end_layout
 
 \begin_layout Section
-Brakerski/Fan-Vercauteren scheme (BFV) 
+Brakerski/Fan-Vercauteren scheme (BFV)
 \end_layout
 
 \begin_layout Standard
@@ -1308,6 +1308,14 @@ key "Gentry:2009:FHE:1536414.1536440"
 \end_inset
 
 , is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV)
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "BFV"
+description "Brakerski/Fan-Vercauteren"
+
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cryptoeprint:2012:144"
@@ -1318,6 +1326,67 @@ key "cryptoeprint:2012:144"
  In this section this homomorphic scheme will be described in details since
  it is the one used for the practical part of this thesis.
  
+\end_layout
+
+\begin_layout Subsection
+Ring Definition
+\end_layout
+
+\begin_layout Standard
+The BFV relies on the concept of ring, in particular on the commutative
+ rings.
+ 
+\begin_inset Newline newline
+\end_inset
+
+A commutative ring R is a set on which there are two operations defined:
+ addition and multiplication, such that there is 
+\begin_inset Formula $0∈R$
+\end_inset
+
+ which is the identity element for addition and 
+\begin_inset Formula $1∈R$
+\end_inset
+
+ which is the identity for the multiplication operation.
+ For every element 
+\begin_inset Formula $a∈R$
+\end_inset
+
+ there exists an element 
+\begin_inset Formula $−a∈R$
+\end_inset
+
+ such that 
+\begin_inset Formula $a+(−a)=0$
+\end_inset
+
+.
+ Furthermore, the following hold for every 
+\begin_inset Formula $a,b,c∈R$
+\end_inset
+
+: 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+INserire citazione, contiuare con la formula e mettere esempio di ring.
+ Mettere codifica
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+a(bc) & =(ab)c\text{ (associativity of product)}\\
+a(b+c) & =ab+ac\text{ (associativity sx of product w.r.t addition)}\\
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1536,6 +1605,18 @@ is the standard deviation of the discrete Gaussian distribution, with default
 .
 \end_layout
 
+\begin_layout Itemize
+
+\emph on
+B 
+\emph default
+bound on the distribution 
+\begin_inset Formula $\chi$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 RLWE Problem 
 \end_layout
@@ -1642,7 +1723,14 @@ Decision-RLWE
 \end_layout
 
 \begin_layout Subsection
-Encryption Scheme and Operations
+Encryption Scheme
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Encryption-Scheme"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1677,10 +1765,14 @@ The plaintext space is taken as
 \end_inset
 
 , it follows that 
-\begin_inset Formula $q=∆·t+r_{t}(q)$
+\begin_inset Formula 
+\begin{equation}
+q=∆·t+r_{t}(q),\label{eq:relQDelta}
+\end{equation}
+
 \end_inset
 
-, with 
+ with 
 \emph on
 q 
 \emph default
@@ -1855,47 +1947,215 @@ key "eurocrypt-2010-24000"
 
 \end_inset
 
-It is possible to show that the decryption is correct as long as the error
- terms are not too large.
-\begin_inset Note Note
-status collapsed
 
-\begin_layout Plain Layout
-Potremmo rimuoverlo 
 \end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Noise
+\end_layout
+
+\begin_layout Standard
+All existing schemes have the common trait that they add a small “noise”
+ component during encryption.
+ Computing homomorphically on ciphertexts will cause these noises to grow
+ up to the point when they become so large that decryption fails.
+ Especially the noise growth caused by homomorphic multiplication has been
+ the major obstacle to designing efficient schemes.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Lemma
-Assuming that 
-\begin_inset Formula $||\chi||<B$
+\begin_layout Definition
+(Invariant Noise)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
 \end_inset
 
-, it follows that 
+ Let 
+\begin_inset Formula $\mathsf{ct}=(c_{0},c_{1})$
+\end_inset
+
+ be a ciphertext encrypting the message 
+\begin_inset Formula $m\in R_{t}$
+\end_inset
+
+.
+ Its invariant noise 
+\emph on
+v 
+\emph default
+is the polynomial with the smallest infinity norm such that 
 \begin_inset Formula 
 \begin{equation}
-[\boldsymbol{c}_{0}+\boldsymbol{c}_{1}\cdot\boldsymbol{s}]_{q}=\Delta\cdot\boldsymbol{m}+\boldsymbol{v}\label{eq:ciphertext}
+\frac{t}{q}\mathsf{ct}(s)=\frac{t}{q}(c_{0}+c_{1}s)=m+v+at\in R_{q}\varotimes\mathbb{Q}\label{eq:ct(s)}
 \end{equation}
 
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+for some polynomial 
+\emph on
+a 
+\emph default
+with integer coefficients
+\emph on
+.
 \end_layout
 
 \begin_layout Lemma
-with 
-\begin_inset Formula $||\boldsymbol{v}||\text{≤}2\text{·}δ_{R}\text{·}B^{2}+B$
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+The function 
+\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\end_inset
+
+ as presented in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+ correctly decrypts the ciphertext 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ encrypting a message m, as long as the invariant noise v satisfies
+\emph on
+ 
+\begin_inset Formula $||v||<1/2$
 \end_inset
 
 .
- This implies that for 
-\begin_inset Formula $2·δ_{R}·B^{2}+B<∆/2$
+\begin_inset Newline newline
 \end_inset
 
-, decryption works correctly.
+
+\emph default
+Proof
+\emph on
+.
+ Let 
+\begin_inset Formula $\mathsf{ct}=(c_{0},c_{1})$
+\end_inset
+
+.
+ Using the formula for decryption, for some polynomial A with integer coefficien
+ts:
+\begin_inset Formula 
+\begin{align*}
+\\
+m^{\prime}= & \Bigg[\Biggl\lfloor\frac{t}{q}[c_{0}+c_{1}\cdot s]_{q}\Biggr\rceil\Biggr]_{t}\\
+= & \Bigg[\Biggl\lfloor\frac{t}{q}(c+c_{1}\cdot s+Aq)\Biggr\rceil\Bigg]_{t}\\
+= & \Bigg[\Biggl\lfloor\frac{t}{q}(c+c_{1}\cdot s)+At\Biggr\rceil\Bigg]_{t}\\
+= & \Bigg[\Biggl\lfloor\frac{t}{q}(c+c_{1}\cdot s)\Biggr\rceil\Bigg]_{t}.
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Then by definition of invariant noise in Eq.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ct(s)"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+m^{\prime}=[\lfloor m+v+at\rceil]_{t}=m+\lfloor v\rceil.
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Hence decryption is successful as long as v is removed by the rounding,
+ i.e.
+ if 
+\begin_inset Formula $||v||<1/2$
+\end_inset
+
+.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+(Invariant) Noise Budget (NB) 
+\emph on
+is the left noise in the ciphertext before decryption fails.
+\end_layout
+
+\begin_layout Definition
+(Noise Budget )
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+ Let 
+\emph on
+v 
+\emph default
+be the invariant noise of a ciphertext 
+\emph on
+
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ 
+\emph default
+encrypting a message 
+\emph on
+
+\begin_inset Formula $m\in R_{t}$
+\end_inset
+
+.
+ 
+\emph default
+Then the noise budget of 
+\emph on
+
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ 
+\emph default
+is 
+\begin_inset Formula $-log_{2}(2||v||)$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -1909,25 +2169,95 @@ with
 
 \end_layout
 
-\begin_layout Standard
-The term 
-\series bold
-\emph on
-v
-\series default
-\emph default
- is called the noise contained in the ciphertext.
-\begin_inset Newline newline
+\begin_layout Lemma
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
 \end_inset
 
+ The function 
+\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\end_inset
+
+ as presented in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+ correctly decrypts the ciphertext 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ encrypting a message m, as long as the noise budget of 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ is positive.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even a freshly encrypted ciphertext has a non zero amount of noise.
+\end_layout
+
+\begin_layout Lemma
+(Initial Noise)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
+\emph on
+ 
+\emph default
+Let 
+\begin_inset Formula $\mathsf{ct}=(c_{0},c_{1})$
+\end_inset
+
+ be a fresh encryption of a message 
+\begin_inset Formula $m\in R_{t}$
+\end_inset
+
+.
+ The noise v in 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ satisfies 
+\begin_inset Formula 
+\[
+||v||\leq\frac{r_{t}(q)}{q}||m||+\frac{tB}{q}(2d+1).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Operations and Noise Growth
+\end_layout
+
+\begin_layout Standard
 Given the interpretation of the ciphertext 
 \begin_inset Formula $ct(\boldsymbol{s})$
 \end_inset
 
- as in formula 
+ as in Eq.
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "eq:ciphertext"
+reference "eq:ct(s)"
 
 \end_inset
 
@@ -1946,18 +2276,54 @@ reference "eq:ciphertext"
 
 \end_layout
 
+\begin_layout Paragraph*
+Addition
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 \begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})\coloneqq([ct_{1}[0]+ct_{2}[0]]_{q},[ct_{1}[1]+ct_{2}[1]]_{q})}$
 \end_inset
 
- where is possible to show that the noise in the sum has grown 
+
 \emph on
-additively 
-\emph default
-by a maximum of 
-\emph on
-t.
+.
+\end_layout
+
+\begin_layout Standard
+It is possible to show that if 
+\begin_inset Formula $\mathsf{ct_{1}\text{ and }ct_{2}}$
+\end_inset
+
+ have noise 
+\begin_inset Formula $v_{1}\text{\text{ and }}v_{2}$
+\end_inset
+
+ respectively, then the noise 
+\begin_inset Formula $v_{add}$
+\end_inset
+
+ in their sum is 
+\begin_inset Formula $v_{add}=v_{1}+v_{2}$
+\end_inset
+
+ and satisfies 
+\begin_inset Formula $||v_{add}||\leq||v_{1}||+||v_{2}||$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Multiplication
 \end_layout
 
 \begin_layout Labeling
@@ -1968,25 +2334,11 @@ t.
 
 : compute 
 \begin_inset Formula 
-\[
-\boldsymbol{c}_{0}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]+\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\boldsymbol{c}_{1}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]\cdot ct_{2}[1]+ct_{1}[1]\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\boldsymbol{c}_{2}=\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[1]+\cdot ct_{2}[1])}{q}\Biggr\rceil\Biggr]_{q}
-\]
+\begin{align*}
+\boldsymbol{c}_{0} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]+\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}\\
+\boldsymbol{c}_{1} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]\cdot ct_{2}[1]+ct_{1}[1]\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}\\
+\boldsymbol{c}_{2} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[1]+\cdot ct_{2}[1])}{q}\Biggr\rceil\Biggr]_{q}
+\end{align*}
 
 \end_inset
 
@@ -1994,25 +2346,96 @@ t.
 \end_layout
 
 \begin_layout Standard
-where is possible to show that the noise does not grow quadratically but
- it is only multiplied roughly by the factor 
-\begin_inset Formula $2\cdot t\cdot\delta_{R}^{2}\cdot||\boldsymbol{s}||$
+The multiplication makes grow the ciphertext size, for this reason a relineariza
+tion step is necessary in order to reduce it.
+ As showed in 
+\begin_inset Formula $\mathsf{SH.RELIN}$
 \end_inset
 
-, thus is important to keep small 
-\emph on
-t 
-\emph default
-and to have a secret 
+ operation.
+ 
+\begin_inset Newline newline
+\end_inset
+
+It is possible to prove that: if 
+\begin_inset Formula $\mathsf{ct_{1}}=(x_{0},\ldots,x_{j_{1}})$
+\end_inset
+
+ is a ciphertext of size 
+\begin_inset Formula $j_{1}+1$
+\end_inset
+
+ encrypting 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ with noise 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathsf{ct_{2}}=(y0,\ldots,y_{j_{2}})$
+\end_inset
+
+ is a ciphertext of size 
+\begin_inset Formula $j_{2}+1$
+\end_inset
+
+ encrypting 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+ with noise 
+\begin_inset Formula $v_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $N_{m_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $N_{m2}$
+\end_inset
+
+ be upper bounds on the number of non-zero terms in the polynomials 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+ respectively, then the noise 
+\begin_inset Formula $v_{mult}$
+\end_inset
+
+ in the product 
+\begin_inset Formula $\mathsf{ct_{mult}}$
+\end_inset
+
+ satisfies the following bound
+\begin_inset Formula 
+\begin{align*}
+||v_{mult}||\leq & \Bigg[(N_{m_{1}}+d)||m_{1}||+\frac{dt}{2}\frac{d^{j_{1}+1}-1}{d-1})\Bigg]||v_{2}||\\
++ & \Bigg[(N_{m_{2}}+d)||m_{2}||+\frac{dt}{2}\frac{d^{j_{2}+1}-1}{d-1})\Bigg]||v_{1}||\\
++ & 3d||v_{1}||||v_{2}||+\frac{t}{2q}\frac{d^{j_{1}+j_{2}+1}-1}{d-1}).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Relinearization
 \begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.RELIN}$
+\begin_layout Standard
+\begin_inset Formula $\mathsf{SH.RELIN(ct_{mult},rlk)}$
 \end_inset
 
 : write 
@@ -2029,24 +2452,377 @@ i.e.
 \end_inset
 
  and set: 
-\end_layout
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{c}_{0}^{\prime} & =\Bigg[\boldsymbol{c}_{0}+\sum_{i=0}^{l}rlk[i][0]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}\\
+\boldsymbol{c}_{1}^{\prime} & =\Bigg[\boldsymbol{c}_{1}+\sum_{i=0}^{l}rlk[i][1]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}
+\end{align*}
 
-\begin_deeper
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-\begin_inset Formula $\boldsymbol{c}_{0}^{\prime}=\Bigg[\boldsymbol{c}_{0}+\sum_{i=0}^{l}rlk[i][0]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}$
 \end_inset
 
- and 
-\begin_inset Formula $\boldsymbol{c}_{1}^{\prime}=\Bigg[\boldsymbol{c}_{1}+\sum_{i=0}^{l}rlk[i][1]\cdot\boldsymbol{c}_{2}^{(i)}\Bigg]_{q}$
+ output 
+\begin_inset Formula $\mathsf{ct_{relin}=}(\boldsymbol{c}_{0}^{\prime},\boldsymbol{c}_{1}^{\prime})$
 \end_inset
 
-where the noise added depends on 
+.
+\begin_inset Newline newline
+\end_inset
+
+It is possible to show that if 
+\begin_inset Formula $\mathsf{ct_{mult}}$
+\end_inset
+
+ is a ciphertext of 
 \emph on
-T
+M+1
+\emph default
+ encrypting 
+\emph on
+m
+\emph default
+, and having noise 
+\emph on
+v
+\emph default
+, and 
+\begin_inset Formula $\mathsf{ct_{relin}}$
+\end_inset
+
+ of size 
+\emph on
+N+1 
+\emph default
+is the ciphertext encrypting 
+\emph on
+m
+\emph default
+, obtained by the relinarization of 
+\begin_inset Formula $\mathsf{ct_{mult}}$
+\end_inset
+
+ where 
+\begin_inset Formula $2\leq N+1\leq M+1$
+\end_inset
+
+, then the noise 
+\begin_inset Formula $v_{relin}$
+\end_inset
+
+ in 
+\begin_inset Formula $\mathsf{ct_{relin}}$
+\end_inset
+
+ can be bounded as 
+\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)dB(l+1)T.$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+There are two other important operations 
+\begin_inset Formula $\mathsf{AddPlain}(ct,m_{add})$
+\end_inset
+
+and
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{MultiplyPlain(ct,m_{mul})}$
+\end_inset
+
+ that can be seen as a particular case of the 
+\begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathsf{SH.MUL(ct_{1,}ct_{2},rlk)}$
+\end_inset
+
+.
+ They are not mentioned in the theoretical scheme proposed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+, but they are inserted in its practical implementation in SEAL 2.3.1 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+, since can hugely improve performances in performing addition and multiplicatio
+n.
+ They are useful in the case the operands are a given ciphertext 
+\emph on
+ct 
+\emph default
+encrypting a plaintext polynomial 
+\emph on
+m
+\emph default
+ and an unencrypted plaintext polynomial 
+\begin_inset Formula $m_{add}\text{ or }m_{mul}$
+\end_inset
+
+ that does not need to be protected.
+ It is possible to show mathematically how this is possible and which are
+ the advantages in terms of grow of noise budget that these operations can
+ bring with respect to 
+\begin_inset Formula $\mathsf{SH.ADD\text{ and }\mathsf{SH.MUL}}$
+\end_inset
+
+.
 \end_layout
 
-\end_deeper
+\begin_layout Paragraph*
+Plain Multiplication
+\end_layout
+
+\begin_layout Lemma
+(
+\noun on
+multiply plain
+\noun default
+) Let 
+\begin_inset Formula $\mathsf{ct}=(x_{0},x_{1})$
+\end_inset
+
+ be a ciphertext encrypting 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ with noise 
+\begin_inset Formula $v$
+\end_inset
+
+, and let 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+ be a plaintext polynomial.
+ Let 
+\begin_inset Formula $N_{m_{2}}$
+\end_inset
+
+ be an upper bound on the number of non-zero terms in the polynomial 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\mathsf{ct_{pmult}}$
+\end_inset
+
+ denote the ciphertext obtained by plain multiplication of 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ with 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+.
+ Then the noise in the plain product 
+\begin_inset Formula $\mathsf{ct_{pmult}}$
+\end_inset
+
+ is 
+\begin_inset Formula $v_{pmult}=m_{2}v$
+\end_inset
+
+, and the bound about the grow of the infinity norm in the result is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+||v_{pmult}||\leq N_{m_{2}}||m_{2}||\,||v||.
+\]
+
+\end_inset
+
+
+\emph on
+Proof
+\emph default
+.
+ By definition
+\emph on
+ 
+\begin_inset Formula $ct_{pmult}=(m_{2}x_{0},m_{2}x_{1})$
+\end_inset
+
+.
+ 
+\emph default
+Hence for some polynomials 
+\begin_inset Formula $a,a^{\prime}$
+\end_inset
+
+ with integer coefficients
+\emph on
+,
+\begin_inset Formula 
+\begin{align*}
+\frac{t}{q}\mathsf{ct_{pmult}}(s) & =\frac{t}{q}(m_{2}x_{0}+m_{2}x_{1}s)\\
+= & m_{2}\frac{t}{q}(x_{0}+x_{1}s)\\
+= & m_{2}\frac{t}{q}ct(s)\\
+= & m_{2}(m_{1}+v+at)\\
+= & m_{1}m_{2}+m_{2}v+m_{2}at\\
+= & [m_{1}m_{2}]_{t}+m_{2}v+(m_{2}a-a^{\prime})t,
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph default
+where in the last line has been used 
+\begin_inset Formula $[m_{1}m_{2}]_{t}=m_{1}m_{2}+a^{\prime}t$
+\end_inset
+
+.
+ Hence the noise is 
+\begin_inset Formula $v_{pmult}=m_{2}v$
+\end_inset
+
+ and can be bounded as 
+\begin_inset Formula 
+\[
+||v_{pmult}||\leq N_{m_{2}}||m_{2}||\,||v||
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Plain Addition
+\end_layout
+
+\begin_layout Lemma
+(
+\noun on
+add plain) 
+\noun default
+Let 
+\begin_inset Formula $\mathsf{ct}=(x_{0},x_{1})$
+\end_inset
+
+ be a ciphertext encrypting 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ with noise 
+\begin_inset Formula $v$
+\end_inset
+
+, and let 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+ be a plaintext polynomial.
+ Let 
+\begin_inset Formula $\mathsf{ct_{padd}}$
+\end_inset
+
+ denote the ciphertext obtained by plain addition of 
+\begin_inset Formula $\mathsf{ct}$
+\end_inset
+
+ with 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+.
+ Then the noise in 
+\begin_inset Formula $\mathsf{ct_{padd}}$
+\end_inset
+
+ is 
+\begin_inset Formula $v_{padd}=v-\frac{r_{t}(q)}{q}m_{2}$
+\end_inset
+
+, and the bound is 
+\begin_inset Formula 
+\[
+||v_{padd}||\leq||v||+\frac{r_{t}(q)}{q}||m_{2}||.
+\]
+
+\end_inset
+
+Proof
+\emph on
+.
+ By definition of plain addition 
+\begin_inset Formula $\mathsf{ct_{padd}=}(x_{0}+\Delta m_{2},x_{1})$
+\end_inset
+
+.
+ Hence for some polynomials 
+\begin_inset Formula $a,a^{\prime}$
+\end_inset
+
+ with integer coefficients
+\emph default
+, 
+\begin_inset Formula 
+\begin{align*}
+\frac{t}{q}\mathsf{ct_{padd}}(s) & =\frac{t}{q}(x_{0}+\Delta m_{2}+x_{1}s)\\
+= & \frac{\Delta t}{q}m_{2}+\frac{t}{q}(x_{0}+x_{1}s)\\
+= & \frac{\Delta t}{q}m_{2}+\frac{t}{q}ct(s)\\
+= & m_{1}+v+\frac{q-r_{t}(q)}{q}m_{2}+at\text{ (see Eq.\ref{eq:relQDelta})}\\
+= & m_{1}+m_{2}+v-\frac{r_{t}(q)}{q}m_{2}+at\\
+= & [m_{1}+m_{2}]_{t}+v-\frac{r_{t}(q)}{q}m_{2}+(a-a^{\prime})t,
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph on
+where in the last line has been used 
+\begin_inset Formula $[m_{1}+m_{2}]_{t}=m_{1}+m_{2}+a^{\prime}t$
+\end_inset
+
+.
+ Hence the noise is 
+\emph default
+
+\begin_inset Formula $v_{padd}=v-\frac{r_{t}(q)}{q}m_{2}$
+\end_inset
+
+ 
+\emph on
+and can be bounded as 
+\emph default
+
+\begin_inset Formula 
+\[
+||v_{padd}||\leq||v||+\frac{r_{t}(q)}{q}||m_{2}||.
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Parameters Estimation Methodology
 \end_layout
