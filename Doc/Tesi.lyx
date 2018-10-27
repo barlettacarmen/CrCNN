@@ -1226,6 +1226,46 @@ computational overhead
  Although polynomial in size, this overhead tends to be a rather large polynomia
 l, which increases runtimes substantially and makes homomorphic computation
  of complex functions impractical.
+ Nevertheless it is not easy to quantify this overhead since is platform
+ dependant and can differ also depending on the particula HE scheme chosen
+ and its practical implementation.
+ One benchmark commonly used is the homomorphic evaluation of the AES 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Daemen99aesproposal:"
+
+\end_inset
+
+ circuit, since it is nontrivial but also not completely infeasible.
+ One study 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HomomorphicEvalAESCircuit"
+
+\end_inset
+
+based on the RLWE Brakerski-Gentry-Vaikuntanathan cryptosystem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Brakerski:2012:FHE:2090236.2090262"
+
+\end_inset
+
+ and on its library implementation HElib 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HElibmanual"
+
+\end_inset
+
+, shows that takes about 4 minutes and 3GB of RAM, running on a laptop Intel
+ Core i5-3320M running at 2.6GHz, to evaluate an entire AES-128 encryption
+ operation.
+ Even if using Single Instruction Multiple Data techniques, it is possible
+ to process up to 120 blocks in each such evaluation, yielding an amortized
+ rate of just over 2 seconds per block.
+ This implies that performances can be similar to the non-encrypted version
+ of the AES circuit, but at the cost of increased memory consumption.
 \end_layout
 
 \begin_layout Description
@@ -1295,6 +1335,67 @@ key "journals/iacr/BoursePMW16"
 .
 \end_layout
 
+\begin_layout Description
+
+\series bold
+Malleability
+\series default
+.
+ It is a property of some cryptographic algorithms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dolev00non-malleablecryptography"
+
+\end_inset
+
+.
+ It is the ability to transform a ciphertext into a different ciphertext
+ which will produce a new and different plaintext when decoded.
+ That is, given an encryption of a plaintext 
+\emph on
+m
+\emph default
+, it is possible to generate another ciphertext which decrypts to 
+\emph on
+f(m)
+\emph default
+, for a known function 
+\emph on
+f
+\emph default
+, without necessarily knowing or learning 
+\emph on
+m
+\emph default
+.
+ For example, suppose that a user sends an encrypted message containing
+ to a bank, say, "TRANSFER $0000100.00 TO ACCOUNT #199." If an attacker can
+ modify the message on the wire, and can guess the format of the unencrypted
+ message, the attacker could be able to change the amount of the transaction,
+ or the recipient of the funds, e.g.
+ "TRANSFER $0100000.00 TO ACCOUNT #227".
+ However, homomorphic encryption systems are malleable by design, allowing
+ authorized parties to alter enciphered text without knowing the contents
+ of the message.
+ That is, they can manipulate an encrypted stream (set a flag, add a value)
+ without having the ability to decipher the stream, or without expending
+ the effort to decrypt and re-encrypt the stream.
+ Moreover if an encrypted message is sent to an external server for outsourced
+ computation, it must be considered a trusted party.
+ Indeed no one can guarantee that the server has performed the desired computati
+on.
+ Even the RSA is a malleable cryptosystem, however using it together with
+ padding methods such as OAEP 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bellare1995OptimalAE"
+
+\end_inset
+
+ can provide a solution.
+ 
+\end_layout
+
 \begin_layout Section
 Brakerski/Fan-Vercauteren scheme (BFV)
 \end_layout
@@ -1334,7 +1435,14 @@ Ring Definition
 
 \begin_layout Standard
 The BFV relies on the concept of ring, in particular on the commutative
- rings.
+ rings
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Commutative-Algebra"
+
+\end_inset
+
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -1367,26 +1475,74 @@ A commutative ring R is a set on which there are two operations defined:
 \end_inset
 
 : 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-INserire citazione, contiuare con la formula e mettere esempio di ring.
- Mettere codifica
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula 
 \begin{align*}
-a(bc) & =(ab)c\text{ (associativity of product)}\\
-a(b+c) & =ab+ac\text{ (associativity sx of product w.r.t addition)}\\
+a(bc) & =(ab)c;\text{ (associativity of product)}\\
+a(b+c) & =ab+ac;\text{ (left associativity of product w.r.t addition)}\\
+(a+b)c & =ac+bc;\text{ (right associativity of product w.r.t. addition)}\\
+a+(b+c) & =(a+b)+c;\text{ (associativity of addition)}\\
+a+b & =b+a;\text{ (commutative addition)}\\
+ab & =ba.\text{ (commutative product)}
 \end{align*}
 
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+The set of integers 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+is a ring as as well as the set 
+\begin_inset Formula $\mathbb{Z}_{m}$
+\end_inset
+
+ of integers modulo 
+\emph on
+m.
+ 
+\emph default
+If 
+\begin_inset Formula $R$
+\end_inset
+
+ is a given commutative ring, then the set of all polynomials in the variable
+ 
+\begin_inset Formula $x$
+\end_inset
+
+whose coefficients are in 
+\begin_inset Formula $R$
+\end_inset
+
+ forms the polynomial ring, denoted 
+\begin_inset Formula $R[x]$
+\end_inset
+
+.
+ In this work the focus will be on the ring 
+\begin_inset Formula $\mathbb{Z}_{m}[x]$
+\end_inset
+
+ of polynomials with integer coefficients modulo 
+\begin_inset Formula $m$
+\end_inset
+
+ and in particular on the polynomial ring 
+\begin_inset Formula $\mathbb{Z}_{m}[x]/(x^{n}+1)$
+\end_inset
+
+, that is polynomials of degree less than 
+\begin_inset Formula $n$
+\end_inset
+
+with coefficients modulo 
+\begin_inset Formula $m$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1413,11 +1569,11 @@ Basic Notation
  , i.e.
  the minimal polynomial of the primitive m-th roots of unity is used.
  The most popular choice for expository purposes is to take 
-\begin_inset Formula $f(x)=x^{d}+1$
+\begin_inset Formula $f(x)=x^{n}+1$
 \end_inset
 
  with 
-\begin_inset Formula $d=2^{n}$
+\begin_inset Formula $n=2^{d}$
 \end_inset
 
 .
@@ -1536,7 +1692,7 @@ The reduction to the interval
 \begin_inset Formula $r_{q}(a)$
 \end_inset
 
- (reminder modulo q).
+ reminder modulo q).
 \end_layout
 
 \begin_layout Itemize
@@ -2237,7 +2393,7 @@ Let
  satisfies 
 \begin_inset Formula 
 \[
-||v||\leq\frac{r_{t}(q)}{q}||m||+\frac{tB}{q}(2d+1).
+||v||\leq\frac{r_{t}(q)}{q}||m||+\frac{tB}{q}(2n+1).
 \]
 
 \end_inset
@@ -2270,18 +2426,10 @@ reference "eq:ct(s)"
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Paragraph*
 Addition
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Labeling
@@ -2316,10 +2464,6 @@ It is possible to show that if
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Paragraph*
@@ -2416,9 +2560,9 @@ It is possible to prove that: if
  satisfies the following bound
 \begin_inset Formula 
 \begin{align*}
-||v_{mult}||\leq & \Bigg[(N_{m_{1}}+d)||m_{1}||+\frac{dt}{2}\frac{d^{j_{1}+1}-1}{d-1})\Bigg]||v_{2}||\\
-+ & \Bigg[(N_{m_{2}}+d)||m_{2}||+\frac{dt}{2}\frac{d^{j_{2}+1}-1}{d-1})\Bigg]||v_{1}||\\
-+ & 3d||v_{1}||||v_{2}||+\frac{t}{2q}\frac{d^{j_{1}+j_{2}+1}-1}{d-1}).
+||v_{mult}||\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||+\frac{nt}{2}\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||\\
++ & \Bigg[(N_{m_{2}}+n)||m_{2}||+\frac{nt}{2}\frac{n^{j_{2}+1}-1}{n-1})\Bigg]||v_{1}||\\
++ & 3n||v_{1}||||v_{2}||+\frac{t}{2q}\frac{n^{j_{1}+j_{2}+1}-1}{n-1}).
 \end{align*}
 
 \end_inset
@@ -2513,7 +2657,7 @@ m
 \end_inset
 
  can be bounded as 
-\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)dB(l+1)T.$
+\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)nB(l+1)T.$
 \end_inset
 
 
@@ -2581,6 +2725,10 @@ m
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph*
@@ -2821,6 +2969,298 @@ and can be bounded as
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Encoding
+\end_layout
+
+\begin_layout Standard
+In Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+ is shown that plaintext elements in the BFV scheme are polynomials in 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ and homomorphic operations on ciphertexts are reflected in the plaintext
+ side as corresponding operations in the ring 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+.
+ Thus it is important to find a mapping between integers (or real numbers)
+ and polynomials in 
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ in an appropriate way in order to make applicable HE in the real world.
+ Since no non-trivial subset of Z is closed under additions and multiplications,
+ it is needed to settle for something that does not respect an arbitrary
+ number of homomorphic operations.
+ It is then the responsibility of the evaluating party to be aware of the
+ type of encoding that is used, and perform only operations such that the
+ underlying plaintexts throughout the computation remain in the image of
+ the encoding map
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+ In other words a number must be 
+\emph on
+encoded.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+Integer Encoding
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Integer-Encoding"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Given an integer 
+\emph on
+a
+\emph default
+ it is required to choose a base 
+\emph on
+B 
+\emph default
+and to form the (up to 
+\begin_inset Formula $n$
+\end_inset
+
+-bits) base-
+\emph on
+B
+\emph default
+ expansion of 
+\begin_inset Formula $|a|$
+\end_inset
+
+, say 
+\begin_inset Formula $(a_{n-1}x^{n-1}+\ldots+a_{1}x+a_{0}).$
+\end_inset
+
+ When 
+\begin_inset Formula $B=2$
+\end_inset
+
+ , 
+\begin_inset Formula $-(2^{n}-1)\leq a\leq2^{n}-1$
+\end_inset
+
+ and the expansion is a binary expansion, when 
+\begin_inset Formula $B>2$
+\end_inset
+
+, for the base-
+\emph on
+B 
+\emph default
+expansion, the coefficients are chosen from the symmetric set 
+\begin_inset Formula $[\text{−}(B\text{−}1)/2,...,(B\text{−}1)/2]$
+\end_inset
+
+, since there is a unique representation with at most 
+\emph on
+n 
+\emph default
+coefficients for each integer in 
+\begin_inset Formula $[\text{−}(B^{n}−1)/2,(B^{n}\text{−}1)/2]$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathtt{IntEncode}(a,B)=sign(a)\cdot(a_{n-1}x^{n-1}+\ldots+a_{1}x+a_{0})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Decoding can fail for two reasons: 
+\end_layout
+
+\begin_layout Enumerate
+if a reduction modulo the plaintext modulus 
+\emph on
+t 
+\emph default
+occurs
+\end_layout
+
+\begin_layout Enumerate
+if a reduction modulo the polynomial modulus 
+\begin_inset Formula $x^{n}+1$
+\end_inset
+
+ occurs
+\end_layout
+
+\begin_layout Standard
+If any of these reductions happens, decoding yields an incorrect result,
+ but it no indications of these events are given until the final decryption.
+\end_layout
+
+\begin_layout Paragraph*
+Fractional Encoding
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Real numbers can be encoded as integers if properly scaled and rescaled
+ back after decryption or it is possible to encode real numbers as fixed
+ precision numbers.
+ Just like the integer encoding (Paragraph
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Integer-Encoding"
+
+\end_inset
+
+ above), the fractional encoding is parametrized by an integer base 
+\begin_inset Formula $B\geq2$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bioinformatics"
+
+\end_inset
+
+.
+ It works by first encoding the integer part with an Integer Encoding, then
+ the fractional part is codified in base-
+\emph on
+B, n 
+\emph default
+is added to each exponent of the fractional part and it is converted in
+ a polynomial by changing the base 
+\emph on
+B 
+\emph default
+into the variable 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Next each sign of the fractional part is flipped.
+ For any rational number 
+\emph on
+r 
+\emph default
+with finite base-B expansion:
+\begin_inset Formula 
+\[
+\mathtt{FractionEncode}(r,B)=sign(r)\cdot[\mathtt{IntEncode}(\lfloor|r|\rfloor,B)+\mathtt{FractionEncode}(\{|r|\},B)],
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where 
+\begin_inset Formula $\{\cdot\}$
+\end_inset
+
+ denotes the fractional part.
+ For example, consider 
+\begin_inset Formula $B=2\text{ and }r=5.8125$
+\end_inset
+
+ which has finite binary expansion 
+\begin_inset Formula $5.875=2^{2}+2^{0}+2^{-1}+2^{-2}+2^{-4}.$
+\end_inset
+
+ Its integer part is encoded as 
+\begin_inset Formula $\mathtt{IntEncode}(5,B=2)=x^{2}+1$
+\end_inset
+
+, while its fractional part is encoded as 
+\begin_inset Formula $\mathtt{FractionEncode}(0.875,B=2)=-x^{n-1}-x^{n-2}-x^{n-4}$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Some rational numbers have not a finite base-
+\emph on
+B 
+\emph default
+expansion, thus in order tp truncate it is important to fix 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ bits for the integer part and 
+\begin_inset Formula $n_{f}$
+\end_inset
+
+ bits for the fractional part, such that 
+\begin_inset Formula $n_{i}+n_{f}\leq n.$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Decoding can fail for two reasons:
+\end_layout
+
+\begin_layout Enumerate
+if any of the coefficients of the underlying plaintext polynomials wrap
+ around the plaintext modulus 
+\emph on
+t 
+\emph default
+the result after decoding is likely to be incorrect, just as in the case
+ of the integer encoding Paragraph 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Integer-Encoding"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+if during homomorphic multiplications the fractional parts of the underlying
+ plaintext polynomials expands down towards the integer part, and the integer
+ part expands up towards the fractional part and these different parts get
+ mixed up.
 \end_layout
 
 \begin_layout Chapter
