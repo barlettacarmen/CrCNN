@@ -531,6 +531,448 @@ Results
 \end_layout
 
 \begin_layout Chapter
+State of the Art
+\end_layout
+
+\begin_layout Standard
+This Chapter focuses on most recent studies on methods for Privacy-Preserving
+ Machine Learning and on possible interesting applications of homomorphic
+ encryption in different fields.
+\end_layout
+
+\begin_layout Section
+Multiple Data Providers
+\end_layout
+
+\begin_layout Standard
+Kuri et al.
+ (2017)
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+multi data provider
+\end_layout
+
+\end_inset
+
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ssci/Kuri0OOAP0M17"
+
+\end_inset
+
+ use additively homomorphic encryption in combination with Extreme Learning
+ Machine (ELM).
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ELM"
+description "Extreme Learning Machines"
+
+\end_inset
+
+ ELM is a feedforward neural network where connection weights from the input
+ layer to the hidden layer are randomly generated and the connection weights
+ from the hidden layer to the output layer are learned analytically 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "inverse"
+
+\end_inset
+
+.
+ In particular they focus on a single hidden layer feedforward neural network
+ (SLFN) and provide both training and testing algorithm on homomorphically
+ encrypted data.
+ Due to its simple structure ELM has relatively fast learning speed and
+ higher accuracy as a nonlinear classifier and since only one homomorphic
+ addition is performed, the computational overhead added is quite small.
+ On the other hand this simplicity does not allow to accomplish more complex
+ tasks, such as object recognition in images as it is possible to do with
+ CNNs.
+\begin_inset Newline newline
+\end_inset
+
+Le Trieu Phong et al.
+ (2017) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+ propose a privacy-preserving deep learning system in which many learning
+ participants perform neural network-based deep learning over a combined
+ dataset of all, without actually revealing the participants’ local data
+ to a central server.
+ They revisit the previous work 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ccs/ShokriS15"
+
+\end_inset
+
+ and point out that local data information may be actually leaked to an
+ honest-but-curious server, then they move on to fix that problem via building
+ an enhanced system that also keeps accuracy intact.
+ Each learning participant is also a data provider and has a local copy
+ of the neural network to train.
+ The proposed system aims at training the weights utilizing multiple data
+ sources and gradient-encrypted ASGD.
+ There is a global weight vector 
+\begin_inset Formula $W_{global}$
+\end_inset
+
+, initialized randomly.
+ At each iteration, replicas of the neural network (one for each participant),
+ are run over local dataset (data parallelism), and the corresponding local
+ gradient vector 
+\begin_inset Formula $G_{local}$
+\end_inset
+
+ is sent to the cloud.
+ For each 
+\begin_inset Formula $G_{local}$
+\end_inset
+
+ , the cloud then updates the global parameters 
+\begin_inset Formula $W_{global}:=W_{global}-\alpha\cdot G_{local}$
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha$
+\end_inset
+
+learning rate.
+ The updated global parameters are broadcasted to all the replicas, which
+ then use them to replace their old weight parameters, until a minimum for
+ a pre-defined cost function is reached.
+ To ensure privacy additively homomorphic encryption is used and the updating
+ formula becomes 
+\begin_inset Formula $E(W_{global}):=E(W_{global})+E(-\alpha\cdot G_{local})$
+\end_inset
+
+ and to ensure integrity of the homomorphic ciphertext, each client will
+ use a secure channel such as TLS/SSL to communicate the homomorphic ciphertexts
+ with the server.
+ To use the power of parallel computation when the server has multiple processin
+g units 
+\begin_inset Formula $PU_{1},…,PU_{npu}$
+\end_inset
+
+, ASGD splits the weight vector 
+\emph on
+W
+\emph default
+ and gradient vector
+\emph on
+ G
+\emph default
+ into 
+\begin_inset Formula $n_{pu}$
+\end_inset
+
+ parts, so that each processing unit 
+\begin_inset Formula $PU_{i}$
+\end_inset
+
+ computes the update rule 
+\begin_inset Formula $W_{i}=W_{i}-G_{i}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The participants jointly set up the public key 
+\begin_inset Formula $pk$
+\end_inset
+
+ and secret key 
+\begin_inset Formula $sk$
+\end_inset
+
+ for an additively homomorphic encryption scheme.
+ The secret key 
+\begin_inset Formula $sk$
+\end_inset
+
+ is kept confidential against the cloud server, but is known to all learning
+ participants.
+ Each participant will establish a TLS/SSL secure channel, different from
+ each other, to communicate and protect the integrity of the homomorphic
+ ciphertexts.
+ The downloads and uploads of the encrypted parts of 
+\begin_inset Formula $W_{global}$
+\end_inset
+
+ can be asynchronous in two aspects: the participants are independent with
+ each other; and the processing units are also independent with each other.
+ However protecting the gradients against the cloud server comes with the
+ cost of increased communication between the learning participants and the
+ cloud server.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Mettere immagine.
+ Scrivere alla fine che comunque sono tutte cose che richiedono una sola
+ operazione cifrata quindi basta Paillier
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Saeed Samet et al.
+ (2012) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/dke/SametM12"
+
+\end_inset
+
+ focus their work on training ELM networks when data is vertically or horizontal
+ly distributed distributed among parties (data owners), using as sub-protocols
+ secure multi-parti multiplication and secure multi-parti addition.
+ The model (i.e.
+ the network) is is securely constructed and distributed among the parties
+ involved.
+ Indeed, at the end of the learning protocol the parties can jointly use
+ the model on target data to predict the corresponding output.
+ This seems to be a different approach with respect to the the two previous
+ presented works (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ssci/Kuri0OOAP0M17"
+
+\end_inset
+
+ , 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+) where there was always a central entity (server/cloud) designate to aggregate
+ partial results coming form the different parties.
+ They also prove that their solution is resistant to collusion attacks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CollusionAtt"
+
+\end_inset
+
+ since if 
+\emph on
+n
+\emph default
+ parties are involved in the protocol, and 
+\emph on
+n-1
+\emph default
+ of them collude to obtain the private information of the lest party, the
+ only information they will be able to get is their input and output share.
+ This information will not help them find the input and outputs shares of
+ the last party, because they have
+\emph on
+ n
+\emph default
+ equations with at least 
+\emph on
+n+1
+\emph default
+ unknown values.
+ Therefore, secure multi-party multiplication as well as secure multi-parti
+ addition are secure against collusion attacks by up to 
+\begin_inset Formula $n-1$
+\end_inset
+
+ parties and can be used over public channels.
+ The problem with this protocol is that the time needed for training increases
+ with the number of parties involved.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Fare quei due segnati in verde, più quello mandato dal prof, mettere immagin,
+ mettere intro più lunga e spiagre suddivisione single data provider a multiple,
+ vedere se puoi fare altre citazioni prendendole da 
+\begin_inset Newline newline
+\end_inset
+
+quelle di cryptonets.
+ Scrivere cosa segnata nella precedente nota
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Single Data Provider
+\end_layout
+
+\begin_layout Standard
+Yoshinori Aono et al, (2016) 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+single data provider
+\end_layout
+
+\end_inset
+
+in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/codaspy/AonoHPW16"
+
+\end_inset
+
+ has proposed an homomorphism-aware logistic regression via approximation
+ of the logarithm in the cost function to minimize with a polynomial of
+ degree 
+\emph on
+k 
+\emph default
+(e.g.
+ 
+\emph on
+k
+\emph default
+=2).
+ Since HE ensures data secrecy, 
+\emph on
+differential privacy 
+\emph default
+is added to the model to ensure also output privacy.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+
+\emph on
+Differential privacy
+\end_layout
+
+\begin_layout Standard
+is a technique that aims to maximize the accuracy of queries from statistical
+ databases (here, the term statistical database means a set of data that
+ are collected under the pledge of confidentiality for the purpose of producing
+ statistics that, by their production, do not compromise the privacy of
+ those individuals who provided the data) while measuring impact on individuals
+ whose information is in the database.
+ Intuitively it can be explained by saying that if there are two datasets
+ 
+\begin_inset Formula $D_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $D_{2}$
+\end_inset
+
+ that differ on a single element (i.e., the data of one person), a given different
+ially private algorithm will behave approximately the same on both datasets.
+ More formally,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(
+\begin_inset Formula $\epsilon-$
+\end_inset
+
+Differential Privacy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dwork:2014:AFD:2693052.2693053"
+
+\end_inset
+
+) A randomized mechanism M, that answers to queries on a database, provides
+ ε-differential privacy, if, for all databases 
+\begin_inset Formula $D_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $D_{2}$
+\end_inset
+
+ which differ by at most one element, and for any 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\frac{Pr[M(D_{1})=t]}{Pr[M(D_{2})=t]}\text{≤}e^{ε}.
+\]
+
+\end_inset
+
+It has been shown in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10.1007/11681878_14"
+
+\end_inset
+
+ that if a mechanism satisfies ε-differential privacy, then an adversary
+ who knows the private value of all the individuals in the dataset, except
+ for one single individual, cannot figure out the private value of the unknown
+ individual, with sufficient confidence, from the responses of the mechanism
+ M.
+ ε-differential privacy is therefore a very strong notion of privacy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chaudhuri:2008:PLR:2981780.2981817"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/codaspy/AonoHPW16"
+
+\end_inset
+
+ to add 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+-differential privacy they change the computation done at the server side.
+ Namely, the server generates Laplace noises, encrypts and sums them to
+ its computation.
+ The result is that the data analyst (or data provider), finds, after decryption
+, exactly the Laplace-perturbed coefficients of the cost function.
+ Even if good results are obtained in the experimental result in terms of
+ F-score and AUC (Area Under The Curve) measure, differential privacy in
+ addition to the encryption decreases the performances of the classifier,
+ this imply that the usage of really large datasets is needed in order to
+ mitigate the effect of noise introduced by differential privacy.
+\end_layout
+
+\begin_layout Chapter
 Background
 \end_layout
 
@@ -547,7 +989,7 @@ name "subsec:Homomorphic-Encryption"
 
 \begin_layout Standard
 The typical mantra frequently heard in connection with machine learning
- is: the more training data we can feed into a model, the better will be
+ is: the more training data one can feed into a model, the better will be
  the results.
  It is worth noting that the quality of the training data, as well as the
  features used, can in many instances be substantially more important than
@@ -586,7 +1028,7 @@ structure-preserving
 \end_inset
 
  such that 
-\begin_inset Formula $\varPhi(z):=z(mod7)$
+\begin_inset Formula $\varPhi(z):=z\;(mod\;7)$
 \end_inset
 
  .
@@ -594,7 +1036,7 @@ structure-preserving
 \begin_inset Formula $\varPhi$
 \end_inset
 
-preserves both the additive and the multiplicative structure of the integers
+ preserves both the additive and the multiplicative structure of the integers
  in the sense that for every 
 \begin_inset Formula $z_{1},z_{2}\in\mathbb{Z}$
 \end_inset
@@ -624,7 +1066,7 @@ preserves both the additive and the multiplicative structure of the integers
 \begin_inset Formula $\varPhi$
 \end_inset
 
-is a ring homomorphism between the rings 
+ is a ring homomorphism between the rings 
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
@@ -658,29 +1100,28 @@ key "Gentry:2009:FHE:1536414.1536440"
 
 \end_inset
 
-was the first to propose a plausible construction for a fully homomorphic
- that respects both addition and multiplication and since then new and more
- efficient schemes has been proposed, but despite the promising theoretical
- power of homomorphic encryption, the practical side remained underdeveloped
- for a long time.
+ was the first to propose a plausible construction for a fully homomorphic
+ scheme that respects both addition and multiplication and since then new
+ and more efficient schemes has been proposed, but despite the promising
+ theoretical power of homomorphic encryption, the practical side remained
+ underdeveloped for a long time.
  
 \end_layout
 
 \begin_layout Subsection
-Classification of HE Schemes
+Classification of Homomorphic Encryption Schemes
 \end_layout
 
 \begin_layout Standard
 It is worth to analyze different classes of homomorphic schemes to clarify
- the potentiality of this type of encryption.
- 
+ the potentiality of this type of encryption 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "journals/iacr/ArmknechtBCGJRS15"
 
 \end_inset
 
- 
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -689,7 +1130,7 @@ Given that a circuit
 C 
 \emph default
 is a series of computations made on some inputs, it is possible to state
- some preliminary definitions
+ some preliminary definitions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "brakerski2014efficient"
@@ -720,7 +1161,7 @@ be a set of circuits.
 \begin_inset Formula $\mathscr{\mathcal{C}}$
 \end_inset
 
- -
+-
 \emph default
 evaluation scheme for 
 \emph on
@@ -930,7 +1371,7 @@ C
 \begin_layout Definition
 \begin_inset Formula 
 \[
-\mathsf{Pr[Dec(\mathit{sk,\mathsf{Eval}(evk,C,c_{1},...,c_{n})})}=C(m_{1,...,m_{n}})]=1-\epsilon(\lambda)
+\mathsf{Pr[Dec(\mathit{sk,\mathsf{Eval}(evk,C,c_{1},...,c_{n})})}=C(m_{1},\ldots,m_{n})]=1-\epsilon(\lambda)
 \]
 
 \end_inset
@@ -957,7 +1398,7 @@ A
 \begin_inset Formula $\mathscr{\mathcal{C}}$
 \end_inset
 
- -
+-
 \emph default
 evaluation scheme is 
 \emph on
@@ -1006,6 +1447,10 @@ LatexCommand nomenclature
 symbol "SHE"
 description "Somewhat Homomorphic Encryption"
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -1071,13 +1516,21 @@ if it takes an auxiliary input
 \begin_inset Formula $\mathsf{Gen}$
 \end_inset
 
- with specifies the maximum depth of circuits that can be evaluated.
- Correctness, compactness and that the 
+ which specifies the maximum depth of circuits that can be evaluated.
+ Its properties are correctness, compactness and that the 
 \emph on
 length of the evaluation output 
 \emph default
-does not depend on d are also required.
+does not depend on 
+\emph on
+d
+\emph default
+ are also required.
  
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -1141,16 +1594,20 @@ encryption scheme.
 \begin_inset Newline newline
 \end_inset
 
-This definition means that the chem can evaluate any circuit of arbitrary
+
+\begin_inset Newline newline
+\end_inset
+
+This definition means that the scheme can evaluate any circuit of arbitrary
  size, which does not need to be known when setting the parameters.
 \begin_inset Newline newline
 \end_inset
 
-However it is fail to say that FHE mostly exists on papers.
+However it is fair to say that FHE mostly exists on papers.
 \end_layout
 
 \begin_layout Subsection
-Limitations of HE
+Limitations of Homomorphic Encryption
 \end_layout
 
 \begin_layout Standard
@@ -1169,7 +1626,7 @@ Support
 for multiple users
 \series default
 .
- Traditional FHE schemes are are 
+ Traditional FHE schemes are 
 \emph on
 single-key 
 \emph default
@@ -1227,7 +1684,7 @@ computational overhead
 l, which increases runtimes substantially and makes homomorphic computation
  of complex functions impractical.
  Nevertheless it is not easy to quantify this overhead since is platform
- dependant and can differ also depending on the particula HE scheme chosen
+ dependant and can differ also depending on the particular HE scheme chosen
  and its practical implementation.
  One benchmark commonly used is the homomorphic evaluation of the AES 
 \begin_inset CommandInset citation
@@ -1244,7 +1701,7 @@ key "HomomorphicEvalAESCircuit"
 
 \end_inset
 
-based on the RLWE Brakerski-Gentry-Vaikuntanathan cryptosystem 
+ based on the RLWE Brakerski-Gentry-Vaikuntanathan cryptosystem 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Brakerski:2012:FHE:2090236.2090262"
@@ -1261,7 +1718,7 @@ key "HElibmanual"
 , shows that takes about 4 minutes and 3GB of RAM, running on a laptop Intel
  Core i5-3320M running at 2.6GHz, to evaluate an entire AES-128 encryption
  operation.
- Even if using Single Instruction Multiple Data techniques, it is possible
+ Even if by using Single Instruction Multiple Data techniques, it is possible
  to process up to 120 blocks in each such evaluation, yielding an amortized
  rate of just over 2 seconds per block.
  This implies that performances can be similar to the non-encrypted version
@@ -1368,11 +1825,11 @@ f
 m
 \emph default
 .
- For example, suppose that a user sends an encrypted message containing
- to a bank, say, "TRANSFER $0000100.00 TO ACCOUNT #199." If an attacker can
- modify the message on the wire, and can guess the format of the unencrypted
- message, the attacker could be able to change the amount of the transaction,
- or the recipient of the funds, e.g.
+ For example, suppose that a user sends an encrypted message o a bank containing
+, say, "TRANSFER $0000100.00 TO ACCOUNT #199." If an attacker can modify the
+ message on the wire, and can guess the format of the unencrypted message,
+ the attacker could be able to change the amount of the transaction, or
+ the recipient of the funds, e.g.
  "TRANSFER $0100000.00 TO ACCOUNT #227".
  However, homomorphic encryption systems are malleable by design, allowing
  authorized parties to alter enciphered text without knowing the contents
@@ -1384,7 +1841,7 @@ m
  computation, it must be considered a trusted party.
  Indeed no one can guarantee that the server has performed the desired computati
 on.
- Even the RSA is a malleable cryptosystem, however using it together with
+ Even the RSA is a malleable cryptosystem, however if used together with
  padding methods such as OAEP 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1392,7 +1849,7 @@ key "Bellare1995OptimalAE"
 
 \end_inset
 
- can provide a solution.
+ this issue can be solved.
  
 \end_layout
 
@@ -1401,7 +1858,7 @@ Brakerski/Fan-Vercauteren scheme (BFV)
 \end_layout
 
 \begin_layout Standard
-One of the practical implementations of Gentry scheme
+One of the practical implementations of Gentry scheme 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Gentry:2009:FHE:1536414.1536440"
@@ -1495,7 +1952,7 @@ The set of integers
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
-is a ring as as well as the set 
+ is a ring as as well as the set 
 \begin_inset Formula $\mathbb{Z}_{m}$
 \end_inset
 
@@ -1513,7 +1970,7 @@ If
 \begin_inset Formula $x$
 \end_inset
 
-whose coefficients are in 
+ whose coefficients are in 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1538,7 +1995,7 @@ whose coefficients are in
 \begin_inset Formula $n$
 \end_inset
 
-with coefficients modulo 
+ with coefficients modulo 
 \begin_inset Formula $m$
 \end_inset
 
@@ -1558,16 +2015,20 @@ Basic Notation
 \end_inset
 
  is a monic irreducible polynomial of degree 
-\begin_inset Formula $d$
+\begin_inset Formula $n$
 \end_inset
 
 .
  In practice the cyclotomic polynomial 
-\begin_inset Formula $\text{Φ}m(x)$
+\begin_inset Formula $\text{Φ}_{m}(x)$
 \end_inset
 
  , i.e.
- the minimal polynomial of the primitive m-th roots of unity is used.
+ the minimal polynomial of the primitive
+\emph on
+ m
+\emph default
+-th roots of unity is used.
  The most popular choice for expository purposes is to take 
 \begin_inset Formula $f(x)=x^{n}+1$
 \end_inset
@@ -1600,7 +2061,7 @@ Elements of the ring
 
 , i.e.
  
-\begin_inset Formula $\mathbf{a}=\sum_{i=0}^{d-1}a_{i}\cdot x^{i}$
+\begin_inset Formula $\mathbf{a}=\sum_{i=0}^{n-1}a_{i}\cdot x^{i}$
 \end_inset
 
  .
@@ -1629,11 +2090,11 @@ Let
 \begin_inset Formula $q>1$
 \end_inset
 
- be an integer, then by 
+ be an integer, then 
 \begin_inset Formula $\mathbb{Z}_{q}$
 \end_inset
 
- we denote the 
+ denotes the 
 \emph on
 set
 \emph default
@@ -1664,7 +2125,7 @@ For
 \begin_inset Formula $a\text{∈}\mathbb{Z}$
 \end_inset
 
- we denote by 
+ is denoted by 
 \begin_inset Formula $\left[a\right]_{q}$
 \end_inset
 
@@ -1692,7 +2153,7 @@ The reduction to the interval
 \begin_inset Formula $r_{q}(a)$
 \end_inset
 
- reminder modulo q).
+ (reminder modulo q).
 \end_layout
 
 \begin_layout Itemize
@@ -1753,7 +2214,7 @@ The discrete Gaussian distribution
 \begin_inset Formula $\sigma$
 \end_inset
 
-is the standard deviation of the discrete Gaussian distribution, with default
+ is the standard deviation of the discrete Gaussian distribution, with default
  value of 
 \begin_inset Formula $3.19≈8/2π$
 \end_inset
@@ -1804,7 +2265,7 @@ Shortest Vector Problem
  if one can solve LWE, then there is a quantum algorithm to solve certain
  approximate SVP.
  Informally, the SVP requires a player to provide a shortest possible vector
- in a given lattice and it is NP-hard.
+ in a given lattice and it is known to be an NP-hard problem.
  Thus, the only evidence supporting the conjecture that LWE is as hard as
  SVP is the fact that there are no known quantum algorithms for lattice
  problems that outperform classical algorithms, even though this is probably
@@ -1916,7 +2377,7 @@ The plaintext space is taken as
 \begin_inset Formula $∆=\left\lfloor q/t\right\rfloor $
 \end_inset
 
- and denote with
+ and denote with 
 \begin_inset Formula $r_{t}(q)=q\;mod\;t$
 \end_inset
 
@@ -2217,8 +2678,11 @@ Proof
 \end_inset
 
 .
- Using the formula for decryption, for some polynomial A with integer coefficien
-ts:
+ Using the formula for decryption, for some polynomial 
+\emph default
+A
+\emph on
+ with integer coefficients:
 \begin_inset Formula 
 \begin{align*}
 \\
@@ -2253,8 +2717,11 @@ m^{\prime}=[\lfloor m+v+at\rceil]_{t}=m+\lfloor v\rceil.
 \begin_inset Newline newline
 \end_inset
 
-Hence decryption is successful as long as v is removed by the rounding,
- i.e.
+Hence decryption is successful as long as 
+\emph default
+v
+\emph on
+ is removed by the rounding, i.e.
  if 
 \begin_inset Formula $||v||<1/2$
 \end_inset
@@ -2538,7 +3005,7 @@ It is possible to prove that: if
 \end_inset
 
  and 
-\begin_inset Formula $N_{m2}$
+\begin_inset Formula $N_{m_{2}}$
 \end_inset
 
  be upper bounds on the number of non-zero terms in the polynomials 
@@ -2787,7 +3254,7 @@ multiply plain
 \begin_inset Formula $v_{pmult}=m_{2}v$
 \end_inset
 
-, and the bound about the grow of the infinity norm in the result is
+, and can be bounded as
 \end_layout
 
 \begin_layout Standard
@@ -2824,7 +3291,7 @@ Hence for some polynomials
 \frac{t}{q}\mathsf{ct_{pmult}}(s) & =\frac{t}{q}(m_{2}x_{0}+m_{2}x_{1}s)\\
 = & m_{2}\frac{t}{q}(x_{0}+x_{1}s)\\
 = & m_{2}\frac{t}{q}ct(s)\\
-= & m_{2}(m_{1}+v+at)\\
+= & m_{2}(m_{1}+v+at)\text{ (see Eq. \ref{eq:ct(s)}})\\
 = & m_{1}m_{2}+m_{2}v+m_{2}at\\
 = & [m_{1}m_{2}]_{t}+m_{2}v+(m_{2}a-a^{\prime})t,
 \end{align*}
@@ -2999,13 +3466,16 @@ reference "subsec:Encryption-Scheme"
 \end_inset
 
  in an appropriate way in order to make applicable HE in the real world.
- Since no non-trivial subset of Z is closed under additions and multiplications,
- it is needed to settle for something that does not respect an arbitrary
- number of homomorphic operations.
+ Since no non-trivial subset of 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ is closed under additions and multiplications, it is needed to settle for
+ something that does not respect an arbitrary number of homomorphic operations.
  It is then the responsibility of the evaluating party to be aware of the
  type of encoding that is used, and perform only operations such that the
  underlying plaintexts throughout the computation remain in the image of
- the encoding map
+ the encoding map 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
@@ -3124,7 +3594,7 @@ if a reduction modulo the polynomial modulus
 
 \begin_layout Standard
 If any of these reductions happens, decoding yields an incorrect result,
- but it no indications of these events are given until the final decryption.
+ but no indications of these events are given until the final decryption.
 \end_layout
 
 \begin_layout Paragraph*
@@ -3139,7 +3609,7 @@ Fractional Encoding
 Real numbers can be encoded as integers if properly scaled and rescaled
  back after decryption or it is possible to encode real numbers as fixed
  precision numbers.
- Just like the integer encoding (Paragraph
+ Just like the integer encoding (Paragraph 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "par:Integer-Encoding"
@@ -3220,7 +3690,7 @@ Some rational numbers have not a finite base-
 \emph on
 B 
 \emph default
-expansion, thus in order tp truncate it is important to fix 
+expansion, thus in order to truncate them it is important to fix 
 \begin_inset Formula $n_{i}$
 \end_inset
 
