@@ -536,8 +536,33 @@ State of the Art
 
 \begin_layout Standard
 This Chapter focuses on most recent studies on methods for Privacy-Preserving
- Machine Learning and on possible interesting applications of homomorphic
+ Machine Learning and on other related interesting applications of homomorphic
  encryption in different fields.
+\begin_inset Newline newline
+\end_inset
+
+Most of these works are based on one of these two scenarios:
+\end_layout
+
+\begin_layout Enumerate
+There are multiple data providers whose data must be commonly protected
+\end_layout
+
+\begin_layout Enumerate
+There is a single data provider
+\end_layout
+
+\begin_layout Standard
+In both cases their data are sent to an outsourced server which should make
+ some computations but which is supposed to be a 
+\emph on
+curious- but-honest
+\emph default
+ server; i.e., the server carries out the result of computations faithfully,
+ but it may try to learn as much as possible about the inputs and/or outputs
+ of the computation.
+ The processed data can be sent back to the data provider/s or to a third
+ parti, a data analyst, that is allowed to decrypt the result.
 \end_layout
 
 \begin_layout Section
@@ -545,18 +570,59 @@ Multiple Data Providers
 \end_layout
 
 \begin_layout Standard
-Kuri et al.
- (2017)
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-multi data provider
-\end_layout
+A possible approach to preserve privacy while examining data on outsourced
+ untrusted parti is to use secure 
+\emph on
+Multi-Party Computation (MPC) 
+\emph default
+techniques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goldreich98securemulti-party"
 
 \end_inset
 
+, which are focused on establishing a communication protocol between the
+ parties involved, such that if the parties follow it they will end with
+ the desired results while protecting the security and privacy of their
+ respective assets.
+\begin_inset Newline newline
+\end_inset
+
+Barni et al.
+ (2016) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barni2006APP"
+
+\end_inset
+
+ propose an iterative method to allow the privacy preserving forward phase
+ on a neural network.
+ The data owner encrypts the data and sends it to the cloud.
+ The cloud computes an inner product between the data and the weights of
+ the first layer, and sends the result to the data owner.
+ The data owner decrypts, applies the non-linear transformation, and encrypts
+ the result before sending it back to the cloud.
+ The cloud can apply the second layer and send the output back to the data
+ owner.
+ The process continues until all the layers have been computed.
+ However in 2007 Orlandi et al.
  in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Orlandi:2007:ONN:1340430.1340439"
+
+\end_inset
+
+ show that this process leaks information of the weights to the data owner
+ and therefore propose a method to obscure the weights.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Kuri et al.
+ (2017) in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DBLP:conf/ssci/Kuri0OOAP0M17"
@@ -649,7 +715,14 @@ learning rate.
  The updated global parameters are broadcasted to all the replicas, which
  then use them to replace their old weight parameters, until a minimum for
  a pre-defined cost function is reached.
- To ensure privacy additively homomorphic encryption is used and the updating
+ As showed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gradients-encrypted-Asynchronous"
+
+\end_inset
+
+, to ensure privacy additively homomorphic encryption is used and the updating
  formula becomes 
 \begin_inset Formula $E(W_{global}):=E(W_{global})+E(-\alpha\cdot G_{local})$
 \end_inset
@@ -714,19 +787,56 @@ The participants jointly set up the public key
  cost of increased communication between the learning participants and the
  cloud server.
  
-\begin_inset Note Note
-status collapsed
+\begin_inset Float figure
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
-Mettere immagine.
- Scrivere alla fine che comunque sono tutte cose che richiedono una sola
- operazione cifrata quindi basta Paillier
+\align center
+\begin_inset Graphics
+	filename Img/MPC.png
+	display false
+	scale 45
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gradients-encrypted Asynchronous SGD for privacy-preserving deep learning,
+ with a curious cloud server and N honest participants.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gradients-encrypted-Asynchronous"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
 
-\begin_inset Newline newline
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 Saeed Samet et al.
@@ -798,30 +908,54 @@ n+1
  The problem with this protocol is that the time needed for training increases
  with the number of parties involved.
  
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Fare quei due segnati in verde, più quello mandato dal prof, mettere immagin,
- mettere intro più lunga e spiagre suddivisione single data provider a multiple,
- vedere se puoi fare altre citazioni prendendole da 
 \begin_inset Newline newline
 \end_inset
 
-quelle di cryptonets.
- Scrivere cosa segnata nella precedente nota
-\end_layout
+All these works have in common the fact that they use relatively simple
+ HE schemes, that is, additively or multiplicative HE that allow to perform
+ homomorphically only one these operations.
+ In those cases HE as RSA, that is multiplicative homomorphic or Paillier
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Paillier"
 
 \end_inset
 
-
+ that is additively homomorphic are usually used.
+ 
 \end_layout
 
 \begin_layout Section
 Single Data Provider
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Single-Data-Provider"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Graepel et al.
+ (2013) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Graepel:2012:MCM:2482419.2482421"
+
+\end_inset
+
+ suggest a way to use adapt machine learning algorithms, as classification,
+ in order to train them over encrypted data.
+ Therefore, for homomorphic encryption limitations, they are forced to use
+ functions that learn low degree polynomials .
+ As a result, most of the algorithms proposed are of the linear discrimination
+ type and therefore for many tasks they do not deliver the same level of
+ accuracy as neural networks are capable of delivering.
+\begin_inset Newline newline
+\end_inset
+
 Yoshinori Aono et al, (2016) 
 \begin_inset Note Note
 status collapsed
@@ -970,6 +1104,135 @@ key "DBLP:conf/codaspy/AonoHPW16"
  addition to the encryption decreases the performances of the classifier,
  this imply that the usage of really large datasets is needed in order to
  mitigate the effect of noise introduced by differential privacy.
+\begin_inset Newline newline
+\end_inset
+
+One of the most important works that is considered to be the first and unique
+ example of application of HE to CNNs is the one presented by Dowlin et
+ al.
+ (2016) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+.
+ The difference with respect all the other works is given by the fact that
+ CNNs are really powerful classification machine learning model and are
+ way more complex than ELM or logistic regression.
+ They propose a method to convert learned neural networks to CryptoNets,
+ neural networks that can be applied to encrypted data.
+ This work focuses only on the inference stage and the assumption is that
+ the cloud (that has to perform the prediction) already has the model.
+ CryptoNets are able to make predictions on encrypted data coming from a
+ data provider on an outsourced server that provides back to the data owner
+ the results of computation, still in an encrypted form.
+ The data owner then is able to decrypt the results and access to the unencrypte
+d prediction.
+ In this sense the purpose of this work is similar to the one of this thesis,
+ however they do not provide an open source library for CNNs that works
+ homomorphically on encrypted data that can reproduce their work and they
+ do not focus on the estimate of optimal parameters for the HE conversion
+ of the CNN, even if this is an important starting point to achieve better
+ performances.
+ An other difference is the fact that they apply batching techniques in
+ order to pack more input data in the same ciphertext, using the Chinese
+ Reminder Theorem (CRT) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Commutative-Algebra"
+
+\end_inset
+
+ to perform Single Instruction Multiple Data (SIMD) operations 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HomomorphicEvalAESCircuit"
+
+\end_inset
+
+.This gives good throughput but relatively poor latency in terms of predictions
+ per hour.
+ 
+\end_layout
+
+\begin_layout Section
+Other related works
+\end_layout
+
+\begin_layout Standard
+One of the first attempt made to speed up the computation proposed in CryptoNets
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+, as presented in the previous Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Single-Data-Provider"
+
+\end_inset
+
+, has been made by Yizhi Wang et al.
+ (2018) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/iscas/WangLW18b"
+
+\end_inset
+
+.
+ In particular they propose an hardware solution, by broviding a dedicated
+ convolution core architecture for the most complex convolutional layers
+ of CryptoNets on the basis of Fan-Vercauteren (FV) HE scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+.
+ They propose a simplified modular multiplication algorithm suitable for
+ CryptoNets that enable to simplify and reduce dramatically hardware complexity.
+ Compared to a well optimized version CPU implementation of CryptoNets,
+ their proposed architecture is 
+\begin_inset Formula $11.9\times$
+\end_inset
+
+ faster while consuming a power of 
+\begin_inset Formula $537mW$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Zhenyong Zhang et al.
+ (2018) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kalman"
+
+\end_inset
+
+ propose the application of HE for secure Kalman Filter state estimation
+ in cyber-physical systems.
+ In their scenario, the data providers are multiple sensors that send their
+ measurements to an outsourced estimator node in charge of computing the
+ Kalman Filter prediction.
+ The goal of using HE is to protect data against confidentiality attacks
+ in the communication network or at the estimator node.
+ They consider that sensor measurements are valid but they can be overheard
+ during communications.
+ Furthermore, they assume a curious- but-honest estimator; i.e., the estimator
+ carries out the estimation faithfully, but it may try to learn as much
+ as possible about the inputs and/or outputs of the estimation.
+ They use RSA since there is only the need of a multiplicative homomorphic
+ encryption.
 \end_layout
 
 \begin_layout Chapter
@@ -6695,7 +6958,7 @@ name "fig:Binary-Search-Cases"
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "Citations/Kuri0OOAP0M17"
+bibfiles "Kuri0OOAP0M17"
 options "plain"
 
 \end_inset
