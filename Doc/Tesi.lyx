@@ -2118,6 +2118,13 @@ key "Bellare1995OptimalAE"
 
 \begin_layout Section
 Brakerski/Fan-Vercauteren scheme (BFV)
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:BFV"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3703,6 +3710,13 @@ and can be bounded as
 
 \begin_layout Subsection
 Encoding
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Encoding"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4018,6 +4032,14 @@ The choice of encryption parameters is crucial since it significantly affects
  ciphertexts that will not work with any homomorphic operations, or a combinatio
 n of all of these.
  In the practical implementation of the BFV encryption scheme SEAL 2.3.1 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SEAL"
+description "Simple Encrypted Arithmetic Library"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
@@ -4028,7 +4050,7 @@ key "SEALManual"
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:SEALnotation"
+reference "tab:notation"
 
 \end_inset
 
@@ -4054,7 +4076,7 @@ status collapsed
 Notation used
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:SEALnotation"
+name "tab:notation"
 
 \end_inset
 
@@ -4069,11 +4091,10 @@ name "tab:SEALnotation"
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
+<lyxtabular version="3" rows="4" columns="2">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top" width="7cm">
-<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
@@ -4099,18 +4120,6 @@ Description
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-\size footnotesize
-Name in SEAL
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -4130,20 +4139,7 @@ q
 \begin_layout Plain Layout
 
 \size footnotesize
-Modulus in the ciphertext space of the form q1 × ...
- × qk, where qi are prime
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family sans
-\size footnotesize
-coeff_modulus
+Modulus in the ciphertext space
 \end_layout
 
 \end_inset
@@ -4172,18 +4168,6 @@ Modulus in the plaintext space
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\family sans
-\size footnotesize
-plain_modulus
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" bottomline="true" usebox="none">
@@ -4204,15 +4188,6 @@ n
 
 \size footnotesize
 A power of 2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -4518,12 +4493,6 @@ name "tab:Default-pairs-(n,q)"
 Bit-length of 
 \emph on
 q
-\emph default
-
-\begin_inset Formula ${\normalcolor =\sum_{i=1}^{k}log_{2}(q_{i})}$
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -4866,7 +4835,14 @@ Inserire nella cosa teorica NB per ogni operazione
 \end_layout
 
 \begin_layout Section
-Optimization Problem
+Optimization Problem 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Optimization-Problem"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5141,7 +5117,20 @@ f
 placement H
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Img/trs2.pdf
+	display false
+	scale 60
+	clip
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -5162,20 +5151,11 @@ name "fig:Transformation"
 \end_inset
 
 
-\begin_inset Graphics
-	filename Img/trs2.pdf
-	display false
-	scale 60
-	clip
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
 
-The task of function 
+The function 
 \emph on
 f
 \emph default
@@ -5246,7 +5226,14 @@ notag
 \backslash
 
 \backslash
-    
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:tleq}  
 \end_layout
 
 \begin_layout Plain Layout
@@ -5260,22 +5247,9 @@ notag
 
 \begin_layout Plain Layout
 
-& 2
-\backslash
-leq t 
-\backslash
-leq 2^{59} 
-\backslash
 
 \backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-label{eq:infinityNorm}
+label{eq:infNorm}
 \end_layout
 
 \begin_layout Plain Layout
@@ -5307,7 +5281,7 @@ varPhi}
 
 
 \backslash
-label{eq:TOTAL_NB}
+label{eq:TOTAL_NBB}
 \end_layout
 
 \begin_layout Plain Layout
@@ -5335,48 +5309,7 @@ theta_i}})
 
 
 \backslash
-label{eq:q1} 
-\end_layout
-
-\begin_layout Plain Layout
-
-& q=
-\backslash
-prod_{i=1}^k q_i
-\backslash
-; s.t.
- 
-\backslash
-; q_i= 1
-\backslash
-:(mod
-\backslash
-,2n)
-\backslash
-; 
-\backslash
-textmd{and}
-\backslash
-; q_i 
-\backslash
-; 
-\backslash
-text{prime} 
-\backslash
-;
-\backslash
-forall{i=1,...,k}
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-label{eq:q2}
+label{eq:Q2}
 \end_layout
 
 \begin_layout Plain Layout
@@ -5400,7 +5333,7 @@ lambda(n)
 
 
 \backslash
-label{eq:n} 
+label{eq:N} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -5412,15 +5345,7 @@ label{eq:n}
 \backslash
 ;d
 \backslash
-in N 
-\backslash
-;
-\backslash
-textmd{and} 
-\backslash
-; d
-\backslash
-geq 10
+in N  
 \backslash
 
 \backslash
@@ -5446,17 +5371,15 @@ notag
 
 & 
 \backslash
-lambda 
+alpha, 
 \backslash
-in 
+beta, 
 \backslash
-left
+gamma , 
 \backslash
-{128,192,256 
+delta 
 \backslash
-right
-\backslash
-} 
+geq 0 
 \backslash
 notag
 \end_layout
@@ -5475,55 +5398,50 @@ The first term of the objective function is the prediction error of the
 \begin_inset Formula $\widetilde{\varPhi}$
 \end_inset
 
-, that causes a significantly loss of accuracy with respect to the one of
- the original model 
+, that can cause a significant loss in accuracy with respect to the one
+ of the original model 
 \begin_inset Formula $\varPhi$
 \end_inset
 
- if not properly minimized with a big parameter 
-\begin_inset Formula $\alpha$
-\end_inset
-
 .
- However, there is also the need to find the minimal 
+ There is also the need to find the minimal 
 \emph on
 n, q
 \emph default
  and 
 \emph on
-t
-\emph default
- (by using appropriate big parameters)
-\emph on
- 
+t 
 \emph default
 that preserve the original accuracy of the model in order to introduce the
  smallest possible performance's overhead in terms of memory and computational
- complexity required by the encoded model 
+ complexities required by the encoded model 
 \begin_inset Formula $\widetilde{\varPhi}$
 \end_inset
 
 .
+ One can set parameters 
+\begin_inset Formula $\alpha,\gamma,\delta,\beta$
+\end_inset
+
+ depending on its needs and an the application field of the CNN.
+ For example 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ can be set to be small if a bigger prediction error is tolerated.
+ 
 \begin_inset Newline newline
 \end_inset
 
-These parameters are subject to a number of constraints given both by the
- BFV HE scheme 
+These parameters are subject to a number of constraints given by the BFV
+ HE scheme that has been previously described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Homomorphic-Encryption"
-
-\end_inset
-
- and by its practical implementation 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "SEALManual"
+reference "sec:BFV"
 
 \end_inset
 
 .
- 
 \begin_inset Newline newline
 \end_inset
 
@@ -5540,18 +5458,10 @@ t
 \emph default
 must be smaller than the coefficient modulus 
 \emph on
-q 
+q
 \emph default
-and be a number between 
-\begin_inset Formula $2$
-\end_inset
-
- and 
-\begin_inset Formula $2^{59}$
-\end_inset
-
-.
- The constraint 
+ (Eq.
+ 
 \begin_inset ERT
 status open
 
@@ -5559,14 +5469,59 @@ status open
 
 
 \backslash
-eqref{eq:TOTAL_NB}
+eqref{eq:tleq}
 \end_layout
 
 \end_inset
 
- refers to the one introduced in equation 
+).
+ Constraint in Eq.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infNorm}
+\end_layout
+
+\end_inset
+
+ is of crucial importance as written in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ and requires that the infinity norm of every generic computation in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ , both internal to a single layer or at the end of it, and thus the encrypted
+ polynomial that represent this result, never exceed the plaintext modulus
+ 
+\emph on
+t.
+
+\emph default
+ Constraint in Eq.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NBB}
+\end_layout
+
+\end_inset
+
+ refers to the one introduced in Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
 reference "eq:NOISE_BUDGET"
 
 \end_inset
@@ -5586,40 +5541,7 @@ status open
 
 
 \backslash
-eqref{eq:q1}
-\end_layout
-
-\end_inset
-
- refers to the practical shape of 
-\emph on
-q 
-\emph default
-to implement efficient modular arithmetic and to use David Harvey’s algorithm
- for NTT 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "NTT"
-description "Number-Theoretic Transform"
-
-\end_inset
-
- as described in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/corr/abs-1205-2926"
-
-\end_inset
-
-, while constraint 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:q2}
+eqref{eq:Q2}
 \end_layout
 
 \end_inset
@@ -5657,7 +5579,7 @@ status open
 
 
 \backslash
-eqref{eq:n}
+eqref{eq:N}
 \end_layout
 
 \end_inset
@@ -5674,7 +5596,13 @@ eqref{eq:n}
 \begin_inset Newline newline
 \end_inset
 
-Constraint 
+
+\emph on
+ 
+\emph default
+The real hard problem to solve is the exact calculus of the right term of
+ constraint in Eq.
+ 
 \begin_inset ERT
 status open
 
@@ -5682,31 +5610,12 @@ status open
 
 
 \backslash
-eqref{eq:infinityNorm}
+eqref{eq:infNorm}
 \end_layout
 
 \end_inset
 
- is of crucial importance as written in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Encryption-Parameters"
-
-\end_inset
-
- and requires that the infinity norm of every generic computation in 
-\begin_inset Formula $\tilde{\varPhi}$
-\end_inset
-
- , both internal to a single layer or at the end of it, and thus the encrypted
- polynomial that represent this result, never exceed the plaintext modulus
- 
-\emph on
-t.
- 
-\emph default
-The real hard problem to solve is the exact calculus of the right term of
- this constraint that is valid for every possible input data.
+ that is valid for every possible input data.
  Indeed each operation in the model 
 \begin_inset Formula $\widetilde{\varPhi}$
 \end_inset
@@ -5722,6 +5631,13 @@ p
 , but since operations are performed homomorphically, i.e.
  the polynomial in input as first is encoded as a polynomial in 
 \begin_inset Formula $R_{t}$
+\end_inset
+
+ as described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Encoding"
+
 \end_inset
 
  and then encrypted as a polynomial in 
@@ -5752,43 +5668,7 @@ has occurred, since the result is different from the expected one.
 \emph on
 t 
 \emph default
-would be found (e.g.
- 
-\begin_inset Formula $t>2^{59}$
-\end_inset
-
-).
- For example, in SEAL 2.3.1 there is the possibility to use an automatic parameter
- selection module that given a computation to perform basically builds a
- graph of that computation instead of actually calculating it and tries
- to estimates the grow of infinity norm and noise so to find appropriate
- overall parameters.
- The problem is that, for example, given an addition operation and two polynomia
-ls 
-\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
-\end_inset
-
- to sum with infinity norm respectively 
-\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
-\end_inset
-
- the infinity norm of 
-\begin_inset Formula $p_{3}=p_{1}+p_{2}$
-\end_inset
-
- is computed as 
-\begin_inset Formula $||p_{3}||=a_{1}+a_{2}$
-\end_inset
-
- that is a really pessimistic case, since it true only if coefficients 
-\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
-\end_inset
-
- are associated to the same power in their respective polynomials 
-\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
-\end_inset
-
-.
+would be found.
  It is important to underline the fact that this estimate is used also to
  calculate the noise added to the resulting polynomial and thus that will
  induce a rough computation also of the right term in 
@@ -5799,7 +5679,7 @@ status open
 
 
 \backslash
-eqref{eq:TOTAL_NB}
+eqref{eq:TOTAL_NBB}
 \end_layout
 
 \end_inset
@@ -5817,7 +5697,7 @@ status open
 
 
 \backslash
-eqref{eq:infinityNorm}
+eqref{eq:infNorm}
 \end_layout
 
 \end_inset
@@ -5830,7 +5710,7 @@ status open
 
 
 \backslash
-eqref{eq:TOTAL_NB}
+eqref{eq:TOTAL_NBB}
 \end_layout
 
 \end_inset
@@ -6953,6 +6833,821 @@ name "fig:Binary-Search-Cases"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Practical considerations of the proposed solution
+\end_layout
+
+\begin_layout Standard
+In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+the encryption parameters with their relationships has been described form
+ a theoretical point of view depending on the underling BFV scheme that
+ has been considered.
+\begin_inset Newline newline
+\end_inset
+
+In this Chapter these parameters will be considered with respect to the
+ practical implementation of the BFV scheme given by the Simple Encryption
+ Arithmetic Library (SEAL 2.3.1).
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SEAL"
+description "Simple Encrypted Arithmetic Library"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Practical Encryption Parameters
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\series bold
+plaintext modulus 
+\emph on
+t
+\series default
+ 
+\emph default
+in SEAL can be any positive integer at least 2 and at most 60 bits length,
+ thus 
+\begin_inset Formula $2\leq t\leq2^{59}$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In the 
+\series bold
+polynomial modulus
+\series default
+ 
+\begin_inset Formula $(x^{n}+1)$
+\end_inset
+
+
+\series bold
+\emph on
+, n
+\series default
+\emph default
+ is a power of 2 as described before.
+ 
+\begin_inset Newline newline
+\end_inset
+
+For performance reasons in SEAL the
+\series bold
+ coefficient modulus 
+\emph on
+q
+\series default
+ 
+\emph default
+is a product of multiple small primes 
+\begin_inset Formula $q_{1}\times...\times q_{k}$
+\end_inset
+
+ , even if taking these 
+\begin_inset Formula $q_{k}$
+\end_inset
+
+ to be of special form does not provide any additional performance improvement.
+ Therefore, it is possible to choose a set of arbitrary primes regarding
+ their requirements as long as they are at most 60-bits long and 
+\begin_inset Formula $q_{i}=1\;(mod\;2n)\;\text{for }i\in\{1,2,...,k\}$
+\end_inset
+
+.
+ For this reason the bit length of 
+\emph on
+q 
+\emph default
+as referred in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ is equal to 
+\series bold
+
+\begin_inset Formula ${\normalcolor \sum_{i=1}^{k}log_{2}(q_{i})}$
+\end_inset
+
+.
+ 
+\series default
+These parameters are listed in the Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:SEALnotation"
+
+\end_inset
+
+
+\series bold
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing double
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Notation used in SEAL 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:SEALnotation"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="7cm">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Parameter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Name in SEAL
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+q
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Modulus in the ciphertext space of the form q1 × ...
+ × qk, where qi are prime
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\size footnotesize
+coeff_modulus
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+t
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Modulus in the plaintext space
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family sans
+\size footnotesize
+plain_modulus
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+n
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+A power of 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Practical optimization problem
+\end_layout
+
+\begin_layout Standard
+The optimization problem presented in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optimization-Problem"
+
+\end_inset
+
+ must be changed according to the new and more detailed description of the
+ parameters of Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align}   
+\end_layout
+
+\begin_layout Plain Layout
+
+ &
+\backslash
+min_{n,q,t} 
+\backslash
+;    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{aligned}[t]     
+\end_layout
+
+\begin_layout Plain Layout
+
+  &
+\backslash
+alpha 
+\backslash
+sum_i^{D}(y_i-
+\backslash
+tilde{y_i})^2 + 
+\backslash
+gamma{t} + 
+\backslash
+delta{n} + 
+\backslash
+beta q    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{aligned} 
+\backslash
+notag 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+&
+\backslash
+text{subject to} 
+\backslash
+notag 
+\backslash
+
+\backslash
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+& t<q 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:between}  
+\end_layout
+
+\begin_layout Plain Layout
+
+& 2
+\backslash
+leq t 
+\backslash
+leq 2^{59} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:infinityNorm}
+\end_layout
+
+\begin_layout Plain Layout
+
+& t > 
+\backslash
+max{||p||} 
+\backslash
+;
+\backslash
+;
+\backslash
+text{with } p 
+\backslash
+in R_t 
+\backslash
+text{ and generic intermediate result of } 
+\backslash
+tilde{
+\backslash
+varPhi}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:TOTAL_NB}
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+log_2{(
+\backslash
+frac{q}{t})} > 
+\backslash
+sum_{i=1}^lNB_{n,q,t}(
+\backslash
+phi^{(i)}_{
+\backslash
+tilde{
+\backslash
+theta_i}}) 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:q1} 
+\end_layout
+
+\begin_layout Plain Layout
+
+& q=
+\backslash
+prod_{i=1}^k q_i
+\backslash
+; s.t.
+ 
+\backslash
+; q_i= 1
+\backslash
+:(mod
+\backslash
+,2n)
+\backslash
+; 
+\backslash
+textmd{and}
+\backslash
+; q_i 
+\backslash
+; 
+\backslash
+text{prime} 
+\backslash
+;
+\backslash
+forall{i=1,...,k}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:q2}
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+sum_{i=1}^k
+\backslash
+log_2q_i
+\backslash
+leq 
+\backslash
+lambda(n)
+\backslash
+
+\backslash
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:n} 
+\end_layout
+
+\begin_layout Plain Layout
+
+& n=2^d 
+\backslash
+; s.t.
+ 
+\backslash
+;d
+\backslash
+in N 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:d} 
+\end_layout
+
+\begin_layout Plain Layout
+
+&d
+\backslash
+geq 10
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+& t,q,n 
+\backslash
+in 
+\backslash
+mathbb N 
+\backslash
+notag
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align}
+\end_layout
+
+\end_inset
+
+These parameters are subject to a number of additional constraints given
+ both by the practical implementation of the BFV HE scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In details, as mentioned before in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+ the plaintext modulus 
+\emph on
+t 
+\emph default
+is constrained to be an integer number between 
+\begin_inset Formula $2$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{59}$
+\end_inset
+
+ (Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:between}
+\end_layout
+
+\end_inset
+
+ ).
+ Constraint in Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:q1}
+\end_layout
+
+\end_inset
+
+ refers to the practical shape of 
+\emph on
+q 
+\emph default
+to implement efficient modular arithmetic and to use David Harvey’s algorithm
+ for NTT 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NTT"
+description "Number-Theoretic Transform"
+
+\end_inset
+
+ as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/abs-1205-2926"
+
+\end_inset
+
+.
+ Constraint in Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:d}
+\end_layout
+
+\end_inset
+
+ is given to have a degree 
+\emph on
+n 
+\emph default
+of the polynomial modulus of at least 
+\begin_inset Formula $1024$
+\end_inset
+
+, in order to have a correspondent upper bound of bits of 
+\emph on
+q 
+\emph default
+(see Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+) that allow to have a starting NB greater than zero for at least some plaintext
+ moduli 
+\emph on
+t.
+
+\emph default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Concerning constraint in Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infinityNorm}
+\end_layout
+
+\end_inset
+
+ it is possible to provided a more practical example, to give an idea of
+ how difficult is to estimate the grow of the infinity norm by considering
+ the specific operation to perform.In SEAL 2.3.1 there is the possibility to
+ use an automatic parameter selection module that given a computation to
+ perform basically builds a graph of that computation instead of actually
+ calculating it and tries to estimates the grow of infinity norm and noise
+ so to find appropriate overall parameters.
+ The problem is that, for example, given an addition operation and two polynomia
+ls 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+ to sum with infinity norm respectively 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ the infinity norm of 
+\begin_inset Formula $p_{3}=p_{1}+p_{2}$
+\end_inset
+
+ is computed as 
+\begin_inset Formula $||p_{3}||=a_{1}+a_{2}$
+\end_inset
+
+ that is a really pessimistic case, since it true only if coefficients 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ are associated to the same power in their respective polynomials 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
