@@ -125,6 +125,14 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset nomencl_print
 LatexCommand printnomenclature
 set_width "auto"
@@ -2501,7 +2509,11 @@ bound on the distribution
 \begin_inset Formula $\chi$
 \end_inset
 
+, that is it is supported on 
+\begin_inset Formula $[-B,B]$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Subsection
@@ -2536,6 +2548,20 @@ Shortest Vector Problem
  approximate SVP.
  Informally, the SVP requires a player to provide a shortest possible vector
  in a given lattice and it is known to be an NP-hard problem.
+ In particular, the asymptotically fastest known algorithms for obtaining
+ an approximation to SVP on ideal lattices to within polynomial factors
+ require time 
+\begin_inset Formula $2^{\text{Ω}(n)}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "eurocrypt-2010-24000"
+
+\end_inset
+
+.
  Thus, the only evidence supporting the conjecture that LWE is as hard as
  SVP is the fact that there are no known quantum algorithms for lattice
  problems that outperform classical algorithms, even though this is probably
@@ -2846,6 +2872,13 @@ key "eurocrypt-2010-24000"
 
 \begin_layout Subsection
 Noise
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Noise"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3008,7 +3041,14 @@ is the left noise in the ciphertext before decryption fails.
 \end_layout
 
 \begin_layout Definition
-(Noise Budget )
+(Noise Budget 
+\begin_inset CommandInset label
+LatexCommand label
+name "def:(Noise-Budget)"
+
+\end_inset
+
+)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
@@ -3139,7 +3179,14 @@ Let
 \end_layout
 
 \begin_layout Subsection
-Operations and Noise Growth
+Operations and Noise Growth 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Operations-and-Noise"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4031,31 +4078,23 @@ The choice of encryption parameters is crucial since it significantly affects
  Some choices of parameters may be insecure, give poor performance, yield
  ciphertexts that will not work with any homomorphic operations, or a combinatio
 n of all of these.
- In the practical implementation of the BFV encryption scheme SEAL 2.3.1 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "SEAL"
-description "Simple Encrypted Arithmetic Library"
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "SEALManual"
-
-\end_inset
-
-, it is possible to find their list with their corresponding names Table
- 
+ In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:notation"
 
 \end_inset
 
- and below it is explained how these parameters are practically implemented
- and which are their relations.
+ there is a list of the most important parameters of the BFV encryption
+ scheme, that has been explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:BFV"
+
+\end_inset
+
+ and below it is explained which are the relations that these parameters
+ have eachother.
 \begin_inset Newline newline
 \end_inset
 
@@ -4066,7 +4105,7 @@ reference "tab:notation"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \paragraph_spacing double
@@ -4202,22 +4241,16 @@ A power of 2
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Before to encrypt a number it must be encoded as a plaintext polynomial,
- indeed 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-in BFV
-\end_layout
+Before to encrypt a number it must be encoded as a plaintext polynomial
+ as explained in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
 
 \end_inset
 
-the plaintext space is 
+.
+ Indeed in BFV the plaintext space is 
 \begin_inset Formula $R_{t}=\mathbb{Z}_{t}[x]/(x^{n}+1)$
 \end_inset
 
@@ -4238,9 +4271,9 @@ t
 \emph default
 , otherwise the decryption procedure will lead to incorrect results.
  
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 The 
 \series bold
 plaintext modulus 
@@ -4249,27 +4282,14 @@ t
 \series default
  
 \emph default
-in SEAL can be any positive integer at least 2 and at most 60 bits length,
- thus 
-\begin_inset Formula $2\leq t\leq2^{59}$
-\end_inset
-
-.
+in the BFV scheme can be any positive integer.
  There is not a prescribed plaintext polynomial that is better than others,
- because it depends on the calculus and data that is needed to perform.
+ because it depends on the calculi (i.e.
+ in the considered case, on the structure of the CNN) and data that is needed
+ to perform.
  Nevertheless, it is not easy to understand which is the maximum infinity
- norm 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Mettere esempio di somma che sovrastima
-\end_layout
-
-\end_inset
-
-of a polynomial that is reached throughout the computations, but it is a
- key point not to lose integrity of the expected result.
+ norm of a polynomial that is reached throughout the computations, but it
+ is a key point not to lose integrity of the expected result.
  The plaintext modulus influences also the so called Noise budget NB, 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
@@ -4278,11 +4298,26 @@ description "Noise Budget"
 
 \end_inset
 
- which determines the number of operations one can perform on a ciphertext
- (multiplications, additions, exponentiations, both with another ciphertext
- or plaintext ) without compromising the final result.
- More precisely, the noise budget in a freshly encrypted ciphertext is:
- 
+ that has been presented in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Noise"
+
+\end_inset
+
+.
+ As explained before, the NB determines the number of operations one can
+ perform on a ciphertext (multiplications, additions, exponentiations, both
+ with another ciphertext or plaintext ) without compromising the final result.
+ More precisely, the value of the NB in a freshly encrypted ciphertext,
+ given in Definition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:(Noise-Budget)"
+
+\end_inset
+
+ can be approximated by the following formula: 
 \end_layout
 
 \begin_layout Standard
@@ -4314,26 +4349,69 @@ n
 \emph default
  is a power of 2.
  This is both for security and performance reasons.
- Using a larger
-\emph on
- n
-\emph default
- allows for a larger 
-\emph on
-q
-\emph default
- to be used without decreasing the security level 
+ Indeed as explained in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:Default-pairs-(n,q)"
+reference "sec:BFV"
 
 \end_inset
 
-, which in turn increases the noise ceiling and thus allows for larger 
+, the discrete Gaussian distribution 
+\begin_inset Formula $D_{\mathbb{Z},\sigma}$
+\end_inset
+
+ is used to define a distribution 
+\begin_inset Formula $\chi$
+\end_inset
+
+ on 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ The distribution 
+\begin_inset Formula $\chi$
+\end_inset
+
+ is in general not as simple as just sampling coefficients according to
+ 
+\begin_inset Formula $D_{\mathbb{Z},\sigma}$
+\end_inset
+
+.
+ However, for the polynomial 
+\begin_inset Formula $(x^{n}+1)$
+\end_inset
+
+ with
+\series bold
+ 
 \emph on
-t
+n
+\series default
 \emph default
- to be used.
+ is a power of 2, 
+\begin_inset Formula $\chi$
+\end_inset
+
+ can indeed be defined as 
+\begin_inset Formula $D_{\mathbb{Z},\sigma}^{n}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+, form which is possible to sample in a more efficient way.
+ Increasing
+\emph on
+ n
+\emph default
+ significantly decreases performances since operations are performed over
+ polynomials of bigger degree.
 \begin_inset Newline newline
 \end_inset
 
@@ -4349,96 +4427,85 @@ q
 \series default
  
 \emph default
-affect: the noise budget in a freshly encrypted ciphertext 
+affect: the noise budget in a freshly encrypted ciphertext (see Eq.
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:NOISE_BUDGET"
 
 \end_inset
 
- and the security level 
+) and the security level (see Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Default-pairs-(n,q)"
 
 \end_inset
 
-.
+).
  In general it is possible to take as 
 \emph on
 q 
 \emph default
 any integer as long as it is not too large to cause security problems.
- For performance reasons in SEAL 
-\emph on
-q 
-\emph default
-is a product of multiple small primes 
-\begin_inset Formula $q_{1}\times...\times q_{k}$
-\end_inset
-
- , even if taking these 
-\begin_inset Formula $q_{k}$
-\end_inset
-
- to be of special form does not provide any additional performance improvement.
- Therefore, it is possible to choose a set of arbitrary primes regarding
- their requirements as long as they are at most 60-bits long and 
-\begin_inset Formula $q_{i}=1\;(mod\;2n)\;\text{for }i\in\{1,2,...,k\}$
-\end_inset
-
-.
- Decreasing 
-\emph on
-q 
-\emph default
-with all the other parameters held fixed, only increases the security level.
- Indeed according to the most recent homomorphic encryption security standards
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "HomomorphicEncryptionSecurityStandard"
-
-\end_inset
-
-, that assume 
-\begin_inset Formula $\sigma$
-\end_inset
-
- to be the default value, for each chosen 
-\emph on
-n 
-\emph default
-and security level 
-\begin_inset Formula $\lambda$
-\end_inset
-
- there is an upper bound for the bit length of 
-\emph on
-q 
-\emph default
-(i.e.
- 
-\begin_inset Formula $\sum_{i=1}^{k}log_{2}(q_{i})$
-\end_inset
-
-) as written in Table 
+ In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Default-pairs-(n,q)"
 
 \end_inset
 
-.
-\begin_inset Note Note
-status collapsed
+ are showed the upper bounds on the bit length of 
+\emph on
+q 
+\emph default
+with respect to a given security level 
+\begin_inset Formula $\lambda$
+\end_inset
 
-\begin_layout Plain Layout
-per un certo problema BKZ
-\end_layout
+ and a polynomial modulus degree 
+\emph on
+n, 
+\emph default
+assuming the standard deviation of the discrete Gaussian distribution 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ to be the default value (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:BFV"
 
 \end_inset
 
+ ).
+ These values are retrieved according to the most recent homomorphic encryption
+ security standards.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ shows that using a larger
+\emph on
+ n
+\emph default
+ allows for a larger 
+\emph on
+q
+\emph default
+ to be used without decreasing the security level, which in turn increases
+ the noise ceiling and thus allows for larger 
+\emph on
+t
+\emph default
+ to be used.
+ For this reason, decreasing 
+\emph on
+q 
+\emph default
+with all the other parameters held fixed, only increases the security level.
  
 \begin_inset Float table
 wide false
@@ -4450,7 +4517,11 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Default pairs (n,q) for 128-bit, 192-bit, and 256-bit security levels.
+Default pairs (n, q) for 128-bit, 192-bit, and 256-bit 
+\begin_inset Formula $\lambda$
+\end_inset
+
+-security levels.
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Default-pairs-(n,q)"
@@ -4800,10 +4871,6 @@ n
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 On the other hand, given a certain 
 \emph on
 q
@@ -4816,22 +4883,27 @@ t
  but at the same time decreases the initial NB and thus the possibility
  to evaluate a longer circuit (number of operations) on input data.
  Indeed, each operation performed adds a certain amount of noise to the
- initial ciphertext 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Inserire nella cosa teorica NB per ogni operazione
-\end_layout
+ initial ciphertext and the NB in a freshly encrypted number is the max
+ amount of noise is it possible to add, as detailed in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Noise"
 
 \end_inset
 
- and the NB in a freshly encrypted number is the max amount of noise is
- it possible to add.
+.
  Note that the NB computed is a pessimistic estimate and not a precise computed
  value and that the NB consumed depends not only on the type of operation
  performed (multiplication rather than addition), but also on the encryption
- parameters q and t chosen.
+ parameters 
+\emph on
+q
+\emph default
+ and 
+\emph on
+t
+\emph default
+ chosen.
 \end_layout
 
 \begin_layout Section
@@ -4872,21 +4944,23 @@ description "Convolutional Neural Network"
 
 \end_inset
 
- where the depth of the circuit to compute on input data is generally high,
- the number of weights that composes the CNN's model is huge as shown in
- 
+ where there are many nested computations to perform (i.
+ e.
+ the depth of the circuit to compute on input data is generally high) and
+ the number of parameters (i.e.
+ weights) that composes the CNN's model is huge as shown in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Alippi:2018:MCN:3207947.3207995"
 
 \end_inset
 
- and the input data seen as vector is of big dimension.
+.
  
 \begin_inset Newline newline
 \end_inset
 
-Let 
+If 
 \emph on
 
 \begin_inset Formula $I$
@@ -4894,7 +4968,7 @@ Let
 
 
 \emph default
- be a 
+ is a 
 \begin_inset Formula $r\times c\times d$
 \end_inset
 
@@ -4910,7 +4984,7 @@ c
 \emph on
 d 
 \emph default
-channels (i.e.
+channels (e.g.
  
 \emph on
 d=
@@ -4919,58 +4993,163 @@ d=
 \emph on
 d=1 
 \emph default
-for grey-scale images).
- Let 
+for grey-scale images), 
 \begin_inset Formula $y\in\varPsi=\{w_{1},...,w_{\varPsi}\}$
 \end_inset
 
- be the output of the CNN representing the multi-class classification of
- 
-\emph on
-I.
- 
-\emph default
-Let the pre-trained model of a CNN 
-\begin_inset Formula $\varPhi$
-\end_inset
-
-, defined as 
-\begin_inset Formula $y=\varPhi(I)$
-\end_inset
-
-, the objective to be pursued is not only to find suitable encryption parameters
- able to perform the CNN's transformation in the encryption world in order
- to accomplish the same classification task for which it has been trained
- but on encrypted input data, but also to find the optimal ones.
- In other words, the goal is to find a function 
-\emph on
-f
-\emph default
- that finds the best possible transformation for 
-\begin_inset Formula $\varPhi$
-\end_inset
-
- and therefore the optimal parameters 
-\emph on
-n 
-\emph default
-and 
-\emph on
-t 
-\emph default
-to generate this transformation and that together with 
-\emph on
-q 
-\emph default
-must be used to encrypt input data 
+ is the output of the CNN representing the multi-class classification of
+ image 
 \emph on
 I
 \emph default
+ and 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is the pre-trained model of a CNN, defined as 
+\begin_inset Formula $y=\varPhi(I)$
+\end_inset
+
+, there are two objectives that can be defined and can be pursued:
+\end_layout
+
+\begin_layout Enumerate
+Transform the CNN's pre-trained model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+, such that the transformed 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ is able to accomplish the same classification task of the original 
+\begin_inset Formula $\Phi$
+\end_inset
+
+ but on encrypted input data 
+\emph on
+Enc(I).
+\end_layout
+
+\begin_layout Enumerate
+Find suitable encryption parameters 
+\emph on
+n, t, 
+\emph default
+and 
+\emph on
+q 
+\emph default
+that allow to perform this transformation
+\emph on
+ 
+\emph default
+in an optimal way.
+\end_layout
+
+\begin_layout Standard
+Since homomorphic encryption supports only additions and multiplications,
+ only polynomial functions can be computed in a straightforward way, thus
+ the transformation of 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ can be achieved if 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ contains only polynomial functions.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+come scritto nel capitolo sulle CNN
+\end_layout
+
+\end_inset
+
+ The transformation of 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ consists basically in an encoding of all the parameters 
+\begin_inset Formula $\theta$
+\end_inset
+
+ of 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+, i.e.
+ , each 
+\begin_inset Formula $\theta$
+\end_inset
+
+ becomes 
+\begin_inset Formula $\tilde{\theta}$
+\end_inset
+
+ that is, a polynomial in the plaintext space 
+\begin_inset Formula $R_{t}$
+\end_inset
+
 .
+ The encoding methodology has been explained in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+.
+ For this reason the model 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ is not encrypted, but only encoded, and most of the operations can be performed
+, in a more efficient way, as 
+\noun on
+plain multiplications 
+\noun default
+and 
+\noun on
+plain additions 
+\noun default
+(see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+)
+\noun on
+.
+ 
+\noun default
+
 \begin_inset Newline newline
 \end_inset
 
-More formally, given the CNN's model 
+More formally, the previous two objectives can be seen as the output of
+ a function 
+\emph on
+f
+\emph default
+ that, given the CNN's model 
 \begin_inset Formula $\varPhi$
 \end_inset
 
@@ -4982,7 +5161,7 @@ such that
 \begin_inset Formula $I\in D$
 \end_inset
 
- with their corresponding classifications 
+ with its corresponding classifications 
 \emph on
 Y
 \emph default
@@ -4993,16 +5172,6 @@ Y
 \end_inset
 
 , 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-or range
-\end_layout
-
-\end_inset
-
- 
 \emph default
 the upper bound for the degree 
 \begin_inset Formula $n$
@@ -5012,7 +5181,7 @@ the upper bound for the degree
 \begin_inset Formula $N_{max}$
 \end_inset
 
- ,the range for the values in which the plaintext modulus 
+ , the range of values in which the plaintext modulus 
 \emph on
 t 
 \emph default
@@ -5024,6 +5193,18 @@ can vary
 \begin_inset Formula $\lambda$
 \end_inset
 
+; provides the CNN's model 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ encoded with the optimal 
+\emph on
+n, q 
+\emph default
+and 
+\emph on
+t 
+\emph default
 :
 \end_layout
 
@@ -5035,42 +5216,6 @@ can vary
 
 \end_inset
 
-where 
-\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
-\end_inset
-
- is the CNN's model encoded with the optimal 
-\emph on
-n 
-\emph default
-and 
-\emph on
-t 
-\emph default
-found by 
-\emph on
-f.
-\emph default
-
-\begin_inset Newline newline
-\end_inset
-
-An encoded CNN is a CNN where each of its parameters 
-\begin_inset Formula $\theta$
-\end_inset
-
- has been transformed to 
-\begin_inset Formula $\tilde{\theta}$
-\end_inset
-
- that is, a polynomial in the plaintext space 
-\begin_inset Formula $R_{t}$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5078,7 +5223,11 @@ reference "fig:Transformation"
 
 \end_inset
 
- shows a normal CNN with 
+ shows a normal CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ with 
 \emph on
 l 
 \emph default
@@ -5103,21 +5252,27 @@ th layer, that receives as input the computation of the previous layer
 \end_inset
 
 .
- Below there is the CNN transformed by the function 
+ Below 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ there is 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+, that is the CNN transformed by the function 
 \emph on
 f
 \emph default
- in a way that allows it to perform homomorphically the same computations
- but on encrypted data 
-\begin_inset Formula $Enc(I)$
+ as explained before.
+\begin_inset Newline newline
 \end_inset
 
-.
+
 \begin_inset Float figure
-placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -5137,8 +5292,19 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The general structure of a CNN and its transformation in the encryption
- world
+General structure of a CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ and below its transformation in 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ in the encryption world accomplished by function 
+\emph on
+f.
+\emph default
+
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Transformation"
@@ -5155,11 +5321,63 @@ name "fig:Transformation"
 
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 The function 
 \emph on
 f
 \emph default
- can be modeled by the following optimization problem:
+ can be modeled by the 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "OptimizationProblem1"
+
+\end_inset
+
+ 1.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Optimization problem 1 
+\begin_inset CommandInset label
+LatexCommand label
+name "OptimizationProblem1"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -5242,7 +5460,25 @@ label{eq:tleq}
 \backslash
 
 \backslash
-    
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{eq:biggerthan2}   
+\end_layout
+
+\begin_layout Plain Layout
+
+& q
+\backslash
+geq 2 
+\backslash
+
+\backslash
+ 
 \end_layout
 
 \begin_layout Plain Layout
@@ -5314,19 +5550,15 @@ label{eq:Q2}
 
 \begin_layout Plain Layout
 
-& 
+& log_2q
 \backslash
-sum_{i=1}^k
+leq UB(
 \backslash
-log_2q_i
-\backslash
-leq 
-\backslash
-lambda(n)
+lambda,n)
 \backslash
 
 \backslash
-   
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -5389,6 +5621,11 @@ notag
 
 \backslash
 end{align}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5474,6 +5711,24 @@ eqref{eq:tleq}
 
 \end_inset
 
+) and 
+\emph on
+q 
+\emph default
+must be at least two (Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:biggerthan2}
+\end_layout
+
+\end_inset
+
 ).
  Constraint in Eq.
 \begin_inset ERT
@@ -5547,30 +5802,26 @@ eqref{eq:Q2}
 \end_inset
 
  is referred to the security of the encryption since the total bit count
- of the 
-\begin_inset Formula $q_{i}$
+ of 
+\begin_inset Formula $q$
 \end_inset
 
- that compose 
-\emph on
-q 
-\emph default
-must be smaller than the security level 
-\begin_inset Formula $\lambda$
-\end_inset
-
- given 
-\emph on
-n 
-\emph default
-as shown in Table 
+ must be smaller than the upper bound (UB) showed in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Default-pairs-(n,q)"
 
 \end_inset
 
-.
+ for a given security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and polynomial modulus degree 
+\emph on
+n.
+
+\emph default
  The last constraint 
 \begin_inset ERT
 status open
@@ -5644,15 +5895,15 @@ reference "subsec:Encoding"
 \begin_inset Formula $R_{q}$
 \end_inset
 
-, only after decryption and then the conversion of 
-\emph on
-p 
-\emph default
-in 
-\begin_inset Formula $R_{t}$
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
 \end_inset
 
- is achievable to understand if a reduction modulo 
+), only after decryption is achievable to understand if a reduction modulo
+ 
 \emph on
 t 
 \emph default
@@ -5668,10 +5919,18 @@ has occurred, since the result is different from the expected one.
 \emph on
 t 
 \emph default
-would be found.
+would be found, as will be informally explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+.
  It is important to underline the fact that this estimate is used also to
  calculate the noise added to the resulting polynomial and thus that will
- induce a rough computation also of the right term in 
+ induce a rough computation also of the right term in Eq.
+ 
 \begin_inset ERT
 status open
 
@@ -7166,11 +7425,25 @@ A power of 2
 \end_layout
 
 \begin_layout Section
-Practical optimization problem
+Practical optimization problem 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Practical-optimization-problem"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-The optimization problem presented in Section 
+The 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "OptimizationProblem1"
+
+\end_inset
+
+ 1 presented in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Optimization-Problem"
@@ -7190,7 +7463,41 @@ reference "sec:Practical-Encryption-Parameters"
 \begin_inset Newline newline
 \end_inset
 
+The new formulation is given in Optimization Problem 2.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
+\begin_layout Plain Layout
+\begin_inset Box ovalbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Optimization Problem 2 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -7263,6 +7570,17 @@ notag
 \begin_layout Plain Layout
 
 & t<q 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+& q
+\backslash
+geq 2 
 \backslash
 
 \backslash
@@ -7405,9 +7723,9 @@ sum_{i=1}^k
 \backslash
 log_2q_i
 \backslash
-leq 
+leq UB(
 \backslash
-lambda(n)
+lambda,n)
 \backslash
 
 \backslash
@@ -7475,8 +7793,13 @@ end{align}
 
 \end_inset
 
-These parameters are subject to a number of additional constraints given
- both by the practical implementation of the BFV HE scheme 
+
+\end_layout
+
+\end_inset
+
+These practical parameters are subject to a number of additional constraints
+ given both by the practical implementation of the BFV HE scheme 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
@@ -7557,6 +7880,47 @@ key "DBLP:journals/corr/abs-1205-2926"
 \end_inset
 
 .
+ Constraint in Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:q2}
+\end_layout
+
+\end_inset
+
+ is changed with respect to the one in Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:Q2}
+\end_layout
+
+\end_inset
+
+ according to the the redefined shape of 
+\emph on
+q, 
+\emph default
+which length is now given by the sum of the bits of each 
+\begin_inset Formula $q_{k}$
+\end_inset
+
+ that compose 
+\emph on
+q.
+
+\emph default
  Constraint in Eq.
  
 \begin_inset ERT
