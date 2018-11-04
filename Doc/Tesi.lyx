@@ -623,8 +623,8 @@ key "Orlandi:2007:ONN:1340430.1340439"
 
 \end_inset
 
- show that this process leaks information of the weights to the data owner
- and therefore propose a method to obscure the weights.
+ have shown that this process leaks information of the weights to the data
+ owner and therefore propose a method to obscure the weights.
  
 \begin_inset Newline newline
 \end_inset
@@ -694,15 +694,16 @@ key "DBLP:conf/ccs/ShokriS15"
  Each learning participant is also a data provider and has a local copy
  of the neural network to train.
  The proposed system aims at training the weights utilizing multiple data
- sources and gradient-encrypted ASGD.
+ sources and gradient-encrypted Asynchronous Stochastic Gradient Descent
+ (ASGD).
  There is a global weight vector 
 \begin_inset Formula $W_{global}$
 \end_inset
 
 , initialized randomly.
  At each iteration, replicas of the neural network (one for each participant),
- are run over local dataset (data parallelism), and the corresponding local
- gradient vector 
+ are run over local dataset, and the corresponding local gradient vector
+ 
 \begin_inset Formula $G_{local}$
 \end_inset
 
@@ -719,8 +720,8 @@ key "DBLP:conf/ccs/ShokriS15"
 \begin_inset Formula $\alpha$
 \end_inset
 
-learning rate.
- The updated global parameters are broadcasted to all the replicas, which
+ learning rate.
+ The updated global parameters are broadcast to all the replicas, which
  then use them to replace their old weight parameters, until a minimum for
  a pre-defined cost function is reached.
  As showed in Figure 
@@ -730,14 +731,14 @@ reference "fig:Gradients-encrypted-Asynchronous"
 
 \end_inset
 
-, to ensure privacy additively homomorphic encryption is used and the updating
+, to ensure privacy, additively homomorphic encryption is used and the updating
  formula becomes 
 \begin_inset Formula $E(W_{global}):=E(W_{global})+E(-\alpha\cdot G_{local})$
 \end_inset
 
- and to ensure integrity of the homomorphic ciphertext, each client will
- use a secure channel such as TLS/SSL to communicate the homomorphic ciphertexts
- with the server.
+ and to ensure integrity of the homomorphic ciphertext, each client uses
+ a secure channel such as TLS/SSL to communicate the homomorphic ciphertexts
+ to the server.
  To use the power of parallel computation when the server has multiple processin
 g units 
 \begin_inset Formula $PU_{1},…,PU_{npu}$
@@ -782,9 +783,8 @@ The participants jointly set up the public key
 
  is kept confidential against the cloud server, but is known to all learning
  participants.
- Each participant will establish a TLS/SSL secure channel, different from
- each other, to communicate and protect the integrity of the homomorphic
- ciphertexts.
+ Each participant establishes a TLS/SSL secure channel, different from each
+ other, to communicate and protect the integrity of the homomorphic ciphertexts.
  The downloads and uploads of the encrypted parts of 
 \begin_inset Formula $W_{global}$
 \end_inset
@@ -859,7 +859,7 @@ key "DBLP:journals/dke/SametM12"
 ly distributed distributed among parties (data owners), using as sub-protocols
  secure multi-parti multiplication and secure multi-parti addition.
  The model (i.e.
- the network) is is securely constructed and distributed among the parties
+ the network) is securely constructed and distributed among the parties
  involved.
  Indeed, at the end of the learning protocol the parties can jointly use
  the model on target data to predict the corresponding output.
@@ -878,7 +878,7 @@ key "DBLP:journals/iacr/PhongAHWM17"
 
 \end_inset
 
-) where there was always a central entity (server/cloud) designate to aggregate
+) where there was always a central entity (server/cloud) designated to aggregate
  partial results coming form the different parties.
  They also prove that their solution is resistant to collusion attacks 
 \begin_inset CommandInset citation
@@ -921,7 +921,7 @@ n+1
 
 All these works have in common the fact that they use relatively simple
  HE schemes, that is, additively or multiplicative HE that allow to perform
- homomorphically only one these operations.
+ homomorphically only one of these two operations.
  In those cases HE as RSA, that is multiplicative homomorphic or Paillier
  
 \begin_inset CommandInset citation
@@ -954,10 +954,10 @@ key "Graepel:2012:MCM:2482419.2482421"
 
 \end_inset
 
- suggest a way to use adapt machine learning algorithms, as classification,
+ suggest a way to adapt machine learning algorithms, as classification,
  in order to train them over encrypted data.
  Therefore, for homomorphic encryption limitations, they are forced to use
- functions that learn low degree polynomials .
+ functions that learn low degree polynomials.
  As a result, most of the algorithms proposed are of the linear discrimination
  type and therefore for many tasks they do not deliver the same level of
  accuracy as neural networks are capable of delivering.
@@ -982,7 +982,7 @@ key "DBLP:conf/codaspy/AonoHPW16"
 \end_inset
 
  has proposed an homomorphism-aware logistic regression via approximation
- of the logarithm in the cost function to minimize with a polynomial of
+ of the logarithm in the cost function to minimize, with a polynomial of
  degree 
 \emph on
 k 
@@ -1194,7 +1194,7 @@ key "DBLP:conf/iscas/WangLW18b"
 \end_inset
 
 .
- In particular they propose an hardware solution, by broviding a dedicated
+ In particular they propose an hardware solution, by providing a dedicated
  convolution core architecture for the most complex convolutional layers
  of CryptoNets on the basis of Fan-Vercauteren (FV) HE scheme 
 \begin_inset CommandInset citation
@@ -4057,6 +4057,21 @@ if during homomorphic multiplications the fractional parts of the underlying
  mixed up.
 \end_layout
 
+\begin_layout Section
+Convolutional Neural Networks: A Brief Overview
+\end_layout
+
+\begin_layout Subsection
+Approximations For Homomorphic Encryption 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Approximations-For-HE"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Parameters Estimation Methodology
 \end_layout
@@ -4094,7 +4109,7 @@ reference "sec:BFV"
 \end_inset
 
  and below it is explained which are the relations that these parameters
- have eachother.
+ have each other.
 \begin_inset Newline newline
 \end_inset
 
@@ -4308,7 +4323,7 @@ reference "subsec:Noise"
 .
  As explained before, the NB determines the number of operations one can
  perform on a ciphertext (multiplications, additions, exponentiations, both
- with another ciphertext or plaintext ) without compromising the final result.
+ with another ciphertext or plaintext) without compromising the final result.
  More precisely, the value of the NB in a freshly encrypted ciphertext,
  given in Definition 
 \begin_inset CommandInset ref
@@ -4907,6 +4922,251 @@ t
 \end_layout
 
 \begin_layout Section
+Problem Formulation
+\end_layout
+
+\begin_layout Standard
+The task of preserving privacy of data provider while his data are processed
+ by an outsourced CNN on a server can be achieved in different ways.
+ Given that HE is used to guarantee the privacy of data, there can be two
+ possibilities:
+\end_layout
+
+\begin_layout Enumerate
+One can train the CNN from scratch on plain publicly available datasets
+ or take a publicly available pre-trained CNN, transform it in a way that
+ allows to compute only polynomial functions, to be compliant with the operation
+s that it will be able to perform on encrypted data (as explained in Subsection
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approximations-For-HE"
+
+\end_inset
+
+).
+ Then one can encode the CNN and send it to the server along with the parameters
+ 
+\emph on
+n, t
+\emph default
+ and 
+\emph on
+q
+\emph default
+ used for the encoding.
+ The encoded network can then be used to make prediction on encrypted data,
+ provided that they are encrypted with the same encryption parameters.
+\end_layout
+
+\begin_layout Enumerate
+The data provider can encrypt his data and send them to the server.
+ The server trains a CNN directly on encrypted data.
+\end_layout
+
+\begin_layout Standard
+The second option could look simpler than the first one, but in reality
+ it would require to run the backward propagation algorithm homomorphically
+ on the encrypted data and thus involve in a really computational intensive
+ process.
+ Moreover, since only polynomial functions could be used and thus functions
+ like rectified linear and sigmoid functions should be omitted, some derivatives
+ could become unbounded.
+ This could lead to strange behavior when running the gradient descent algorithm
+ during the backward propagation step, especially for deeper nets it would
+ sometimes blow up or overfit.
+\begin_inset Newline newline
+\end_inset
+
+The first option becomes the more promising way to follow and basically
+ require the steps in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Approximation-steps-CNN"
+
+\end_inset
+
+.
+ At each step the accuracy of the original CNN can decrease by a factor
+ 
+\begin_inset Formula $\epsilon\geq0$
+\end_inset
+
+, since it is gradually changed and HE parameters are introduced, but it
+ becomes able to guarantee the privacy of the processed data.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Approximation steps of the pre-trained CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Approximation-steps-CNN"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Img/process.pdf
+	display false
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+
+\noun on
+step 
+\series bold
+1 
+\series default
+(optional): 
+\noun default
+If the CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ in input contains non-polynomial functions, it is 
+\emph on
+approximated
+\emph default
+ with only polynomial functions as explained in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approximations-For-HE"
+
+\end_inset
+
+ and the approximated CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is eventually retrained.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+step 
+\series bold
+2
+\series default
+: 
+\noun default
+The approximated 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is 
+\emph on
+encoded
+\emph default
+ as explained in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+ provided that optimal encryption parameters 
+\emph on
+n, t
+\emph default
+ and 
+\emph on
+q 
+\emph default
+are found, otherwise one should return to 
+\noun on
+step 1
+\noun default
+ to find a smaller and different CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+.
+ This step outputs 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ that is an encoded network under parameters 
+\emph on
+n, t
+\emph default
+ and 
+\emph on
+q
+\emph default
+.
+ In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optimization-Problem"
+
+\end_inset
+
+ this step will be explained in details.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+step
+\noun default
+ 
+\series bold
+3
+\series default
+\noun on
+: 
+\noun default
+The encoded 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ is ready to be 
+\emph on
+tested
+\emph default
+ and thus make predictions on encrypted data.
+\end_layout
+
+\begin_layout Section
 Optimization Problem 
 \begin_inset CommandInset label
 LatexCommand label
@@ -5006,7 +5266,7 @@ I
 \begin_inset Formula $\varPhi$
 \end_inset
 
- is the pre-trained model of a CNN, defined as 
+ is the approximated pre-trained model of a CNN, defined as 
 \begin_inset Formula $y=\varPhi(I)$
 \end_inset
 
@@ -5014,15 +5274,19 @@ I
 \end_layout
 
 \begin_layout Enumerate
-Transform the CNN's pre-trained model 
+Transform the approximated CNN's pre-trained model 
 \begin_inset Formula $\varPhi$
 \end_inset
 
-in 
+ in 
 \begin_inset Formula $\tilde{\varPhi}$
 \end_inset
 
-, such that the transformed 
+ (
+\emph on
+encoding
+\emph default
+), such that the transformed 
 \begin_inset Formula $\tilde{\varPhi}$
 \end_inset
 
@@ -5058,7 +5322,7 @@ Since homomorphic encryption supports only additions and multiplications,
 \begin_inset Formula $\varPhi$
 \end_inset
 
-in 
+ in 
 \begin_inset Formula $\tilde{\varPhi}$
 \end_inset
 
@@ -5081,7 +5345,7 @@ come scritto nel capitolo sulle CNN
 \begin_inset Formula $\varPhi$
 \end_inset
 
-in 
+ in 
 \begin_inset Formula $\tilde{\varPhi}$
 \end_inset
 
@@ -5093,8 +5357,7 @@ in
 \begin_inset Formula $\varPhi$
 \end_inset
 
-, i.e.
- , each 
+, i.e., each 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -5223,7 +5486,7 @@ reference "fig:Transformation"
 
 \end_inset
 
- shows a normal CNN 
+ shows an approximated CNN 
 \begin_inset Formula $\varPhi$
 \end_inset
 
@@ -5788,7 +6051,7 @@ reference "eq:NOISE_BUDGET"
 
 , thus the NB consumed by each computation that depends itself by the encryption
  parameters selected.
- Constraint 
+ Constraint in Eq.
 \begin_inset ERT
 status open
 
@@ -5927,23 +6190,7 @@ reference "sec:Practical-Encryption-Parameters"
 \end_inset
 
 .
- It is important to underline the fact that this estimate is used also to
- calculate the noise added to the resulting polynomial and thus that will
- induce a rough computation also of the right term in Eq.
  
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:TOTAL_NBB}
-\end_layout
-
-\end_inset
-
-.
 \begin_inset Newline newline
 \end_inset
 
@@ -5985,7 +6232,7 @@ should solve
 \end_layout
 
 \begin_layout Section
-Heuristic: Binary Search of plaintext modulus
+Heuristic: Binary Search Of Plaintext Modulus
 \end_layout
 
 \begin_layout Standard
@@ -7038,26 +7285,6 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-\paragraph_spacing double
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Binary Search Cases
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Binary-Search-Cases"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Graphics
 	filename Img/bsok.pdf
 
@@ -7089,13 +7316,33 @@ name "fig:Binary-Search-Cases"
 (b) Worst case
 \end_layout
 
+\begin_layout Plain Layout
+\paragraph_spacing double
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary Search Cases
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Binary-Search-Cases"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Chapter
-Practical considerations of the proposed solution
+Practical Considerations About The Proposed Methodology
 \end_layout
 
 \begin_layout Standard
@@ -7124,6 +7371,10 @@ description "Simple Encrypted Arithmetic Library"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Simple Encrypted Arithmetic Library 
 \end_layout
 
 \begin_layout Section
@@ -7165,9 +7416,10 @@ polynomial modulus
 \end_inset
 
 
-\series bold
 \emph on
-, n
+, 
+\series bold
+n
 \series default
 \emph default
  is a power of 2 as described before.
@@ -7425,7 +7677,7 @@ A power of 2
 \end_layout
 
 \begin_layout Section
-Practical optimization problem 
+Practical Optimization Problem 
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Practical-optimization-problem"
@@ -7799,7 +8051,7 @@ end{align}
 \end_inset
 
 These practical parameters are subject to a number of additional constraints
- given both by the practical implementation of the BFV HE scheme 
+ given by the practical implementation of the BFV HE scheme 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
@@ -7978,13 +8230,13 @@ eqref{eq:infinityNorm}
 
 \end_inset
 
- it is possible to provided a more practical example, to give an idea of
+ it is possible to provide a more practical example, to give an idea of
  how difficult is to estimate the grow of the infinity norm by considering
- the specific operation to perform.In SEAL 2.3.1 there is the possibility to
- use an automatic parameter selection module that given a computation to
- perform basically builds a graph of that computation instead of actually
- calculating it and tries to estimates the grow of infinity norm and noise
- so to find appropriate overall parameters.
+ the specific operation to perform.
+ In SEAL 2.3.1 there is the possibility to use an automatic parameter selection
+ module that given a computation to perform basically builds a graph of
+ that computation instead of actually calculating it and tries to estimates
+ the grow of infinity norm and noise so to find appropriate overall parameters.
  The problem is that, for example, given an addition operation and two polynomia
 ls 
 \begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
@@ -8011,7 +8263,75 @@ ls
 \end_inset
 
 .
+ It is important to underline the fact that this estimate is used also to
+ calculate the noise added to the resulting polynomial and thus that will
+ induce a rough computation also of the right term in Eq.
  
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NB}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Chapter
+CrCNN:A CNN Library Based On Homomorphic Encryption
+\end_layout
+
+\begin_layout Section
+Purpose
+\end_layout
+
+\begin_layout Section
+Structure
+\end_layout
+
+\begin_layout Section
+Functionalities
+\end_layout
+
+\begin_layout Chapter
+Experimental Results
+\end_layout
+
+\begin_layout Section
+Experimental Setup
+\end_layout
+
+\begin_layout Section
+MNIST Dataset
+\end_layout
+
+\begin_layout Section
+CNN Structure
+\end_layout
+
+\begin_layout Section
+Timings And Approximations Effects
+\end_layout
+
+\begin_layout Section
+Binary Search Results
+\end_layout
+
+\begin_layout Chapter
+Conclusions and Future Works
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Section
+Future Works
 \end_layout
 
 \begin_layout Standard
