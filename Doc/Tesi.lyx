@@ -1259,17 +1259,7 @@ name "subsec:Homomorphic-Encryption"
 \end_layout
 
 \begin_layout Standard
-The typical mantra frequently heard in connection with machine learning
- is: the more training data one can feed into a model, the better will be
- the results.
- It is worth noting that the quality of the training data, as well as the
- features used, can in many instances be substantially more important than
- the quantity.
- For this reason, the optimal solution to be compliant with the new rules
- about data protection, would be if one could use as much data as one wished
- for machine learning, without compromising privacy.
- The field of cryptology offers some promising possibilities in this area.
- Traditional encryption schemes, both symmetric and asymmetric, were not
+Traditional encryption schemes, both symmetric and asymmetric, were not
  designed to respect any algebraic structure of the plaintext and ciphertext
  spaces, i.e.
  no computations can be performed on the ciphertext in a way that would
@@ -1281,7 +1271,6 @@ The typical mantra frequently heard in connection with machine learning
 \emph on
 homomorphic encryption scheme
 \emph default
-.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1289,7 +1278,8 @@ key "SEALManual"
 
 \end_inset
 
-In mathematics, a homomorphism is a 
+.
+ In mathematics, a homomorphism is a 
 \emph on
 structure-preserving
 \emph default
@@ -1345,14 +1335,15 @@ structure-preserving
 \begin_inset Formula $\mathbb{\mathbb{Z}}_{7}$
 \end_inset
 
-.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
 
 \end_inset
 
-Finding a general method for computing on encrypted data had been a goal
+.
+ Finding a general method for computing on encrypted data had been a goal
  in cryptography since it was proposed in 1978 by Rivest, Adleman and Dertouzos
  
 \begin_inset CommandInset citation
@@ -1385,7 +1376,7 @@ Classification of Homomorphic Encryption Schemes
 
 \begin_layout Standard
 It is worth to analyze different classes of homomorphic schemes to clarify
- the potentiality of this type of encryption 
+ the potentiality of this type of encryption as described in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "journals/iacr/ArmknechtBCGJRS15"
@@ -1401,14 +1392,7 @@ Given that a circuit
 C 
 \emph default
 is a series of computations made on some inputs, it is possible to state
- some preliminary definitions 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "brakerski2014efficient"
-
-\end_inset
-
-:
+ some preliminary definitions:
 \end_layout
 
 \begin_layout Definition
@@ -1439,7 +1423,11 @@ evaluation scheme for
 C 
 \emph default
 is a tuple of probabilistic polynomial-time algorithms 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  such that:
@@ -1474,7 +1462,11 @@ is the secret key used foe decryption and
 \emph on
 evk 
 \emph default
-is used for evaluation.
+is the key used for the 
+\begin_inset Formula $\mathsf{Eval}$
+\end_inset
+
+ algorithm.
 \end_layout
 
 \begin_layout Description
@@ -1495,14 +1487,32 @@ It outputs a ciphertext c.
 \end_layout
 
 \begin_layout Description
-\begin_inset Formula $\mathsf{Eval}(evk,C,c_{1},...,c_{n})$
+\begin_inset Formula $\mathsf{Eval}(evk,C,(c_{1},...,c_{n}))$
 \end_inset
 
  is the evaluation algorithm.
- Il takes as input the evaluation key 
+ It takes as input the evaluation key 
 \emph on
 evk
 \emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The evaluation key is used to perform the relinearization operation as explained
+ in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 , a circuit 
 \emph on
 C
@@ -1515,8 +1525,11 @@ C
 
  
 \emph default
-and a tuple of inputs that can be a mix of ciphertexts and previous evaluation
- results.
+and a tuple of inputs 
+\begin_inset Formula $(c_{1},...,c_{n})$
+\end_inset
+
+ that can be a mix of ciphertexts and previous evaluation results.
  It produces an evaluation output.
 \end_layout
 
@@ -1565,7 +1578,7 @@ in the plaintext space,
 
 \end_inset
 
-This means that it mist be able to decrypt a ciphertext to the correct plaintext
+This means that it must be able to decrypt a ciphertext to the correct plaintext
  without error.
 \begin_inset Newline newline
 \end_inset
@@ -1613,11 +1626,7 @@ all circuits in
  
 \emph default
 if for all inputs 
-\begin_inset Formula $c_{i}$
-\end_inset
-
-, where 
-\begin_inset Formula $m_{i}\gets\mathsf{Dec}(sk,c_{i})$
+\begin_inset Formula $c_{i},\text{ with }i=1,...,n$
 \end_inset
 
 , for every 
@@ -1632,11 +1641,7 @@ C
 
  
 \emph default
-, and some negligible function 
-\begin_inset Formula $\epsilon$
-\end_inset
-
-,
+, 
 \end_layout
 
 \begin_layout Definition
@@ -1647,22 +1652,23 @@ C
 
 \end_inset
 
+where 
+\begin_inset Formula $m_{i}\gets\mathsf{Dec}(sk,c_{i})$
+\end_inset
+
+ and 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is a negligible function.
+\begin_inset Newline newline
+\end_inset
+
 This means that with overwhelming probability, decryption of the homomorphic
  evaluation of a permitted circuit yields the correct result.
 \begin_inset Newline newline
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 A 
 \emph on
 
@@ -1675,7 +1681,7 @@ evaluation scheme is
 \emph on
 correct 
 \emph default
-if it has the properties of both correct evaluation and correct decryption.
+if it satisfies the properties of correct evaluation and correct decryption.
  It is also 
 \emph on
 compact 
@@ -1689,12 +1695,17 @@ if the ciphertext size does not grow too much through homomorphic operations
 \begin_inset Newline newline
 \end_inset
 
-The classification of schemes is based on what circuits they can evaluate.
+The classification of schemes is based on which kind of circuits the scheme
+ itself can evaluate.
  
 \end_layout
 
-\begin_layout Definition
-(Somewhat Homomorphic).
+\begin_layout Description
+Somewhat
+\begin_inset space ~
+\end_inset
+
+Homomorphic.
  A 
 \emph on
 
@@ -1724,11 +1735,7 @@ description "Somewhat Homomorphic Encryption"
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
-There are no guarantees for compactness and also the set 
+There are no guarantees for compactness and the set 
 \emph on
 
 \begin_inset Formula $\mathscr{\mathcal{C}}$
@@ -1736,33 +1743,22 @@ There are no guarantees for compactness and also the set
 
  
 \emph default
-of permitted circuits consists of 
-\emph on
-some 
-\emph default
-circuits.
-\begin_inset Newline newline
-\end_inset
-
-
+of permitted circuits does not contain all the circuits.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Separator plain
+\begin_layout Description
+Leveled
+\begin_inset space ~
 \end_inset
 
-
-\end_layout
-
-\begin_layout Definition
-(Leveled Homomorphic 
+Homomorphic 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "brakerski2014efficient"
 
 \end_inset
 
-).
+.
  A 
 \emph on
 
@@ -1788,7 +1784,8 @@ if it takes an auxiliary input
 \end_inset
 
  which specifies the maximum depth of circuits that can be evaluated.
- Its properties are correctness, compactness and that the 
+ Its properties are correctness and compactness.
+ The latter implies that the 
 \emph on
 length of the evaluation output 
 \emph default
@@ -1796,7 +1793,7 @@ does not depend on
 \emph on
 d
 \emph default
- are also required.
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -1813,22 +1810,23 @@ The difference between SHE and leveled HE is that the depth of circuits
  
 \end_layout
 
-\begin_layout Standard
-\begin_inset Separator plain
+\begin_layout Description
+Fully
+\begin_inset space ~
 \end_inset
 
+Homomorphic
+\begin_inset space ~
+\end_inset
 
-\end_layout
-
-\begin_layout Definition
-(Fully Homomorphic Encryption 
+Encryption 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "brakerski2014efficient"
 
 \end_inset
 
-).
+.
  A 
 \emph on
 
@@ -1865,10 +1863,6 @@ encryption scheme.
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
 This definition means that the scheme can evaluate any circuit of arbitrary
  size, which does not need to be known when setting the parameters.
 \begin_inset Newline newline
@@ -1882,8 +1876,8 @@ Limitations of Homomorphic Encryption
 \end_layout
 
 \begin_layout Standard
-Even if HE is a powerful instrument with many possible applications in real-worl
-d scenarios, it has some limitations which must be taken into account.
+Despite HE is a powerful instrument with many possible applications in real-worl
+d scenarios, it has some limitations that must be taken into account.
  
 \begin_inset Newline newline
 \end_inset
@@ -1986,8 +1980,8 @@ key "HElibmanual"
 
 \end_inset
 
-, shows that takes about 4 minutes and 3GB of RAM, running on a laptop Intel
- Core i5-3320M running at 2.6GHz, to evaluate an entire AES-128 encryption
+, shows that it takes about 4 minutes and 3GB of RAM, running on a laptop
+ Intel Core i5-3320M running at 2.6GHz, to evaluate an entire AES-128 encryption
  operation.
  Even if by using Single Instruction Multiple Data techniques, it is possible
  to process up to 120 blocks in each such evaluation, yielding an amortized
@@ -2010,10 +2004,10 @@ key "migliore:hal-01394362"
 
 \end_inset
 
-.This latter representation brings two important issues.
- First, to perform an integer addition or multiplication with the binary
- representation, one must reconstruct the binary circuit of the operators.
- Second, the size of ciphertexts is strongly impacted.
+.
+ This latter representation brings an important issue: to perform an integer
+ addition or multiplication with the binary representation, one must reconstruct
+ the binary circuit of the operators.
 \end_layout
 
 \begin_layout Description
@@ -2033,6 +2027,9 @@ key "SEALManual"
 \end_inset
 
 .
+ For example, the homomorphic execution of the forward phase of a CNN on
+ encrypted data does not guarantee the secrecy of the CNN model (i.e.
+ anyone could see the structure of the network).
  However it is possible to solve this problem and obtain 
 \emph on
 function privacy 
@@ -2143,7 +2140,7 @@ key "Gentry:2009:FHE:1536414.1536440"
 
 \end_inset
 
-, is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV)
+ is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV)
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "BFV"
@@ -2158,7 +2155,7 @@ key "cryptoeprint:2012:144"
 
 \end_inset
 
- that is a SHE.
+.
  In this section this homomorphic scheme will be described in details since
  it is the one used for the practical part of this thesis.
  
@@ -2170,7 +2167,7 @@ Ring Definition
 
 \begin_layout Standard
 The BFV relies on the concept of ring, in particular on the commutative
- rings
+ rings 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Commutative-Algebra"
@@ -2183,15 +2180,15 @@ key "Commutative-Algebra"
 \end_inset
 
 A commutative ring R is a set on which there are two operations defined:
- addition and multiplication, such that there is 
+ addition and multiplication, such that 
 \begin_inset Formula $0∈R$
 \end_inset
 
- which is the identity element for addition and 
+ is the identity element of addition and 
 \begin_inset Formula $1∈R$
 \end_inset
 
- which is the identity for the multiplication operation.
+ is the identity of the multiplication operation.
  For every element 
 \begin_inset Formula $a∈R$
 \end_inset
@@ -2205,7 +2202,7 @@ A commutative ring R is a set on which there are two operations defined:
 \end_inset
 
 .
- Furthermore, the following hold for every 
+ Furthermore, for every 
 \begin_inset Formula $a,b,c∈R$
 \end_inset
 
@@ -2306,7 +2303,7 @@ Basic Notation
 \emph on
  m
 \emph default
--th roots of unity is used.
+-th roots of unity, is used.
  The most popular choice for expository purposes is to take 
 \begin_inset Formula $f(x)=x^{n}+1$
 \end_inset
@@ -2339,10 +2336,10 @@ Elements of the ring
 
 , i.e.
  
-\begin_inset Formula $\mathbf{a}=\sum_{i=0}^{n-1}a_{i}\cdot x^{i}$
+\begin_inset Formula $\mathbf{a}=\sum_{i=0}^{n-1}a_{i}\cdot x^{i}.$
 \end_inset
 
- .
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -2387,7 +2384,7 @@ set
 \begin_inset Formula $R_{q}$
 \end_inset
 
- the set of polynomials in 
+ is the set of polynomials in 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2399,11 +2396,11 @@ set
 \end_layout
 
 \begin_layout Itemize
-For 
+For each 
 \begin_inset Formula $a\text{∈}\mathbb{Z}$
 \end_inset
 
- is denoted by 
+, is denoted by 
 \begin_inset Formula $\left[a\right]_{q}$
 \end_inset
 
@@ -2411,7 +2408,7 @@ For
 \begin_inset Formula $\mathbb{Z}_{q}$
 \end_inset
 
- with 
+ such that 
 \begin_inset Formula $\left[a\right]_{q}=a$
 \end_inset
 
@@ -2518,6 +2515,13 @@ bound on the distribution
 
 \begin_layout Subsection
 RLWE Problem 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:RLWE-Problem"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2531,14 +2535,14 @@ description "Ring Learnig With Error"
 
 \end_inset
 
- problem is a ring based version of the LWE problem 
+ problem is a ring based version of the LWE problem.
+ In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Regev:2005:LLE:1060590.1060603"
 
 \end_inset
 
-.
  Regev gave a quantum reduction of certain approximate 
 \emph on
 Shortest Vector Problem
@@ -2585,7 +2589,7 @@ Decision-RLWE
 \begin_inset Formula $\Phi_{m}(x)$
 \end_inset
 
- with deg(f) = φ(m) depending on λ and set 
+ with deg(f) = φ(m) depending on λ and 
 \begin_inset Formula $R=\mathbb{Z}[x]/(f(x))$
 \end_inset
 
@@ -2647,8 +2651,15 @@ name "subsec:Encryption-Scheme"
 \end_layout
 
 \begin_layout Standard
-From the above decision problem it is possible to derive the following encryptio
-n scheme originally described in the extended version of 
+From the decision problem reported in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:RLWE-Problem"
+
+\end_inset
+
+ it is possible to derive the following encryption scheme originally described
+ in the extended version of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "eurocrypt-2010-24000"
@@ -2693,7 +2704,7 @@ and
 \emph on
 t 
 \emph default
-that don't have to be prime nor coprime.
+that do not have to be prime nor coprime.
  The definition of the scheme mostly follows the one given in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2886,8 +2897,8 @@ All existing schemes have the common trait that they add a small “noise”
  component during encryption.
  Computing homomorphically on ciphertexts will cause these noises to grow
  up to the point when they become so large that decryption fails.
- Especially the noise growth caused by homomorphic multiplication has been
- the major obstacle to designing efficient schemes.
+ In particular the noise growth caused by homomorphic multiplication has
+ been the major obstacle to designing efficient schemes.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cryptoeprint:2012:144"
@@ -2921,7 +2932,7 @@ v
 is the polynomial with the smallest infinity norm such that 
 \begin_inset Formula 
 \begin{equation}
-\frac{t}{q}\mathsf{ct}(s)=\frac{t}{q}(c_{0}+c_{1}s)=m+v+at\in R_{q}\varotimes\mathbb{Q}\label{eq:ct(s)}
+\frac{t}{q}\mathsf{ct}(s)=\frac{t}{q}(c_{0}+c_{1}s)=m+v+at\label{eq:ct(s)}
 \end{equation}
 
 \end_inset
@@ -2940,12 +2951,16 @@ with integer coefficients
 \end_layout
 
 \begin_layout Lemma
+
+\emph on
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
 
 \end_inset
 
+
+\emph default
 The function 
 \begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
 \end_inset
@@ -3103,13 +3118,17 @@ is
 \end_layout
 
 \begin_layout Lemma
+
+\emph on
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
 
 \end_inset
 
- The function 
+ 
+\emph default
+The function 
 \begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
 \end_inset
 
@@ -3144,14 +3163,14 @@ Even a freshly encrypted ciphertext has a non zero amount of noise.
 
 \begin_layout Lemma
 (Initial Noise)
+\emph on
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SEALManual"
 
 \end_inset
 
-
-\emph on
  
 \emph default
 Let 
@@ -3400,7 +3419,7 @@ It is possible to show that if
 \begin_inset Formula $\mathsf{ct_{mult}}$
 \end_inset
 
- is a ciphertext of 
+ is a ciphertext of size 
 \emph on
 M+1
 \emph default
@@ -3473,22 +3492,7 @@ and
 \end_inset
 
 .
- They are not mentioned in the theoretical scheme proposed in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "cryptoeprint:2012:144"
-
-\end_inset
-
-, but they are inserted in its practical implementation in SEAL 2.3.1 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "SEALManual"
-
-\end_inset
-
-, since can hugely improve performances in performing addition and multiplicatio
-n.
+ They can hugely improve performance of addition and multiplication operations.
  They are useful in the case the operands are a given ciphertext 
 \emph on
 ct 
@@ -3520,6 +3524,16 @@ Plain Multiplication
 \end_layout
 
 \begin_layout Lemma
+
+\emph on
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
+\emph default
 (
 \noun on
 multiply plain
@@ -3646,6 +3660,16 @@ Plain Addition
 \end_layout
 
 \begin_layout Lemma
+
+\emph on
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
+\emph default
 (
 \noun on
 add plain) 
@@ -3835,7 +3859,7 @@ a
 \emph default
  it is required to choose a base 
 \emph on
-B 
+S 
 \emph default
 and to form the (up to 
 \begin_inset Formula $n$
@@ -3843,7 +3867,7 @@ and to form the (up to
 
 -bits) base-
 \emph on
-B
+S
 \emph default
  expansion of 
 \begin_inset Formula $|a|$
@@ -3854,7 +3878,7 @@ B
 \end_inset
 
  When 
-\begin_inset Formula $B=2$
+\begin_inset Formula $S=2$
 \end_inset
 
  , 
@@ -3862,15 +3886,15 @@ B
 \end_inset
 
  and the expansion is a binary expansion, when 
-\begin_inset Formula $B>2$
+\begin_inset Formula $S>2$
 \end_inset
 
 , for the base-
 \emph on
-B 
+S 
 \emph default
 expansion, the coefficients are chosen from the symmetric set 
-\begin_inset Formula $[\text{−}(B\text{−}1)/2,...,(B\text{−}1)/2]$
+\begin_inset Formula $[\text{−}(S\text{−}1)/2,...,(S\text{−}1)/2]$
 \end_inset
 
 , since there is a unique representation with at most 
@@ -3878,7 +3902,7 @@ expansion, the coefficients are chosen from the symmetric set
 n 
 \emph default
 coefficients for each integer in 
-\begin_inset Formula $[\text{−}(B^{n}−1)/2,(B^{n}\text{−}1)/2]$
+\begin_inset Formula $[\text{−}(S^{n}−1)/2,(S^{n}\text{−}1)/2]$
 \end_inset
 
 .
@@ -3888,7 +3912,7 @@ coefficients for each integer in
 
 \begin_inset Formula 
 \[
-\mathtt{IntEncode}(a,B)=sign(a)\cdot(a_{n-1}x^{n-1}+\ldots+a_{1}x+a_{0})
+\mathtt{IntEncode}(a,S)=sign(a)\cdot(a_{n-1}x^{n-1}+\ldots+a_{1}x+a_{0})
 \]
 
 \end_inset
@@ -3941,7 +3965,7 @@ reference "par:Integer-Encoding"
 \end_inset
 
  above), the fractional encoding is parametrized by an integer base 
-\begin_inset Formula $B\geq2$
+\begin_inset Formula $S\geq2$
 \end_inset
 
  
@@ -3955,7 +3979,7 @@ key "Bioinformatics"
  It works by first encoding the integer part with an Integer Encoding, then
  the fractional part is codified in base-
 \emph on
-B, n 
+S, n 
 \emph default
 is added to each exponent of the fractional part and it is converted in
  a polynomial by changing the base 
@@ -3972,10 +3996,10 @@ into the variable
 \emph on
 r 
 \emph default
-with finite base-B expansion:
+with finite base-S expansion:
 \begin_inset Formula 
 \[
-\mathtt{FractionEncode}(r,B)=sign(r)\cdot[\mathtt{IntEncode}(\lfloor|r|\rfloor,B)+\mathtt{FractionEncode}(\{|r|\},B)],
+\mathtt{FractionEncode}(r,S)=sign(r)\cdot[\mathtt{IntEncode}(\lfloor|r|\rfloor,S)+\mathtt{FractionEncode}(\{|r|\},S)],
 \]
 
 \end_inset
@@ -3990,7 +4014,7 @@ where
 
  denotes the fractional part.
  For example, consider 
-\begin_inset Formula $B=2\text{ and }r=5.8125$
+\begin_inset Formula $S=2\text{ and }r=5.8125$
 \end_inset
 
  which has finite binary expansion 
@@ -3998,11 +4022,11 @@ where
 \end_inset
 
  Its integer part is encoded as 
-\begin_inset Formula $\mathtt{IntEncode}(5,B=2)=x^{2}+1$
+\begin_inset Formula $\mathtt{IntEncode}(5,S=2)=x^{2}+1$
 \end_inset
 
 , while its fractional part is encoded as 
-\begin_inset Formula $\mathtt{FractionEncode}(0.875,B=2)=-x^{n-1}-x^{n-2}-x^{n-4}$
+\begin_inset Formula $\mathtt{FractionEncode}(0.875,S=2)=-x^{n-1}-x^{n-2}-x^{n-4}$
 \end_inset
 
 .
@@ -4012,7 +4036,7 @@ where
 
 Some rational numbers have not a finite base-
 \emph on
-B 
+S 
 \emph default
 expansion, thus in order to truncate them it is important to fix 
 \begin_inset Formula $n_{i}$
@@ -4074,6 +4098,13 @@ name "subsec:Approximations-For-HE"
 
 \begin_layout Chapter
 Parameters Estimation Methodology
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Methodology"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -4922,7 +4953,14 @@ t
 \end_layout
 
 \begin_layout Section
-Problem Formulation
+Problem Formulation 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Problem-Formulation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5008,7 +5046,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Approximation steps of the pre-trained CNN 
+Transformation steps of the pre-trained CNN 
 \begin_inset Formula $\dot{\varPhi}$
 \end_inset
 
@@ -6232,7 +6270,14 @@ should solve
 \end_layout
 
 \begin_layout Section
-Heuristic: Binary Search Of Plaintext Modulus
+Heuristic: Binary Search Of Plaintext Modulus 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7343,6 +7388,13 @@ name "fig:Binary-Search-Cases"
 
 \begin_layout Chapter
 Practical Considerations About The Proposed Methodology
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Practical-Methodology"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8284,6 +8336,13 @@ eqref{eq:TOTAL_NB}
 
 \begin_layout Chapter
 CrCNN:A CNN Library Based On Homomorphic Encryption
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:CrCNN:A-CNN-Library"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -8296,10 +8355,116 @@ Structure
 
 \begin_layout Section
 Functionalities
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Functionalities"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Typedefs...
+\begin_inset Newline newline
+\end_inset
+
+Preconditions...
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\mathsf{ciphertext3D\;encryptImage(vector<float>image,int\;zd,int\;xd,int\;yd)}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\label{eq:encImg}\mathsf{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,int\;xd,int\;yd,string\;file_{-}name)}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\mathsf{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}\label{eq:decrypt}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
 Experimental Results
+\end_layout
+
+\begin_layout Standard
+This Chapter focuses on the practical conversion of a plain pre-trained
+ CNN in a CNN able to make prediction on encrypted images.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The goal of this Chapter is to provide a practical example of how it is
+ possible to implement the methodology proposed in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Methodology"
+
+\end_inset
+
+, considering also the aspect introduced in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Practical-Methodology"
+
+\end_inset
+
+.
+ In particular, the metamorphosis of a starting plain CNN along all the
+ steps described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+ and reported in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Approximation-steps-CNN"
+
+\end_inset
+
+ will be followed and the loss of accuracy caused by this procedure will
+ be tracked.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The heuristic proposed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+ will be tested on the given CNN and the algorithm will be examined considering
+ its time to converge to a reliable result.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The performances of the CrCNN library described in Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:CrCNN:A-CNN-Library"
+
+\end_inset
+
+ will be reported.
 \end_layout
 
 \begin_layout Section
@@ -8307,19 +8472,869 @@ Experimental Setup
 \end_layout
 
 \begin_layout Section
-MNIST Dataset
+MNIST Dataset 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:MNIST-Dataset"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 CNN Structure
 \end_layout
 
+\begin_layout Standard
+The starting pre-trained CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ before the approximation step (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Approximation-steps-CNN"
+
+\end_inset
+
+) has 9 layers.
+ Its structure is the following:
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The input image is 
+\begin_inset Formula $28\times28\times1$
+\end_inset
+
+.
+ The convolution has 
+\begin_inset Formula $20$
+\end_inset
+
+ kernels of size 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $12\times12\times20.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $11\times11\times20.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Batch Normalization Layer: 
+\emph default
+This layer normalizes separately each dimension in input and make it have
+ mean 0 and variance 1.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Cita paper o metti riferimento a dove l'hai descritta
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The convolution has 50 kernels of size 
+\begin_inset Formula $3\times3$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $5\times5\times50$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+ReLu Activation Layer: 
+\emph default
+This layer applies the ReLu function to each input node.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $4\times4\times50.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Batch Normalization Layer: 
+\emph default
+This layer normalizes separately each dimension in input and make it have
+ mean 0 and variance 1.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 
+\begin_inset Formula $4\cdot4\cdot50=800$
+\end_inset
+
+ nodes to the outgoing 500 nodes.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 500 nodes to the outgoing 10 nodes.
+\end_layout
+
+\begin_layout Subsection
+STEP 1
+\end_layout
+
+\begin_layout Standard
+During the 
+\emph on
+approximation 
+\emph default
+(
+\noun on
+step 1 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) phase the CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ becomes 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.
+ The structure of 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is the same of 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ except for Layer 5, where the ReLu Activation is substituted with the 
+\emph on
+Square Activation Layer 
+\emph default
+that squares the value at each input node.
+ The CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is trained again.
+\end_layout
+
+\begin_layout Subsection
+STEP 2
+\end_layout
+
+\begin_layout Standard
+In the 
+\emph on
+encoding 
+\emph default
+(
+\noun on
+step 2 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) phase the Binary Search algorithm described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+ is run in order to find suitable encryption parameters 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q 
+\emph default
+(see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+).
+ The details of this
+\emph on
+ 
+\emph default
+run are given in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+.
+ The algorithm finds 
+\begin_inset Formula $n=4096,\;q=\{q_{1}=36028797005856769,\;q_{2}=18014398492704769\},\;t=2^{29}$
+\end_inset
+
+, where 
+\begin_inset Formula $\sum_{i=1}^{2}log_{2}q_{i}=log_{2}q_{1}+log_{2}q_{2}=55+54=109$
+\end_inset
+
+ , that is compliant with the security standards described in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for 128-bit security.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Then each weight in 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is encoded as a fixed precision floating point number as described in the
+ Fractional Encoding part of Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+ using 
+\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32\text{ bits for the fractional part and a base }S=3.$
+\end_inset
+
+ The produced encoded network 
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
+\end_inset
+
+ has the same structure of the one in input but it is able to predict over
+ encrypted images, provided that they are encrypted using the same 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q 
+\emph default
+(see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+) .
+ The encoding of the CNN and the encryption of the data is achieved through
+ the appropriate methods of the CrCnn library described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Functionalities"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+STEP 3
+\end_layout
+
+\begin_layout Standard
+The
+\emph on
+ testing 
+\emph default
+(
+\noun on
+step 3 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) is carried over all the 10000 test images of the MNIST Dataset.
+ The parameters found by the Binary Search are valid under the assumption
+ that a re-encryption step is introduced (as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+) .
+ This intermediate step is put before layer 8.
+\end_layout
+
 \begin_layout Section
 Timings And Approximations Effects
 \end_layout
 
+\begin_layout Standard
+The 
+\emph on
+testing 
+\emph default
+of the encoded CNN 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ using the CrCNN library gives the following results in terms of timing.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Encryption.
+ Each input image is 
+\begin_inset Formula $28\times28\times1$
+\end_inset
+
+ (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MNIST-Dataset"
+
+\end_inset
+
+) and it is encrypted as a 
+\begin_inset Formula $\mathsf{ciphertext3D}$
+\end_inset
+
+ (see method 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:encImg}
+\end_layout
+
+\end_inset
+
+ in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Functionalities"
+
+\end_inset
+
+) where each pixel is a ciphertext.
+ It takes on average 2.74 seconds to encrypt an image.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Decryption.
+ The decryption procedure (see method 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:decrypt}
+\end_layout
+
+\end_inset
+
+ in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Functionalities"
+
+\end_inset
+
+) gets as input a 
+\begin_inset Formula $1\times10\times1$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{ciphertext3D}$
+\end_inset
+
+ and outputs a 
+\begin_inset Formula $\mathsf{floatCube}$
+\end_inset
+
+ of the same dimensions.
+ It takes on average 0.02 seconds to compute this decryption.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+40THREADSSSSSSS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Timings of testing of 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Convolution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31.18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Average Pooling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.66
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Batch Normalization
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.19
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Convolution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27.25
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Square
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Average Pooling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Batch Normalization
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Re-encryption
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decryption+Encryption
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fully Connected
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fully Connected
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Binary Search Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Binary-Search-Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
