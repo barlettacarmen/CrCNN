@@ -106,15 +106,35 @@ using namespace std;
 
 
 	Network CnnBuilder::buildNetwork(string file_name){
-		int th_count=8;
+		int th_count=40;
 		Network net;
 		ifstream *infile=NULL;
 		if(file_name!=""){
 			infile = new ifstream(file_name, ifstream::binary);
 		}
-		//----PlainNetWoPad.h5-------
-		/*
+		//----ApproxPlainModel.h5-----
 		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (conv1));
+		AvgPoolingLayer *pool1 = buildAvgPoolingLayer("pool1",12,12,20,1,1,2,2);
+		net.getLayers().push_back(shared_ptr<Layer> (pool1));
+		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (bn1));
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (conv2));
+		SquareLayer *act1= buildSquareLayer("act1",th_count);
+		net.getLayers().push_back(shared_ptr<Layer> (act1));
+		AvgPoolingLayer *pool2= buildAvgPoolingLayer("pool2",5,5,50,1,1,2,2);
+		net.getLayers().push_back(shared_ptr<Layer> (pool2));
+		BatchNormLayer *bn2=buildBatchNormLayer("pool2_features.norm2",50,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (bn2));
+		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (fc1));
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+		//----------------------------
+		//----PlainNetWoPad.h5-------
+		
+		/*ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		PoolingLayer *pool1 = buildPoolingLayer("pool1",12,12,20,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
@@ -131,10 +151,10 @@ using namespace std;
 		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
 		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count,infile);
-		net.getLayers().push_back(shared_ptr<Layer> (fc2));
-		//------------------------------ */
+		net.getLayers().push_back(shared_ptr<Layer> (fc2));*/
+		//------------------------------ 
 		//----PlainNetTiny.h5---------
-		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,1,1,5,5,32,th_count,infile);
+		/*ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,1,1,5,5,32,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		AvgPoolingLayer *pool1 = buildAvgPoolingLayer("pool1",24,24,32,2,2,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
@@ -145,7 +165,7 @@ using namespace std;
 		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*64,512,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
 		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",512,10,th_count,infile);
-		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+		net.getLayers().push_back(shared_ptr<Layer> (fc2));*/
 
 
 
@@ -162,7 +182,7 @@ using namespace std;
 
 		Network net=buildNetwork();
 		for(int i=0; i<net.getNumLayers();i++){
-			cerr<<i<<endl<<flush;
+			//cerr<<i<<endl<<flush;
 			net.getLayer(i)->savePlaintextParameters(outfile);
 		}
 

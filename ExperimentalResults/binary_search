@@ -1,0 +1,1707 @@
+RANDOM SEED=IMG_BATCH, + POW
+level 0  plain_modulus: 1073741824  min_plain_modulus: 2  max_plain_modulus: 576460752303423488
+Testing 1073741824
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 0
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 2631
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Success
+level 1  plain_modulus: 32768  min_plain_modulus: 2  max_plain_modulus: 536870912
+Testing 32768
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 83 bits
+Testing image 0
+0 83
+1 78
+2 77
+3 75
+4 69
+5 43
+6 41
+7 39
+8 32
+Mispredicted
+level 2  plain_modulus: 4194304  min_plain_modulus: 32768  max_plain_modulus: 536870912
+Testing 4194304
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 0
+0 76
+1 71
+2 70
+3 68
+4 62
+5 29
+6 27
+7 26
+8 19
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 2631
+0 76
+1 71
+2 70
+3 68
+4 62
+5 29
+6 28
+7 25
+8 19
+Mispredicted
+level 3  plain_modulus: 33554432  min_plain_modulus: 4194304  max_plain_modulus: 536870912
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 21
+7 19
+8 12
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 2631
+0 73
+1 68
+2 67
+3 65
+4 59
+5 22
+6 21
+7 19
+8 12
+Mispredicted
+level 4  plain_modulus: 134217728  min_plain_modulus: 33554432  max_plain_modulus: 536870912
+Testing 134217728
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 0
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 17
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 2631
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 18
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Success
+level 5  !!base!!  min_plain_modulus: 33554432  max_plain_modulus: 67108864
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 12
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 2631
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 13
+Mispredicted
+level 6 returning Testing 67108864
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 0
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 20
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 2631 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 2631
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Success
+67108864 due to Success
+level 5 returning 67108864 from lower level left
+level 4 returning 67108864 from lower level right
+level 3 returning 67108864 from lower level right
+level 2 returning 67108864 from lower level right
+level 1 returning 67108864 from lower level left
+OUTPUT:2,67108864,989215090 µs
+level 0  plain_modulus: 1073741824  min_plain_modulus: 2  max_plain_modulus: 576460752303423488
+Testing 1073741824
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 0
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 5262
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 224 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 224
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 8346 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 8346
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Success
+level 1  plain_modulus: 32768  min_plain_modulus: 2  max_plain_modulus: 536870912
+Testing 32768
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 83 bits
+Testing image 0
+0 83
+1 78
+2 77
+3 75
+4 69
+5 43
+6 42
+7 39
+8 33
+Mispredicted
+level 2  plain_modulus: 4194304  min_plain_modulus: 32768  max_plain_modulus: 536870912
+Testing 4194304
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 0
+0 76
+1 71
+2 70
+3 68
+4 62
+5 28
+6 27
+7 25
+8 18
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 5262
+0 76
+1 71
+2 70
+3 68
+4 62
+5 29
+6 27
+7 25
+8 18
+Encrypting image 224 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 224
+0 76
+1 71
+2 70
+3 68
+4 62
+5 28
+6 28
+7 25
+8 18
+Encrypting image 8346 Noise budget in fresh encrypted pixel: 75 bits
+Testing image 8346
+0 75
+1 71
+2 70
+3 68
+4 62
+5 29
+6 27
+7 25
+8 17
+Mispredicted
+level 3  plain_modulus: 33554432  min_plain_modulus: 4194304  max_plain_modulus: 536870912
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 69
+2 67
+3 65
+4 59
+5 22
+6 22
+7 19
+8 12
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 5262
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 12
+Mispredicted
+level 4  plain_modulus: 134217728  min_plain_modulus: 33554432  max_plain_modulus: 536870912
+Testing 134217728
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 0
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 5262
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 224 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 224
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 8346 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 8346
+0 71
+1 67
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Success
+level 5  !!base!!  min_plain_modulus: 33554432  max_plain_modulus: 67108864
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 20
+8 12
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 5262
+0 73
+1 68
+2 67
+3 65
+4 59
+5 22
+6 22
+7 19
+8 12
+Mispredicted
+level 6 returning Testing 67108864
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 0
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 5262 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 5262
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 19
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 224 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 224
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 8346 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 8346
+0 72
+1 68
+2 66
+3 64
+4 58
+5 20
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Success
+67108864 due to Success
+level 5 returning 67108864 from lower level left
+level 4 returning 67108864 from lower level right
+level 3 returning 67108864 from lower level right
+level 2 returning 67108864 from lower level right
+level 1 returning 67108864 from lower level left
+OUTPUT:4,67108864,1523870878 µs
+level 0  plain_modulus: 1073741824  min_plain_modulus: 2  max_plain_modulus: 576460752303423488
+Testing 1073741824
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 0
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 523 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 523
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 448 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 448
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 6692 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 6692
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 2621 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 2621
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 7517 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 7517
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 3763 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 3763
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Encrypting image 4309 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 4309
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Success
+level 1  plain_modulus: 32768  min_plain_modulus: 2  max_plain_modulus: 536870912
+Testing 32768
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 83 bits
+Testing image 0
+0 83
+1 78
+2 77
+3 75
+4 69
+5 42
+6 42
+7 39
+8 33
+Mispredicted
+level 2  plain_modulus: 4194304  min_plain_modulus: 32768  max_plain_modulus: 536870912
+Testing 4194304
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 0
+0 76
+1 71
+2 70
+3 68
+4 62
+5 28
+6 28
+7 25
+8 19
+Encrypting image 523 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 523
+0 76
+1 71
+2 70
+3 68
+4 62
+5 28
+6 28
+7 26
+8 19
+Encrypting image 448 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 448
+0 76
+1 71
+2 70
+3 68
+4 62
+5 29
+6 28
+7 26
+8 18
+Mispredicted
+level 3  plain_modulus: 33554432  min_plain_modulus: 4194304  max_plain_modulus: 536870912
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 20
+8 13
+Encrypting image 523 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 523
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 20
+8 13
+Mispredicted
+level 4  plain_modulus: 134217728  min_plain_modulus: 33554432  max_plain_modulus: 536870912
+Testing 134217728
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 0
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 16
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 523 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 523
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 16
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 448 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 448
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 16
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 6692 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 6692
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 2621 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 2621
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 7517 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 7517
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 16
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 3763 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 3763
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Encrypting image 4309 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 4309
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 18
+7 16
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Success
+level 5  !!base!!  min_plain_modulus: 33554432  max_plain_modulus: 67108864
+Testing 33554432
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 0
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 12
+Encrypting image 523 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 523
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 12
+Mispredicted
+level 6 returning Testing 67108864
+keys done
+Built network
+Encrypting image 0 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 0
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 19
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 523 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 523
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 448 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 448
+0 72
+1 67
+2 67
+3 64
+4 58
+5 20
+6 19
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 6692 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 6692
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 2621 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 2621
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 20
+7 17
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 7517 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 7517
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 3763 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 3763
+0 72
+1 67
+2 66
+3 64
+4 58
+5 20
+6 20
+7 18
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Encrypting image 4309 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 4309
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 19
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Success
+67108864 due to Success
+level 5 returning 67108864 from lower level left
+level 4 returning 67108864 from lower level right
+level 3 returning 67108864 from lower level right
+level 2 returning 67108864 from lower level right
+level 1 returning 67108864 from lower level left
+OUTPUT:8,67108864,2298110590 µs
+level 0  plain_modulus: 1073741824  min_plain_modulus: 2  max_plain_modulus: 576460752303423488
+Testing 1073741824
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 1
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 2 plain res= 2
+Encrypting image 1046 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 1046
+0 68
+1 64
+2 62
+3 60
+4 54
+5 13
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 5 plain res= 5
+Encrypting image 896 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 896
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 11
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 3384 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 3384
+0 68
+1 64
+2 63
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5243 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 5243
+0 68
+1 64
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5033 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 5033
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 7527 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 7527
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 1 plain res= 1
+Encrypting image 8619 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 8619
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 11
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 8688 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 8688
+0 68
+1 63
+2 62
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 7 plain res= 7
+Encrypting image 9551 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 9551
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 4 plain res= 4
+Encrypting image 1360 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 1360
+0 68
+1 64
+2 62
+3 60
+4 54
+5 13
+6 11
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 1 plain res= 1
+Encrypting image 3106 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 3106
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 2 plain res= 2
+Encrypting image 2954 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 2954
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 11
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5532 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 5532
+0 68
+1 63
+2 62
+3 60
+4 54
+5 12
+6 12
+7 10
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 7 plain res= 7
+Encrypting image 8554 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 8554
+0 68
+1 63
+2 63
+3 60
+4 54
+5 13
+6 12
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 6 plain res= 6
+Encrypting image 4752 Noise budget in fresh encrypted pixel: 68 bits
+Testing image 4752
+0 68
+1 64
+2 62
+3 60
+4 54
+5 12
+6 11
+7 9
+Reencrypt due to out of noise budget. Still remaning 0
+7 68
+8 61
+Comparing: predicted= 9 plain res= 9
+Success
+level 1  plain_modulus: 32768  min_plain_modulus: 2  max_plain_modulus: 536870912
+Testing 32768
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 83 bits
+Testing image 1
+0 83
+1 78
+2 77
+3 75
+4 69
+5 43
+6 42
+7 39
+8 33
+Comparing: predicted= 2 plain res= 2
+Encrypting image 1046 Noise budget in fresh encrypted pixel: 83 bits
+Testing image 1046
+0 83
+1 78
+2 77
+3 75
+4 69
+5 42
+6 42
+7 39
+8 33
+Comparing: predicted= 2 plain res= 5
+Mispredicted
+level 2  plain_modulus: 4194304  min_plain_modulus: 32768  max_plain_modulus: 536870912
+Testing 4194304
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 76 bits
+Testing image 1
+0 76
+1 71
+2 70
+3 68
+4 62
+5 29
+6 28
+7 25
+8 19
+Comparing: predicted= 3 plain res= 2
+Mispredicted
+level 3  plain_modulus: 33554432  min_plain_modulus: 4194304  max_plain_modulus: 536870912
+Testing 33554432
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 1
+0 73
+1 68
+2 67
+3 65
+4 59
+5 22
+6 21
+7 19
+8 13
+Comparing: predicted= 0 plain res= 2
+Mispredicted
+level 4  plain_modulus: 134217728  min_plain_modulus: 33554432  max_plain_modulus: 536870912
+Testing 134217728
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 1
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 2 plain res= 2
+Encrypting image 1046 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 1046
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 18
+7 15
+8 9
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 5 plain res= 5
+Encrypting image 896 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 896
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 3384 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 3384
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 18
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5243 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 5243
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5033 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 5033
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 7527 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 7527
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 1 plain res= 1
+Encrypting image 8619 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 8619
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 8688 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 8688
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 7 plain res= 7
+Encrypting image 9551 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 9551
+0 71
+1 67
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 4 plain res= 4
+Encrypting image 1360 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 1360
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 18
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 1 plain res= 1
+Encrypting image 3106 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 3106
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 2 plain res= 2
+Encrypting image 2954 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 2954
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 18
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5532 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 5532
+0 71
+1 67
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 7 plain res= 7
+Encrypting image 8554 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 8554
+0 71
+1 66
+2 65
+3 63
+4 57
+5 19
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 6 plain res= 6
+Encrypting image 4752 Noise budget in fresh encrypted pixel: 71 bits
+Testing image 4752
+0 71
+1 66
+2 65
+3 63
+4 57
+5 18
+6 17
+7 15
+8 8
+Reencrypt due to out of noise budget. Still remaning 0
+8 71
+Comparing: predicted= 9 plain res= 9
+Success
+level 5  !!base!!  min_plain_modulus: 33554432  max_plain_modulus: 67108864
+Testing 33554432
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 73 bits
+Testing image 1
+0 73
+1 68
+2 67
+3 65
+4 59
+5 23
+6 22
+7 19
+8 13
+Comparing: predicted= 0 plain res= 2
+Mispredicted
+level 6 returning Testing 67108864
+keys done
+Built network
+Encrypting image 1 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 1
+0 72
+1 68
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 2 plain res= 2
+Encrypting image 1046 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 1046
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 5 plain res= 5
+Encrypting image 896 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 896
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 3384 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 3384
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5243 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 5243
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5033 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 5033
+0 72
+1 68
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 10
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 7527 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 7527
+0 72
+1 67
+2 67
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 1 plain res= 1
+Encrypting image 8619 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 8619
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 8688 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 8688
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 7 plain res= 7
+Encrypting image 9551 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 9551
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 4 plain res= 4
+Encrypting image 1360 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 1360
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 1 plain res= 1
+Encrypting image 3106 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 3106
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 2 plain res= 2
+Encrypting image 2954 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 2954
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 18
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 0 plain res= 0
+Encrypting image 5532 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 5532
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 7 plain res= 7
+Encrypting image 8554 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 8554
+0 72
+1 68
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 6 plain res= 6
+Encrypting image 4752 Noise budget in fresh encrypted pixel: 72 bits
+Testing image 4752
+0 72
+1 67
+2 66
+3 64
+4 58
+5 21
+6 20
+7 17
+8 11
+Reencrypt due to out of noise budget. Still remaning 0
+8 72
+Comparing: predicted= 9 plain res= 9
+Success
+67108864 due to Success
+level 5 returning 67108864 from lower level left
+level 4 returning 67108864 from lower level right
+level 3 returning 67108864 from lower level right
+level 2 returning 67108864 from lower level right
+level 1 returning 67108864 from lower level left
+OUTPUT:16,67108864,3759607480 µs

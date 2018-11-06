@@ -15,6 +15,7 @@ using namespace seal;
 
 vector<vector<float> > test_set;
 vector<unsigned char> predicted_labels;
+unsigned seed=0;
 int calls=0;
 
 enum exit_status_forward{SUCCESS, OUT_OF_BUDGET,MISPREDICTED};
@@ -28,15 +29,15 @@ uint64_t minSmallModulusinCoeffModulus(int max_poly_modulus);
 uint64_t plainModulusBinarySearch(int num_images_to_test,uint64_t min_plain_modulus, uint64_t max_plain_modulus, string path_to_model){
 
 	int max_poly_modulus=4096;
-	bool pow=false;
+	bool pow=true;
 	uint64_t plain_modulus;
 
 
 	/*Load and normalize your dataset*/
 	test_set=loadAndNormalizeMNISTestSet("../PlainModel/MNISTdata/raw");
 	/*Load predictions of plain model*/
-	predicted_labels=loadMNISTPlainModelPredictions("../PlainModel/predictionsPlainModelWoPad.csv");
-
+	predicted_labels=loadMNISTPlainModelPredictions("../PlainModel/predictionsApproxPlainModel.csv");
+	
 	CnnBuilder build(path_to_model);
 	/*Search between powers of two*/
 	plain_modulus=plainModulusBinarySearchInternal(build,min_plain_modulus,max_plain_modulus,max_poly_modulus,pow,num_images_to_test);
@@ -77,6 +78,7 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 	uint64_t plain_modulus;
     assert(min_plain_modulus<=max_plain_modulus);
 	cout<<"level "<<calls++<<"  ";
+	assert(plain_modulus>=min_plain_modulus);
 	exit_status_forward test_plain;
 	/*If we are at the base of recursion i.e. we have scanned all intermediate integers numbers, we can try with the two extremes values and return
 	the smaller of the two. If the min value returns OUT_OF_BUDGET we return 0, to signal that we haven't found any good plain_mod, and we don't test the 
@@ -181,7 +183,6 @@ uint64_t plainModulusBinarySearchInternal(CnnBuilder build,uint64_t min_plain_mo
 
 exit_status_forward testPlainModulus(CnnBuilder build, uint64_t plain_modulus,int max_poly_modulus, int num_images_to_test){
 
-	unsigned seed=num_images_to_test;
 	default_random_engine generator(seed);
 	uniform_int_distribution<int> distribution(0,predicted_labels.size());
 	exit_status_forward ret_value=SUCCESS;
@@ -231,12 +232,20 @@ int main(){
 	chrono::high_resolution_clock::time_point time_start, time_end;
 	chrono::microseconds time_binary_search(0);
 	uint64_t found_plain_mod;
-	for(int num_images_to_test=2;num_images_to_test<17;num_images_to_test=num_images_to_test+2){
-		time_start = chrono::high_resolution_clock::now();
-		found_plain_mod= plainModulusBinarySearch(num_images_to_test,1UL<<1,1UL<<59, "PlainModelWoPad.h5");
-		time_end = chrono::high_resolution_clock::now();
-		time_binary_search = chrono::duration_cast<chrono::microseconds>(time_end - time_start);
-		cout<<"OUTPUT:"<<num_images_to_test<<","<<found_plain_mod<<","<<time_binary_search.count()<<" µs"<<endl;
+	cout<<"Testing from 1UL<<24 to 1UL<<34 with POW"<<endl;
+	for(int i=0;i<50;i++){
+		cout<<"RUN "<<i<<endl;
+		int rand=(i+1)*123476587+((i+2)*(i+3));
+		cout<<"Random seed= num_images_to_test*"<<rand<<endl;
+		for(int num_images_to_test=2;num_images_to_test<33;num_images_to_test=num_images_to_test<<1){
+			seed=num_images_to_test*rand;
+			cout<<"SEED = "<<seed<<endl;
+			time_start = chrono::high_resolution_clock::now();
+			found_plain_mod= plainModulusBinarySearch(num_images_to_test,1UL<<24,1UL<<34, "ApproxPlainModel.h5");
+			time_end = chrono::high_resolution_clock::now();
+			time_binary_search = chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+			cout<<"OUTPUT:"<<num_images_to_test<<","<<found_plain_mod<<","<<time_binary_search.count()<<endl;
+		}
 	}
 	
 	return 0;

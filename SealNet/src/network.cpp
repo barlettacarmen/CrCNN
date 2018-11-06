@@ -3,6 +3,7 @@
 #include "seal/seal.h"
 #include "layer.h"
 #include <cassert>
+#include <chrono>
 using namespace std;
 using namespace seal;
 
@@ -25,14 +26,26 @@ using namespace seal;
 		and repeat the forward for that layer*/
 		int max_num_of_reencryptions=1;
 		ciphertext3D output;
+		//chrono::high_resolution_clock::time_point time_start, time_end;
+
 
 		for(int i=0; i<layers.size();i++){
 			cerr<<i<<" "<<decryptor->invariant_noise_budget(input[0][0][0])<<endl;
+			//chrono::microseconds time_forward(0);
+			//chrono::microseconds time_reenc(0);
+			//time_start= chrono::high_resolution_clock::now();
 			output=layers[i]->forward(input);
+			//time_end= chrono::high_resolution_clock::now();
+			//time_forward+=chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+			
 			if(decryptor->invariant_noise_budget(output[0][0][0])<=5){
 				if(max_num_of_reencryptions>0){
+					//time_start= chrono::high_resolution_clock::now();
 					floatCube image=decryptImage(input);
 					input=encryptImage(image);
+					//time_end= chrono::high_resolution_clock::now();
+					//time_reenc =chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+					//cout<<time_forward.count()<<","<<time_reenc.count()<<",";
 					i--;
 					max_num_of_reencryptions--;
 					cout<<"Reencrypt due to out of noise budget. Still remaining "<<max_num_of_reencryptions<<endl;
@@ -43,7 +56,12 @@ using namespace seal;
 				 	throw OutOfBudgetException(i-1);
 				}
 			}
+			//time_start= chrono::high_resolution_clock::now();
 			input=deepCopyImage(output);
+			//time_end= chrono::high_resolution_clock::now();
+			//time_forward+=chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+			//cout<<time_forward.count()<<","<<"0"<<",";
+
 		}
 		return output;
 	}

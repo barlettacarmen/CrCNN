@@ -55,12 +55,12 @@ void setParameters(int poly_modulus, uint64_t plain_modulus){
    
 }
 
-void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path){
+void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path, int poly_modulus, uint64_t plain_modulus){
     ofstream pubfile(public_key_path, ofstream::binary);
     ofstream secfile(secret_key_path, ofstream::binary);
     ofstream evalfile(evaluation_key_path, ofstream::binary);
 
-    setParameters();
+    setParameters(poly_modulus,plain_modulus);
 
     keygen->public_key().save(pubfile);
     keygen->secret_key().save(secfile);
@@ -74,20 +74,15 @@ void setAndSaveParameters(string public_key_path,string secret_key_path,string e
 }
 
 
-void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path){
+void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path,int poly_modulus, uint64_t plain_modulus){
 	ifstream pubfile(public_key_path, ifstream::binary);
   ifstream secfile(secret_key_path, ifstream::binary);
   ifstream evalfile(evaluation_key_path, ifstream::binary);
 
 	parms = new EncryptionParameters();
-	parms->set_poly_modulus("1x^4096 + 1");
-  parms->set_coeff_modulus(coeff_modulus_128(4096));
-
-   
-    //parms->set_plain_modulus(4000000000);
-  parms->set_plain_modulus(1<<20);
-
-
+	parms->set_poly_modulus("1x^"+to_string(poly_modulus)+" + 1");
+  parms->set_coeff_modulus(coeff_modulus_128(poly_modulus));
+  parms->set_plain_modulus(plain_modulus);
   context = new SEALContext(*parms);
 
 
@@ -101,7 +96,7 @@ void initFromKeys(string public_key_path,string secret_key_path,string evaluatio
   encryptor = new Encryptor(*context, public_key);
   decryptor = new Decryptor(*context,secret_key);
   evaluator = new Evaluator(*context);
-  intencoder = new IntegerEncoder(context->plain_modulus(),3);
+  //intencoder = new IntegerEncoder(context->plain_modulus(),3);
   fraencoder =  new FractionalEncoder(context->plain_modulus(), context->poly_modulus(), 64, 32, 3);
 
 
@@ -139,8 +134,8 @@ ciphertext3D encryptImage(vector<float> image, int zd, int xd, int yd){
             encryptor->encrypt(fraencoder->encode(image[i*xd+j]),encrypted_image[z][i][j]);          
             }
 
-  cout << "Noise budget in fresh encrypted pixel: ";
-  cout<< decryptor->invariant_noise_budget(encrypted_image[0][0][0]) << " bits"<<endl;
+  //cout << "Noise budget in fresh encrypted pixel: ";
+  //cout<< decryptor->invariant_noise_budget(encrypted_image[0][0][0]) << " bits"<<endl;
 
   return encrypted_image;
 

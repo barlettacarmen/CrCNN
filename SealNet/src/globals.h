@@ -29,8 +29,8 @@ extern ChooserEncoder * chooser_encoder;
 extern ChooserEvaluator * chooser_evaluator;
 
 void setParameters(int poly_modulus=4096, uint64_t plain_modulus=1<<20);
-void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path);
-void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path);
+void setAndSaveParameters(string public_key_path,string secret_key_path,string evaluation_key_path,int poly_modulus, uint64_t plain_modulus);
+void initFromKeys(string public_key_path,string secret_key_path,string evaluation_key_path,int poly_modulus, uint64_t plain_modulus);
 void print_parameters(const SEALContext &context);
 void delParameters();
 //Precondition: setParameters() or initFromKeys() must be called before
