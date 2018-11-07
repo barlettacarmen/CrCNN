@@ -1327,7 +1327,14 @@ structure-preserving
 \begin_inset Formula $\varPhi$
 \end_inset
 
- is a ring homomorphism between the rings 
+ is a ring homomorphism (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Ring-Definition"
+
+\end_inset
+
+) between the rings 
 \begin_inset Formula $\mathbb{Z}$
 \end_inset
 
@@ -2162,7 +2169,14 @@ key "cryptoeprint:2012:144"
 \end_layout
 
 \begin_layout Subsection
-Ring Definition
+Ring Definition 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Ring-Definition"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2207,20 +2221,98 @@ A commutative ring R is a set on which there are two operations defined:
 \end_inset
 
 : 
-\begin_inset Formula 
-\begin{align*}
-a(bc) & =(ab)c;\text{ (associativity of product)}\\
-a(b+c) & =ab+ac;\text{ (left associativity of product w.r.t addition)}\\
-(a+b)c & =ac+bc;\text{ (right associativity of product w.r.t. addition)}\\
-a+(b+c) & =(a+b)+c;\text{ (associativity of addition)}\\
-a+b & =b+a;\text{ (commutative addition)}\\
-ab & =ba.\text{ (commutative product)}
-\end{align*}
+\begin_inset ERT
+status open
 
-\end_inset
+\begin_layout Plain Layout
 
 
-\begin_inset Newline newline
+\backslash
+begin{align}
+\end_layout
+
+\begin_layout Plain Layout
+
+&a(bc)=(ab)c;
+\backslash
+text{ (associativity of product)}
+\backslash
+notag 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+&a(b+c)=ab+ac;
+\backslash
+text{ (left associativity of product w.r.t addition)}
+\backslash
+notag
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+&(a+b)c=ac+bc;
+\backslash
+text{ (right associativity of product w.r.t.
+ addition)}
+\backslash
+notag
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+&a+(b+c)=(a+b)+c;
+\backslash
+text{ (associativity of addition)}
+\backslash
+notag
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+&a+b=b+a;
+\backslash
+text{ (commutative addition)}
+\backslash
+notag
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+&ab=ba.
+\backslash
+text{ (commutative product)} 
+\backslash
+notag
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align}
+\end_layout
+
 \end_inset
 
 The set of integers 
@@ -3045,14 +3137,6 @@ v
 \end_inset
 
 .
-\emph default
-
-\begin_inset Newline newline
-\end_inset
-
-(Invariant) Noise Budget (NB) 
-\emph on
-is the left noise in the ciphertext before decryption fails.
 \end_layout
 
 \begin_layout Definition
@@ -3108,6 +3192,14 @@ is
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+In other words, the 
+\emph on
+(Invariant) Noise Budget (NB) 
+\emph default
+is the left noise in the ciphertext before decryption fails.
 \end_layout
 
 \begin_layout Standard
@@ -7426,7 +7518,14 @@ description "Simple Encrypted Arithmetic Library"
 \end_layout
 
 \begin_layout Section
-Simple Encrypted Arithmetic Library 
+Simple Encrypted Arithmetic Library (SEAL) 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:SEAL"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -7771,7 +7870,7 @@ The new formulation is given in Optimization Problem 2.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Box ovalbox
@@ -8353,6 +8452,46 @@ Purpose
 Structure
 \end_layout
 
+\begin_layout Subsection
+Types definition
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathsf{Ciphertext}$
+\end_inset
+
+ object represents a SEAL (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SEAL"
+
+\end_inset
+
+) 
+\begin_inset Formula $\mathsf{Ciphertext}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathsf{ciphertext3D}$
+\end_inset
+
+ is a cube of 
+\begin_inset Formula $\mathsf{Ciphertext}$
+\end_inset
+
+ objects
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathsf{floatCube}$
+\end_inset
+
+ is a cube of floats
+\end_layout
+
 \begin_layout Section
 Functionalities
 \begin_inset CommandInset label
@@ -8365,10 +8504,6 @@ name "sec:Functionalities"
 \end_layout
 
 \begin_layout Standard
-Typedefs...
-\begin_inset Newline newline
-\end_inset
-
 Preconditions...
 \begin_inset Newline newline
 \end_inset
@@ -8382,7 +8517,7 @@ Preconditions...
 \end_inset
 
 
-\begin_inset Formula $\label{eq:encImg}\mathsf{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,int\;xd,int\;yd,string\;file_{-}name)}$
+\begin_inset Formula $\mathsf{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,int\;xd,int\;yd,string\;file_{-}name)}$
 \end_inset
 
 
@@ -8390,7 +8525,7 @@ Preconditions...
 \end_inset
 
 
-\begin_inset Formula $\mathsf{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}\label{eq:decrypt}$
+\begin_inset Formula $\mathsf{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}$
 \end_inset
 
 
@@ -8402,7 +8537,7 @@ Experimental Results
 
 \begin_layout Standard
 This Chapter focuses on the practical conversion of a plain pre-trained
- CNN in a CNN able to make prediction on encrypted images.
+ CNN in a network able to make predictions on encrypted images.
  
 \begin_inset Newline newline
 \end_inset
@@ -8452,7 +8587,7 @@ reference "sec:Heuristic:-Binary-Search"
 \end_inset
 
  will be tested on the given CNN and the algorithm will be examined considering
- its time to converge to a reliable result.
+ its speed to converge to a reliable result.
  
 \begin_inset Newline newline
 \end_inset
@@ -8471,6 +8606,20 @@ reference "chap:CrCNN:A-CNN-Library"
 Experimental Setup
 \end_layout
 
+\begin_layout Standard
+All the experiments reported in this Chapter are run on...
+ (caratteristiche server).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Used languages: C++, Python...
+\begin_inset Newline newline
+\end_inset
+
+Used libraries: SEAL...
+\end_layout
+
 \begin_layout Section
 MNIST Dataset 
 \begin_inset CommandInset label
@@ -8480,6 +8629,18 @@ name "sec:MNIST-Dataset"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The MNIST 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MNIST"
+
+\end_inset
+
+ is a dataset of handwritten digits images and it is composed by a training
+ set of 60000 examples and a test set of 10000 examples....
 \end_layout
 
 \begin_layout Section
@@ -8578,7 +8739,11 @@ Cita paper o metti riferimento a dove l'hai descritta
 \emph on
 Convolution Layer: 
 \emph default
-The convolution has 50 kernels of size 
+The convolution has 
+\begin_inset Formula $50$
+\end_inset
+
+ kernels of size 
 \begin_inset Formula $3\times3$
 \end_inset
 
@@ -8654,6 +8819,13 @@ This layer fully connects the incoming 500 nodes to the outgoing 10 nodes.
 
 \begin_layout Subsection
 STEP 1
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:STEP-1"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8812,7 +8984,7 @@ reference "subsec:Encryption-Scheme"
 
 \end_inset
 
-) .
+).
  The encoding of the CNN and the encryption of the data is achieved through
  the appropriate methods of the CrCnn library described in Section 
 \begin_inset CommandInset ref
@@ -8855,11 +9027,15 @@ reference "sec:Binary-Search-Results"
 \end_inset
 
 ) .
- This intermediate step is put before layer 8.
+ This intermediate step is put before layer 7.
 \end_layout
 
 \begin_layout Section
-Timings And Approximations Effects
+Timings And Transformation's Effects
+\end_layout
+
+\begin_layout Subsection
+Timings
 \end_layout
 
 \begin_layout Standard
@@ -8871,7 +9047,7 @@ of the encoded CNN
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
 \end_inset
 
- using the CrCNN library gives the following results in terms of timing.
+ using the CrCNN library gives the following results in terms of timings.
  
 \end_layout
 
@@ -8894,16 +9070,7 @@ reference "sec:MNIST-Dataset"
 \end_inset
 
  (see method 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:encImg}
-\end_layout
-
+\begin_inset Formula $\mathsf{encryptImage}$
 \end_inset
 
  in Section 
@@ -8921,16 +9088,7 @@ reference "sec:Functionalities"
 \labelwidthstring 00.00.0000
 Decryption.
  The decryption procedure (see method 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:decrypt}
-\end_layout
-
+\begin_inset Formula $\mathsf{decryptImage}$
 \end_inset
 
  in Section 
@@ -8957,26 +9115,30 @@ reference "sec:Functionalities"
  
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-40THREADSSSSSSS
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
+\paragraph_spacing onehalf
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Timings of testing of 
+Testing times of 
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
 \end_inset
 
  
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Testing-times"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8985,43 +9147,60 @@ Timings of testing of
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="3">
+<lyxtabular version="3" rows="11" columns="4">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+Layer #
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+Operation
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads' #
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+Time (s)
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9030,27 +9209,40 @@ Layer 1
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Convolution
+Convolution 
+\begin_inset Formula $(5\times5\times20)$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-31.18
+20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30.73
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9059,27 +9251,40 @@ Layer 2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average Pooling
+Average Pooling 
+\begin_inset Formula $(2\times2\times1)$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.66
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.45
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9088,27 +9293,36 @@ Layer 3
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Batch Normalization
+Batch Normalization 
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-2.19
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.03
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9117,27 +9331,40 @@ Layer 4
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Convolution
+Convolution 
+\begin_inset Formula $(3\times3\times50)$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-27.25
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.89
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9146,7 +9373,7 @@ Layer 5
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9155,18 +9382,27 @@ Square
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-2.10
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.65
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9175,56 +9411,40 @@ Layer 6
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Average Pooling
-\end_layout
-
+Average Pooling 
+\begin_inset Formula $(2\times2\times1)$
 \end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
 
-\begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
 </cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Layer 7
+1
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Batch Normalization
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+0.76
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9233,7 +9453,7 @@ Re-encryption
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9242,18 +9462,65 @@ Decryption+Encryption
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+1
+\end_layout
 
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.20
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Layer 7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Batch Normalization
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.68
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9262,27 +9529,40 @@ Layer 8
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fully Connected
+Fully Connected 
+\begin_inset Formula $(800,500)$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+40
+\end_layout
 
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18.23
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9291,20 +9571,33 @@ Layer 9
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Fully Connected
+Fully Connected 
+\begin_inset Formula $(500,10)$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+50
+\end_layout
 
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.45
 \end_layout
 
 \end_inset
@@ -9317,7 +9610,239 @@ Fully Connected
 
 \end_layout
 
+\end_inset
+
+The timings reported in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Testing-times"
+
+\end_inset
+
+ are obtained by running the forward on an encrypted image.
+ Since the CrCNN library (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Functionalities"
+
+\end_inset
+
+) allows to split the computational load, for some layers this possibility
+ is used to obtain better performances.
+ The Convolution Layer 1 is run with 20 threads in parallel, this means
+ that each thread performs a single one dimensional convolution with a kernel
+ of dimensions 
+\begin_inset Formula $5\times5$
+\end_inset
+
+.
+ The Convolution Layer 4 is run with 50 threads in parallel and this means
+ that each thread performs one convolution of dimensions 
+\begin_inset Formula $3\times3$
+\end_inset
+
+ over an input image of 
+\begin_inset Formula $11\times11\times20.$
+\end_inset
+
+ The Square Layer 5 is run with 50 threads and this means that each one
+ of them computes the operation over one channel in input.
+ For the Fully Connected Layer 8 each thread performs the operation over
+ 20 input neurons (i.e.
+ 800/40), while in the last Fully Connected Layer each thread performs the
+ operation over 10 (i.e.
+ 500/50) input neurons.
+ 
+\begin_inset Newline newline
+\end_inset
+
+ The most computationally intensive layers remain the two Convolution Layers
+ and the first Fully Connected Layer, while the re-encryption step does
+ not affect too much the forward execution time.
+\end_layout
+
+\begin_layout Subsection
+Accuracy Tracking Through Transformation's Steps
+\end_layout
+
+\begin_layout Standard
+During the transformation's steps the CNN is subject to redefinitions that
+ could cause a loss in accuracy as already exposed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+.
+ Indeed in the approximation step the ReLu is substituted with a Square
+ function and this introduces some errors in the CNN, since negative neurons
+ are not truncated to be zero as the ReLu does but become small numbers
+ around zero.
+ The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:CNN's-accuracy-mutation"
+
+\end_inset
+
+ shows that this approximation step causes the starting accuracy of 98%
+ to decrease of 1 point percentage, that is not a big performance's loss.
+ The last transformation step that involves the encoding and thus the applicatio
+n of the CNN to encrypted images does not affect performances at all.
+ This implies that the parameters found by the Binary Search algorithm are
+ optimal for the tested images.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status collapsed
+
 \begin_layout Plain Layout
+\paragraph_spacing onehalf
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CNN's accuracy mutation 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:CNN's-accuracy-mutation"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Accuracy
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Starting 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Approximated 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Encoded 
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+98%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+97%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+97%(
+\series bold
+\color red
+NB da verificare
+\series default
+\color inherit
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
 
 \end_layout
 
@@ -9331,6 +9856,209 @@ Binary Search Results
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Binary-Search-Results"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Binary Search Heuristic described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+ is run to find the optimal parameters 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q.
+ 
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Additionally to what explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+, as input to the Binary Search it is possible to set a 
+\emph on
+maximum number of re-encryption steps
+\emph default
+ that one can accept to perform during the forward phase.
+ This increases the probability to find feasible encryption parameters and
+ thus to fall in the best case (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Binary-Search-Cases"
+
+\end_inset
+
+(a)).
+ The binary search eventually outputs also the best point in the CNN where
+ to perform this/these re-encryption step/s.
+ The results showed by the plot in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:scatterPlot"
+
+\end_inset
+
+ are obtained using the following input parameters:
+\end_layout
+
+\begin_layout Itemize
+Pre-trained approximated model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-1"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Sorted list of possible plaintext moduli 
+\begin_inset Formula $t_{list}=[2^{1},2^{2},...,2^{59}]$
+\end_inset
+
+, with 
+\begin_inset Formula $t_{min}=23$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{max}=33$
+\end_inset
+
+, that is, the plaintext modulus 
+\emph on
+t 
+\emph default
+can be a power of two between 
+\begin_inset Formula $2^{24}$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{34}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ of 128 bits.
+\end_layout
+
+\begin_layout Itemize
+Coefficient modulus 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ is set as the default value given by the SEAL library for a degree of the
+ polynomial modulus 
+\begin_inset Formula $n=4096$
+\end_inset
+
+ and the security level 
+\begin_inset Formula $\lambda=128$
+\end_inset
+
+ bits.
+\end_layout
+
+\begin_layout Itemize
+Maximum number of re-encryption steps is set to 1.
+\end_layout
+
+\begin_layout Standard
+The algorithm is run for 50 times and at each run a number of randomly sampled
+ images 
+\begin_inset Formula $|D|$
+\end_inset
+
+ of 2, 4, 8, 16, 32 (batch size) is tested.
+ In the end there are 50 samples (i.e.
+ obtained plaintext moduli) for each batch size.
+ The plot shows the maximum value of plaintext modulus obtained for a given
+ batch size.
+ One can notice that just using a batch size of 4 images, the binary search
+ is able to find the optimal plaintext modulus 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+.
+ The binary search sets the point in the CNN for the re-encryption as the
+ point before Layer 7, as showed by Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Testing-times"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Img/BSplot.png
+	display false
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Plain Modulus found by the Binary Search for increasing number of images
+ tested 
+\begin_inset Formula $(|D|)$
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:scatterPlot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
