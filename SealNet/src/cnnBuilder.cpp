@@ -106,7 +106,7 @@ using namespace std;
 
 
 	Network CnnBuilder::buildNetwork(string file_name){
-		int th_count=40;
+		int th_count=40,th_count2=50;
 		Network net;
 		ifstream *infile=NULL;
 		if(file_name!=""){
@@ -119,9 +119,9 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
 		BatchNormLayer *bn1=buildBatchNormLayer("pool1_features.norm1",20,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (bn1));
-		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,th_count,infile);
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",11,11,20,2,2,3,3,50,th_count2,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv2));
-		SquareLayer *act1= buildSquareLayer("act1",th_count);
+		SquareLayer *act1= buildSquareLayer("act1",th_count2);
 		net.getLayers().push_back(shared_ptr<Layer> (act1));
 		AvgPoolingLayer *pool2= buildAvgPoolingLayer("pool2",5,5,50,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool2));
@@ -129,7 +129,7 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (bn2));
 		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*50,500,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
-		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count,infile);
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count2,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));
 		//----------------------------
 		//----PlainNetWoPad.h5-------
