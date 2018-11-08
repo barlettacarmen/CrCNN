@@ -922,8 +922,21 @@ n+1
 All these works have in common the fact that they use relatively simple
  HE schemes, that is, additively or multiplicative HE that allow to perform
  homomorphically only one of these two operations.
- In those cases HE as RSA, that is multiplicative homomorphic or Paillier
- 
+ In those cases HE as RSA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+ and El-Gamal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/tit/Elgamal85"
+
+\end_inset
+
+, that are multiplicative homomorphic or Paillier 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Paillier"
@@ -1371,9 +1384,36 @@ key "Gentry:2009:FHE:1536414.1536440"
 
  was the first to propose a plausible construction for a fully homomorphic
  scheme that respects both addition and multiplication and since then new
- and more efficient schemes has been proposed, but despite the promising
- theoretical power of homomorphic encryption, the practical side remained
- underdeveloped for a long time.
+ and more efficient schemes has been proposed such as 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/pkc/SmartV10"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/eurocrypt/DijkGHV10"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/crypto/BrakerskiV11"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lopez-Alt:2012:OMC:2213977.2214086"
+
+\end_inset
+
+, but despite the promising theoretical power of homomorphic encryption,
+ the practical side remained underdeveloped for a long time.
  
 \end_layout
 
@@ -1617,7 +1657,11 @@ key "brakerski2014efficient"
  -
 \emph default
  evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  
@@ -1646,7 +1690,7 @@ C
 \begin_inset Formula $\in\mathscr{\mathcal{C}}$
 \end_inset
 
- 
+
 \emph default
 , 
 \end_layout
@@ -1722,7 +1766,11 @@ Homomorphic.
 
 \emph default
 -evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  with correctness property is called 
@@ -1775,7 +1823,11 @@ key "brakerski2014efficient"
 
 \emph default
 -evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  is called a 
@@ -1843,7 +1895,11 @@ key "brakerski2014efficient"
 
 \emph default
 -evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  that is compact, correct, and where 
@@ -1940,8 +1996,8 @@ N-key fully homomorphic encryption scheme.
 \emph on
 multi-key
 \emph default
- FHE are not very efficient and there are no practical implementations in
- any library.
+ FHEs are not very efficient and there are no practical implementations
+ in any library.
 \end_layout
 
 \begin_layout Description
@@ -1990,9 +2046,17 @@ key "HElibmanual"
 , shows that it takes about 4 minutes and 3GB of RAM, running on a laptop
  Intel Core i5-3320M running at 2.6GHz, to evaluate an entire AES-128 encryption
  operation.
- Even if by using Single Instruction Multiple Data techniques, it is possible
- to process up to 120 blocks in each such evaluation, yielding an amortized
- rate of just over 2 seconds per block.
+ With optimizations as ciphertext packing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/dcc/SmartV14"
+
+\end_inset
+
+, called Single Instruction Multiple Data techniques, which allows several
+ plaintexts to be encoded in a single ciphertext, it is possible to process
+ up to 120 blocks in each such evaluation, yielding an amortized rate of
+ just over 2 seconds per block.
  This implies that performances can be similar to the non-encrypted version
  of the AES circuit, but at the cost of increased memory consumption.
 \end_layout
@@ -2202,7 +2266,7 @@ A commutative ring R is a set on which there are two operations defined:
 \begin_inset Formula $1∈R$
 \end_inset
 
- is the identity of the multiplication operation.
+ is the identity element of the multiplication operation.
  For every element 
 \begin_inset Formula $a∈R$
 \end_inset
@@ -2512,6 +2576,14 @@ For each
 \end_layout
 
 \begin_layout Itemize
+
+\emph on
+t 
+\emph default
+is an integer called plaintext modulo 
+\end_layout
+
+\begin_layout Itemize
 The reduction to the interval 
 \begin_inset Formula $[0,q)$
 \end_inset
@@ -2581,12 +2653,7 @@ The discrete Gaussian distribution
 \begin_inset Formula $\sigma$
 \end_inset
 
- is the standard deviation of the discrete Gaussian distribution, with default
- value of 
-\begin_inset Formula $3.19≈8/2π$
-\end_inset
-
-.
+ is the standard deviation of the discrete Gaussian distribution
 \end_layout
 
 \begin_layout Itemize
@@ -2639,11 +2706,19 @@ key "Regev:2005:LLE:1060590.1060603"
 \emph on
 Shortest Vector Problem
 \emph default
- (SVP) to LWE, i.e.
+ (SVP) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Micciancio2011"
+
+\end_inset
+
+ to LWE, i.e.
  if one can solve LWE, then there is a quantum algorithm to solve certain
  approximate SVP.
- Informally, the SVP requires a player to provide a shortest possible vector
- in a given lattice and it is known to be an NP-hard problem.
+ Informally, the SVP requires a player to provide the shortest nonzero vector
+ in a lattice, given a basis of the lattice and it is known to be an NP-hard
+ problem.
  In particular, the asymptotically fastest known algorithms for obtaining
  an approximation to SVP on ideal lattices to within polynomial factors
  require time 
@@ -3324,12 +3399,23 @@ reference "eq:ct(s)"
 \end_layout
 
 \begin_layout Paragraph*
-Addition
+Addition 
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 \begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})\coloneqq([ct_{1}[0]+ct_{2}[0]]_{q},[ct_{1}[1]+ct_{2}[1]]_{q})}$
+\end_inset
+
+
+\emph on
+ 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
 \end_inset
 
 
@@ -3358,17 +3444,31 @@ It is possible to show that if
 \begin_inset Formula $||v_{add}||\leq||v_{1}||+||v_{2}||$
 \end_inset
 
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Paragraph*
-Multiplication
+Multiplication 
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 \align left
 \begin_inset Formula $\mathsf{SH.MUL(ct_{1,}ct_{2},rlk)}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
 \end_inset
 
 : compute 
@@ -3413,7 +3513,7 @@ It is possible to prove that: if
 \end_inset
 
 , 
-\begin_inset Formula $\mathsf{ct_{2}}=(y0,\ldots,y_{j_{2}})$
+\begin_inset Formula $\mathsf{ct_{2}}=(y_{0},\ldots,y_{j_{2}})$
 \end_inset
 
  is a ciphertext of size 
@@ -3452,7 +3552,14 @@ It is possible to prove that: if
 \begin_inset Formula $\mathsf{ct_{mult}}$
 \end_inset
 
- satisfies the following bound
+ satisfies the following bound 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
 ||v_{mult}||\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||+\frac{nt}{2}\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||\\
@@ -3466,7 +3573,11 @@ It is possible to prove that: if
 \end_layout
 
 \begin_layout Paragraph*
-Relinearization
+Relinearization 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -3475,6 +3586,13 @@ Relinearization
 
 \begin_layout Standard
 \begin_inset Formula $\mathsf{SH.RELIN(ct_{mult},rlk)}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
 \end_inset
 
 : write 
@@ -3552,7 +3670,136 @@ m
 \end_inset
 
  can be bounded as 
-\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)nB(l+1)T.$
+\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)nB(l+1)T$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Bootstrapping
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is a procedure that allows to turn a SHE into a FHE, since bootstrapping
+ allows to lower the noise before to hit the maximum noise level.
+ Gentry's idea of bootstrapping 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentry:2009:FHE:1536414.1536440"
+
+\end_inset
+
+ consists in running the decryption 
+\begin_inset Formula $\mathsf{SH.Decrypt}$
+\end_inset
+
+ in the encrypted domain, i.e.
+ homomorphically.
+ The result of this operation produces the encryption of the same message,
+ but with noise of a fixed size.
+ 
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset citation
+LatexCommand cite
+key "journals/iacr/ArmknechtBCGJRS15"
+
+\end_inset
+
+(Bootstrappable).
+ A C-evaluation scheme is called 
+\emph on
+boostrappable 
+\emph default
+if it is able to homomorphically evaluate its own decryption circuit plus
+ one additional multiplication.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The bootstrapping works as follows 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/AcarAUC17"
+
+\end_inset
+
+: first, it is assumed that two different public and secret key pairs are
+ generated, 
+\begin_inset Formula $(pk1,sk1)$
+\end_inset
+
+ and 
+\begin_inset Formula $(pk2,sk2)$
+\end_inset
+
+.
+ The message 
+\emph on
+m 
+\emph default
+is encrypted 
+\begin_inset Formula $c=\mathsf{Encrypt}(pk1,m)$
+\end_inset
+
+ and the secret key is encrypted too 
+\begin_inset Formula $\mathsf{Encrypt}(pk1,sk1)$
+\end_inset
+
+.
+ Since the obtained SHE scheme (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+) can evaluate its own decryption algorithm homomorphically, the noisy ciphertex
+t is decrypted homomorphically using 
+\begin_inset Formula $\mathsf{Encrypt}(pk1,sk1)$
+\end_inset
+
+.
+ Then, the result is encrypted using a different public key 
+\begin_inset Formula $pk2$
+\end_inset
+
+, 
+\begin_inset Newline newline
+\end_inset
+
+i.e.
+ 
+\begin_inset Formula $\mathsf{Encrypt}(pk2,\mathsf{Decrypt}(\mathsf{Encrypt}(pk1,sk1),c))$
+\end_inset
+
+
+\begin_inset Formula $=\mathsf{Encrypt}(pk2,m).$
 \end_inset
 
 
@@ -3567,12 +3814,12 @@ There are two other important operations
 \begin_inset Formula $\mathsf{AddPlain}(ct,m_{add})$
 \end_inset
 
-and
-\begin_inset Newline newline
+ and 
+\begin_inset Formula $\mathsf{MultiplyPlain}($
 \end_inset
 
  
-\begin_inset Formula $\mathsf{MultiplyPlain(ct,m_{mul})}$
+\begin_inset Formula $ct,m_{mul})$
 \end_inset
 
  that can be seen as a particular case of the 
@@ -3580,7 +3827,11 @@ and
 \end_inset
 
 , 
-\begin_inset Formula $\mathsf{SH.MUL(ct_{1,}ct_{2},rlk)}$
+\begin_inset Formula $\mathsf{SH.MUL(}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{ct_{1,}ct_{2},rlk)}$
 \end_inset
 
 .
@@ -4069,14 +4320,14 @@ key "Bioinformatics"
 
 .
  It works by first encoding the integer part with an Integer Encoding, then
- the fractional part is codified in base-
+ the fractional part is codified in the same base-
 \emph on
 S, n 
 \emph default
 is added to each exponent of the fractional part and it is converted in
  a polynomial by changing the base 
 \emph on
-B 
+S 
 \emph default
 into the variable 
 \begin_inset Formula $x$
@@ -4084,27 +4335,6 @@ into the variable
 
 .
  Next each sign of the fractional part is flipped.
- For any rational number 
-\emph on
-r 
-\emph default
-with finite base-S expansion:
-\begin_inset Formula 
-\[
-\mathtt{FractionEncode}(r,S)=sign(r)\cdot[\mathtt{IntEncode}(\lfloor|r|\rfloor,S)+\mathtt{FractionEncode}(\{|r|\},S)],
-\]
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-where 
-\begin_inset Formula $\{\cdot\}$
-\end_inset
-
- denotes the fractional part.
  For example, consider 
 \begin_inset Formula $S=2\text{ and }r=5.8125$
 \end_inset
@@ -4121,9 +4351,22 @@ where
 \begin_inset Formula $\mathtt{FractionEncode}(0.875,S=2)=-x^{n-1}-x^{n-2}-x^{n-4}$
 \end_inset
 
+, thus 
+\begin_inset Formula $\mathtt{FractionEncode}(5.875,S=2)=-x^{n-1}-x^{n-2}-x^{n-4}+x^{2}+1$
+\end_inset
+
 .
- 
-\begin_inset Newline newline
+ More formally, for any rational number 
+\emph on
+r 
+\emph default
+with finite base-S expansion 
+\begin_inset Formula 
+\begin{align*}
+\mathtt{FractionEncode}(r,S) & =sign(r)\cdot[\mathtt{IntEncode}(\lfloor|r|\rfloor,S)]+\\
+ & +\mathtt{FractionEncode}(|r|-\lfloor|r|\rfloor,S)]
+\end{align*}
+
 \end_inset
 
 Some rational numbers have not a finite base-
@@ -4608,14 +4851,11 @@ assuming the standard deviation of the discrete Gaussian distribution
 \begin_inset Formula $\sigma$
 \end_inset
 
- to be the default value (see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:BFV"
-
+ to be the default value of 
+\begin_inset Formula $3.19≈8/2π$
 \end_inset
 
- ).
+.
  These values are retrieved according to the most recent homomorphic encryption
  security standards.
  Table 
