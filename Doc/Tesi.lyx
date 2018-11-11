@@ -3474,9 +3474,9 @@ key "cryptoeprint:2012:144"
 : compute 
 \begin_inset Formula 
 \begin{align*}
-\boldsymbol{c}_{0} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]+\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}\\
+\boldsymbol{c}_{0} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}\\
 \boldsymbol{c}_{1} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[0]\cdot ct_{2}[1]+ct_{1}[1]\cdot ct_{2}[0])}{q}\Biggr\rceil\Biggr]_{q}\\
-\boldsymbol{c}_{2} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[1]+\cdot ct_{2}[1])}{q}\Biggr\rceil\Biggr]_{q}
+\boldsymbol{c}_{2} & =\Bigg[\Biggl\lfloor\frac{t\cdot(ct_{1}[1]\cdot ct_{2}[1])}{q}\Biggr\rceil\Biggr]_{q}
 \end{align*}
 
 \end_inset
@@ -8684,59 +8684,74 @@ name "chap:CrCNN:A-CNN-Library"
 
 \end_layout
 
-\begin_layout Section
-Purpose
-\end_layout
-
-\begin_layout Section
-Structure
-\end_layout
-
-\begin_layout Subsection
-Types definition
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $\mathsf{Ciphertext}$
-\end_inset
-
- object represents a SEAL (see Section 
+\begin_layout Standard
+This Chapter will focus on the description of the developed Crypto Convolutional
+ Neural Network (CrCNN) library.
+ This library is the first example of tool that allows to build CNNs able
+ to make predictions homomorphically over encrypted images.
+ Indeed, even if in literature (see Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:SEAL"
+reference "sec:Single-Data-Provider"
 
 \end_inset
 
-) 
-\begin_inset Formula $\mathsf{Ciphertext}$
+) there is an example of implementation of a CNN that makes prediction on
+ HE data 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
 \end_inset
 
+, none until now has released a tool that gives the possibility to reproduce,
+ at least conceptually, this kind of result.
+ The purpose of this library is to provide the building blocks to make experimen
+ts regarding the application of the HE to the field of Deep Learning, in
+ particular on the CNNs.
  
+\begin_inset Newline newline
+\end_inset
+
+The CNN's layers provided by this library will be presented in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Structure"
+
+\end_inset
+
+.
+ CrCNN has basically these two main functionalities:
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $\mathsf{ciphertext3D}$
+\begin_layout Description
+Requirement
+\begin_inset space ~
 \end_inset
 
- is a cube of 
-\begin_inset Formula $\mathsf{Ciphertext}$
+1 Import the pre-trained model of a CNN and encode it (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
 \end_inset
 
- objects
+).
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $\mathsf{floatCube}$
+\begin_layout Description
+Requirement
+\begin_inset space ~
 \end_inset
 
- is a cube of floats
+2 Make predictions using the encoded CNN over encrypted data.
 \end_layout
 
 \begin_layout Section
-Functionalities
+Structure And Main Functionalities 
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:Functionalities"
+name "sec:Structure"
 
 \end_inset
 
@@ -8744,31 +8759,641 @@ name "sec:Functionalities"
 \end_layout
 
 \begin_layout Standard
-Preconditions...
+The CrCNN is a library written in the C++ language and built on top of SEAL
+ (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SEAL"
+
+\end_inset
+
+).
+ SEAL can be considered as the "assembly" language of this library since
+ it provides all the primitives to perform calculi on encrypted data.
+ The library mainly leverages the datatypes presented in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab: datatypes"
+
+\end_inset
+
+.
+ 
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Main datatypes of CrCNN 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab: datatypes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Datatype
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ a SEAL (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SEAL"
+
+\end_inset
+
+) 
+\begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
+\end_inset
+
+ object 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{Plaintext}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+a SEAL (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SEAL"
+
+\end_inset
+
+) 
+\begin_inset Formula $\mathsf{\mathtt{Plaintext}}$
+\end_inset
+
+ object 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{ciphertext3D}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ cube of 
+\begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
+\end_inset
+
+ objects
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{ciphertext2D}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+two dimensional matrix of 
+\begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
+\end_inset
+
+ objects
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathtt{\mathsf{\mathtt{plaintext4D}}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+four dimensional matrix of 
+\begin_inset Formula $\mathsf{\mathtt{Plaintext}}$
+\end_inset
+
+ objects
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{plaintext2D}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+two dimensional matrix of 
+\begin_inset Formula $\mathsf{\mathtt{Plaintext}}$
+\end_inset
+
+ objects
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathsf{\mathtt{floatCube}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ cube of floats
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The functionality described at 
+\series bold
+Requirement 1
+\series default
+ is implemented by the 
+\begin_inset Formula $\mathtt{CnnBuilder}$
+\end_inset
+
+ class that leverages the 
+\emph on
+Builder design pattern
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gamma1994design"
+
+\end_inset
+
+.
+ CrCNN implements most of CNN layers that are allowed under HE constraints
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approximations-For-HE"
+
+\end_inset
+
+).
+ These layers allow to accomplish 
+\series bold
+Requirement 2.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathtt{Layer}$
+\end_inset
+
+s The abstract class 
+\begin_inset Formula $\mathtt{Layer}$
+\end_inset
+
+ include some of the methods that each derived class must implement, among
+ which the most important one is the 
+\begin_inset Formula $\mathtt{forward}$
+\end_inset
+
+ method that allow to perform the different operations according to the
+ layer in order to compute the predicted class of an input 
+\begin_inset Formula $\mathtt{ciphertext3D}$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:UML"
+
+\end_inset
+
+ shows which are the implemented layers.
+ For the most computationally intensive layers (i.e., 
+\begin_inset Formula $\mathtt{Convolutinal,Fully}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathtt{Connected\;\text{and }SqaureLayer}$
+\end_inset
+
+) there is the possibility to run the 
+\begin_inset Formula $\mathtt{forward}$
+\end_inset
+
+ by splitting the computational load between different 
+\begin_inset Formula $\mathtt{threads}$
+\end_inset
+
+, as showed by Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:UML"
+
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Img/Layers.pdf
+	display false
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML of Layers' inheritance structure 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:UML"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Each operation including a division is implemented as a multiplication
+ for the inverse of the divisor.
+ The only difference between the 
+\begin_inset Formula $\mathtt{PoolingLayer}$
+\end_inset
+
+ and is derived class 
+\begin_inset Formula $\mathtt{AvgPoolingLayer}$
+\end_inset
+
+ is that in the former the pooling operation is 
+\begin_inset Formula $f(x)=\sum_{i=1}^{N}x_{i}$
+\end_inset
+
+ while in the latter 
+\begin_inset Formula $f_{avg}(x)=\frac{1}{N}\sum_{i=1}^{N}x_{i}$
+\end_inset
+
+, where 
+\begin_inset Formula $x$
+\end_inset
+
+ is the ciphertext value from a local pooling region and N is the 
+\begin_inset Formula $\mathtt{filterSize}$
+\end_inset
+
+.
+ If one wants to reduce the number of multiplications executed in the CNN
+ and accepts a more rude computation must select the 
+\begin_inset Formula $\mathtt{PoolingLayer}$
+\end_inset
+
+, otherwise the 
+\begin_inset Formula $\mathtt{AvgPoolingLayer}$
+\end_inset
+
+ should be used.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathtt{\mathtt{CnnBuilder}}$
+\end_inset
+
+ is the class responsible for encoding (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) a pre-trained CNN.
+ Given the file of the pre-trained model and the structure of the network,
+ this class is able to transform each weight of the original model (i.e.
+ of float type) into a Plaintext object and thus to initialize each layer
+ in the network.
+ The only requirement is that the saved network has a 
+\begin_inset Formula $\mathtt{<key,value>}$
+\end_inset
+
+ structure where each 
+\begin_inset Formula $\mathtt{key}$
+\end_inset
+
+ represents the 
+\begin_inset Formula $\mathtt{name}$
+\end_inset
+
+ of the layer and the 
+\begin_inset Formula $\mathtt{value}$
+\end_inset
+
+ contains the weights to encode.
+ By using the 
+\begin_inset Formula $\mathtt{save/loadPlaintextParameters}$
+\end_inset
+
+ methods implemented by each layer, the 
+\begin_inset Formula $\mathtt{CnnBuilder}$
+\end_inset
+
+ is also able to write and read a previously encoded CNN.
+ 
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\mathtt{Globals}$
+\end_inset
+
+ is a set of functions that contains all the routines for the encryption
+ and decryption of the images and for the setting of the encryption 
+\emph on
+context
+\emph default
+ (i.
+ e., parameters and keys).
+ It is mandatory to set such a context before calling any function related
+ to the CrCNN library.
+ This list collects some of the functions of 
+\begin_inset Formula $\mathtt{Globals}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathtt{\mathsf{\mathtt{ciphertext3D\;encryptImage(vector<float>image,int\;zd,int\;xd,}}}$
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Formula $\mathsf{ciphertext3D\;encryptImage(vector<float>image,int\;zd,int\;xd,int\;yd)}$
+\begin_inset Formula $\mathtt{int\;yd)}$
 \end_inset
 
+: this function encrypts an image stored as a vector of floats and returns
+ a reshaped encrypted image of dimensions 
+\begin_inset Formula $\mathtt{xd\times yd\times zd}$
+\end_inset
 
+.
+ In practice, a pixel (i.
+ e., a slot of the input vector) is first encoded as a polynomial and then
+ transformed into a 
+\begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathsf{\mathtt{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,}}$
+\end_inset
+
+ 
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Formula $\mathsf{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,int\;xd,int\;yd,string\;file_{-}name)}$
+ 
+\begin_inset Formula $\mathtt{int\;xd,int\;yd,string\;file_{-}name)}$
 \end_inset
 
+: this function performs the same task of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
 
+\begin_inset Formula $\mathtt{encryptImage}$
+\end_inset
+
+, but it also saves the encrypted image in 
+\begin_inset Formula $\mathtt{file_{-}name}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathtt{ciphertext3D\;loadEncryptedImage(int\;zd,int\;xd,int\;yd,}$
+\end_inset
+
+ 
 \begin_inset Newline newline
 \end_inset
 
+ 
+\begin_inset Formula $\mathtt{string\;file_{-}name)}$
+\end_inset
 
-\begin_inset Formula $\mathsf{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}$
+: this function loads a previously encrypted and saved image into a 
+\begin_inset Formula $\mathtt{ciphertext3D}$
+\end_inset
+
+ of dimensions 
+\begin_inset Formula $\mathtt{xd\times yd\times zd}.$
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathsf{\mathtt{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}}$
+\end_inset
+
+: this functions decrypts an than decode (i.e.
+ transforms a polynomial into a number) an 
+\begin_inset Formula $\mathtt{encrypted_{-}image}$
+\end_inset
+
+ and then stores it into a cube of floats of the same dimensions of the
+ 
+\begin_inset Formula $\mathtt{ciphertext3D}$
+\end_inset
+
+ in input.
 \end_layout
 
 \begin_layout Chapter
@@ -8847,17 +9472,61 @@ Experimental Setup
 \end_layout
 
 \begin_layout Standard
-All the experiments reported in this Chapter are run on...
- (caratteristiche server).
- 
+All the experiments reported in this Chapter has been executed on a 40-cores
+ Intel Xeon CPU E5-2640 @ 2.40GHz with 128GB of RAM (
+\color red
+model?
+\color inherit
+).
+ SEAL 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+ and CrCNN (see Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:CrCNN:A-CNN-Library"
+
+\end_inset
+
+) libraries has been compiled with gcc-6.4.0 and executed on Ubuntu 16.04 with
+ kernel version 4.4.0.
 \begin_inset Newline newline
 \end_inset
 
-Used languages: C++, Python...
-\begin_inset Newline newline
+PyTorch library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pytorch"
+
 \end_inset
 
-Used libraries: SEAL...
+ has been used for the trainings of the CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:CNN-Structure"
+
+\end_inset
+
+) and the approximated CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-1"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Section
@@ -8884,7 +9553,14 @@ key "MNIST"
 \end_layout
 
 \begin_layout Section
-CNN Structure
+CNN Structure 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:CNN-Structure"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9058,7 +9734,7 @@ This layer fully connects the incoming 500 nodes to the outgoing 10 nodes.
 \end_layout
 
 \begin_layout Subsection
-STEP 1
+STEP 1: Approximation 
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:STEP-1"
@@ -9114,7 +9790,7 @@ that squares the value at each input node.
 \end_layout
 
 \begin_layout Subsection
-STEP 2
+STEP 2: Encoding
 \end_layout
 
 \begin_layout Standard
@@ -9229,7 +9905,7 @@ reference "subsec:Encryption-Scheme"
  the appropriate methods of the CrCnn library described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Functionalities"
+reference "sec:Structure"
 
 \end_inset
 
@@ -9238,7 +9914,7 @@ reference "sec:Functionalities"
 \end_layout
 
 \begin_layout Subsection
-STEP 3
+STEP 3: Testing
 \end_layout
 
 \begin_layout Standard
@@ -9316,7 +9992,7 @@ reference "sec:MNIST-Dataset"
  in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Functionalities"
+reference "sec:Structure"
 
 \end_inset
 
@@ -9334,7 +10010,7 @@ Decryption.
  in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Functionalities"
+reference "sec:Structure"
 
 \end_inset
 
@@ -9863,7 +10539,7 @@ reference "tab:Testing-times"
  Since the CrCNN library (see Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Functionalities"
+reference "sec:Structure"
 
 \end_inset
 
