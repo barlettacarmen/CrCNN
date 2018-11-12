@@ -1274,11 +1274,10 @@ name "subsec:Homomorphic-Encryption"
 \begin_layout Standard
 Traditional encryption schemes, both symmetric and asymmetric, were not
  designed to respect any algebraic structure of the plaintext and ciphertext
- spaces, i.e.
- no computations can be performed on the ciphertext in a way that would
- pass through the encryption to the underlying plaintext without using the
- secret key, and such a property would in many contexts be considered a
- vulnerability.
+ spaces, i.e., no computations can be performed on the ciphertext in a way
+ that would pass through the encryption to the underlying plaintext without
+ using the secret key, and such a property would in many contexts be considered
+ a vulnerability.
  An encryption scheme that allows computations to be done directly on the
  encrypted data is said to be a 
 \emph on
@@ -1375,46 +1374,6 @@ key "Rivest1978"
 .
  Since there the interest in this topic is grown due to its numerous application
 s.
- Craig Gentry 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Gentry:2009:FHE:1536414.1536440"
-
-\end_inset
-
- was the first to propose a plausible construction for a fully homomorphic
- scheme that respects both addition and multiplication and since then new
- and more efficient schemes has been proposed such as 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/pkc/SmartV10"
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/eurocrypt/DijkGHV10"
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/crypto/BrakerskiV11"
-
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Lopez-Alt:2012:OMC:2213977.2214086"
-
-\end_inset
-
-, but despite the promising theoretical power of homomorphic encryption,
- the practical side remained underdeveloped for a long time.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -1620,7 +1579,7 @@ m
 in the plaintext space,
 \begin_inset Formula 
 \[
-\mathsf{Pr[Dec(\mathit{sk,}\mathsf{Enc}(\mathit{pk,m})=m]=1}
+\mathsf{Pr[Dec(\mathit{sk,}\mathsf{Enc}(\mathit{pk,m}))=m]=1}
 \]
 
 \end_inset
@@ -1677,7 +1636,7 @@ all circuits in
  
 \emph default
 if for all inputs 
-\begin_inset Formula $c_{i},\text{ with }i=1,...,n$
+\begin_inset Formula $c_{i},\text{ for each }i=1,...,n$
 \end_inset
 
 , for every 
@@ -1935,7 +1894,297 @@ However it is fair to say that FHE mostly exists on papers.
 \end_layout
 
 \begin_layout Subsection
-Limitations of Homomorphic Encryption
+Brief History of Homomorphic Encryption Schemes 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:History-of-HE"
+
+\end_inset
+
+ 
+\color red
+(spostare in State of Art?)
+\end_layout
+
+\begin_layout Standard
+RSA is the first feasible achievement of public key cryptosystem and has
+ been introduced by Rivest, Shamir and Adleman in 1978 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/cacm/RivestSA78"
+
+\end_inset
+
+, soon after the invention of public key cryptography by Diffie and Hellman
+ in 1976 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/tit/DiffieH76"
+
+\end_inset
+
+.
+ However, the homomorphic property of RSA was shown by Rivest, Adleman and
+ Dertouzous 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+, just after the seminal work of RSA.
+ Indeed, the first attested use of the term "privacy homomorphism" is introduced
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+.
+ The security of the RSA cryptosystem is based on the hardness of 
+\emph on
+factoring the product of two large prime numbers
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Montgomery94asurvey"
+
+\end_inset
+
+.
+ Moreover plain RSA is not secure against 
+\emph on
+Chosen Plaintext Attacks 
+\emph default
+(CPA) 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CPA"
+description "Chosen Plaintext Attacks "
+
+\end_inset
+
+which presumes that the attacker can obtain the ciphertexts for arbitrary
+ plaintexts 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Biryukov2011"
+
+\end_inset
+
+,  as its encryption algorithm is deterministic.
+ RSA it is only homomorphic over multiplication, but this operation can
+ be performed an unlimited number of times.
+ Hence, it does not allow the homomorphic addition of ciphertexts.
+ In 1982 Goldwasser and Micali (GM) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/stoc/GoldwasserM82"
+
+\end_inset
+
+ proposed the first probabilistic public key encryption scheme, based on
+ the hardness of 
+\emph on
+quadratic residuosity problem
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:reference/crypt/Kaliski05xd"
+
+\end_inset
+
+.
+
+\emph on
+ 
+\emph default
+The GM scheme is homomorphic over only addition of binary numbers, however
+ the probabilistic property of this scheme ensures 
+\emph on
+semantic security, 
+\emph default
+that is equivalent to 
+\emph on
+ciphertext indistinguishability 
+\emph default
+under CPA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/jcss/GoldwasserM84"
+
+\end_inset
+
+.
+ Intuitively, if a cryptosystem possesses the property of indistinguishability,
+ then an adversary will be unable to distinguish pairs of ciphertexts based
+ on the message they encrypt.
+ In 1985, Taher El-Gamal proposed a new public key encryption scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/tit/Elgamal85"
+
+\end_inset
+
+ which is the improved version of the original Diffie-Hellman Key Exchange
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/tit/DiffieH76"
+
+\end_inset
+
+ algorithm and is based on the hardness of certain problems in
+\emph on
+ discrete logarithm 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mccurleydiscrete"
+
+\end_inset
+
+.
+ It is mostly used in hybrid encryption systems to encrypt the secret key
+ of a symmetric encryption system.
+ As RSA El-Gamal cryptosystem is only multiplicatively homomorphic.
+ In 1999 Paillier 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Paillier"
+
+\end_inset
+
+ introduced another novel probabilistic encryption scheme based on c
+\emph on
+omposite residuosity
+\emph default
+ problem 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jager2012generic"
+
+\end_inset
+
+.
+ Pailliler’s encryption scheme is homomorphic over addition, but it allows
+ also other extra basic operations.
+\begin_inset Newline newline
+\end_inset
+
+Before 2005, all proposed cryptosystems' homomorphic properties where restiricte
+d to only either addition or multiplication operation.
+ An important step toward an FHE scheme was the BGN 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "BGN"
+description "Boneh-Goh-Nissim"
+
+\end_inset
+
+SHE scheme proposed by Boneh-Goh-Nissim in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/tcc/BonehGN05"
+
+\end_inset
+
+.
+ BGN supports an arbitrary number of addition and one multiplication and
+ it is able to keep constant the ciphertext size.
+ The hardness of the scheme is based on the 
+\emph on
+subgroup decision problem
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gjosteen2004subgroup"
+
+\end_inset
+
+.
+ After almost 30 years from the introduction of privacy homomorphism concept
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+, in his PhD thesis Craig Gentry presented the first FHE scheme that respects
+ both addition and multiplication and proposed a general framework to obtain
+ a FHE scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gentry:2009:FHE:1536414.1536440"
+
+\end_inset
+
+.
+ Although Gentry's scheme was very promising it also had a lot of bottlenecks
+ such as its computational cost in terms of applicability in real life and
+ some of its advanced mathematical concepts made it complex and hard to
+ implement.
+ What makes Gentry's scheme FHE Gentry are the techniques called 
+\emph on
+squashing
+\emph default
+ and 
+\emph on
+bootstrapping
+\emph default
+ that allow to evaluate unlimited number of operations.
+ Basically squashing is a preliminary operation for the bootstrapping and
+ aims at reducing the decryption algorithm complexity, while the bootstrapping
+ is a "recrypting" procedure (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+).
+ Since 2009 new and more efficient schemes have been proposed such as 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/pkc/SmartV10"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/eurocrypt/DijkGHV10"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/crypto/BrakerskiV11"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lopez-Alt:2012:OMC:2213977.2214086"
+
+\end_inset
+
+ in order to address the aforementioned bottlenecks, but despite the promising
+ theoretical power of homomorphic encryption, the practical side has remained
+ underdeveloped for a long time.
+ 
+\end_layout
+
+\begin_layout Subsection
+Limitations of Homomorphic Encryption 
 \end_layout
 
 \begin_layout Standard
@@ -1949,9 +2198,21 @@ d scenarios, it has some limitations that must be taken into account.
 \end_layout
 
 \begin_layout Description
-Support 
+Support
 \series bold
-for multiple users
+
+\begin_inset space ~
+\end_inset
+
+for
+\begin_inset space ~
+\end_inset
+
+multiple
+\begin_inset space ~
+\end_inset
+
+users
 \series default
 .
  Traditional FHE schemes are 
@@ -2001,19 +2262,23 @@ multi-key
 \end_layout
 
 \begin_layout Description
-Large 
+Large
 \series bold
-computational overhead
+
+\begin_inset space ~
+\end_inset
+
+computational
+\begin_inset space ~
+\end_inset
+
+overhead
 \series default
-.
- It describes the ratio between the computation time in the encrypted version
+ describes the ratio between the computation time in the encrypted version
  versus computation time in the clear.
  Although polynomial in size, this overhead tends to be a rather large polynomia
 l, which increases runtimes substantially and makes homomorphic computation
  of complex functions impractical.
- Nevertheless it is not easy to quantify this overhead since is platform
- dependant and can differ also depending on the particular HE scheme chosen
- and its practical implementation.
  One benchmark commonly used is the homomorphic evaluation of the AES 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2062,9 +2327,17 @@ key "DBLP:journals/dcc/SmartV14"
 \end_layout
 
 \begin_layout Description
-Some 
+Some
 \series bold
-inefficient operations.
+
+\begin_inset space ~
+\end_inset
+
+inefficient
+\begin_inset space ~
+\end_inset
+
+operations.
 
 \series default
  For example there is no efficient way to implement the comparison operation,
@@ -2082,9 +2355,37 @@ key "migliore:hal-01394362"
 \end_layout
 
 \begin_layout Description
-FHE 
+FHE
 \series bold
-does not necessarily imply secret function evaluation
+
+\begin_inset space ~
+\end_inset
+
+does
+\begin_inset space ~
+\end_inset
+
+not
+\begin_inset space ~
+\end_inset
+
+necessarily
+\begin_inset space ~
+\end_inset
+
+imply
+\begin_inset space ~
+\end_inset
+
+secret
+\begin_inset space ~
+\end_inset
+
+function
+\begin_inset space ~
+\end_inset
+
+evaluation
 \series default
 .
  Indeed its goal is to allow the evaluation of arithmetic circuits on encrypted
@@ -2180,8 +2481,15 @@ m
  computation, it must be considered a trusted party.
  Indeed no one can guarantee that the server has performed the desired computati
 on.
- Even the RSA is a malleable cryptosystem, however if used together with
- padding methods such as OAEP 
+ Even the RSA (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:History-of-HE"
+
+\end_inset
+
+) is a malleable cryptosystem, however if used together with padding methods
+ such as OAEP 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Bellare1995OptimalAE"
@@ -2211,7 +2519,14 @@ key "Gentry:2009:FHE:1536414.1536440"
 
 \end_inset
 
- is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV)
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:History-of-HE"
+
+\end_inset
+
+) is the FHE conjectured by Brakerski, Fan and Vercauteren (BFV) 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "BFV"
@@ -2290,6 +2605,10 @@ status open
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 begin{align}
@@ -2297,9 +2616,9 @@ begin{align}
 
 \begin_layout Plain Layout
 
-&a(bc)=(ab)c;
+a(bc)&=(ab)c;&&
 \backslash
-text{ (associativity of product)}
+text{(associativity of product)}
 \backslash
 notag 
 \backslash
@@ -2310,9 +2629,9 @@ notag
 
 \begin_layout Plain Layout
 
-&a(b+c)=ab+ac;
+a(b+c)&=ab+ac;&&
 \backslash
-text{ (left associativity of product w.r.t addition)}
+text{(left associativity of product w.r.t addition)}
 \backslash
 notag
 \backslash
@@ -2323,9 +2642,9 @@ notag
 
 \begin_layout Plain Layout
 
-&(a+b)c=ac+bc;
+(a+b)c&=ac+bc;&&
 \backslash
-text{ (right associativity of product w.r.t.
+text{(right associativity of product w.r.t.
  addition)}
 \backslash
 notag
@@ -2337,22 +2656,9 @@ notag
 
 \begin_layout Plain Layout
 
-&a+(b+c)=(a+b)+c;
+a+(b+c)&=(a+b)+c;&&
 \backslash
-text{ (associativity of addition)}
-\backslash
-notag
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-&a+b=b+a;
-\backslash
-text{ (commutative addition)}
+text{(associativity of addition)}
 \backslash
 notag
 \backslash
@@ -2363,11 +2669,24 @@ notag
 
 \begin_layout Plain Layout
 
-&ab=ba.
+a+b&=b+a;&&
 \backslash
-text{ (commutative product)} 
+text{(commutative addition)}
 \backslash
 notag
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ab&=ba.&&
+\backslash
+text{(commutative product)} 
+\backslash
+notag 
 \end_layout
 
 \begin_layout Plain Layout
@@ -2375,6 +2694,10 @@ notag
 
 \backslash
 end{align}
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -2437,6 +2760,12 @@ If
 Basic Notation
 \end_layout
 
+\begin_layout Standard
+In this Subsection all the mathematical entities that are employed throughout
+ this document are exposed.
+ 
+\end_layout
+
 \begin_layout Itemize
 \begin_inset Formula $R=\mathbb{Z}[x]/(f(x))$
 \end_inset
@@ -2450,16 +2779,29 @@ Basic Notation
 \end_inset
 
 .
- In practice the cyclotomic polynomial 
-\begin_inset Formula $\text{Φ}_{m}(x)$
+ In practice a cyclotomic polynomial
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The minimal polynomial of any 
+\begin_inset Formula $n^{th}$
 \end_inset
 
- , i.e.
- the minimal polynomial of the primitive
+ root of unity over the rationals is a cyclotomic polynomial.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\text{Φ}_{n}(x)$
+\end_inset
+
+ of degree 
 \emph on
- m
+n
 \emph default
--th roots of unity, is used.
+ is used.
  The most popular choice for expository purposes is to take 
 \begin_inset Formula $f(x)=x^{n}+1$
 \end_inset
@@ -2499,21 +2841,10 @@ Elements of the ring
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\parallel\mathbf{a}\parallel=max_{i}\mid a_{i}\mid$
+\begin_inset Formula $\parallel\mathbf{a}\parallel_{\infty}=max_{i}\mid a_{i}\mid$
 \end_inset
 
  is the infinity norm.
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $δ_{R}=max\left\{ ||\mathbf{a}\text{·}\mathbf{b}||/(||\mathbf{a}||\text{·}||\mathbf{b}||):\mathbf{a},\mathbf{b}\text{∈}R\right\} $
-\end_inset
-
- is the expansion factor of 
-\begin_inset Formula $R$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Itemize
@@ -2744,42 +3075,56 @@ key "eurocrypt-2010-24000"
 \series bold
 Decision-RLWE
 \series default
-) For a security parameter 
-\begin_inset Formula $\lambda$
-\end_inset
-
-, let 
-\begin_inset Formula $f(x)$
-\end_inset
-
- be a cyclotomic polynomial 
-\begin_inset Formula $\Phi_{m}(x)$
-\end_inset
-
- with deg(f) = φ(m) depending on λ and 
-\begin_inset Formula $R=\mathbb{Z}[x]/(f(x))$
-\end_inset
-
- .
+) Let 
+\emph on
+n 
+\emph default
+be a power of 2.
  Let 
-\begin_inset Formula $q=q(λ)≥2$
+\begin_inset Formula $R=\mathbb{Z}[x]/(x^{n}+1)$
 \end_inset
 
- be an integer.
- For a random element 
+, and 
+\begin_inset Formula $R_{q}=\mathbb{Z}_{q}[x]/(x^{n}+1)$
+\end_inset
+
+ for some integer 
+\emph on
+q
+\emph default
+.
+ Let 
+\emph on
+
+\begin_inset Formula $\mathbf{s}$
+\end_inset
+
+
+\emph default
+ be a random element in 
+\begin_inset Formula $R_{q}$
+\end_inset
+
+ (i.e., 
 \begin_inset Formula $\mathbf{s}∈R_{q}$
 \end_inset
 
- and a distribution 
-\begin_inset Formula $χ=χ(λ)$
+) and let 
+\begin_inset Formula $χ$
 \end_inset
 
- over 
-\begin_inset Formula $R$
+ be the distribution on 
+\begin_inset Formula $R_{q}$
 \end_inset
 
-, denote with 
-\begin_inset Formula $A_{\mathbf{s},\chi}^{(q)}$
+ obtained by choosing each coefficient of the polynomial from a discrete
+ Gaussian distribution over 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+.
+ Denote by with 
+\begin_inset Formula $A_{\mathbf{s},\chi}$
 \end_inset
 
  the distribution obtained by choosing a uniformly random element 
@@ -2796,7 +3141,7 @@ Decision-RLWE
 
 .
  The decision-RLWE problem is to distinguish 
-\begin_inset Formula $A_{\mathbf{s},\chi}^{(q)}$
+\begin_inset Formula $A_{\mathbf{s},\chi}$
 \end_inset
 
  and the uniform distribution 
@@ -2889,7 +3234,7 @@ key "cryptoeprint:2012:144"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.SecretKeyGen}(1^{\lambda})$
+\begin_inset Formula $\mathsf{SH.SecretKeyGen}(\lambda)$
 \end_inset
 
  sample 
@@ -3021,12 +3366,8 @@ ct=(\boldsymbol{c}_{0},\boldsymbol{c}_{1})\coloneqq([\boldsymbol{p}_{0}\text{·}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
 The above scheme can be shown to be semantically secure assuming the hardness
- of RLWE given 3 samples 
+ of RLWE 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "eurocrypt-2010-24000"
@@ -3034,11 +3375,6 @@ key "eurocrypt-2010-24000"
 \end_inset
 
 .
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3208,7 +3544,7 @@ v
 \emph on
  is removed by the rounding, i.e.
  if 
-\begin_inset Formula $||v||<1/2$
+\begin_inset Formula $||v||_{\infty}<1/2$
 \end_inset
 
 .
@@ -3259,7 +3595,7 @@ Then the noise budget of
  
 \emph default
 is 
-\begin_inset Formula $-log_{2}(2||v||)$
+\begin_inset Formula $-log_{2}(2||v||_{\infty})$
 \end_inset
 
 .
@@ -3356,7 +3692,7 @@ Let
  satisfies 
 \begin_inset Formula 
 \[
-||v||\leq\frac{r_{t}(q)}{q}||m||+\frac{tB}{q}(2n+1).
+||v||_{\infty}\leq\frac{r_{t}(q)}{q}||m||_{\infty}+\frac{tB}{q}(2n+1).
 \]
 
 \end_inset
@@ -3441,7 +3777,7 @@ It is possible to show that if
 \end_inset
 
  and satisfies 
-\begin_inset Formula $||v_{add}||\leq||v_{1}||+||v_{2}||$
+\begin_inset Formula $||v_{add}||_{\infty}\leq||v_{1}||_{\infty}+||v_{2}||_{\infty}$
 \end_inset
 
  
@@ -3562,9 +3898,9 @@ key "SEALManual"
 
 \begin_inset Formula 
 \begin{align*}
-||v_{mult}||\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||+\frac{nt}{2}\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||\\
-+ & \Bigg[(N_{m_{2}}+n)||m_{2}||+\frac{nt}{2}\frac{n^{j_{2}+1}-1}{n-1})\Bigg]||v_{1}||\\
-+ & 3n||v_{1}||||v_{2}||+\frac{t}{2q}\frac{n^{j_{1}+j_{2}+1}-1}{n-1}).
+||v_{mult}||_{\infty}\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||_{\infty}+\frac{nt}{2}\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||_{\infty}\\
++ & \Bigg[(N_{m_{2}}+n)||m_{2}||_{\infty}+\frac{nt}{2}\frac{n^{j_{2}+1}-1}{n-1})\Bigg]||v_{1}||_{\infty}\\
++ & 3n||v_{1}||_{\infty}||v_{2}||_{\infty}+\frac{t}{2q}\frac{n^{j_{1}+j_{2}+1}-1}{n-1}).
 \end{align*}
 
 \end_inset
@@ -3670,7 +4006,7 @@ m
 \end_inset
 
  can be bounded as 
-\begin_inset Formula $||v_{relin}||\leq||v||+\frac{t}{q}(M-N)nB(l+1)T$
+\begin_inset Formula $||v_{relin}||_{\infty}\leq||v||_{\infty}+\frac{t}{q}(M-N)nB(l+1)T$
 \end_inset
 
  
@@ -3738,10 +4074,6 @@ if it is able to homomorphically evaluate its own decryption circuit plus
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
 The bootstrapping works as follows 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3803,13 +4135,13 @@ i.e.
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Subsection
+Operations with plaintext
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 There are two other important operations 
 \begin_inset Formula $\mathsf{AddPlain}(ct,m_{add})$
 \end_inset
@@ -3849,9 +4181,9 @@ m
 \end_inset
 
  that does not need to be protected.
- It is possible to show mathematically how this is possible and which are
- the advantages in terms of grow of noise budget that these operations can
- bring with respect to 
+ The following Lemma 12 and Lemma 11 show mathematically how it is possible
+ to perform these operations and which are the advantages in terms of grow
+ of noise budget that they can bring with respect to 
 \begin_inset Formula $\mathsf{SH.ADD\text{ and }\mathsf{SH.MUL}}$
 \end_inset
 
@@ -3934,7 +4266,7 @@ multiply plain
 \begin_layout Standard
 \begin_inset Formula 
 \[
-||v_{pmult}||\leq N_{m_{2}}||m_{2}||\,||v||.
+||v_{pmult}||_{\infty}\leq N_{m_{2}}||m_{2}||_{\infty}\,||v||_{\infty}.
 \]
 
 \end_inset
@@ -3944,6 +4276,13 @@ multiply plain
 Proof
 \emph default
 .
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
  By definition
 \emph on
  
@@ -3990,7 +4329,7 @@ where in the last line has been used
  and can be bounded as 
 \begin_inset Formula 
 \[
-||v_{pmult}||\leq N_{m_{2}}||m_{2}||\,||v||
+||v_{pmult}||_{\infty}\leq N_{m_{2}}||m_{2}||_{\infty}\,||v||_{\infty}.
 \]
 
 \end_inset
@@ -4058,7 +4397,7 @@ Let
 , and the bound is 
 \begin_inset Formula 
 \[
-||v_{padd}||\leq||v||+\frac{r_{t}(q)}{q}||m_{2}||.
+||v_{padd}||_{\infty}\leq||v||_{\infty}+\frac{r_{t}(q)}{q}||m_{2}||_{\infty}.
 \]
 
 \end_inset
@@ -4066,6 +4405,13 @@ Let
 Proof
 \emph on
 .
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
  By definition of plain addition 
 \begin_inset Formula $\mathsf{ct_{padd}=}(x_{0}+\Delta m_{2},x_{1})$
 \end_inset
@@ -4114,7 +4460,7 @@ and can be bounded as
 
 \begin_inset Formula 
 \[
-||v_{padd}||\leq||v||+\frac{r_{t}(q)}{q}||m_{2}||.
+||v_{padd}||_{\infty}\leq||v||_{\infty}+\frac{r_{t}(q)}{q}||m_{2}||_{\infty}.
 \]
 
 \end_inset
@@ -4272,7 +4618,10 @@ if a reduction modulo the plaintext modulus
 \emph on
 t 
 \emph default
-occurs
+occurs, i.e., during homomorphic operations some coefficients in the underlying
+ encoded plaintext become greater than the plaintext modulus 
+\emph on
+t
 \end_layout
 
 \begin_layout Enumerate
@@ -4280,7 +4629,8 @@ if a reduction modulo the polynomial modulus
 \begin_inset Formula $x^{n}+1$
 \end_inset
 
- occurs
+ occurs, i.e., during homomorphic multiplications the degree of the underlying
+ encoded plaintext become grater than the degree of the polynomial modulus
 \end_layout
 
 \begin_layout Standard
@@ -4410,10 +4760,10 @@ reference "par:Integer-Encoding"
 \end_layout
 
 \begin_layout Enumerate
-if during homomorphic multiplications the fractional parts of the underlying
- plaintext polynomials expands down towards the integer part, and the integer
- part expands up towards the fractional part and these different parts get
- mixed up.
+if during homomorphic multiplications the fractional part of the underlying
+ plaintext polynomial expands down towards the integer part, and the integer
+ part expands up towards the fractional part then these different parts
+ get mixed up.
 \end_layout
 
 \begin_layout Section
@@ -6125,7 +6475,9 @@ label{eq:infNorm}
 
 & t > 
 \backslash
-max{||p||} 
+max{||p||_{
+\backslash
+infty}} 
 \backslash
 ;
 \backslash
@@ -8261,7 +8613,9 @@ label{eq:infinityNorm}
 
 & t > 
 \backslash
-max{||p||} 
+max{||p||_{
+\backslash
+infty}} 
 \backslash
 ;
 \backslash
@@ -8642,7 +8996,7 @@ ls
 \end_inset
 
  is computed as 
-\begin_inset Formula $||p_{3}||=a_{1}+a_{2}$
+\begin_inset Formula $||p_{3}||_{\infty}=a_{1}+a_{2}$
 \end_inset
 
  that is a really pessimistic case, since it true only if coefficients 
@@ -9541,15 +9895,29 @@ name "sec:MNIST-Dataset"
 \end_layout
 
 \begin_layout Standard
-The MNIST 
+The Modified National Institute of Standards and Technology (MNIST) dataset
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "MNIST"
 
 \end_inset
 
- is a dataset of handwritten digits images and it is composed by a training
- set of 60000 examples and a test set of 10000 examples....
+ is a large dataset of handwritten digits images.
+ It is a combination of two of NIST's databases: Special Database 1 and
+ Special Database 3.
+ Special Database 1 and Special Database 3 consist of digits written by
+ high school students and employees of the United States Census Bureau,
+ respectively.
+ The creators felt that since NIST's training dataset was taken from American
+ Census Bureau employees, while the testing dataset was taken from American
+ high school students, it was not well-suited for machine learning experiments.
+ Furthermore, the black and white images from NIST were normalized to fit
+ into a 28x28 pixel bounding box and anti-aliased, which introduced grayscale
+ levels.
+ The MNIST database is commonly used for training and testing various machine
+ learning algorithms and it contains 60000 training images and 10000 testing
+ images.
 \end_layout
 
 \begin_layout Section
