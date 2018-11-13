@@ -2051,7 +2051,7 @@ key "mccurleydiscrete"
 .
  It is mostly used in hybrid encryption systems to encrypt the secret key
  of a symmetric encryption system.
- As RSA El-Gamal cryptosystem is only multiplicatively homomorphic.
+ As RSA, El-Gamal cryptosystem is only multiplicatively homomorphic.
  In 1999 Paillier 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2130,7 +2130,7 @@ key "Gentry:2009:FHE:1536414.1536440"
  such as its computational cost in terms of applicability in real life and
  some of its advanced mathematical concepts made it complex and hard to
  implement.
- What makes Gentry's scheme FHE Gentry are the techniques called 
+ What makes Gentry's scheme FHE are the techniques called 
 \emph on
 squashing
 \emph default
@@ -2911,7 +2911,7 @@ For each
 \emph on
 t 
 \emph default
-is an integer called plaintext modulo 
+is an integer called plaintext modulo.
 \end_layout
 
 \begin_layout Itemize
@@ -2984,7 +2984,7 @@ The discrete Gaussian distribution
 \begin_inset Formula $\sigma$
 \end_inset
 
- is the standard deviation of the discrete Gaussian distribution
+ is the standard deviation of the discrete Gaussian distribution.
 \end_layout
 
 \begin_layout Itemize
@@ -3734,7 +3734,7 @@ reference "eq:ct(s)"
 .
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Addition 
 \end_layout
 
@@ -3790,7 +3790,7 @@ key "SEALManual"
 .
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Multiplication 
 \end_layout
 
@@ -3908,16 +3908,8 @@ key "SEALManual"
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Relinearization 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4023,16 +4015,8 @@ key "SEALManual"
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Bootstrapping
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4181,20 +4165,16 @@ m
 \end_inset
 
  that does not need to be protected.
- The following Lemma 12 and Lemma 11 show mathematically how it is possible
+ The following Lemma 12 and Lemma 13 show mathematically how it is possible
  to perform these operations and which are the advantages in terms of grow
  of noise budget that they can bring with respect to 
 \begin_inset Formula $\mathsf{SH.ADD\text{ and }\mathsf{SH.MUL}}$
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Plain Multiplication
 \end_layout
 
@@ -4337,7 +4317,7 @@ where in the last line has been used
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Plain Addition
 \end_layout
 
@@ -4526,16 +4506,12 @@ encoded.
  
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Integer Encoding
 \begin_inset CommandInset label
 LatexCommand label
 name "par:Integer-Encoding"
 
-\end_inset
-
-
-\begin_inset Newline newline
 \end_inset
 
 
@@ -4638,12 +4614,8 @@ If any of these reductions happens, decoding yields an incorrect result,
  but no indications of these events are given until the final decryption.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Fractional Encoding
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4767,7 +4739,192 @@ if during homomorphic multiplications the fractional part of the underlying
 \end_layout
 
 \begin_layout Section
-Convolutional Neural Networks: A Brief Overview
+Convolutional Neural Networks: A Brief 
+\begin_inset Newline newline
+\end_inset
+
+Overview
+\end_layout
+
+\begin_layout Standard
+Convolutional Neural Networks (CNNs) is a class of deep, feed-forward artificial
+ neural networks that are applied to analyze visual imagery.
+ Feed-forward is the name of the classical architectures of a neural network
+ that is a computing model whose layered structure resembles the networked
+ structure of neurons in the brain, with layers of connected nodes.
+ A neural network can learn from data—so it can be trained to recognize
+ patterns, classify data, and forecast future events.
+ The term "deep" usually refers to the number of hidden layers in the neural
+ network.
+ Traditional neural networks only contain 2-3 hidden layers, while deep
+ networks can have as many as 150.
+ This structure enables CNNs to extract features directly from images.
+ The relevant features are not pre-trained; they are learned while the network
+ trains on a collection of images.
+ This automated feature extraction makes deep learning models highly accurate
+ for computer vision tasks such as object classification and eliminate the
+ need for manual feature extraction.
+ Every hidden layer increases the complexity of the learned image features.
+ CNNs exploit spatial locality by enforcing a local connectivity pattern
+ between neurons of adjacent layers.
+ The architecture thus ensures that the learnt "filters" produce the strongest
+ response to a spatially local input pattern.
+ Stacking many such layers leads to non-linear filters that become increasingly
+ global (i.e.
+ responsive to a larger region of pixel space) so that the network first
+ creates representations of small parts of the input, then from them assembles
+ representations of larger areas.
+ Filters are applied to each training image at different resolutions, and
+ the output of each convolved image is used as the input to the next layer.
+ The filters can start as very simple features, such as brightness and edges,
+ and increase in complexity to features that uniquely define the object.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Employed layers can belong to one of the following groups:
+\end_layout
+
+\begin_layout Itemize
+layers which role is to learn the representation and extract the learned
+ features from the input images
+\end_layout
+
+\begin_layout Itemize
+layers which role is to classify the input feature maps
+\end_layout
+
+\begin_layout Standard
+Layers of the first type are modules composed by multiple convolutional
+ and sub-sampling (pooling) layers, that, respectively, extract the features
+ and reduce their dimensionality and are followed by an activation function.
+ Layers of the second type can be viewed as a classical feed-forward neural
+ network.
+ These modules are described more in details in the following part of this
+ Section.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Convolutional Layer
+\end_layout
+
+\begin_layout Standard
+From the Latin 
+\emph on
+convolvere
+\emph default
+, “to convolve” means to roll together.
+ For mathematical purposes, a convolution is the integral measuring how
+ much two functions overlap as one passes over the other.
+ One can think of a convolution as a way of mixing two functions by multiplying
+ them.
+ The 
+\emph on
+convolutional layer
+\emph default
+ is the core building block of a CNN.
+ The layer's parameters consist of a set of learnable filters (or kernels),
+ which have a small receptive field
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The area, coming from a previous layer, that goes in input to a neuron.
+\end_layout
+
+\end_inset
+
+, but extend through the full depth of the input volume.
+ During the forward pass, each filter is convolved across the width and
+ height of the input volume, computing the dot product between the entries
+ of the filter and the input and producing a 2-dimensional activation map
+ of that filter.
+ As a result, the network learns filters that activate when it detects some
+ specific type of feature at some spatial position in the input.
+\end_layout
+
+\begin_layout Subsubsection*
+Pooling Layer (or Sub-Sampling)
+\end_layout
+
+\begin_layout Standard
+It is common to periodically insert a 
+\emph on
+pooling layer
+\emph default
+ between successive convolutional layers in a CNN architecture.
+ A pooling layer, has the role of summarizing a matrix of neighboring pixels
+ into one in the resulting image.
+ The "summarization" can be done by taking the largest value from one patch
+ of neighbor pixels (
+\emph on
+max pooling
+\emph default
+), by taking the average of them (
+\emph on
+average pooling
+\emph default
+) or by taking their sum (
+\emph on
+sum pooling
+\emph default
+).
+ The pooling function is computed on a matrix of pixels, then the subsequent
+ matrix to which that function is applied has it center at a certain distance
+ (called 
+\emph on
+stride)
+\emph default
+ from the previous one’s center.
+ The intuition is that the exact location of a feature is less important
+ than its rough location relative to other features.
+ This layer serves to progressively reduce the spatial size of the representatio
+n, to reduce the number of parameters and amount of computation in the network,
+ and hence to also control overfitting
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The overfitting issue does not allow to the CNN to generalize well when
+ analyzing new unseen data, thus the CNN performances decreases during testing
+ with respect to the training.
+\end_layout
+
+\end_inset
+
+.
+ The pooling layer operates independently on every depth slice of the input
+ and resizes it spatially.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Activation Function
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+activation functions
+\emph default
+ basically decide whether a neuron should be activated or not as input in
+ subsequent computations and involve a non-linear transformation of the
+ input signal.
+ There are different types of activation functions but the 
+\emph on
+Rectified Linear Unit
+\emph default
+ (ReLU) is the most widely used since it has been empirically proven to
+ be much faster and to achieve a small training error 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krizhevsky:2012:ICD:2999134.2999257"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -9058,7 +9215,7 @@ key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-
 
 \end_inset
 
-, none until now has released a tool that gives the possibility to reproduce,
+, no one until now has released a tool that gives the possibility to reproduce,
  at least conceptually, this kind of result.
  The purpose of this library is to provide the building blocks to make experimen
 ts regarding the application of the HE to the field of Deep Learning, in
@@ -9415,7 +9572,7 @@ two dimensional matrix of
 \begin_inset Newline newline
 \end_inset
 
-The functionality described at 
+The functionality described in 
 \series bold
 Requirement 1
 \series default
@@ -9572,7 +9729,7 @@ name "fig:UML"
 
 .
  If one wants to reduce the number of multiplications executed in the CNN
- and accepts a more rude computation must select the 
+ and accepts a more rude computation one must select the 
 \begin_inset Formula $\mathtt{PoolingLayer}$
 \end_inset
 
@@ -9596,7 +9753,7 @@ reference "sec:Problem-Formulation"
 
 ) a pre-trained CNN.
  Given the file of the pre-trained model and the structure of the network,
- this class is able to transform each weight of the original model (i.e.
+ this class is able to transform each weight of the original model (i.e.,
  of float type) into a Plaintext object and thus to initialize each layer
  in the network.
  The only requirement is that the saved network has a 
@@ -9637,8 +9794,7 @@ reference "sec:Problem-Formulation"
 \emph on
 context
 \emph default
- (i.
- e., parameters and keys).
+ (i.e., parameters and keys).
  It is mandatory to set such a context before calling any function related
  to the CrCNN library.
  This list collects some of the functions of 
@@ -9666,9 +9822,8 @@ context
 \end_inset
 
 .
- In practice, a pixel (i.
- e., a slot of the input vector) is first encoded as a polynomial and then
- transformed into a 
+ In practice, a pixel (i.e., a slot of the input vector) is first encoded
+ as a polynomial and then transformed into a 
 \begin_inset Formula $\mathsf{\mathtt{Ciphertext}}$
 \end_inset
 
@@ -9846,8 +10001,8 @@ reference "chap:CrCNN:A-CNN-Library"
 
 \end_inset
 
-) libraries has been compiled with gcc-6.4.0 and executed on Ubuntu 16.04 with
- kernel version 4.4.0.
+) libraries have been compiled with gcc-6.4.0 and executed on Ubuntu 16.04
+ with kernel version 4.4.0.
 \begin_inset Newline newline
 \end_inset
 
@@ -9906,15 +10061,19 @@ key "MNIST"
  is a large dataset of handwritten digits images.
  It is a combination of two of NIST's databases: Special Database 1 and
  Special Database 3.
- Special Database 1 and Special Database 3 consist of digits written by
- high school students and employees of the United States Census Bureau,
- respectively.
- The creators felt that since NIST's training dataset was taken from American
+ The former consist of digits written by high school students and the latter
+ consists of digits written by employees of the United States Census Bureau.
+ The original NIST's dataset has been mixed, and thus modified, because
+ the creators felt that since NIST's training dataset was taken from American
  Census Bureau employees, while the testing dataset was taken from American
  high school students, it was not well-suited for machine learning experiments.
- Furthermore, the black and white images from NIST were normalized to fit
- into a 28x28 pixel bounding box and anti-aliased, which introduced grayscale
- levels.
+ Furthermore, the black and white images from NIST has been normalized to
+ fit into a 
+\begin_inset Formula $28\times28$
+\end_inset
+
+ pixel bounding box and anti-aliased.
+ The anti-aliasing has introduced grayscale levels.
  The MNIST database is commonly used for training and testing various machine
  learning algorithms and it contains 60000 training images and 10000 testing
  images.
