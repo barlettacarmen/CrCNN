@@ -798,7 +798,7 @@ The participants jointly set up the public key
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2601,7 +2601,7 @@ A commutative ring R is a set on which there are two operations defined:
 
 : 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -3234,7 +3234,7 @@ key "cryptoeprint:2012:144"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.SecretKeyGen}(\lambda)$
+\begin_inset Formula $\mathsf{SecretKeyGen}(\lambda)$
 \end_inset
 
  sample 
@@ -3249,7 +3249,7 @@ key "cryptoeprint:2012:144"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\mathsf{SH.PublicKeyGen(sk)}$
+\begin_inset Formula $\mathsf{PublicKeyGen(sk)}$
 \end_inset
 
  set 
@@ -3273,7 +3273,7 @@ pk=(\boldsymbol{p}_{0},\boldsymbol{p}_{1})\coloneqq([\text{−}(\boldsymbol{a}\t
 \end_inset
 
 
-\begin_inset Formula $\mathsf{SH.EvalateKeyGen(sk,T)}$
+\begin_inset Formula $\mathsf{EvalateKeyGen(sk,T)}$
 \end_inset
 
  for 
@@ -3319,7 +3319,7 @@ ations.
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.Encrypt(pk,\boldsymbol{m})}$
+\begin_inset Formula $\mathsf{Encrypt(pk,\boldsymbol{m})}$
 \end_inset
 
  to encrypt a message 
@@ -3343,7 +3343,7 @@ ct=(\boldsymbol{c}_{0},\boldsymbol{c}_{1})\coloneqq([\boldsymbol{p}_{0}\text{·}
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\begin_inset Formula $\mathsf{Decrypt(sk,ct)}$
 \end_inset
 
  set 
@@ -3465,7 +3465,7 @@ key "SEALManual"
 
 \emph default
 The function 
-\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\begin_inset Formula $\mathsf{Decrypt(sk,ct)}$
 \end_inset
 
  as presented in Subsection 
@@ -3632,7 +3632,7 @@ key "SEALManual"
  
 \emph default
 The function 
-\begin_inset Formula $\mathsf{SH.Decrypt(sk,ct)}$
+\begin_inset Formula $\mathsf{Decrypt(sk,ct)}$
 \end_inset
 
  as presented in Subsection 
@@ -3724,11 +3724,11 @@ reference "eq:ct(s)"
 \end_inset
 
  it is possible to derive homomorphic addition 
-\begin_inset Formula $\mathsf{SH.ADD}$
+\begin_inset Formula $\mathsf{ADD}$
 \end_inset
 
  and multiplication 
-\begin_inset Formula $\mathsf{SH.MUL}$
+\begin_inset Formula $\mathsf{MUL}$
 \end_inset
 
 .
@@ -3740,7 +3740,7 @@ Addition
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})\coloneqq([ct_{1}[0]+ct_{2}[0]]_{q},[ct_{1}[1]+ct_{2}[1]]_{q})}$
+\begin_inset Formula $\mathsf{ADD(ct_{1},ct_{2})\coloneqq([ct_{1}[0]+ct_{2}[0]]_{q},[ct_{1}[1]+ct_{2}[1]]_{q})}$
 \end_inset
 
 
@@ -3797,7 +3797,7 @@ Multiplication
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 \align left
-\begin_inset Formula $\mathsf{SH.MUL(ct_{1,}ct_{2},rlk)}$
+\begin_inset Formula $\mathsf{MUL(ct_{1,}ct_{2},rlk)}$
 \end_inset
 
  
@@ -3824,7 +3824,7 @@ key "cryptoeprint:2012:144"
 The multiplication makes grow the ciphertext size, for this reason a relineariza
 tion step is necessary in order to reduce it.
  As showed in 
-\begin_inset Formula $\mathsf{SH.RELIN}$
+\begin_inset Formula $\mathsf{RELIN}$
 \end_inset
 
  operation.
@@ -3913,7 +3913,7 @@ Relinearization
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\mathsf{SH.RELIN(ct_{mult},rlk)}$
+\begin_inset Formula $\mathsf{RELIN(ct_{mult},rlk)}$
 \end_inset
 
  
@@ -4139,11 +4139,11 @@ There are two other important operations
 \end_inset
 
  that can be seen as a particular case of the 
-\begin_inset Formula $\mathsf{SH.ADD(ct_{1},ct_{2})}$
+\begin_inset Formula $\mathsf{ADD(ct_{1},ct_{2})}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathsf{SH.MUL(}$
+\begin_inset Formula $\mathsf{MUL(}$
 \end_inset
 
  
@@ -4168,7 +4168,7 @@ m
  The following Lemma 12 and Lemma 13 show mathematically how it is possible
  to perform these operations and which are the advantages in terms of grow
  of noise budget that they can bring with respect to 
-\begin_inset Formula $\mathsf{SH.ADD\text{ and }\mathsf{SH.MUL}}$
+\begin_inset Formula $\mathsf{ADD\text{ and }\mathsf{MUL}}$
 \end_inset
 
 .
@@ -4616,6 +4616,13 @@ If any of these reductions happens, decoding yields an incorrect result,
 
 \begin_layout Subsubsection*
 Fractional Encoding
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Fractional-Encoding"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4993,7 +5000,7 @@ reference "sec:BFV"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \paragraph_spacing double
@@ -5879,7 +5886,7 @@ reference "fig:Approximation-steps-CNN"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -6480,7 +6487,7 @@ reference "OptimizationProblem1"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box ovalbox
@@ -6499,7 +6506,7 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Optimization problem 1 
@@ -6519,7 +6526,7 @@ name "OptimizationProblem1"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6842,7 +6849,7 @@ q
  (Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6860,7 +6867,7 @@ q
 must be at least two (Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6874,7 +6881,7 @@ eqref{eq:biggerthan2}
 ).
  Constraint in Eq.
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6905,7 +6912,7 @@ t.
 \emph default
  Constraint in Eq.
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6932,7 +6939,7 @@ reference "eq:NOISE_BUDGET"
  parameters selected.
  Constraint in Eq.
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6966,7 +6973,7 @@ n.
 \emph default
  The last constraint 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6997,7 +7004,7 @@ The real hard problem to solve is the exact calculus of the right term of
  constraint in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7076,7 +7083,7 @@ reference "sec:Practical-Encryption-Parameters"
 This leads to the impossibility of writing in a closed form the constraints
  in 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7089,7 +7096,7 @@ eqref{eq:infNorm}
 
  and 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7294,7 +7301,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7705,7 +7712,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8619,7 +8626,7 @@ The new formulation is given in Optimization Problem 2.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box ovalbox
@@ -8638,7 +8645,7 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Optimization Problem 2 
@@ -8651,7 +8658,7 @@ Optimization Problem 2
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8987,7 +8994,7 @@ is constrained to be an integer number between
  (Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9002,7 +9009,7 @@ eqref{eq:between}
  Constraint in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9037,7 +9044,7 @@ key "DBLP:journals/corr/abs-1205-2926"
  Constraint in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9051,7 +9058,7 @@ eqref{eq:q2}
  is changed with respect to the one in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9078,7 +9085,7 @@ q.
  Constraint in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9121,7 +9128,7 @@ t.
 Concerning constraint in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9170,7 +9177,7 @@ ls
  induce a rough computation also of the right term in Eq.
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -10339,7 +10346,7 @@ reference "sec:Problem-Formulation"
 ) phase the Binary Search algorithm described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic:-Binary-Search"
+reference "sec:Heuristic-results-and"
 
 \end_inset
 
@@ -10359,39 +10366,8 @@ reference "sec:Encryption-Parameters"
 \end_inset
 
 ).
- The details of this
-\emph on
- 
-\emph default
-run are given in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Binary-Search-Results"
-
-\end_inset
-
-.
- The algorithm finds 
-\begin_inset Formula $n=4096,\;q=\{q_{1}=36028797005856769,\;q_{2}=18014398492704769\},\;t=2^{29}$
-\end_inset
-
-, where 
-\begin_inset Formula $\sum_{i=1}^{2}log_{2}q_{i}=log_{2}q_{1}+log_{2}q_{2}=55+54=109$
-\end_inset
-
- , that is compliant with the security standards described in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Default-pairs-(n,q)"
-
-\end_inset
-
- for 128-bit security.
- 
-\begin_inset Newline newline
-\end_inset
-
-Then each weight in 
+ The algorithm finds two sets of possible encryption parameters, then each
+ weight in 
 \begin_inset Formula $\varPhi$
 \end_inset
 
@@ -10404,15 +10380,44 @@ reference "subsec:Encoding"
 \end_inset
 
  using 
-\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32\text{ bits for the fractional part and a base }S=3.$
+\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32$
 \end_inset
 
- The produced encoded network 
-\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ bits for the fractional part and a base 
+\begin_inset Formula $S=3.$
 \end_inset
 
- has the same structure of the one in input but it is able to predict over
- encrypted images, provided that they are encrypted using the same 
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ The two produced encoded network 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+, for the two sets of parameters found have the same structure of the one
+ in input but they are able to predict over encrypted data, provided that
+ images are encrypted using the same 
 \emph on
 n, t 
 \emph default
@@ -10428,7 +10433,7 @@ reference "subsec:Encryption-Scheme"
 \end_inset
 
 ).
- The encoding of the CNN and the encryption of the data is achieved through
+ The encoding of each CNN and the encryption of the data is achieved through
  the appropriate methods of the CrCnn library described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -10441,7 +10446,11 @@ reference "sec:Structure"
 \end_layout
 
 \begin_layout Subsection
-STEP 3: Testing
+STEP 3: Testing(
+\color red
+DA MODIFICAREEEEEEE
+\color inherit
+)
 \end_layout
 
 \begin_layout Standard
@@ -10474,11 +10483,607 @@ reference "sec:Binary-Search-Results"
 \end_layout
 
 \begin_layout Section
-Timings And Transformation's Effects
+Heuristic results and comparisons
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Heuristic-results-and"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Binary Search Heuristic described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+ is essentially used to find the best plaintext modulus parameter 
+\emph on
+t
+\emph default
+, given in input a certain polynomial modulus degree 
+\emph on
+n 
+\emph default
+and a ciphertext modulus 
+\emph on
+q.
+ 
+\emph default
+Additionally to what explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+, as input to the Binary Search it is possible to set a 
+\emph on
+maximum number of re-encryption steps
+\emph default
+ that one can accept to perform during the forward phase.
+ This increases the probability to find feasible encryption parameters and
+ thus to fall in the best case (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Binary-Search-Cases"
+
+\end_inset
+
+(a)).
+ The binary search eventually outputs also the best point in the CNN where
+ to perform this/these re-encryption step/s.This methodology has the following
+ main three goals:
+\end_layout
+
+\begin_layout Enumerate
+Find a plaintext modulus 
+\emph on
+t 
+\emph default
+that, in combination with the given 
+\emph on
+q, 
+\emph default
+allows to have a sufficient initial noise budget in the ciphertext to carry
+ on the entire computations provided by the CNN (i.e., the forward on an encrypted
+ image).
+ This constraint depends only on the number of computations performed and
+ not on the input data, as explained by the Eq.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NB}
+\end_layout
+
+\end_inset
+
+ in the Optimization Problem in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-optimization-problem"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Find a plaintext modulus 
+\emph on
+t 
+\emph default
+that is bigger than the maximum infinity norm that the polynomial in the
+ underlying ciphertext data reaches during computations, as explained by
+ Eq.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infinityNorm}
+\end_layout
+
+\end_inset
+
+ in the Optimization Problem in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-optimization-problem"
+
+\end_inset
+
+.
+ This constraints depends on the encrypted input data and on how it combines
+ through operations with the fixed encoded weights of the CNN.
+\end_layout
+
+\begin_layout Enumerate
+Find the 
+\series bold
+minimal
+\series default
+ plaintext modulus 
+\emph on
+t 
+\emph default
+that satisfies the previous two constraints.
+ This because by fixing 
+\emph on
+t
+\emph default
+ there is the possibility to decrease 
+\emph on
+q 
+\emph default
+and, under the constraints defined in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+, also decrease the degree of the polynomial 
+\emph on
+n
+\emph default
+.
+ This in principle on one hand has the drawback of decreasing the initial
+ noise budget in a ciphertext, but if there is the possibility to put a
+ re-encryption step that reports the level of the noise budget to the starting
+ one, the effect of this negative aspect can be mitigated; on the other
+ hand this gives the advantage of dealing with polynomial of a lower degree
+ and thus to speed up computations an use less memory.
+\end_layout
+
+\begin_layout Standard
+Since it is an heuristic, there are no exact theoretical guarantees on the
+ optimality of the solution found, thus one can be interested in understanding
+ the performances of this methodology in comparison to other alternatives.
+ There can be two other possibilities:
+\end_layout
+
+\begin_layout Enumerate
+Choose a random plaintext modulus 
+\emph on
+t 
+\emph default
+in the allowed range.
+ However in this case the "goodness" of 
+\emph on
+t 
+\emph default
+has really poor guarantees, since it can depend on the experience in the
+ field of the homomorphic encryption, on the knowledge of the complexity
+ of the operations performed in the CNN and on the lack that the user performing
+ the choice has.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Use the automatic parameters selection tools offered by the SEAL 2.3.1 library,
+ which can help the user in determining optimal encryption parameters for
+ certain use-cases 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SEALManual"
+
+\end_inset
+
+.
+ Essentially given the circuit to compute on encrypted data (i.e., the series
+ of operations on a ciphertext) this tool builds a graph of the computation
+ instead of actually calculating it and tries to estimates the grow of infinity
+ norm and noise so to find appropriate overall parameters.
+ The ciphertexet in input is also simulated in the sense that it is represented
+ as a polynomial with a certain initial infinity norm and a maximum number
+ of nonzero coefficients.
+ It consists of two parts: a 
+\begin_inset Formula $\mathtt{Simulator}$
+\end_inset
+
+ component that simulates noise growth in homomorphic operations using precomput
+ed estimates based ton the type of operation, and a 
+\begin_inset Formula $\mathtt{Chooser}$
+\end_inset
+
+ component, which estimates the growth of the coefficients in the underlying
+ plain- text polynomials, and uses Simulator to simulate noise growth.
+ The problem is that, for example, given an addition operation and two polynomia
+ls 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+ to sum with infinity norm respectively 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ the infinity norm of the result 
+\begin_inset Formula $p_{3}=p_{1}+p_{2}$
+\end_inset
+
+ is computed as 
+\begin_inset Formula $||p_{3}||_{\infty}=a_{1}+a_{2}$
+\end_inset
+
+ that is a really pessimistic case, since it true only if coefficients 
+\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
+\end_inset
+
+ are associated to the same power in their respective polynomials 
+\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
+\end_inset
+
+.
+ It is important to underline the fact that this estimate is used also to
+ calculate the noise added to the resulting polynomial and thus that will
+ induce a rough computation also in the growth of the noise in the ciphertext.
+ Moreover this automatic parameter selection is only designed to work with
+ polynomial codifying an integer number (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Integer-Encoding"
+
+\end_inset
+
+) and thus it is not suitable in the case one wishes to make computations
+ on polynomial that encode fractional numbers (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Fractional-Encoding"
+
+\end_inset
+
+) as in the case of CNNs.
+ The usage of this tool on the approximated CNN (i.e., on the computations
+ that this model provides) described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-1"
+
+\end_inset
+
+, outputs that there are no valid encryption parameters.
+ This shows that this methodology that overestimates the encryption parameters
+ needed is not suitable in the case there are many computations to perform
+ as in a CNN, since it is unable to find any valid result.
+ 
+\end_layout
+
+\begin_layout Standard
+The heuristic binary search can be run on a subset of the testing set (
+\noun on
+Partial
+\noun default
+ run) or on the entire testing set (
+\noun on
+Full
+\noun default
+ run).
+ The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Heuristic-performances"
+
+\end_inset
+
+ reports the results of the testing on the whole appropriate dataset of
+ 10000, and in particular it reports the testing error, the time for a forward
+ on an encrypted image and the initial noise budget for the encoded network
+ 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ encoded with two different sets of parameters: 
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Partial
+\noun default
+ column shows the result with the plaintext modulus 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+ obtained by running the binary search only on 32 randomly sampled images
+ and setting as 
+\begin_inset Formula $n=4096,\;q=\{q_{1}=36028797005856769,\;q_{2}=18014398492704769\},$
+\end_inset
+
+ where 
+\begin_inset Formula $\sum_{i=1}^{2}log_{2}q_{i}=log_{2}q_{1}+log_{2}q_{2}=55+54=109$
+\end_inset
+
+ that is compliant with the security standards described in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for 128-bit security.
+ The details of the 
+\noun on
+partial
+\noun default
+ binary search
+\emph on
+ 
+\emph default
+run are given in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+.
+ The network encoded with this parameters can be seen as the suboptimal
+ encoded CNN.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Full 
+\series bold
+\noun default
+column sh...
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Encoded CNN performances at the varying of the plaintext modulus 
+\emph on
+t
+\emph default
+, that is obtained with a different number of images tested in the binary
+ search 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Heuristic-performances"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\noun on
+Partial
+\noun default
+ (#images=32)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\noun on
+Full
+\noun default
+ (#images=10000)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testing Error
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Forward Time (s)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.07
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Initial Noise Budget(bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Analysis Of The Suboptimal CNN
+\end_layout
+
+\begin_layout Standard
+In this Section and in the following Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+, the focus is on the CNN 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ encoded with the parameters given by the 
+\noun on
+partial 
+\noun default
+binary search run, because it is the network that in a real use-case one
+ would have chosen, since it is impractical to make an exhaustive analysis
+ on the entire testing dataset just to choose the exact plaintext modulus,
+ as in the case of the 
+\noun on
+full 
+\noun default
+binary search run.
+ Thus one would have accepted a small testing error, in change of finding
+ suitable encryption parameters in a reasonable time.
+ 
 \end_layout
 
 \begin_layout Subsection
-Timings
+Timings and noise 
 \end_layout
 
 \begin_layout Standard
@@ -10563,7 +11168,7 @@ reference "sec:Structure"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \paragraph_spacing onehalf
@@ -10590,10 +11195,11 @@ name "tab:Testing-times"
 \end_layout
 
 \begin_layout Plain Layout
-\align center
+\align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="4">
+<lyxtabular version="3" rows="11" columns="5">
 <features tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
@@ -10625,6 +11231,8 @@ Operation
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Threads' #
 \end_layout
 
@@ -10637,6 +11245,17 @@ Threads' #
 
 \series bold
 Time (s)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+NB
 \end_layout
 
 \end_inset
@@ -10683,6 +11302,15 @@ Convolution
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -10725,6 +11353,15 @@ Average Pooling
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -10759,6 +11396,15 @@ Batch Normalization
 
 \begin_layout Plain Layout
 2.03
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+61
 \end_layout
 
 \end_inset
@@ -10805,6 +11451,15 @@ Convolution
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+59
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -10839,6 +11494,15 @@ Square
 
 \begin_layout Plain Layout
 0.65
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+53
 \end_layout
 
 \end_inset
@@ -10885,6 +11549,15 @@ Average Pooling
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -10923,6 +11596,15 @@ Decryption+Encryption
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" usebox="none">
@@ -10957,6 +11639,15 @@ Batch Normalization
 
 \begin_layout Plain Layout
 0.68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69
 \end_layout
 
 \end_inset
@@ -11003,6 +11694,15 @@ Fully Connected
 
 \end_inset
 </cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+67
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="left" valignment="top" bottomline="true" usebox="none">
@@ -11041,6 +11741,15 @@ Fully Connected
 
 \begin_layout Plain Layout
 2.45
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+59
 \end_layout
 
 \end_inset
@@ -11102,10 +11811,32 @@ reference "sec:Structure"
  The most computationally intensive layers remain the two Convolution Layers
  and the first Fully Connected Layer, while the re-encryption step does
  not affect too much the forward execution time.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The Noise Budget column reports the amount of noise budget, expressed in
+ bits, in input to the corresponding layer/ re-encryption step and shows
+ that the Square Layer 5 is the one that consumes most of the budget.
+ This is an expected result since a ciphertext by ciphertext multiplication
+ is performed and, as explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+, it is less efficient than a ciphertext by plaintext multiplication that
+ is performed most of the times in the CNN, in Convolution and in Fully
+ Connected layer.
 \end_layout
 
 \begin_layout Subsection
-Accuracy Tracking Through Transformation's Steps
+Accuracy Tracking Through Transformation's Steps (
+\color red
+DA MODIFICAREEEEEEE
+\color inherit
+)
 \end_layout
 
 \begin_layout Standard
@@ -11295,7 +12026,11 @@ NB da verificare
 \end_layout
 
 \begin_layout Section
-Binary Search Results
+
+\noun on
+Partial
+\noun default
+ Binary Search Results
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Binary-Search-Results"
@@ -11306,50 +12041,18 @@ name "sec:Binary-Search-Results"
 \end_layout
 
 \begin_layout Standard
-The Binary Search Heuristic described in Section 
+The results of the 
+\noun on
+partial
+\noun default
+ Binary Search Heuristic described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic:-Binary-Search"
+reference "sec:Binary-Search-Results"
 
 \end_inset
 
- is run to find the optimal parameters 
-\emph on
-n, t 
-\emph default
-and 
-\emph on
-q.
- 
-\emph default
-
-\begin_inset Newline newline
-\end_inset
-
-Additionally to what explained in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic:-Binary-Search"
-
-\end_inset
-
-, as input to the Binary Search it is possible to set a 
-\emph on
-maximum number of re-encryption steps
-\emph default
- that one can accept to perform during the forward phase.
- This increases the probability to find feasible encryption parameters and
- thus to fall in the best case (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Binary-Search-Cases"
-
-\end_inset
-
-(a)).
- The binary search eventually outputs also the best point in the CNN where
- to perform this/these re-encryption step/s.
- The results showed by the plot in Figure 
+ showed by the plot in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:scatterPlot"
@@ -11464,7 +12167,7 @@ reference "tab:Testing-times"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
