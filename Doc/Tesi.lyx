@@ -4122,7 +4122,14 @@ i.e.
 \end_layout
 
 \begin_layout Subsection
-Operations with plaintext
+Operations with plaintext 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Operations-with-plaintext"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4907,6 +4914,29 @@ The overfitting issue does not allow to the CNN to generalize well when
 \end_layout
 
 \begin_layout Subsubsection*
+Batch Normalization Layer
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+batch normalization 
+\emph default
+layer normalizes the output of a previous activation layer by subtracting
+ the batch mean and dividing by the batch standard deviation.
+ This layer increases the stability of the neural network, since it acts
+ as a regularizer, it reduces overfitting, and allows to use higher learning
+ rate during training 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BN"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
 Activation Function
 \end_layout
 
@@ -4918,12 +4948,13 @@ activation functions
  basically decide whether a neuron should be activated or not as input in
  subsequent computations and involve a non-linear transformation of the
  input signal.
- There are different types of activation functions but the 
+ There are different types of activation functions, as the 
 \emph on
 Rectified Linear Unit
 \emph default
- (ReLU) is the most widely used since it has been empirically proven to
- be much faster and to achieve a small training error 
+ (ReLU), the hyperbolic tangent or the sigmoid, but the former is the most
+ widely used since it has been empirically proven to be much faster and
+ to achieve a small training error 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Krizhevsky:2012:ICD:2999134.2999257"
@@ -4931,7 +4962,58 @@ key "Krizhevsky:2012:ICD:2999134.2999257"
 \end_inset
 
 .
- 
+ The function computed by the ReLu is 
+\begin_inset Formula $f(x)=max(0,x)$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Subsubsection*
+Fully Connected Layer
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+fully connected
+\emph default
+ layer is usually put after several convolutional and pooling layers and
+ it is similar to a regular feed-forward neural network, since the receptive
+ field of a neuron in a fully connected layer are all the neurons of the
+ previous layer.
+ The activation of a neuron in thus layer can be computed with a matrix
+ multiplication for a matrix of weights, followed by a bias offset.
+\end_layout
+
+\begin_layout Subsubsection*
+Softmax
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+softmax 
+\emph default
+layer is usually placed at the end of a Convolutional Neural Network, after
+ the last fully-connected layer that has exactly a number of neurons equal
+ to that of classes.
+ The softmax function squeezes the outputs for each class between 0 and
+ 1 and also divides by the sum of the outputs.
+ This essentially gives the probability of the input being in a particular
+ class.
+ It can be defined as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma(z)_{j}=\frac{e^{z_{j}}}{\sum_{k=1}^{K}e^{z_{k}}},\;for\;j=1,...,K
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4943,6 +5025,187 @@ name "subsec:Approximations-For-HE"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Since homomorphic encryption supports only additions and multiplications,
+ only polynomial functions can be computed in a straightforward way.
+ Moreover, due to the increased complexity in computing circuits with nested
+ multiplications, it is desired to restrict the computation to low-degree
+ polynomials 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+.
+ Max pooling cannot be computed directly since the max-function is non-polynomia
+l.
+ However, powers of it can be approximated due to the relation 
+\begin_inset Formula $max(x_{1},...,x_{n})=\text{lim}_{d\to\infty}(\sum_{i}x_{i}^{d})^{1/d}$
+\end_inset
+
+.
+ The degree 
+\emph on
+d 
+\emph default
+should be kept reasonably small, the smallest meaningful value 
+\emph on
+d=1 
+\emph default
+returns a scalar multiple of the 
+\emph on
+average pooling 
+\emph default
+function.
+ It is also possible to compute the average pooling function by multiplying
+ for the inverse of the input number of neurons 
+\emph on
+n
+\emph default
+ 
+\emph on
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bioinformatics"
+
+\end_inset
+
+.
+ 
+\emph default
+The sigmoid, the softmax and the ReLu activation functions are non-polynomial
+ functions.
+ The solution of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/XieBFGLN14"
+
+\end_inset
+
+ was to approximate these functions with low-degree polynomials, but another
+ possible solution can consist in using the lowest-degree non-linear polynomial
+ function, which is the square function 
+\begin_inset Formula $sqr(z)\coloneqq z^{2}$
+\end_inset
+
+, since it can be a good tradeoff between having a non-linear transformation,
+ as required by the training algorithm, and the need to keep the degree
+ of the polynomials small, to make the homomorphic encryption parameters
+ feasible.
+ Fortunately, the convolutional and the fully connected layer can be directly
+ implemented, because they can be seen as weighted-sum functions that involve
+ only additions and multiplications.
+ Moreover during testing, the multiplications here are between precomputed
+ weights and the additions involve precomputed biases and the values of
+ the feeding layer.
+ Since the weights and the biases are not encrypted, it is possible to use
+ the more efficient plain multiplication and plain addition operations,
+ as is described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-with-plaintext"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Convolutional Neural Networks In Literature
+\end_layout
+
+\begin_layout Standard
+The most recent Convolutional Neural Networks have been designed for the
+ Image Large Scale Visual Recognition Challenge.
+\begin_inset Newline newline
+\end_inset
+
+In 2012 the AlexNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krizhevsky:2012:ICD:2999134.2999257"
+
+\end_inset
+
+ designed by Krizhevsky, Sutskever, and Hinton, won the competition.
+ AlexNet introduced innovative techniques to solve the overfitting, as 
+\emph on
+Principal Component Analysis
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+It is a statistical method that converts a set of possibly correlated variables
+ in a lower dimensional set of linearly uncorrelated variables, called principal
+ components.
+\end_layout
+
+\end_inset
+
+ 
+\emph default
+and 
+\emph on
+dropout 
+\emph default
+that consists in ignoring randomly chosen neurons during the training phase,
+ to reduce the possibility of learning correlations among the neurons themselves.
+\begin_inset Newline newline
+\end_inset
+
+In 2014 the VGG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/SimonyanZ14a"
+
+\end_inset
+
+ designed by Simonyan and Zisserman focused on empirical examination of
+ the effects on the CNN accuracy of the depth of convolutional layers.
+ With respect to the AlexNet, in VGG the convolutions are expanded by observing
+ that two 3x3 convolutions are equivalent to a 5x5 one and that three 3x3
+ convolutions are equivalent to a 7x7 one.
+ Furthermore, by locating a ReLU after such 3x3 convolutional layers, the
+ CNN will learn a more discriminative function, with a smaller number of
+ parameters.
+\begin_inset Newline newline
+\end_inset
+
+The OverFeat 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/SermanetEZMFL13"
+
+\end_inset
+
+, designed by Sermanet et al.
+ in 2013, deals with the problem of localization useful for the classification
+ task.
+\begin_inset Newline newline
+\end_inset
+
+Other important CNNs are the GoogLeNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "43022"
+
+\end_inset
+
+ designed by Szegedy et al.
+ in 2014 and the the ResNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/corr/HeZRS15"
+
+\end_inset
+
+, designed by He et al.
+ in 2015.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -7301,7 +7564,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -9967,8 +10230,22 @@ reference "sec:Heuristic:-Binary-Search"
 
 \end_inset
 
- will be tested on the given CNN and the algorithm will be examined considering
- its speed to converge to a reliable result.
+ will be tested and compared with other methodologies (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+) and the algorithm will be examined considering its speed to converge to
+ a reliable result (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+).
  
 \begin_inset Newline newline
 \end_inset
@@ -10084,6 +10361,10 @@ key "MNIST"
  The MNIST database is commonly used for training and testing various machine
  learning algorithms and it contains 60000 training images and 10000 testing
  images.
+ In all the reported experiments the MNIST dataset has been normalized,
+ by first dividing each pixel for 255, then subtracting the mean and finally
+ by dividing for the images standard deviation.
+ 
 \end_layout
 
 \begin_layout Section
@@ -10511,11 +10792,15 @@ t
 \emph default
 , given in input a certain polynomial modulus degree 
 \emph on
-n 
+n
 \emph default
-and a ciphertext modulus 
+, a ciphertext modulus 
 \emph on
-q.
+q 
+\emph default
+and a set of images to test
+\emph on
+.
  
 \emph default
 Additionally to what explained in Section 
@@ -10694,17 +10979,17 @@ key "SEALManual"
  The ciphertexet in input is also simulated in the sense that it is represented
  as a polynomial with a certain initial infinity norm and a maximum number
  of nonzero coefficients.
- It consists of two parts: a 
+ This tool consists of two parts: a 
 \begin_inset Formula $\mathtt{Simulator}$
 \end_inset
 
  component that simulates noise growth in homomorphic operations using precomput
-ed estimates based ton the type of operation, and a 
+ed estimates based on the type of operation, and a 
 \begin_inset Formula $\mathtt{Chooser}$
 \end_inset
 
  component, which estimates the growth of the coefficients in the underlying
- plain- text polynomials, and uses Simulator to simulate noise growth.
+ plaintext polynomials, and uses Simulator to simulate noise growth.
  The problem is that, for example, given an addition operation and two polynomia
 ls 
 \begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
@@ -10785,8 +11070,7 @@ reference "tab:Heuristic-performances"
 
  reports the results of the testing on the whole appropriate dataset of
  10000, and in particular it reports the testing error, the time for a forward
- on an encrypted image and the initial noise budget for the encoded network
- 
+ on an encrypted image and the initial noise budget for the network 
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
 \end_inset
 
@@ -10838,17 +11122,18 @@ reference "sec:Binary-Search-Results"
 .
  The binary search puts the allowed re-encryption step before layer 7.
  The network encoded with these parameters can be seen as the suboptimal
- encoded CNN.
+ encoded CNN, because the testing error on the whole dataset is greater
+ than zero.
 \end_layout
 
 \begin_layout Description
 
 \noun on
-Full 
-\series bold
+Full
 \noun default
-column shows the result with the plaintext modulus 
-\series default
+\color black
+ column shows the result with the plaintext modulus 
+\color inherit
 
 \begin_inset Formula $t=2^{30}$
 \end_inset
@@ -10869,14 +11154,16 @@ partial
 case.
  The binary search puts the allowed re-encryption step before layer 6.
  The network encoded with these parameters can be seen as the optimal encoded
- CNN for the given dataset.
+ CNN for the given dataset, because the testing error on the whole dataset
+ is equal to zero.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -10903,14 +11190,15 @@ name "tab:Heuristic-performances"
 \end_layout
 
 \begin_layout Plain Layout
+\align left
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -10919,26 +11207,30 @@ name "tab:Heuristic-performances"
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
 \noun on
 Partial
+\series default
 \noun default
  (#images=40)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
 \noun on
 Full
+\series default
 \noun default
  (#images=10000)
 \end_layout
@@ -10947,7 +11239,7 @@ Full
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -10956,7 +11248,7 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -10968,7 +11260,7 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -10982,7 +11274,7 @@ Full
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -10991,7 +11283,7 @@ Testing Error
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11000,7 +11292,7 @@ Testing Error
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11011,7 +11303,7 @@ Testing Error
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11020,7 +11312,7 @@ Forward Time (s)
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11029,7 +11321,7 @@ Forward Time (s)
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11040,7 +11332,7 @@ Forward Time (s)
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11049,7 +11341,7 @@ Initial Noise Budget(bits)
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11058,7 +11350,7 @@ Initial Noise Budget(bits)
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11089,7 +11381,8 @@ reference "tab:Heuristic-performances"
 \end_inset
 
  found by running the binary search on the 0.4% of the entire testing dataset
- is not far form the "optimal", for the given dataset, 
+ is not far form the "optimal" (for the given dataset) plaintext modulus
+ 
 \begin_inset Formula $t=2^{30}$
 \end_inset
 
@@ -11127,8 +11420,8 @@ The suboptimal
  is of 96.96%.
  This decrease in performances can be considered negligible considering
  that the time needed to obtain that result for the binary search is of
- about 4 hours, that is significantly less the time needed to test the entire
- test dataset in the 
+ about 4 hours, that is significantly less than the time needed to run the
+ heuristic on the entire test dataset as in the 
 \noun on
 full 
 \noun default
@@ -11140,12 +11433,12 @@ version.
 \begin_inset Formula $n=4096$
 \end_inset
 
- ) and it is what mostly affect the computational time, since it determines
+) and it is what mostly affect the computational time, since it determines
  the maximum degree of the polynomial with which computations are performed.
  The slight difference of 1.56 s in the two versions of the CNN can be due
  to the fact that the re-encryption step is put in two different points,
- since the in the noise budget of a ciphertext in input to the "optimal"
- CNN has one bit less than the suboptimal one.
+ since the noise budget of a ciphertext in input to the "optimal" CNN has
+ one bit less than the suboptimal one.
  This means that the re-encryption step in the "optimal" CNN is slower since
  it has more data to re-encrypt than the re-encryption in the suboptimal
  CNN, because in the former it is put before the sub-sampling step performed
@@ -11153,6 +11446,226 @@ version.
  before layer 6), while in the latter it is put soon after the Average Pooling
  layer (i.e.
  after layer 6).
+\end_layout
+
+\begin_layout Section
+
+\noun on
+Partial
+\noun default
+ Binary Search Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Binary-Search-Results"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The results of the 
+\noun on
+partial
+\noun default
+ Binary Search Heuristic described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+ showed by the plot in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:scatterPlot"
+
+\end_inset
+
+ are obtained using the following input parameters:
+\end_layout
+
+\begin_layout Itemize
+Pre-trained approximated model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-1"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Sorted list of possible plaintext moduli 
+\begin_inset Formula $t_{list}=[2^{1},2^{2},...,2^{59}]$
+\end_inset
+
+, with 
+\begin_inset Formula $t_{min}=23$
+\end_inset
+
+ and 
+\begin_inset Formula $t_{max}=33$
+\end_inset
+
+, that is, the plaintext modulus 
+\emph on
+t 
+\emph default
+can be a power of two between 
+\begin_inset Formula $2^{24}$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{34}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ of 128 bits.
+\end_layout
+
+\begin_layout Itemize
+Coefficient modulus 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ is set as the default value given by the SEAL library for a degree of the
+ polynomial modulus 
+\begin_inset Formula $n=4096$
+\end_inset
+
+ and the security level 
+\begin_inset Formula $\lambda=128$
+\end_inset
+
+ bits.
+\end_layout
+
+\begin_layout Itemize
+Maximum number of re-encryption steps is set to 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Img/BSplot.png
+	display false
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Maximum and average plain modulus found by the Binary Search for increasing
+ number of images tested 
+\begin_inset Formula $(|D|)$
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:scatterPlot"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The algorithm is run for 10 times and at each run a number of randomly sampled
+ images 
+\begin_inset Formula $|D|$
+\end_inset
+
+ of 2, 4, 8, 16, 32 (batch size) is tested.
+ In the end there are 10 samples (i.e.
+ obtained plaintext moduli) and in total 
+\begin_inset Formula $10\times\text{batch size }$
+\end_inset
+
+ images are tested for each batch size.
+ The plot shows the logarithm in base 2 of the maximum and the average value
+ of the plaintext modulus obtained for a given batch size.
+ One can notice that just using a batch size of 4 images and thus testing
+ 40 randomly sampled images, the binary search is able to find the optimal
+ plaintext modulus 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+, as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+.
+ The binary search sets the point in the CNN for the re-encryption as the
+ point before Layer 7, as showed by Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Testing-times"
+
+\end_inset
+
+.
+ The average result found increases with the batch size, indeed for a batch
+ size of 8 images the mean of the t found is greater than 
+\begin_inset Formula $2^{28}$
+\end_inset
+
+, thus for approximation to the next power of two, if the mean should have
+ been considered as an estimator for 
+\begin_inset Formula $t,$
+\end_inset
+
+ the output would still have been 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+.
+ However in this case the maximum plaintext modulus found is the best estimator,
+ since the goal is to determine the maximum infinity norm of a polynomial
+ during computations and this depends on the input data as explained in
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -12149,225 +12662,6 @@ Encoded
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-
-\noun on
-Partial
-\noun default
- Binary Search Results
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Binary-Search-Results"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The results of the 
-\noun on
-partial
-\noun default
- Binary Search Heuristic described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Binary-Search-Results"
-
-\end_inset
-
- showed by the plot in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:scatterPlot"
-
-\end_inset
-
- are obtained using the following input parameters:
-\end_layout
-
-\begin_layout Itemize
-Pre-trained approximated model 
-\begin_inset Formula $\varPhi$
-\end_inset
-
- (see Subsection 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:STEP-1"
-
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Itemize
-Sorted list of possible plaintext moduli 
-\begin_inset Formula $t_{list}=[2^{1},2^{2},...,2^{59}]$
-\end_inset
-
-, with 
-\begin_inset Formula $t_{min}=23$
-\end_inset
-
- and 
-\begin_inset Formula $t_{max}=33$
-\end_inset
-
-, that is, the plaintext modulus 
-\emph on
-t 
-\emph default
-can be a power of two between 
-\begin_inset Formula $2^{24}$
-\end_inset
-
- and 
-\begin_inset Formula $2^{34}.$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Security level 
-\begin_inset Formula $\lambda$
-\end_inset
-
- of 128 bits.
-\end_layout
-
-\begin_layout Itemize
-Coefficient modulus 
-\begin_inset Formula $q_{0}$
-\end_inset
-
- is set as the default value given by the SEAL library for a degree of the
- polynomial modulus 
-\begin_inset Formula $n=4096$
-\end_inset
-
- and the security level 
-\begin_inset Formula $\lambda=128$
-\end_inset
-
- bits.
-\end_layout
-
-\begin_layout Itemize
-Maximum number of re-encryption steps is set to 1.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Img/BSplot.png
-	display false
-	scale 70
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Maximum and average plain modulus found by the Binary Search for increasing
- number of images tested 
-\begin_inset Formula $(|D|)$
-\end_inset
-
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:scatterPlot"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-The algorithm is run for 10 times and at each run a number of randomly sampled
- images 
-\begin_inset Formula $|D|$
-\end_inset
-
- of 2, 4, 8, 16, 32 (batch size) is tested.
- In the end there are 10 samples (i.e.
- obtained plaintext moduli) and in total 
-\begin_inset Formula $10\times\text{batch size }$
-\end_inset
-
- images are tested for each batch size.
- The plot shows the logarithm in base 2 of the maximum and the average value
- of the plaintext modulus obtained for a given batch size.
- One can notice that just using a batch size of 4 images and thus testing
- 40 randomly sampled images, the binary search is able to find the optimal
- plaintext modulus 
-\begin_inset Formula $t=2^{29}$
-\end_inset
-
-, as explained in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
-.
- The binary search sets the point in the CNN for the re-encryption as the
- point before Layer 7, as showed by Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Testing-times"
-
-\end_inset
-
-.
- The average result found increases with the batch size, indeed for a batch
- size of 8 images the mean of the t found is greater than 
-\begin_inset Formula $2^{28}$
-\end_inset
-
-, thus for approximation to the next power of two, if the mean should have
- been considered as an estimator for 
-\begin_inset Formula $t,$
-\end_inset
-
- the output would still have been 
-\begin_inset Formula $t=2^{29}$
-\end_inset
-
-, however in this case the maximum plaintext modulus found is the best estimator
-, since the goal is to determine the maximum infinity norm of a polynomial
- during computations and this depends on the input data as explained in
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Chapter
