@@ -117,6 +117,14 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset FloatList table
 
 \end_inset
@@ -125,7 +133,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-\begin_inset FloatList figure
+\begin_inset FloatList algorithm
 
 \end_inset
 
@@ -146,72 +154,138 @@ set_width "auto"
 Introduction
 \end_layout
 
-\begin_layout Subsection
-Problem and Motivations
+\begin_layout Standard
+This chapter offers to the reader an introduction to the problem, the goals
+ that this work wants to solve and an overview on the obtained results.
+ Also the structure of this thesis is presented.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-and-Motivations"
+
+\end_inset
+
+ introduces the reader to the privacy issue that machine learning techniques
+ can cause and offers an analysis of the most recent legislation that aims
+ to preserve people's privacy.
+ Sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Goals"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Thesis-Structure"
+
+\end_inset
+
+ present respectively the goal, the results and the organization of this
+ work.
 \end_layout
 
-\begin_layout Subsubsection
-Artificial Intelligence and Privacy
+\begin_layout Section
+Problem and Motivations
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Problem-and-Motivations"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Artificial intelligence (AI) is the concept used to describe computer systems
- that are able to learn from their own experiences and solve complex problems
- in different situations – abilities we previously thought were unique to
- mankind.
- And it is data, in many cases personal data, that fuels these systems,
- enabling them to learn and become intelligent.
- The AI spring has dawned thanks to the availability of huge amounts of
- data, coupled with an increase in processing power and access to cheaper
- and greater storage capacity.
- Big Data often refers to vast volumes of data, extracted from multiple
- sources, often in real time.
- These enormous data streams can be utilized for the benefit of society
- by means of analysis and finding patterns and connections.
- Due to its potential, AI is starting to play a leading role in many different
- fields, such as: improve the efficiency of public sectors, provide new
- methods of climate and environmental protection, build a safer society,
- and perhaps even find a cure for cancer.
- Today we see that AI is used to solve specific tasks such as, for example,
- image and speech recognition.
-\begin_inset Newline newline
-\end_inset
+The early birth of Machine Learning
+\begin_inset Foot
+status collapsed
 
-Deep learning is a form of machine learning, whose mechanism of functioning
- is inspired by the human brain's and are focused on learning data representatio
-n as opposed to task-specific algorithms.
- Besides the many advantages that AI can bring, we should consider its privacy
- implications, that arise from the usage of Big Data.
- This is a crucial point since, if people cannot trust that information
- about them is being handled properly, it may limit their willingness to
- share information in their everyday life.
- If we find ourselves in a situation in which sections of the population
- refuse to share information because they feel that their personal integrity
- is being violated, we will be faced with major challenges to our freedom
- of speech and to people’s trust in the authorities.
- A refusal to share personal information will also represent a considerable
- challenge with regard to the commercial use of such data in sectors such
- as the media, retail trade and finance services.
- The answer to the question as to whether it is possible to use AI, and
- protect people’s data while doing so, is yes.
- It is both possible and necessary in order to safeguard fundamental personal
- data protection rights.
- 
+\begin_layout Plain Layout
+It is a field of artificial intelligence that uses statistical techniques
+ to give computer systems the ability to "learn" (e.g., progressively improve
+ performance on a specific task) from data, without being explicitly programmed.
 \end_layout
 
-\begin_layout Subsubsection
+\end_inset
+
+ and artificial neural networks
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+It is a type of learning algorithm that is vaguely inspired by biological
+ neural networks.
+\end_layout
+
+\end_inset
+
+ can be positioned in 1943, when a neurophysiologist and a mathematician
+ co-wrote a paper to illustrate how to model a neural network with electrical
+ circuits.
+ This work opened the way to the possibility of describing computers as
+ systems that are able to learn form their own experience and solve complex
+ problems in different situations, abilities that were previously thought
+ to be unique to mankind.
+ Since there, machine learning techniques have become more and more popular
+ moving out of research environments and coming into everybody lives with
+ applications across industries, also thanks to the availability of huge
+ amounts of data, coupled with an increase in processing power and access
+ to cheaper and greater storage capacity.
+ The most frequently used paradigm considers 
+\emph on
+Software as a Service
+\emph default
+ (SaaS), that is a software distribution model in which a third-party provider,
+ usually a cloud server, hosts applications (i.e., machine learning algorithms)
+ and makes them available to different costumers over the Internet.
+ This cloud based machine learning technique, is useful since it is usually
+ fast, scalable and easy-to-use, thus allows to reach a big number of users.
+ This model enables to collect and analyze many data that are not property
+ of the cloud server, but of some data providers, and to use them for prediction
+s, image and speech recognition and others useful tasks.
+ However in most of cases these data are sensible data and this places issues
+ in terms of privacy implications, since the server is an untrusted party
+ considered as a "honest but curious sever", that handles computations correctly
+ but tries to capture informations from analyzed data.
+ This problem has become even more important after the approval of the European'
+s
+\series bold
+ General Data Protection Regulation (GDPR).
+ 
+\series default
+The answer to the question as to whether it is possible to use machine learning
+ techniques and protect people’s data while doing so, is yes.
+ It is both possible and necessary in order to safeguard fundamental personal
+ data protection rights.
+ The field of cryptography and in particular of homomorphic encryption (HE)
+ offers some promising possibilities.
+ By employing a Homomorphic Encryption (HE) scheme, a data owner can encrypt
+ his data, with his public key, before to send them to a cloud service that
+ hosts the algorithm to compute.
+ The encryption ensures that the data remain confidential since the cloud
+ doesn't have access to the, secret key needed to decrypt the data, but
+ at the same time, it is able to perform the computations required on the
+ encrypted data, to make predictions and to return them to the data owner
+ in an encrypted form.
+ Thus, only the data owner in the end will be able to decrypt the prediction
+ and obtain its results.
+ Therefore the cloud service does not gain any information about the raw
+ data nor about the prediction it made.
+\end_layout
+
+\begin_layout Subsection
 The EU-GDPR
 \end_layout
 
 \begin_layout Standard
-The necessity to take into account privacy when dealing with Artificial
- Intelligence has been strengthen by the entry into force on 24 May 2016
- of the 
+The necessity to take into account privacy when dealing with machine learning
+ has been strengthen by the entry into force on 24 May 2016 of the 
 \series bold
 EU's General Data Protection Regulation (GDPR)
 \series default
-, which, following a two year post-adoption grace period, has been directly
- applied in all EU Member States starting form 25 May 2018
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GDPR"
@@ -219,7 +293,6 @@ key "GDPR"
 \end_inset
 
 .
- Organizations have less than a year to prepare for compliance.
  The GDPR replaces the Data Protection Directive 95/46/EC and was designed
  to harmonize data privacy laws across Europe, to protect and empower all
  EU citizens data privacy and to reshape the way organizations across the
@@ -228,14 +301,33 @@ key "GDPR"
  It applies not only to all organizations established in the EU that handles
  personal data but also to any non-EU established organization that processes
  personal data of individuals who are in the EU in order to: offer them
- goods or services, irrespective of whether a payment is required; monitor
- their behavior within the EU.
+ goods or services.
  The GDPR aims to protect personal data at all stages of data processing
  and it identifies two different entities that both have obligations: data
- controllers and data processors.The provisions of the GDPR govern the data
- controller’s duties and the rights of the data subject when personal informatio
-n is processed.
- The GDPR therefore applies when artificial intelligence is 
+ controllers and data processors.
+ The provisions of the GDPR govern the data controller’s duties and the
+ rights of the data subject when personal information is processed.
+ The GDPR therefore applies when artificial intelligence 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Colloquially, the term "artificial intelligence" is applied when a machine
+ mimics "cognitive" functions that humans associate with other human minds,
+ such as "learning" and "problem solving.
+\end_layout
+
+\end_inset
+
+ (AI) 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "AI"
+description "Artificial Intelligence"
+
+\end_inset
+
+ is 
 \emph on
 under development
 \emph default
@@ -251,15 +343,11 @@ reach
 \emph on
 decisions
 \emph default
- about individuals.
- 
+ about individuals, as for example in CNNs that analyze sensible images.
 \end_layout
 
 \begin_layout Standard
-Before going deeper into the details of the newness introduced, it is useful
- to make some clarifications about the terminology and the entities involved.
- First of all, it is important to clarify what we mean when we speak about
- 
+It is important to clarify what one means when he speaks about 
 \emph on
 personal data
 \emph default
@@ -269,9 +357,6 @@ personal data
  The data may be directly linked to a person, such as a name, identification
  number or location data.
  The data may also be indirectly linked to a person.
- This means that the person can be identified on the basis of a combination
- of one or more elements that are specific to a person’s physical, physiological
-, genetic, mental, economic, cultural or social identity.
  
 \emph on
 Sensitive data
@@ -279,88 +364,48 @@ Sensitive data
  is a special sub-category of personal data which holds extra consideration
  and protection in GDPR as they may give rise to strong stigmatization or
  discrimination in society; they include information about racial or ethnic
- origin, political convictions, religious or philosophical beliefs or trade
- union membership, as well as the processing of genetic and biometric data
- with the aim of uniquely identifying a natural person, health details or
- information regarding a person’s sexual relationships or sexual orientation
- (GDPR Article 4).
+ origin, political convictions, religious or philosophical beliefs, as well
+ as the processing of genetic and biometric data with the aim of uniquely
+ identifying a natural person, health details or information regarding a
+ person’s sexual relationships or sexual orientation (GDPR Article 4).
  Secondly the 
 \emph on
 data controller
 \emph default
  is the natural or legal person, public authority, agency or other body
- which, alone or jointly with others, determines the purposes and means
- of processing of personal data (GDPR Article 4 (7)), where 
+ which determines the purposes and means of processing of personal data
+ (GDPR Article 4 (7)), where 
 \emph on
 processing
 \emph default
  means any operation or set of operations which is performed on personal
  data, such as collection, recording, organization, structuring, storage,
- adaptation or alteration, retrieval, consultation, use, disclosure by transmiss
-ion, dissemination or otherwise making available, alignment or combination,
- restriction, erasure or destruction (GDPR Article 4 (2)).
+ alteration, retrieval, consultation or use (GDPR Article 4 (2)).
 \end_layout
 
 \begin_layout Standard
-The rules governing the processing of personal data have their basis in
- some fundamental principles.
- Article 5 of the GDPR lists the principles that apply to all personal data
+Article 5 of the GDPR lists the principles that apply to all personal data
  processing.
- The essence of these principles is that personal information shall be utilized
- in a way that protects the privacy of the data subject in the best possible
- way, and that each individual has the right to decide how his or her personal
- data is used.
- The use of personal data in the development of artificial intelligence
- challenges several of these principles.
- In summary, these principles require that personal data is: 
-\end_layout
+ The most important one is the 
+\noun on
+principle of integrity and confidentiality
+\noun default
+ and requires that personal data is: 
+\emph on
+processed in a way that ensures adequate personal data protection
+\emph default
+.
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Itemize
-processed in a lawful, fair and transparent manner (principle of legality,
- fairness and transparency)
-\end_layout
-
-\begin_layout Itemize
-collected for specific, expressly stated and justified purposes and not
- treated in a new way that is incompatible with these purposes (principle
- of purpose limitation)
-\end_layout
-
-\begin_layout Itemize
-adequate, relevant and limited to what is necessary for fulfilling the purposes
- for which it is being processed (principle of data minimization)
-\end_layout
-
-\begin_layout Itemize
-correct and, if necessary, updated (accuracy principle)
-\end_layout
-
-\begin_layout Itemize
-not stored in identifiable form for longer periods than is necessary for
- the purposes (principle relating to data retention periods)
-\end_layout
-
-\begin_layout Itemize
-processed in a way that ensures adequate personal data protection (principle
- of integrity and confidentiality)
-\end_layout
-
-\begin_layout Standard
-In addition, the data controller is responsible for, and shall be able to
- prove, compliance with the principles (accountability principle).
-\end_layout
-
-\begin_layout Standard
-The new data protection regulations will enhance the rights of individuals.
- At the same time, the duties of organizations will be tightened up.
- Two new requirements that are especially relevant for organizations using
- AI, are the requirements 
+A new requirements that is especially relevant for organizations using AI,
+ is the 
 \emph on
 privacy by design
 \emph default
- and the 
+ requirement
 \emph on
-Data Protection Impact Assessment (DPIA).
+.
 
 \emph default
  To enable privacy by design, the data controller shall build privacy protection
@@ -383,203 +428,233 @@ Data minimization
  or in the use of a model.
  This may be achieved by making it difficult to identify the individuals
  contained in the basic data.
- The degree of identification is restricted by both the amount and the nature
- of the information used, as some details reveal more about a person than
- others.
  The use of pseudonymization or encryption techniques protect the data subject’s
- identity and help limit the extent of intervention.
- This principle also forces developers to thoroughly examine the intended
- area of application of the model to facilitate selection of relevant data
- necessary for the purpose.
- Furthermore, the developer must consider how to achieve the objective in
- a way that is least invasive for the data subjects.
- The assessments performed need to be documented, so that they can be presented
- to the Data Protection Authority, that should monitor, in the event of
- an inspection, or in connection with a preliminary discussion.
- The Data Protection Impact Assessment (DPIA) must be conduct by anyone
- processing personal data, for example by an enterprise that believes that
- a planned process is likely to pose a high risk to natural persons’ rights
- and freedoms.
- This is described in Article 35 of the GDPR.
- Moreover, there is a requirement to assess the impact on personal privacy
- by systematically and extensively considering all personal details in cases
- where this data is used in automated decision making, or when special categorie
-s of personal data (sensitive personal data) are used in on a large scale.
- The systematic and large-scale monitoring of public areas also requires
- documentation showing that a DPIA has been conducted.
- The impact assessment should include the following as a minimum:
-\end_layout
-
-\begin_layout Itemize
-a systematic description of the process, its purpose and which justified
- interest it protects
-\end_layout
-
-\begin_layout Itemize
-an assessment of whether the process is necessary and proportional, given
- its purpose
-\end_layout
-
-\begin_layout Itemize
-an assessment of the risk that processing involves for people’s rights,
- including the right to privacy
-\end_layout
-
-\begin_layout Itemize
-the measures selected for managing risk identified
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-When personal data is collected, the data controller must always provide
- some 
-\emph on
-general information
-\emph default
- such as:
-\end_layout
-
-\begin_layout Itemize
-the identity of the data controller
-\end_layout
-
-\begin_layout Itemize
-how the data controller can be contacted
-\end_layout
-
-\begin_layout Itemize
-the purpose of processing
-\end_layout
-
-\begin_layout Itemize
-the legal basis for processing
-\end_layout
-
-\begin_layout Itemize
-the categories of personal data that are processed
-\end_layout
-
-\begin_layout Itemize
-the data subjects' right to inspect the data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Information must also be provided regarding risks, rules, safeguards, and
- the rights of the data subjects in connection with processing, as well
- as how these rights can be exercised.
- In addition, an 
-\emph on
-extended duty to inform
-\emph default
- will apply when personal data is collected for automated decision- making.
- The use of artificial intelligence is a form of automated processing, and,
- moreover, in some cases the decision is taken by the model.
+ identity and help limit the extent of intervention 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "AIPrivacy"
 
 \end_inset
 
-
+.
 \end_layout
 
-\begin_layout Subsection
-Objectives
+\begin_layout Section
+Goals and Results 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Goals"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-This study focuses on Convolutional Neural Networks (CNNs) and presents
- both a methodology and a library to convert a learned neural network to
- a network that can be applied on encrypted data (Encoded Network), by employing
- a Homomorphic Encryption scheme.
- This allows a data owner to encrypt his data, with his public key, before
- to send them to a cloud service that hosts the network.
- The encryption ensures that the data remain confidential since the cloud
- doesn't have access to the, secret key needed to decrypt the data, but
- at the same time, it is able to perform the computations required by the
- neural network on the encrypted data, to make encrypted predictions and
- to return them to the data owner in an encrypted form.
- Thus, only the data owner in the end will be able to decrypt the result
- and obtain his predictions.
- Therefore the cloud service does not gain any information about the raw
- data nor about the prediction it made.
-\begin_inset Newline newline
-\end_inset
-
-Moreover, since the usage of HE decreases the performances of the model,
- in the sense that computations are much slower than computations done on
- plain data and require much more memory, the study proposes a mathematical
- formulation, to understand which is the optimal neural network, to convert
- in an Encoded Network, given some constraints for the encryption parameters
- and provide an heuristic algorithm to solve the problem stated by the given
- mathematical formulation .
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Eventuale elenco puntato che spieghi meglio i vari punti
+This study aims to provide a practical implementation of how it is possible
+ to achieve privacy-preserving machine learning through the usage of the
+ homomorphic encryption.
+ More precisely, this work focuses on one of the most used and versatile
+ machine learning algorithms for image analysis, the Convolutional Neural
+ Networks (CNNs) and presents both a methodology and a library to convert
+ a learned neural network to a network that can be applied on encrypted
+ data (encoded network), by employing a Homomorphic Encryption scheme.
+ The HE scheme considered is the one proposed by Brakerski, Fan and Vercauteren
+ (BFV) that is mathematically based on polynomial rings.
+ Moreover, since the usage of HE introduces some limitations in the number
+ and types of operation performed on the encrypted data, this study focuses
+ in understanding which is the optimal neural network to encode in the homomorph
+ic encryption world, given a specific task to solve and some computational
+ constraints.
+ This is done by proposing a mathematical formulation for this problem and
+ by solving it through the provided heuristic algorithm.
+ In a more structured manner, this document has the following goals:
 \end_layout
 
+\begin_layout Itemize
+Provide a library able to convert a plain model of CNN in the world of the
+ HE end to execute calculi on encrypted data (i.e., images).
+\end_layout
+
+\begin_layout Itemize
+Propose a methodology that allows to accomplish the previously mentioned
+ transformation of the CNN.
+\end_layout
+
+\begin_layout Itemize
+Implement a heuristic methodology that allows to estimate encryption parameters
+ (useful for the BFV HE scheme used), and thus accomplish the transformation
+ of the CNN.
+\end_layout
+
+\begin_layout Section
+Thesis Structure
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Thesis-Structure"
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Subsection
-Results
+\begin_layout Standard
+Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State-of-the-Art"
+
+\end_inset
+
+illustrates the current state of the art of privacy-preserving machine learning
+ techniques, implementations and solution.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Background"
+
+\end_inset
+
+ introduces the reader to context of the research, giving an overview on
+ the Homomorphic Encryption, its limitations and advantages, with a strong
+ focus on the BFV HE scheme.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Background"
+
+\end_inset
+
+ also gives an overview on the Convolutional Neural Networks and the approximati
+ons needed to allow their functioning in the HE world.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Methodology"
+
+\end_inset
+
+ provides a methodology to accomplish the CNN mutation along with its mathematic
+al formulation and gives the explanation of the heuristic used to solve
+ the problem posed by the mathematical formulation.
+ In Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Practical-Methodology"
+
+\end_inset
+
+ the methodology is revisioned taking into account also its practical implicatio
+ns.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:CrCNN:A-CNN-Library"
+
+\end_inset
+
+ presents the structure and implementation details of the developed Crypto
+ CNN (CrCNN) library used to practically make a network able to predict
+ on encrypted data.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Experimental-Results"
+
+\end_inset
+
+ shows the experimental results made to compare the proposed methodology
+ with other techniques, to study the performances of the proposed library
+ and heuristic.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Conclusions-and-Future"
+
+\end_inset
+
+ reports the conclusions and the possible future works.
 \end_layout
 
 \begin_layout Chapter
 State of the Art
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:State-of-the-Art"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-This Chapter focuses on most recent studies on methods for Privacy-Preserving
- Machine Learning and on other related interesting applications of homomorphic
- encryption in different fields.
+This Chapter focuses on studies of methods for Privacy-Preserving Machine
+ Learning and on other related interesting applications of homomorphic encryptio
+n in different fields (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Other-related-works"
+
+\end_inset
+
+).
 \begin_inset Newline newline
 \end_inset
 
-Most of these works are based on one of these two scenarios:
+These works are divided in two categories that are based on one of these
+ two scenarios:
 \end_layout
 
 \begin_layout Enumerate
 There are multiple data providers whose data must be commonly protected
+ (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Multiple-Data-Providers"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
-There is a single data provider
+There is a single data provider (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Single-Data-Provider"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Standard
 In both cases their data are sent to an outsourced server which should make
  some computations but which is supposed to be a 
 \emph on
-curious- but-honest
+curious-but-honest
 \emph default
  server; i.e., the server carries out the result of computations faithfully,
  but it may try to learn as much as possible about the inputs and/or outputs
  of the computation.
  The processed data can be sent back to the data provider/s or to a third
- parti, a data analyst, that is allowed to decrypt the result.
+ party, a data analyst, that is allowed to decrypt the result.
 \end_layout
 
 \begin_layout Section
-Multiple Data Providers
+Multiple Data Providers 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Multiple-Data-Providers"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 A possible approach to preserve privacy while examining data on outsourced
- untrusted parti is to use secure 
+ untrusted party is to use secure 
 \emph on
 Multi-Party Computation (MPC) 
 \emph default
@@ -607,12 +682,12 @@ key "Barni2006APP"
 
  propose an iterative method to allow the privacy preserving forward phase
  on a neural network.
- The data owner encrypts the data and sends it to the cloud.
- The cloud computes an inner product between the data and the weights of
+ The data owner encrypts the data and sends it to the server.
+ The server computes an inner product between the data and the weights of
  the first layer, and sends the result to the data owner.
  The data owner decrypts, applies the non-linear transformation, and encrypts
- the result before sending it back to the cloud.
- The cloud can apply the second layer and send the output back to the data
+ the result before sending it back to the server.
+ The server can apply the second layer and send the output back to the data
  owner.
  The process continues until all the layers have been computed.
  However in 2007 Orlandi et al.
@@ -707,12 +782,12 @@ key "DBLP:conf/ccs/ShokriS15"
 \begin_inset Formula $G_{local}$
 \end_inset
 
- is sent to the cloud.
+ is sent to the server.
  For each 
 \begin_inset Formula $G_{local}$
 \end_inset
 
- , the cloud then updates the global parameters 
+, the server then updates the global parameters 
 \begin_inset Formula $W_{global}:=W_{global}-\alpha\cdot G_{local}$
 \end_inset
 
@@ -880,39 +955,30 @@ key "DBLP:journals/iacr/PhongAHWM17"
 
 ) where there was always a central entity (server/cloud) designated to aggregate
  partial results coming form the different parties.
- They also prove that their solution is resistant to collusion attacks 
+ They also prove that their secure multi-party multiplication as well as
+ secure multi-party addition are secure against collusion attacks
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The operations that combine several data to produce a new copy.
+ The operations include averaging, replacement, linear combination, etc.
+\end_layout
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "CollusionAtt"
 
 \end_inset
 
- since if 
-\emph on
-n
-\emph default
- parties are involved in the protocol, and 
-\emph on
-n-1
-\emph default
- of them collude to obtain the private information of the lest party, the
- only information they will be able to get is their input and output share.
- This information will not help them find the input and outputs shares of
- the last party, because they have
-\emph on
- n
-\emph default
- equations with at least 
-\emph on
-n+1
-\emph default
- unknown values.
- Therefore, secure multi-party multiplication as well as secure multi-parti
- addition are secure against collusion attacks by up to 
+ (if up to 
 \begin_inset Formula $n-1$
 \end_inset
 
- parties and can be used over public channels.
+ parties are implicated in the attack) and can be used over public channels.
  The problem with this protocol is that the time needed for training increases
  with the number of parties involved.
  
@@ -943,7 +1009,14 @@ key "Paillier"
 
 \end_inset
 
- that is additively homomorphic are usually used.
+ that is additively homomorphic are usually used (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:History-of-HE"
+
+\end_inset
+
+).
  
 \end_layout
 
@@ -1179,7 +1252,14 @@ key "HomomorphicEvalAESCircuit"
 \end_layout
 
 \begin_layout Section
-Other related works
+Other related works 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Other-related-works"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1258,6 +1338,87 @@ key "Kalman"
 
 \begin_layout Chapter
 Background
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Background"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this Chapter the reader will be introduced to the basics of homomorphic
+ encryption and its limitations in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Homomorphic-Encryption"
+
+\end_inset
+
+.
+ In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:BFV"
+
+\end_inset
+
+ the Brakerski/Fan-Vercauteren homomorphic encryption scheme will be presented
+ more in details with its security assumptions (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:RLWE-Problem"
+
+\end_inset
+
+), key generations and encryption/decryption operations (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+), the possible arithmetic operations (Subsesctions 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-with-plaintext"
+
+\end_inset
+
+ ) and the plaintext encoding (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+).
+ A brief overview on Convolutional Neural Networks will be given in Section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Convolutional-Neural-Networks"
+
+\end_inset
+
+, along with the approximations required by the application of HE on them
+ (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approximations-For-HE"
+
+\end_inset
+
+).
+ 
 \end_layout
 
 \begin_layout Section
@@ -1378,6 +1539,13 @@ s.
 
 \begin_layout Subsection
 Classification of Homomorphic Encryption Schemes
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Classification-of-Homomorphic"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4757,7 +4925,14 @@ Convolutional Neural Networks: A Brief
 \begin_inset Newline newline
 \end_inset
 
-Overview
+Overview 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Convolutional-Neural-Networks"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4952,7 +5127,7 @@ activation functions
 \emph on
 Rectified Linear Unit
 \emph default
- (ReLU), the hyperbolic tangent or the sigmoid, but the former is the most
+ (ReLU), the hyperbolic tangent or the sigmoid, but the ReLu is the most
  widely used since it has been empirically proven to be much faster and
  to achieve a small training error 
 \begin_inset CommandInset citation
@@ -4966,7 +5141,7 @@ key "Krizhevsky:2012:ICD:2999134.2999257"
 \begin_inset Formula $f(x)=max(0,x)$
 \end_inset
 
- .
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -5024,7 +5199,11 @@ name "subsec:Approximations-For-HE"
 
 \end_inset
 
-
+ (
+\color red
+da spostare in State of Art?
+\color inherit
+)
 \end_layout
 
 \begin_layout Standard
@@ -5217,6 +5396,53 @@ name "chap:Methodology"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In this Chapter the encryption parameters required by the BFV HE scheme
+ (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:BFV"
+
+\end_inset
+
+) will be presented in a more detailed way and the relations that exist
+ among them will be analyzed (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+).
+ The problem of transposing a plain CNN in the HE world and thus of finding
+ appropriate encryption parameters, that this work aims to solve, will be
+ exposed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+, and in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optimization-Problem"
+
+\end_inset
+
+ the problem will be described in a more formal manner, through a mathematical
+ optimization problem.
+ The solution proposed involves the implementation of a heuristic and will
+ be explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic:-Binary-Search"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -5506,7 +5732,6 @@ n
 \series default
 \emph default
  is a power of 2.
- This is both for security and performance reasons.
  Indeed as explained in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5563,7 +5788,7 @@ key "cryptoeprint:2012:144"
 
 \end_inset
 
-, form which is possible to sample in a more efficient way.
+, from which is possible to sample in a more efficient way.
  Increasing
 \emph on
  n
@@ -5585,7 +5810,7 @@ q
 \series default
  
 \emph default
-affect: the noise budget in a freshly encrypted ciphertext (see Eq.
+affects: the noise budget in a freshly encrypted ciphertext (see Eq.
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:NOISE_BUDGET"
@@ -6069,7 +6294,11 @@ name "sec:Problem-Formulation"
 
 \end_inset
 
-
+ (
+\color red
+da spostare alla Sezione 4.1?
+\color inherit
+)
 \end_layout
 
 \begin_layout Standard
@@ -6081,9 +6310,10 @@ The task of preserving privacy of data provider while his data are processed
 
 \begin_layout Enumerate
 One can train the CNN from scratch on plain publicly available datasets
- or take a publicly available pre-trained CNN, transform it in a way that
- allows to compute only polynomial functions, to be compliant with the operation
-s that it will be able to perform on encrypted data (as explained in Subsection
+ or take a publicly available pre-trained CNN.
+ In the latter case the CNN must be transformed it in a way that allows
+ to compute only polynomial functions, to be compliant with the operations
+ that it will be able to perform on encrypted data (as explained in Subsection
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6107,15 +6337,14 @@ q
 \end_layout
 
 \begin_layout Enumerate
-The data provider can encrypt his data and send them to the server.
+The data provider can encrypt its data and send them to the server.
  The server trains a CNN directly on encrypted data.
 \end_layout
 
 \begin_layout Standard
-The second option could look simpler than the first one, but in reality
- it would require to run the backward propagation algorithm homomorphically
- on the encrypted data and thus involve in a really computational intensive
- process.
+The second option could look simpler than the first one, but it would require
+ to run the backward propagation algorithm homomorphically on the encrypted
+ data, that is a really computational intensive process.
  Moreover, since only polynomial functions could be used and thus functions
  like rectified linear and sigmoid functions should be omitted, some derivatives
  could become unbounded.
@@ -7072,7 +7301,7 @@ that preserve the original accuracy of the model in order to introduce the
 \begin_inset Formula $\alpha,\gamma,\delta,\beta$
 \end_inset
 
- depending on its needs and an the application field of the CNN.
+ depending on its needs and the application field of the CNN.
  For example 
 \begin_inset Formula $\alpha$
 \end_inset
@@ -7419,11 +7648,15 @@ The heuristic is a sort of binary search that gets as inputs: the model
 \begin_inset Formula $\varPhi$
 \end_inset
 
-, a number of images to test 
-\begin_inset Formula $|D|$
+, a number of 
+\begin_inset Formula $K\subseteq|D|$
 \end_inset
 
-, an ordered list 
+ images to test, where 
+\emph on
+D 
+\emph default
+is the entire test set, an ordered list 
 \begin_inset Formula $t_{list}$
 \end_inset
 
@@ -7446,11 +7679,15 @@ t
 t 
 \emph default
 the number in the middle of the two boundaries.
- By testing, is intended the execution of the forward phase on 
-\begin_inset Formula $|D|$
+ By testing, is intended the execution on the CNN's model 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
 \end_inset
 
- images sampled uniformly from the dataset 
+ of the forward phase on 
+\emph on
+K 
+\emph default
+images sampled uniformly from the dataset 
 \emph on
 D 
 \emph default
@@ -7461,38 +7698,57 @@ reference "alg:Test-plaintext-modulus"
 
 \end_inset
 
- on 
-\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
-\end_inset
-
 .
- Let 
-\begin_inset Formula $\tilde{y_{i}}=Dec(\tilde{\varPhi}(Enc(I))=Dec(Enc(y_{i}))$
-\end_inset
-
-, if the testing for a given 
+ If the testing for a given 
 \emph on
 t 
 \emph default
-is successful, i.e.
- for all tested images 
+is successful, that is
 \emph on
-i 
+ 
 \begin_inset Formula $\tilde{y_{i}}=y_{i}$
 \end_inset
 
-, 
+ 
 \emph default
-(that is the prediction for image 
+foreach 
+\begin_inset Formula $i=0,...,K$
+\end_inset
+
+, where 
+\begin_inset Formula $\tilde{y_{i}}$
+\end_inset
+
+ is the decrypted prediction given by the encoded
 \emph on
-i 
+ 
 \emph default
-is the same given by the original CNN for the same 
+CNN 
+\begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
+\end_inset
+
+ for image 
 \emph on
 i
 \emph default
-) or if the starting NB in the ciphertext is not sufficient to carry on
- the entire computation util the final layer,
+ (i.e., 
+\begin_inset Formula $\tilde{y_{i}}=Dec(\tilde{\varPhi}_{n,t,q}(Enc(I_{i})))$
+\end_inset
+
+) and 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is the prediction of the plain CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ for the same input image 
+\emph on
+i
+\emph default
+ or if the starting NB in the ciphertext is not sufficient to carry on the
+ entire computation util the final layer,
 \emph on
  
 \emph default
@@ -7584,7 +7840,7 @@ varPhi$, sorted list $t_{list}$ of possible plain modulus $t$, five integers
  $T_{range}=[t_{list}[t_{min}],t_{list}[t_{max}]]$, secuity level $
 \backslash
 lambda$, given upper bound for the coefficient modulus $q_0$, number of
- images to test $|D|$  } 
+ $K$ images to test} 
 \backslash
 Ensure{Plain modulus $
 \backslash
@@ -7605,7 +7861,7 @@ _t}{$
 \backslash
 varPhi,t_{list},t_{min},t_{max},
 \backslash
-lambda,q_0,|D|$}
+lambda,q_0,K$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7631,7 +7887,7 @@ _MOD($
 \backslash
 varPhi,t_{list}[t_{min}],
 \backslash
-lambda,q_0,|D|$)}
+lambda,q_0,K$)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7700,7 +7956,7 @@ _MOD($
 \backslash
 varPhi,t_{list}[t_{max}],
 \backslash
-lambda,q_0,|D|$)=SUCCESS}
+lambda,q_0,K$)=SUCCESS}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7762,7 +8018,7 @@ _MOD($
 \backslash
 varPhi,t_{list}[t_{index}],
 \backslash
-lambda,q_0,|D|$)}
+lambda,q_0,K$)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7790,7 +8046,7 @@ _T($
 \backslash
 varPhi,t_{list},t_{min},t_{max}-1,
 \backslash
-lambda,q_0,|D|$)}
+lambda,q_0,K$)}
 \end_layout
 
 \begin_layout Plain Layout
@@ -7918,7 +8174,7 @@ _T($
 \backslash
 varPhi,t_{list},t_{min}+1,t_{max},
 \backslash
-lambda,q_0,|D|$)}} 
+lambda,q_0,K$)}} 
 \backslash
 Comment{Go Right}
 \end_layout
@@ -7975,7 +8231,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8064,8 +8320,8 @@ Require{Model $
 \backslash
 varPhi$, four integers plain modulus to test $t_{test}$, secuity level $
 \backslash
-lambda$, upper bound for the coefficient modulus $q_0$, number of images
- to test $|D|$  } 
+lambda$, upper bound for the coefficient modulus $q_0$, number of $K$ images
+ to test} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -8091,7 +8347,7 @@ _mod}{$
 \backslash
 varPhi,t_{test},
 \backslash
-lambda,q_0,|D|$}
+lambda,q_0,K$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -8186,7 +8442,7 @@ gets 0
 \backslash
 bf to }
 \backslash
-; |D|$}
+; K$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -8438,9 +8694,10 @@ and run again the binary search, to bring back to case (a).
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align left
 \begin_inset Graphics
 	filename Img/bsok.pdf
 
@@ -8516,15 +8773,29 @@ reference "sec:Encryption-Parameters"
 
 \end_inset
 
-the encryption parameters with their relationships has been described form
+ the encryption parameters with their relationships has been described form
  a theoretical point of view depending on the underling BFV scheme that
  has been considered.
 \begin_inset Newline newline
 \end_inset
 
-In this Chapter these parameters will be considered with respect to the
+In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+ of this Chapter these parameters will be considered with respect to the
  practical implementation of the BFV scheme given by the Simple Encryption
- Arithmetic Library (SEAL 2.3.1).
+ Arithmetic Library (SEAL 2.3.1) (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SEAL"
+
+\end_inset
+
+).
  
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
@@ -8533,7 +8804,22 @@ description "Simple Encrypted Arithmetic Library"
 
 \end_inset
 
+ Moreover, in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-optimization-problem"
 
+\end_inset
+
+, the parameters estimation problem presented in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optimization-Problem"
+
+\end_inset
+
+ will be revisited according to the other constraints imposed by the practical
+ application of the BFV HE scheme.
 \end_layout
 
 \begin_layout Section
@@ -8545,6 +8831,50 @@ name "sec:SEAL"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The Simple Encrypted Arithmetic Library is written in the C++ language and
+ implements the BFV encryption scheme by offering primitives to handle operation
+s, encryption and decryption procedures.
+ However the library differs in some aspects form the original BFV scheme.
+ Indeed the bootstrapping operation (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+) is not implemented, for this reason the number of operations that is possible
+ to perform on a ciphertext is not unlimited as in a Fully HE scheme but
+ it depends on the encryption parameters chosen as in a Somewhat HE scheme.
+ Moreover in SEAL, the compactness property (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Classification-of-Homomorphic"
+
+\end_inset
+
+) is lost since ciphertexts can be of arbitrary length (at least two) and
+ not of fixed length as in the original BFV scheme.
+ SIMD techniques to perform batching and operations ciphertext-plaintext
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-with-plaintext"
+
+\end_inset
+
+) are allowed.
+ Finally there are some constraints on the encryption parameters as described
+ in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Practical-Encryption-Parameters"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -8650,14 +8980,11 @@ reference "tab:SEALnotation"
 
 \series bold
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float table
+placement h
 wide false
 sideways false
 status collapsed
@@ -8887,6 +9214,7 @@ reference "sec:Practical-Encryption-Parameters"
 
 The new formulation is given in Optimization Problem 2.
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status collapsed
@@ -10177,6 +10505,13 @@ context
 
 \begin_layout Chapter
 Experimental Results
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Experimental-Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10962,7 +11297,7 @@ has really poor guarantees, since it can depend on the experience in the
 \end_layout
 
 \begin_layout Enumerate
-Use the automatic parameters selection tools offered by the SEAL 2.3.1 library,
+Use the automatic parameters selection tool offered by the SEAL 2.3.1 library,
  which can help the user in determining optimal encryption parameters for
  certain use-cases 
 \begin_inset CommandInset citation
@@ -11583,7 +11918,7 @@ status collapsed
 \begin_layout Plain Layout
 Maximum and average plain modulus found by the Binary Search for increasing
  number of images tested 
-\begin_inset Formula $(|D|)$
+\begin_inset Formula $(K)$
 \end_inset
 
  
@@ -11603,12 +11938,11 @@ name "fig:scatterPlot"
 
 \end_inset
 
-The algorithm is run for 10 times and at each run a number of randomly sampled
- images 
-\begin_inset Formula $|D|$
+The algorithm is run for 10 times and at each run a number of 
+\begin_inset Formula $K$
 \end_inset
 
- of 2, 4, 8, 16, 32 (batch size) is tested.
+ randomly sampled images of 2, 4, 8, 16, 32 (batch size) is tested.
  In the end there are 10 samples (i.e.
  obtained plaintext moduli) and in total 
 \begin_inset Formula $10\times\text{batch size }$
@@ -11618,7 +11952,7 @@ The algorithm is run for 10 times and at each run a number of randomly sampled
  The plot shows the logarithm in base 2 of the maximum and the average value
  of the plaintext modulus obtained for a given batch size.
  One can notice that just using a batch size of 4 images and thus testing
- 40 randomly sampled images, the binary search is able to find the optimal
+ 40 randomly sampled images, the binary search is able to find the suboptimal
  plaintext modulus 
 \begin_inset Formula $t=2^{29}$
 \end_inset
@@ -11641,7 +11975,11 @@ reference "tab:Testing-times"
 
 .
  The average result found increases with the batch size, indeed for a batch
- size of 8 images the mean of the t found is greater than 
+ size of 8 images the mean of the 
+\emph on
+t
+\emph default
+ found is greater than 
 \begin_inset Formula $2^{28}$
 \end_inset
 
@@ -11871,7 +12209,7 @@ Threads' #
 \begin_layout Plain Layout
 
 \series bold
-Time (s)
+Time(s)
 \end_layout
 
 \end_inset
@@ -12666,14 +13004,143 @@ Encoded
 
 \begin_layout Chapter
 Conclusions and Future Works
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusions-and-Future"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This Chapter reviews the explained work and offers final conclusions in
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+
+\end_inset
+
+ by giving an overview of the proposed methodology and of results.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Future-Works"
+
+\end_inset
+
+ describes some future works that may be worth of further analysis.
 \end_layout
 
 \begin_layout Section
-Conclusions
+Conclusions 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This document proposes a methodology and a library to transform a normal
+ CNN in a network able to process homomorphically encrypted images.
+ Moreover it offers a mathematical formulation for the problem of finding
+ appropriate and optimal encryption parameters for the BFV encryption scheme,
+ by also considering the practical aspects of this problem.
+ It also offers to the reader a heuristic, based on a binary search algorithm,
+ to solve the problem of the parameters' choice, tailored on the specific
+ CNN one wishes to use with encrypted data and that thus aims to find the
+ best transformation for the CNN.
+ The results show that the proposed methodology is effective since it enables
+ to use a CNN with 9 layers and two convolution and fully connected layers,
+ to make predictions on encrypted images, even if the time needed to complete
+ a forward on a single image is bigger than the time that would have been
+ necessary without the encryption.
+ The transformation of the CNN introduces a small loss in accuracy, in part
+ due to the approximations of the functions computed by the layers to polynomial
+ functions and in part due to the encryption parameters found.
+ However considering that the time needed to find the suboptimal encryption
+ parameters by using the binary search is reasonably small, the loss in
+ accuracy of 0.04% can be considered negligible.
+ Moreover the heuristic proposed is a powerful instrument for who wants
+ to use a CNN with encrypted images, but has not a strong background in
+ the field of homomorphic encryption.
+\begin_inset Newline newline
+\end_inset
+
+This thesis proves that the possibility to use HE in couple with CNNs is
+ a concrete solution to the privacy issues that arise by the usage of cloud
+ based machine learning techniques and opens the way to many possible improvemen
+ts and alternatives.
 \end_layout
 
 \begin_layout Section
-Future Works
+Future Works 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Future-Works"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are many possible related field of research that can be explored as
+ a continuous of this work.
+ One of this consists in enhancing the performances of the encoded CNN in
+ terms of times and in particular in terms of throughput.
+ This could be done by introducing in the developed CrCNN library the possibilit
+y of using SIMD 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SIMD"
+description "Single Instruction Multiple Data"
+
+\end_inset
+
+operations, allowed by the BFV encryption scheme.
+ It could also be interesting to analyze HE performances and in particular
+ the goodness of the encryption parameters found at the varying of the CNN
+ and of the dataset.
+ This means that it could be worth to analyze less deep CNNs, but with more
+ weights and to explore the tradeoff between accuracy and time to obtain
+ the encrypted prediction.
+ Moreover, the consideration of a real scenario with a third party server
+ to which send encrypted data can be useful in order to understand transmission
+ times and message sizes.
+\begin_inset Newline newline
+\end_inset
+
+Other alternatives researches can involve the implementation of techniques
+ that allow to perform the backward step directly on encrypted data, since
+ this implies to train the CNN homomorphically and in principle access to
+ a larger base of data.
+ If all the activation functions are polynomials, and the loss function
+ is polynomial too, back-propagation can be computed using additions and
+ multiplications only.
+ However, there are several challenges in doing so.
+ Computational complexity is a major challenge.
+ Even when trained on plaintext, neural networks are slow to train.
+ Another challenging aspect in the presence of encryption is the lack of
+ ability of a data scientist to inspect the data and the trained model,
+ to add features and to tune the network.
+ The introduction of sophisticated hardware such as GPUs and FPGAs can also
+ be considered to accelerate computations.
+ 
+\begin_inset Newline newline
+\end_inset
+
+From the point of view of the homomorphic encryption theory and its implementati
+on, it could be useful to think of a way to allow multiple data providers
+ to use the same public key to encrypt data and different secret keys to
+ decrypt the result.
+ This could permit to the outsourced server to analyze data coming from
+ different users.
+ 
 \end_layout
 
 \begin_layout Standard
