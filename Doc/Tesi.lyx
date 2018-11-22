@@ -154,38 +154,6 @@ set_width "auto"
 Introduction
 \end_layout
 
-\begin_layout Standard
-This chapter offers to the reader an introduction to the problem, the goals
- that this work wants to solve and an overview on the obtained results.
- Also the structure of this thesis is presented.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Problem-and-Motivations"
-
-\end_inset
-
- introduces the reader to the privacy issue that machine learning techniques
- can cause and offers an analysis of the most recent legislation that aims
- to preserve people's privacy.
- Sections 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Goals"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Thesis-Structure"
-
-\end_inset
-
- present respectively the goal, the results and the organization of this
- work.
-\end_layout
-
 \begin_layout Section
 Problem and Motivations
 \begin_inset CommandInset label
@@ -240,7 +208,7 @@ Software as a Service
  (SaaS), that is a software distribution model in which a third-party provider,
  usually a cloud server, hosts applications (i.e., machine learning algorithms)
  and makes them available to different costumers over the Internet.
- This cloud based machine learning technique, is useful since it is usually
+ This cloud based machine learning technique is useful since it is usually
  fast, scalable and easy-to-use, thus allows to reach a big number of users.
  This model enables to collect and analyze many data that are not property
  of the cloud server, but of some data providers, and to use them for prediction
@@ -265,10 +233,10 @@ The answer to the question as to whether it is possible to use machine learning
  his data, with his public key, before to send them to a cloud service that
  hosts the algorithm to compute.
  The encryption ensures that the data remain confidential since the cloud
- doesn't have access to the, secret key needed to decrypt the data, but
- at the same time, it is able to perform the computations required on the
- encrypted data, to make predictions and to return them to the data owner
- in an encrypted form.
+ has not access to the secret key needed to decrypt the data, but at the
+ same time, it is able to perform the computations required on the encrypted
+ data, make predictions, and return them to the data owner in an encrypted
+ form.
  Thus, only the data owner in the end will be able to decrypt the prediction
  and obtain its results.
  Therefore the cloud service does not gain any information about the raw
@@ -300,8 +268,8 @@ key "GDPR"
  The GDPR has a broad territorial scope.
  It applies not only to all organizations established in the EU that handles
  personal data but also to any non-EU established organization that processes
- personal data of individuals who are in the EU in order to: offer them
- goods or services.
+ personal data of individuals who are in the EU in order to offer them goods
+ or services.
  The GDPR aims to protect personal data at all stages of data processing
  and it identifies two different entities that both have obligations: data
  controllers and data processors.
@@ -482,9 +450,10 @@ Propose a methodology that allows to accomplish the previously mentioned
 \end_layout
 
 \begin_layout Itemize
-Implement a heuristic methodology that allows to estimate encryption parameters
- (useful for the BFV HE scheme used), and thus accomplish the transformation
- of the CNN.
+Implement a heuristic methodology that allows to estimate the optimal encryption
+ parameters (useful for the BFV HE scheme), aiming at reducing the computational
+ and memory complexities without sacrificing the classification performances.
+ 
 \end_layout
 
 \begin_layout Section
@@ -506,8 +475,8 @@ reference "chap:State-of-the-Art"
 
 \end_inset
 
-illustrates the current state of the art of privacy-preserving machine learning
- techniques, implementations and solution.
+ illustrates the current state of the art of privacy-preserving machine
+ learning techniques, implementations and solution.
  Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -682,7 +651,7 @@ key "Barni2006APP"
 
  propose an iterative method to allow the privacy preserving forward phase
  on a neural network.
- The data owner encrypts the data and sends it to the server.
+ The data owner encrypts the data and sends them to the server.
  The server computes an inner product between the data and the weights of
  the first layer, and sends the result to the data owner.
  The data owner decrypts, applies the non-linear transformation, and encrypts
@@ -5199,11 +5168,7 @@ name "subsec:Approximations-For-HE"
 
 \end_inset
 
- (
-\color red
-da spostare in State of Art?
-\color inherit
-)
+
 \end_layout
 
 \begin_layout Standard
@@ -6294,11 +6259,7 @@ name "sec:Problem-Formulation"
 
 \end_inset
 
- (
-\color red
-da spostare alla Sezione 4.1?
-\color inherit
-)
+
 \end_layout
 
 \begin_layout Standard
@@ -7018,7 +6979,7 @@ name "OptimizationProblem1"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -8694,7 +8655,7 @@ and run again the binary search, to bring back to case (a).
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align left
@@ -9249,7 +9210,7 @@ Optimization Problem 2
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -9533,6 +9494,27 @@ in
 \backslash
 mathbb N 
 \backslash
+notag 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+alpha, 
+\backslash
+beta, 
+\backslash
+gamma, 
+\backslash
+delta 
+\backslash
+geq 0 
+\backslash
 notag
 \end_layout
 
@@ -9616,7 +9598,7 @@ eqref{eq:q1}
 q 
 \emph default
 to implement efficient modular arithmetic and to use David Harvey’s algorithm
- for NTT 
+ for Number-Theoretic Transform (NTT) 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "NTT"
@@ -10788,16 +10770,6 @@ Batch Normalization Layer:
 This layer normalizes separately each dimension in input and make it have
  mean 0 and variance 1.
  
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Cita paper o metti riferimento a dove l'hai descritta
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Enumerate
@@ -11206,9 +11178,8 @@ Find a plaintext modulus
 \emph on
 t 
 \emph default
-that is bigger than the maximum infinity norm that the polynomial in the
- underlying ciphertext data reaches during computations, as explained by
- Eq.
+that is bigger than the maximum infinity norm the polynomial in the underlying
+ ciphertext data reaches during computations, as explained by Eq.
  
 \begin_inset ERT
 status collapsed
@@ -11396,20 +11367,101 @@ Partial
 Full
 \noun default
  run).
- The Table 
+ 
+\begin_inset Newline newline
+\end_inset
+
+If 
+\begin_inset Formula $D$
+\end_inset
+
+ is the testing set and 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is the prediction of the CNN for image 
+\emph on
+i, 
+\emph default
+the classification error 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is 
+\begin_inset Formula $\epsilon=\frac{1}{|D|}\cdot\sum_{i\in|D|}(\mathbb{I}(y_{i}\neq y_{true}))$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\epsilon_{\varPhi}$
+\end_inset
+
+ and 
+\begin_inset Formula $\epsilon_{\tilde{\varPhi}}$
+\end_inset
+
+ define respectively the classification error of the plain-approximated
+ and the encoded CNN, where 
+\begin_inset Formula 
+\[
+\epsilon_{\tilde{\varPhi}}=\epsilon_{\varPhi}+\frac{1}{|D|}\cdot\sum_{i\in|D|}(\mathbb{I}(y_{i}\neq\tilde{y}_{i})),
+\]
+
+\end_inset
+
+since the second term is the error that can be added to the encoded model
+ by non-optimal encryption parameters.
+ Thus the relative testing error 
+\begin_inset Formula 
+\[
+\epsilon_{\Delta}=\epsilon_{\varPhi}-\epsilon_{\tilde{\varPhi}}\geq0
+\]
+
+\end_inset
+
+ is equal to zero if the parameters found by the binary search are optimal,
+ because they do not decrease the performances of the encoded CNN 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ with respect to the plain-approximated version 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:Heuristic-performances"
 
 \end_inset
 
- reports the results of the testing on the whole appropriate dataset of
- 10000, and in particular it reports the testing error, the time for a forward
- on an encrypted image and the initial noise budget for the network 
+ reports the results of the testing on the whole testing set 
+\begin_inset Formula $D$
+\end_inset
+
+ of 10000 images, and in particular it reports the relative testing error
+ 
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+ , the time in seconds for a forward on an encrypted image 
+\begin_inset Formula $Time_{FW}$
+\end_inset
+
+ and the initial noise budget 
+\begin_inset Formula $NB$
+\end_inset
+
+ in bits for the network 
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
 \end_inset
 
- encoded with two different sets of parameters: 
+ encoded with two different sets of parameters.
+ 
 \end_layout
 
 \begin_layout Description
@@ -11498,7 +11550,7 @@ case.
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -11613,7 +11665,10 @@ Full
 \begin_inset Text
 
 \begin_layout Plain Layout
-Testing Error
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11642,7 +11697,10 @@ Testing Error
 \begin_inset Text
 
 \begin_layout Plain Layout
-Forward Time (s)
+\begin_inset Formula $Time_{FW}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11671,7 +11729,10 @@ Forward Time (s)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Initial Noise Budget(bits)
+\begin_inset Formula $NB$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11752,7 +11813,7 @@ The suboptimal
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
 \end_inset
 
- is of 96.96%.
+ is of 96.93%.
  This decrease in performances can be considered negligible considering
  that the time needed to obtain that result for the binary search is of
  about 4 hours, that is significantly less than the time needed to run the
@@ -12853,7 +12914,7 @@ reference "sec:Heuristic-results-and"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \paragraph_spacing onehalf
@@ -12984,7 +13045,7 @@ Encoded
 \begin_inset Text
 
 \begin_layout Plain Layout
-96.96%
+96.93%
 \end_layout
 
 \end_inset
