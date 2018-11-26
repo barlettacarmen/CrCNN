@@ -53,8 +53,8 @@ theorems-ams
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize default
-\spacing single
+\paperfontsize 11
+\spacing onehalf
 \use_hyperref true
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
@@ -65,7 +65,7 @@ theorems-ams
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
-\papersize default
+\papersize a4paper
 \use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
@@ -108,6 +108,302 @@ theorems-ams
 \begin_body
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../UNI/Tesi/Cicci Tesi Help/document/images/20151105101950!Logo_Politecnico_Milano.png
+	lyxscale 30
+	width 60text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace 0cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria Industriale e dell'Informazione
+\begin_inset Newline newline
+\end_inset
+
+Dipartimento di Elettronica, Informazione e Bioingegneria
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Computer Science and Engineering
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "50page%"
+height "0.4pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+large
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+Parameters Estimation Methodology for Homomorphic Encryption 
+\begin_inset Newline newline
+\end_inset
+
+on Convolutional Neural Networks
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\size small
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="1">
+<features tabularvalignment="middle">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Master Thesis of:
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Carmen Barletta
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Matr.
+ 877129
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\size default
+
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Advisor: 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Prof.
+ Manuel Roveri
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Co-Advisor: 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simone Disabato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset VSpace 1.4cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+Academic Year 2017–2018
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -144,6 +440,22 @@ LatexCommand tableofcontents
 \begin_inset CommandInset nomencl_print
 LatexCommand printnomenclature
 set_width "auto"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
 
 \end_inset
 
@@ -471,15 +783,6 @@ name "sec:Thesis-Structure"
 Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "chap:State-of-the-Art"
-
-\end_inset
-
- illustrates the current state of the art of privacy-preserving machine
- learning techniques, implementations and solution.
- Chapter 
-\begin_inset CommandInset ref
-LatexCommand ref
 reference "chap:Background"
 
 \end_inset
@@ -496,6 +799,15 @@ reference "chap:Background"
 
  also gives an overview on the Convolutional Neural Networks and the approximati
 ons needed to allow their functioning in the HE world.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:State-of-the-Art"
+
+\end_inset
+
+ illustrates the current state of the art of privacy-preserving machine
+ learning techniques, implementations and solution.
  Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -546,766 +858,6 @@ reference "chap:Conclusions-and-Future"
 \end_layout
 
 \begin_layout Chapter
-State of the Art
-\begin_inset CommandInset label
-LatexCommand label
-name "chap:State-of-the-Art"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This Chapter focuses on studies of methods for Privacy-Preserving Machine
- Learning and on other related interesting applications of homomorphic encryptio
-n in different fields (Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Other-related-works"
-
-\end_inset
-
-).
-\begin_inset Newline newline
-\end_inset
-
-These works are divided in two categories that are based on one of these
- two scenarios:
-\end_layout
-
-\begin_layout Enumerate
-There are multiple data providers whose data must be commonly protected
- (Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Multiple-Data-Providers"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Enumerate
-There is a single data provider (Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Single-Data-Provider"
-
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Standard
-In both cases their data are sent to an outsourced server which should make
- some computations but which is supposed to be a 
-\emph on
-curious-but-honest
-\emph default
- server; i.e., the server carries out the result of computations faithfully,
- but it may try to learn as much as possible about the inputs and/or outputs
- of the computation.
- The processed data can be sent back to the data provider/s or to a third
- party, a data analyst, that is allowed to decrypt the result.
-\end_layout
-
-\begin_layout Section
-Multiple Data Providers 
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Multiple-Data-Providers"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A possible approach to preserve privacy while examining data on outsourced
- untrusted party is to use secure 
-\emph on
-Multi-Party Computation (MPC) 
-\emph default
-techniques 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Goldreich98securemulti-party"
-
-\end_inset
-
-, which are focused on establishing a communication protocol between the
- parties involved, such that if the parties follow it they will end with
- the desired results while protecting the security and privacy of their
- respective assets.
-\begin_inset Newline newline
-\end_inset
-
-Barni et al.
- (2016) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Barni2006APP"
-
-\end_inset
-
- propose an iterative method to allow the privacy preserving forward phase
- on a neural network.
- The data owner encrypts the data and sends them to the server.
- The server computes an inner product between the data and the weights of
- the first layer, and sends the result to the data owner.
- The data owner decrypts, applies the non-linear transformation, and encrypts
- the result before sending it back to the server.
- The server can apply the second layer and send the output back to the data
- owner.
- The process continues until all the layers have been computed.
- However in 2007 Orlandi et al.
- in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Orlandi:2007:ONN:1340430.1340439"
-
-\end_inset
-
- have shown that this process leaks information of the weights to the data
- owner and therefore propose a method to obscure the weights.
- 
-\begin_inset Newline newline
-\end_inset
-
-Kuri et al.
- (2017) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/ssci/Kuri0OOAP0M17"
-
-\end_inset
-
- use additively homomorphic encryption in combination with Extreme Learning
- Machine (ELM).
- 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "ELM"
-description "Extreme Learning Machines"
-
-\end_inset
-
- ELM is a feedforward neural network where connection weights from the input
- layer to the hidden layer are randomly generated and the connection weights
- from the hidden layer to the output layer are learned analytically 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "inverse"
-
-\end_inset
-
-.
- In particular they focus on a single hidden layer feedforward neural network
- (SLFN) and provide both training and testing algorithm on homomorphically
- encrypted data.
- Due to its simple structure ELM has relatively fast learning speed and
- higher accuracy as a nonlinear classifier and since only one homomorphic
- addition is performed, the computational overhead added is quite small.
- On the other hand this simplicity does not allow to accomplish more complex
- tasks, such as object recognition in images as it is possible to do with
- CNNs.
-\begin_inset Newline newline
-\end_inset
-
-Le Trieu Phong et al.
- (2017) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/iacr/PhongAHWM17"
-
-\end_inset
-
- propose a privacy-preserving deep learning system in which many learning
- participants perform neural network-based deep learning over a combined
- dataset of all, without actually revealing the participants’ local data
- to a central server.
- They revisit the previous work 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/ccs/ShokriS15"
-
-\end_inset
-
- and point out that local data information may be actually leaked to an
- honest-but-curious server, then they move on to fix that problem via building
- an enhanced system that also keeps accuracy intact.
- Each learning participant is also a data provider and has a local copy
- of the neural network to train.
- The proposed system aims at training the weights utilizing multiple data
- sources and gradient-encrypted Asynchronous Stochastic Gradient Descent
- (ASGD).
- There is a global weight vector 
-\begin_inset Formula $W_{global}$
-\end_inset
-
-, initialized randomly.
- At each iteration, replicas of the neural network (one for each participant),
- are run over local dataset, and the corresponding local gradient vector
- 
-\begin_inset Formula $G_{local}$
-\end_inset
-
- is sent to the server.
- For each 
-\begin_inset Formula $G_{local}$
-\end_inset
-
-, the server then updates the global parameters 
-\begin_inset Formula $W_{global}:=W_{global}-\alpha\cdot G_{local}$
-\end_inset
-
- with 
-\begin_inset Formula $\alpha$
-\end_inset
-
- learning rate.
- The updated global parameters are broadcast to all the replicas, which
- then use them to replace their old weight parameters, until a minimum for
- a pre-defined cost function is reached.
- As showed in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Gradients-encrypted-Asynchronous"
-
-\end_inset
-
-, to ensure privacy, additively homomorphic encryption is used and the updating
- formula becomes 
-\begin_inset Formula $E(W_{global}):=E(W_{global})+E(-\alpha\cdot G_{local})$
-\end_inset
-
- and to ensure integrity of the homomorphic ciphertext, each client uses
- a secure channel such as TLS/SSL to communicate the homomorphic ciphertexts
- to the server.
- To use the power of parallel computation when the server has multiple processin
-g units 
-\begin_inset Formula $PU_{1},…,PU_{npu}$
-\end_inset
-
-, ASGD splits the weight vector 
-\emph on
-W
-\emph default
- and gradient vector
-\emph on
- G
-\emph default
- into 
-\begin_inset Formula $n_{pu}$
-\end_inset
-
- parts, so that each processing unit 
-\begin_inset Formula $PU_{i}$
-\end_inset
-
- computes the update rule 
-\begin_inset Formula $W_{i}=W_{i}-G_{i}$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-The participants jointly set up the public key 
-\begin_inset Formula $pk$
-\end_inset
-
- and secret key 
-\begin_inset Formula $sk$
-\end_inset
-
- for an additively homomorphic encryption scheme.
- The secret key 
-\begin_inset Formula $sk$
-\end_inset
-
- is kept confidential against the cloud server, but is known to all learning
- participants.
- Each participant establishes a TLS/SSL secure channel, different from each
- other, to communicate and protect the integrity of the homomorphic ciphertexts.
- The downloads and uploads of the encrypted parts of 
-\begin_inset Formula $W_{global}$
-\end_inset
-
- can be asynchronous in two aspects: the participants are independent with
- each other; and the processing units are also independent with each other.
- However protecting the gradients against the cloud server comes with the
- cost of increased communication between the learning participants and the
- cloud server.
- 
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Img/MPC.png
-	display false
-	scale 45
-	clip
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Gradients-encrypted Asynchronous SGD for privacy-preserving deep learning,
- with a curious cloud server and N honest participants.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/iacr/PhongAHWM17"
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Gradients-encrypted-Asynchronous"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-Saeed Samet et al.
- (2012) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/dke/SametM12"
-
-\end_inset
-
- focus their work on training ELM networks when data is vertically or horizontal
-ly distributed distributed among parties (data owners), using as sub-protocols
- secure multi-parti multiplication and secure multi-parti addition.
- The model (i.e.
- the network) is securely constructed and distributed among the parties
- involved.
- Indeed, at the end of the learning protocol the parties can jointly use
- the model on target data to predict the corresponding output.
- This seems to be a different approach with respect to the the two previous
- presented works (
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/ssci/Kuri0OOAP0M17"
-
-\end_inset
-
- , 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/iacr/PhongAHWM17"
-
-\end_inset
-
-) where there was always a central entity (server/cloud) designated to aggregate
- partial results coming form the different parties.
- They also prove that their secure multi-party multiplication as well as
- secure multi-party addition are secure against collusion attacks
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-The operations that combine several data to produce a new copy.
- The operations include averaging, replacement, linear combination, etc.
-\end_layout
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "CollusionAtt"
-
-\end_inset
-
- (if up to 
-\begin_inset Formula $n-1$
-\end_inset
-
- parties are implicated in the attack) and can be used over public channels.
- The problem with this protocol is that the time needed for training increases
- with the number of parties involved.
- 
-\begin_inset Newline newline
-\end_inset
-
-All these works have in common the fact that they use relatively simple
- HE schemes, that is, additively or multiplicative HE that allow to perform
- homomorphically only one of these two operations.
- In those cases HE as RSA 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Rivest1978"
-
-\end_inset
-
- and El-Gamal 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:journals/tit/Elgamal85"
-
-\end_inset
-
-, that are multiplicative homomorphic or Paillier 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Paillier"
-
-\end_inset
-
- that is additively homomorphic are usually used (see Subsection 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:History-of-HE"
-
-\end_inset
-
-).
- 
-\end_layout
-
-\begin_layout Section
-Single Data Provider
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Single-Data-Provider"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Graepel et al.
- (2013) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Graepel:2012:MCM:2482419.2482421"
-
-\end_inset
-
- suggest a way to adapt machine learning algorithms, as classification,
- in order to train them over encrypted data.
- Therefore, for homomorphic encryption limitations, they are forced to use
- functions that learn low degree polynomials.
- As a result, most of the algorithms proposed are of the linear discrimination
- type and therefore for many tasks they do not deliver the same level of
- accuracy as neural networks are capable of delivering.
-\begin_inset Newline newline
-\end_inset
-
-Yoshinori Aono et al, (2016) 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-single data provider
-\end_layout
-
-\end_inset
-
-in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/codaspy/AonoHPW16"
-
-\end_inset
-
- has proposed an homomorphism-aware logistic regression via approximation
- of the logarithm in the cost function to minimize, with a polynomial of
- degree 
-\emph on
-k 
-\emph default
-(e.g.
- 
-\emph on
-k
-\emph default
-=2).
- Since HE ensures data secrecy, 
-\emph on
-differential privacy 
-\emph default
-is added to the model to ensure also output privacy.
- 
-\end_layout
-
-\begin_layout Paragraph*
-
-\emph on
-Differential privacy
-\end_layout
-
-\begin_layout Standard
-is a technique that aims to maximize the accuracy of queries from statistical
- databases (here, the term statistical database means a set of data that
- are collected under the pledge of confidentiality for the purpose of producing
- statistics that, by their production, do not compromise the privacy of
- those individuals who provided the data) while measuring impact on individuals
- whose information is in the database.
- Intuitively it can be explained by saying that if there are two datasets
- 
-\begin_inset Formula $D_{1}$
-\end_inset
-
- and 
-\begin_inset Formula $D_{2}$
-\end_inset
-
- that differ on a single element (i.e., the data of one person), a given different
-ially private algorithm will behave approximately the same on both datasets.
- More formally,
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-(
-\begin_inset Formula $\epsilon-$
-\end_inset
-
-Differential Privacy 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Dwork:2014:AFD:2693052.2693053"
-
-\end_inset
-
-) A randomized mechanism M, that answers to queries on a database, provides
- ε-differential privacy, if, for all databases 
-\begin_inset Formula $D_{1}$
-\end_inset
-
- and 
-\begin_inset Formula $D_{2}$
-\end_inset
-
- which differ by at most one element, and for any 
-\begin_inset Formula $t$
-\end_inset
-
-, 
-\begin_inset Formula 
-\[
-\frac{Pr[M(D_{1})=t]}{Pr[M(D_{2})=t]}\text{≤}e^{ε}.
-\]
-
-\end_inset
-
-It has been shown in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "10.1007/11681878_14"
-
-\end_inset
-
- that if a mechanism satisfies ε-differential privacy, then an adversary
- who knows the private value of all the individuals in the dataset, except
- for one single individual, cannot figure out the private value of the unknown
- individual, with sufficient confidence, from the responses of the mechanism
- M.
- ε-differential privacy is therefore a very strong notion of privacy 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Chaudhuri:2008:PLR:2981780.2981817"
-
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-In 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/codaspy/AonoHPW16"
-
-\end_inset
-
- to add 
-\begin_inset Formula $\epsilon$
-\end_inset
-
--differential privacy they change the computation done at the server side.
- Namely, the server generates Laplace noises, encrypts and sums them to
- its computation.
- The result is that the data analyst (or data provider), finds, after decryption
-, exactly the Laplace-perturbed coefficients of the cost function.
- Even if good results are obtained in the experimental result in terms of
- F-score and AUC (Area Under The Curve) measure, differential privacy in
- addition to the encryption decreases the performances of the classifier,
- this imply that the usage of really large datasets is needed in order to
- mitigate the effect of noise introduced by differential privacy.
-\begin_inset Newline newline
-\end_inset
-
-One of the most important works that is considered to be the first and unique
- example of application of HE to CNNs is the one presented by Dowlin et
- al.
- (2016) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
-
-\end_inset
-
-.
- The difference with respect all the other works is given by the fact that
- CNNs are really powerful classification machine learning model and are
- way more complex than ELM or logistic regression.
- They propose a method to convert learned neural networks to CryptoNets,
- neural networks that can be applied to encrypted data.
- This work focuses only on the inference stage and the assumption is that
- the cloud (that has to perform the prediction) already has the model.
- CryptoNets are able to make predictions on encrypted data coming from a
- data provider on an outsourced server that provides back to the data owner
- the results of computation, still in an encrypted form.
- The data owner then is able to decrypt the results and access to the unencrypte
-d prediction.
- In this sense the purpose of this work is similar to the one of this thesis,
- however they do not provide an open source library for CNNs that works
- homomorphically on encrypted data that can reproduce their work and they
- do not focus on the estimate of optimal parameters for the HE conversion
- of the CNN, even if this is an important starting point to achieve better
- performances.
- An other difference is the fact that they apply batching techniques in
- order to pack more input data in the same ciphertext, using the Chinese
- Reminder Theorem (CRT) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Commutative-Algebra"
-
-\end_inset
-
- to perform Single Instruction Multiple Data (SIMD) operations 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "HomomorphicEvalAESCircuit"
-
-\end_inset
-
-.This gives good throughput but relatively poor latency in terms of predictions
- per hour.
- 
-\end_layout
-
-\begin_layout Section
-Other related works 
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Other-related-works"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-One of the first attempt made to speed up the computation proposed in CryptoNets
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
-
-\end_inset
-
-, as presented in the previous Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Single-Data-Provider"
-
-\end_inset
-
-, has been made by Yizhi Wang et al.
- (2018) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DBLP:conf/iscas/WangLW18b"
-
-\end_inset
-
-.
- In particular they propose an hardware solution, by providing a dedicated
- convolution core architecture for the most complex convolutional layers
- of CryptoNets on the basis of Fan-Vercauteren (FV) HE scheme 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "cryptoeprint:2012:144"
-
-\end_inset
-
-.
- They propose a simplified modular multiplication algorithm suitable for
- CryptoNets that enable to simplify and reduce dramatically hardware complexity.
- Compared to a well optimized version CPU implementation of CryptoNets,
- their proposed architecture is 
-\begin_inset Formula $11.9\times$
-\end_inset
-
- faster while consuming a power of 
-\begin_inset Formula $537mW$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-Zhenyong Zhang et al.
- (2018) in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Kalman"
-
-\end_inset
-
- propose the application of HE for secure Kalman Filter state estimation
- in cyber-physical systems.
- In their scenario, the data providers are multiple sensors that send their
- measurements to an outsourced estimator node in charge of computing the
- Kalman Filter prediction.
- The goal of using HE is to protect data against confidentiality attacks
- in the communication network or at the estimator node.
- They consider that sensor measurements are valid but they can be overheard
- during communications.
- Furthermore, they assume a curious- but-honest estimator; i.e., the estimator
- carries out the estimation faithfully, but it may try to learn as much
- as possible about the inputs and/or outputs of the estimation.
- They use RSA since there is only the need of a multiplicative homomorphic
- encryption.
-\end_layout
-
-\begin_layout Chapter
 Background
 \begin_inset CommandInset label
 LatexCommand label
@@ -1334,7 +886,7 @@ reference "sec:BFV"
 \end_inset
 
  the Brakerski/Fan-Vercauteren homomorphic encryption scheme will be presented
- more in details with its security assumptions (Subsection 
+ more in detail with its security assumptions (Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:RLWE-Problem"
@@ -1944,7 +1496,7 @@ if it takes an auxiliary input
 \emph on
 length of the evaluation output 
 \emph default
-does not depend on 
+(i.e., the result) does not depend on 
 \emph on
 d
 \emph default
@@ -2038,9 +1590,7 @@ name "subsec:History-of-HE"
 
 \end_inset
 
- 
-\color red
-(spostare in State of Art?)
+
 \end_layout
 
 \begin_layout Standard
@@ -2112,8 +1662,8 @@ key "Biryukov2011"
 \end_inset
 
 ,  as its encryption algorithm is deterministic.
- RSA it is only homomorphic over multiplication, but this operation can
- be performed an unlimited number of times.
+ RSA is only homomorphic over multiplication and this operation can be performed
+ an unlimited number of times.
  Hence, it does not allow the homomorphic addition of ciphertexts.
  In 1982 Goldwasser and Micali (GM) 
 \begin_inset CommandInset citation
@@ -2208,7 +1758,7 @@ key "jager2012generic"
 \end_inset
 
 .
- Pailliler’s encryption scheme is homomorphic over addition, but it allows
+ Paillier’s encryption scheme is homomorphic over addition, but it allows
  also other extra basic operations.
 \begin_inset Newline newline
 \end_inset
@@ -2265,8 +1815,8 @@ key "Gentry:2009:FHE:1536414.1536440"
 .
  Although Gentry's scheme was very promising it also had a lot of bottlenecks
  such as its computational cost in terms of applicability in real life and
- some of its advanced mathematical concepts made it complex and hard to
- implement.
+ some of its advanced mathematical concepts made the scheme complex and
+ hard to implement.
  What makes Gentry's scheme FHE are the techniques called 
 \emph on
 squashing
@@ -2322,6 +1872,13 @@ key "Lopez-Alt:2012:OMC:2213977.2214086"
 
 \begin_layout Subsection
 Limitations of Homomorphic Encryption 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Limitations-of-Homomorphic"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2544,14 +2101,14 @@ key "SEALManual"
 function privacy 
 \emph default
 in a number of ways.
- One way already described by Gentry in 
+ One way, already described by Gentry in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Gentry:2009:FHE:1536414.1536440"
 
 \end_inset
 
- is to flood additional noise in the ciphertext.
+, is to flood additional noise in the ciphertext.
  An other way is to use the GSW cryptosystem 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2679,7 +2236,7 @@ key "cryptoeprint:2012:144"
 \end_inset
 
 .
- In this section this homomorphic scheme will be described in details since
+ In this section this homomorphic scheme will be described in detail since
  it is the one used for the practical part of this thesis.
  
 \end_layout
@@ -2998,10 +2555,10 @@ Let
 set
 \emph default
  of integers 
-\begin_inset Formula $(\text{−}q/2,q/2]$
+\begin_inset Formula $(\text{−}q/2,q/2].$
 \end_inset
 
- .
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -3798,7 +3355,8 @@ reference "subsec:Encryption-Scheme"
 \end_layout
 
 \begin_layout Standard
-Even a freshly encrypted ciphertext has a non zero amount of noise.
+Even a freshly encrypted ciphertext has a non zero amount of noise as stated
+ in the following Lemma 10.
 \end_layout
 
 \begin_layout Lemma
@@ -4134,7 +3692,11 @@ m
 \begin_inset Formula $\mathsf{ct_{relin}}$
 \end_inset
 
- can be bounded as 
+ can be bounded as
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $||v_{relin}||_{\infty}\leq||v||_{\infty}+\frac{t}{q}(M-N)nB(l+1)T$
 \end_inset
 
@@ -4146,10 +3708,6 @@ key "SEALManual"
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection*
@@ -4192,7 +3750,7 @@ boostrappable
 if it is able to homomorphically evaluate its own decryption circuit plus
  one additional multiplication.
  
-\begin_inset Newline newline
+\begin_inset Newpage newpage
 \end_inset
 
 The bootstrapping works as follows 
@@ -4270,23 +3828,33 @@ name "subsec:Operations-with-plaintext"
 \end_layout
 
 \begin_layout Standard
-There are two other important operations 
+There are two other important operations:
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\mathsf{AddPlain}(ct,m_{add})$
 \end_inset
 
- and 
+ 
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\mathsf{MultiplyPlain}($
 \end_inset
 
- 
+
 \begin_inset Formula $ct,m_{mul})$
 \end_inset
 
- that can be seen as a particular case of the 
+
+\end_layout
+
+\begin_layout Standard
+that can be seen as a particular case of the 
 \begin_inset Formula $\mathsf{ADD(ct_{1},ct_{2})}$
 \end_inset
 
-, 
+ and 
 \begin_inset Formula $\mathsf{MUL(}$
 \end_inset
 
@@ -4295,7 +3863,8 @@ There are two other important operations
 \end_inset
 
 .
- They can hugely improve performance of addition and multiplication operations.
+ They can hugely improve performance and significantly decrease the noise
+ budget consumption when performing addition and multiplication operations.
  They are useful in the case the operands are a given ciphertext 
 \emph on
 ct 
@@ -4316,6 +3885,29 @@ m
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+These operations leverage the 
+\emph on
+malleability 
+\emph default
+property that belongs by design to the homomorphic encryption schemes, as
+ described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Limitations-of-Homomorphic"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -4436,10 +4028,6 @@ Hence for some polynomials
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
 \emph default
 where in the last line has been used 
 \begin_inset Formula $[m_{1}m_{2}]_{t}=m_{1}m_{2}+a^{\prime}t$
@@ -4456,6 +4044,13 @@ where in the last line has been used
 ||v_{pmult}||_{\infty}\leq N_{m_{2}}||m_{2}||_{\infty}\,||v||_{\infty}.
 \]
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -4587,6 +4182,13 @@ and can be bounded as
 ||v_{padd}||_{\infty}\leq||v||_{\infty}+\frac{r_{t}(q)}{q}||m_{2}||_{\infty}.
 \]
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -4958,7 +4560,7 @@ Layers of the first type are modules composed by multiple convolutional
  and reduce their dimensionality and are followed by an activation function.
  Layers of the second type can be viewed as a classical feed-forward neural
  network.
- These modules are described more in details in the following part of this
+ These modules are described more in detail in the following part of this
  Section.
  
 \end_layout
@@ -5350,6 +4952,762 @@ key "DBLP:journals/corr/HeZRS15"
 , designed by He et al.
  in 2015.
  
+\end_layout
+
+\begin_layout Chapter
+State of the Art
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:State-of-the-Art"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This Chapter focuses on studies of methods for Privacy-Preserving Machine
+ Learning and on other related interesting applications of homomorphic encryptio
+n in different fields (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Other-related-works"
+
+\end_inset
+
+).
+\begin_inset Newline newline
+\end_inset
+
+These works are divided in two categories that are based on one of these
+ two scenarios:
+\end_layout
+
+\begin_layout Enumerate
+There are multiple data providers whose data must be commonly protected
+ (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Multiple-Data-Providers"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+There is a single data provider (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Single-Data-Provider"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+In both cases their data are sent to an outsourced server which should make
+ some computations but which is supposed to be a 
+\emph on
+curious-but-honest
+\emph default
+ server; i.e., the server carries out the result of computations faithfully,
+ but it may try to learn as much as possible about the inputs and/or outputs
+ of the computation.
+ The processed data can be sent back to the data provider/s or to a third
+ party, a data analyst, that is allowed to decrypt the result.
+\end_layout
+
+\begin_layout Section
+Multiple Data Providers 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Multiple-Data-Providers"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A possible approach to preserve privacy while examining data on outsourced
+ untrusted party is to use secure 
+\emph on
+Multi-Party Computation (MPC) 
+\emph default
+techniques 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goldreich98securemulti-party"
+
+\end_inset
+
+, which are focused on establishing a communication protocol between the
+ parties involved, such that if the parties follow it they will end with
+ the desired results while protecting the security and privacy of their
+ respective assets.
+\begin_inset Newline newline
+\end_inset
+
+All the following works have in common the fact that they use relatively
+ simple HE schemes, that is, additively or multiplicative HE that allow
+ to perform homomorphically only one of these two operations.
+ In those cases HE as RSA 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rivest1978"
+
+\end_inset
+
+ and El-Gamal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/tit/Elgamal85"
+
+\end_inset
+
+, that are multiplicative homomorphic or Paillier 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Paillier"
+
+\end_inset
+
+ that is additively homomorphic are usually used (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:History-of-HE"
+
+\end_inset
+
+).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Barni et al.
+ (2016) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barni2006APP"
+
+\end_inset
+
+ propose an iterative method to allow the privacy preserving forward phase
+ on a neural network.
+ The data owner encrypts the data and sends them to the server.
+ The server computes an inner product between the data and the weights of
+ the first layer, and sends the result to the data owner.
+ The data owner decrypts, applies the non-linear transformation, and encrypts
+ the result before sending it back to the server.
+ The server can apply the second layer and send the output back to the data
+ owner.
+ The process continues until all the layers have been computed.
+ However in 2007 Orlandi et al.
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Orlandi:2007:ONN:1340430.1340439"
+
+\end_inset
+
+ have shown that this process leaks information of the weights to the data
+ owner and therefore propose a method to obscure the weights.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Kuri et al.
+ (2017) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ssci/Kuri0OOAP0M17"
+
+\end_inset
+
+ use additively homomorphic encryption in combination with Extreme Learning
+ Machine (ELM).
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "ELM"
+description "Extreme Learning Machines"
+
+\end_inset
+
+ ELM is a feedforward neural network where connection weights from the input
+ layer to the hidden layer are randomly generated and the connection weights
+ from the hidden layer to the output layer are learned analytically 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "inverse"
+
+\end_inset
+
+.
+ In particular they focus on a single hidden layer feedforward neural network
+ (SLFN) and provide both training and testing algorithm on homomorphically
+ encrypted data.
+ Due to its simple structure ELM has relatively fast learning speed and
+ higher accuracy as a nonlinear classifier and since only one homomorphic
+ addition is performed, the computational overhead added is quite small.
+ On the other hand this simplicity does not allow to accomplish more complex
+ tasks, such as object recognition in images as it is possible to do with
+ CNNs.
+\begin_inset Newline newline
+\end_inset
+
+Le Trieu Phong et al.
+ (2017) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+ propose a privacy-preserving deep learning system in which many learning
+ participants perform neural network-based deep learning over a combined
+ dataset of all, without actually revealing the participants’ local data
+ to a central server.
+ They revisit the previous work in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ccs/ShokriS15"
+
+\end_inset
+
+ and point out that local data information may be actually leaked to an
+ honest-but-curious server, then they move on to fix that problem via building
+ an enhanced system that also keeps accuracy intact.
+ Each learning participant is also a data provider and has a local copy
+ of the neural network to train.
+ The proposed system aims at training the weights utilizing multiple data
+ sources and gradient-encrypted Asynchronous Stochastic Gradient Descent
+ (ASGD).
+ There is a global weight vector 
+\begin_inset Formula $W_{global}$
+\end_inset
+
+, initialized randomly.
+ At each iteration, replicas of the neural network (one for each participant),
+ are run over local dataset, and the corresponding local gradient vector
+ 
+\begin_inset Formula $G_{local}$
+\end_inset
+
+ is sent to the server.
+ For each 
+\begin_inset Formula $G_{local}$
+\end_inset
+
+, the server then updates the global parameters 
+\begin_inset Formula $W_{global}:=W_{global}-\alpha\cdot G_{local}$
+\end_inset
+
+ with 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ learning rate.
+ The updated global parameters are broadcast to all the replicas, which
+ then use them to replace their old weight parameters, until a minimum for
+ a pre-defined cost function is reached.
+ As showed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Gradients-encrypted-Asynchronous"
+
+\end_inset
+
+, to ensure privacy, additively homomorphic encryption is used and the updating
+ formula becomes 
+\begin_inset Formula $E(W_{global}):=E(W_{global})+E(-\alpha\cdot G_{local})$
+\end_inset
+
+ and to ensure integrity of the homomorphic ciphertext, each client uses
+ a secure channel such as TLS/SSL to communicate the homomorphic ciphertexts
+ to the server.
+ To use the power of parallel computation when the server has multiple processin
+g units 
+\begin_inset Formula $PU_{1},…,PU_{npu}$
+\end_inset
+
+, ASGD splits the weight vector 
+\emph on
+W
+\emph default
+ and gradient vector
+\emph on
+ G
+\emph default
+ into 
+\begin_inset Formula $n_{pu}$
+\end_inset
+
+ parts, so that each processing unit 
+\begin_inset Formula $PU_{i}$
+\end_inset
+
+ computes the update rule 
+\begin_inset Formula $W_{i}=W_{i}-G_{i}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+The participants jointly set up the public key 
+\begin_inset Formula $pk$
+\end_inset
+
+ and secret key 
+\begin_inset Formula $sk$
+\end_inset
+
+ for an additively homomorphic encryption scheme.
+ The secret key 
+\begin_inset Formula $sk$
+\end_inset
+
+ is kept confidential against the cloud server, but is known to all learning
+ participants.
+ Each participant establishes a TLS/SSL secure channel, different from each
+ other, to communicate and protect the integrity of the homomorphic ciphertexts.
+ The downloads and uploads of the encrypted parts of 
+\begin_inset Formula $W_{global}$
+\end_inset
+
+ can be asynchronous in two aspects: the participants are independent with
+ each other; and the processing units are also independent with each other.
+ However protecting the gradients against the cloud server comes with the
+ cost of increased communication between the learning participants and the
+ cloud server.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align left
+\begin_inset Graphics
+	filename Img/MPC.png
+	display false
+	scale 45
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gradients-encrypted Asynchronous SGD for privacy-preserving deep learning,
+ with a curious cloud server and N honest participants.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Gradients-encrypted-Asynchronous"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Saeed Samet et al.
+ (2012) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/dke/SametM12"
+
+\end_inset
+
+ focus their work on training ELM networks when data is vertically or horizontal
+ly distributed distributed among parties (data owners), using as sub-protocols
+ secure multi-parti multiplication and secure multi-parti addition.
+ The model (i.e.
+ the network) is securely constructed and distributed among the parties
+ involved.
+ Indeed, at the end of the learning protocol the parties can jointly use
+ the model on target data to predict the corresponding output.
+ This seems to be a different approach with respect to the the two previous
+ presented works (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/ssci/Kuri0OOAP0M17"
+
+\end_inset
+
+ , 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:journals/iacr/PhongAHWM17"
+
+\end_inset
+
+) where there was always a central entity (server/cloud) designated to aggregate
+ partial results coming form the different parties.
+ They also prove that their secure multi-party multiplication as well as
+ secure multi-party addition are secure against collusion attacks
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The operations that combine several data to produce a new copy.
+ The operations include averaging, replacement, linear combination, etc.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CollusionAtt"
+
+\end_inset
+
+ (if up to 
+\begin_inset Formula $n-1$
+\end_inset
+
+ parties are implicated in the attack) and can be used over public channels.
+ The problem with this protocol is that the time needed for training increases
+ with the number of parties involved.
+ 
+\end_layout
+
+\begin_layout Section
+Single Data Provider
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Single-Data-Provider"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Graepel et al.
+ (2013) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Graepel:2012:MCM:2482419.2482421"
+
+\end_inset
+
+ suggest a way to adapt machine learning algorithms, as classification,
+ in order to train them over encrypted data.
+ Therefore, for homomorphic encryption limitations, they are forced to use
+ functions that learn low degree polynomials.
+ As a result, most of the algorithms proposed are of the linear discrimination
+ type and therefore for many tasks they do not deliver the same level of
+ accuracy as neural networks are capable of delivering.
+\begin_inset Newline newline
+\end_inset
+
+Yoshinori Aono et al, (2016) 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+single data provider
+\end_layout
+
+\end_inset
+
+in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/codaspy/AonoHPW16"
+
+\end_inset
+
+ has proposed an homomorphism-aware logistic regression via approximation
+ of the logarithm in the cost function to minimize, with a polynomial of
+ degree 
+\emph on
+k 
+\emph default
+(e.g.
+ 
+\emph on
+k
+\emph default
+=2).
+ Since HE ensures data secrecy, 
+\emph on
+differential privacy 
+\emph default
+is added to the model to ensure also output privacy.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+
+\emph on
+Differential privacy
+\end_layout
+
+\begin_layout Standard
+is a technique that aims to maximize the accuracy of queries from statistical
+ databases (here, the term statistical database means a set of data that
+ are collected under the pledge of confidentiality for the purpose of producing
+ statistics that, by their production, do not compromise the privacy of
+ those individuals who provided the data) while measuring impact on individuals
+ whose information is in the database.
+ Intuitively it can be explained by saying that if there are two datasets
+ 
+\begin_inset Formula $D_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $D_{2}$
+\end_inset
+
+ that differ on a single element (i.e., the data of one person), a given different
+ially private algorithm will behave approximately the same on both datasets.
+ More formally,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+(
+\begin_inset Formula $\epsilon-$
+\end_inset
+
+Differential Privacy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dwork:2014:AFD:2693052.2693053"
+
+\end_inset
+
+) A randomized mechanism M, that answers to queries on a database, provides
+ ε-differential privacy, if, for all databases 
+\begin_inset Formula $D_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $D_{2}$
+\end_inset
+
+ which differ by at most one element, and for any 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\frac{Pr[M(D_{1})=t]}{Pr[M(D_{2})=t]}\text{≤}e^{ε}.
+\]
+
+\end_inset
+
+It has been shown in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "10.1007/11681878_14"
+
+\end_inset
+
+ that if a mechanism satisfies ε-differential privacy, then an adversary
+ who knows the private value of all the individuals in the dataset, except
+ for one single individual, cannot figure out the private value of the unknown
+ individual, with sufficient confidence, from the responses of the mechanism
+ M.
+ ε-differential privacy is therefore a very strong notion of privacy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chaudhuri:2008:PLR:2981780.2981817"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/codaspy/AonoHPW16"
+
+\end_inset
+
+ to add 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+-differential privacy they change the computation done at the server side.
+ Namely, the server generates Laplace noises, encrypts and sums them to
+ its computation.
+ The result is that the data analyst (or data provider), finds, after decryption
+, exactly the Laplace-perturbed coefficients of the cost function.
+ Even if good results are obtained in the experimental result in terms of
+ F-score and AUC (Area Under The Curve) measure, differential privacy in
+ addition to the encryption decreases the performances of the classifier,
+ this imply that the usage of really large datasets is needed in order to
+ mitigate the effect of noise introduced by differential privacy.
+\begin_inset Newline newline
+\end_inset
+
+One of the most important works that is considered to be the first and unique
+ example of application of HE to CNNs is the one presented by Dowlin et
+ al.
+ (2016) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+.
+ The difference with respect all the other works is given by the fact that
+ CNNs are really powerful classification machine learning model and are
+ way more complex than ELM or logistic regression.
+ They propose a method to convert learned neural networks to CryptoNets,
+ neural networks that can be applied to encrypted data.
+ This work focuses only on the inference stage and the assumption is that
+ the cloud (that has to perform the prediction) already has the model.
+ CryptoNets are able to make predictions on encrypted data coming from a
+ data provider on an outsourced server that provides back to the data owner
+ the results of computation, still in an encrypted form.
+ The data owner then is able to decrypt the results and access to the unencrypte
+d prediction.
+ In this sense the purpose of this work is similar to the one of this thesis,
+ however they do not provide an open source library for CNNs that works
+ homomorphically on encrypted data that can reproduce their work and they
+ do not focus on the estimate of optimal parameters for the HE conversion
+ of the CNN, even if this is an important starting point to achieve better
+ performances.
+ Another difference is the fact that they apply batching techniques in order
+ to pack more input data in the same ciphertext, using the Chinese Reminder
+ Theorem (CRT) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Commutative-Algebra"
+
+\end_inset
+
+ to perform Single Instruction Multiple Data (SIMD) operations 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HomomorphicEvalAESCircuit"
+
+\end_inset
+
+.This gives good throughput but relatively poor latency in terms of predictions
+ per hour.
+ 
+\end_layout
+
+\begin_layout Section
+Other related works 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Other-related-works"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One of the first attempt made to speed up the computation proposed in CryptoNets
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-and-accuracy"
+
+\end_inset
+
+, as presented in the previous Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Single-Data-Provider"
+
+\end_inset
+
+, has been made by Yizhi Wang et al.
+ (2018) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DBLP:conf/iscas/WangLW18b"
+
+\end_inset
+
+.
+ In particular they propose an hardware solution, by providing a dedicated
+ convolution core architecture for the most complex convolutional layers
+ of CryptoNets on the basis of Fan-Vercauteren (FV) HE scheme 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
+\end_inset
+
+.
+ They propose a simplified modular multiplication algorithm suitable for
+ CryptoNets that enable to simplify and reduce dramatically hardware complexity.
+ Compared to a well optimized version CPU implementation of CryptoNets,
+ their proposed architecture is 
+\begin_inset Formula $11.9\times$
+\end_inset
+
+ faster while consuming a power of 
+\begin_inset Formula $537mW$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Zhenyong Zhang et al.
+ (2018) in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kalman"
+
+\end_inset
+
+ propose the application of HE for secure Kalman Filter state estimation
+ in cyber-physical systems.
+ In their scenario, the data providers are multiple sensors that send their
+ measurements to an outsourced estimator node in charge of computing the
+ Kalman Filter prediction.
+ The goal of using HE is to protect data against confidentiality attacks
+ in the communication network or at the estimator node.
+ They consider that sensor measurements are valid but they can be overheard
+ during communications.
+ Furthermore, they assume a curious- but-honest estimator; i.e., the estimator
+ carries out the estimation faithfully, but it may try to learn as much
+ as possible about the inputs and/or outputs of the estimation.
+ They use RSA since there is only the need of a multiplicative homomorphic
+ encryption.
 \end_layout
 
 \begin_layout Chapter
@@ -5820,6 +6178,13 @@ assuming the standard deviation of the discrete Gaussian distribution
 
  to be the default value of 
 \begin_inset Formula $3.19≈8/2π$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cryptoeprint:2012:144"
+
 \end_inset
 
 .
@@ -6369,7 +6734,7 @@ name "fig:Approximation-steps-CNN"
 \begin_inset Graphics
 	filename Img/process.pdf
 	display false
-	scale 35
+	scale 44
 
 \end_inset
 
@@ -6388,9 +6753,21 @@ name "fig:Approximation-steps-CNN"
 \begin_layout Description
 
 \noun on
-step 
+step
 \series bold
-1 
+
+\begin_inset space ~
+\end_inset
+
+1
+\begin_inset space ~
+\end_inset
+
+Approximation
+\begin_inset space ~
+\end_inset
+
+
 \series default
 (optional): 
 \noun default
@@ -6419,11 +6796,19 @@ reference "subsec:Approximations-For-HE"
 \begin_layout Description
 
 \noun on
-step 
+step
 \series bold
+
+\begin_inset space ~
+\end_inset
+
 2
 \series default
-: 
+
+\begin_inset space ~
+\end_inset
+
+Encoding: 
 \noun default
 The approximated 
 \begin_inset Formula $\varPhi$
@@ -6477,20 +6862,27 @@ reference "sec:Optimization-Problem"
 
 \end_inset
 
- this step will be explained in details.
+ this step will be explained in detail.
 \end_layout
 
 \begin_layout Description
 
 \noun on
 step
-\noun default
- 
 \series bold
+\noun default
+
+\begin_inset space ~
+\end_inset
+
 3
 \series default
 \noun on
-: 
+
+\begin_inset space ~
+\end_inset
+
+Testing: 
 \noun default
 The encoded 
 \begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
@@ -6522,7 +6914,7 @@ reference "sec:Encryption-Parameters"
 
 \end_inset
 
- gives a hint of how difficult is, in general, to find valid encryption
+ gives a hint of how difficult it is, in general, to find valid encryption
  parameters.
  This becomes even more difficult if the field of application of the HE
  
@@ -6607,7 +6999,7 @@ I
 \begin_inset Formula $y=\varPhi(I)$
 \end_inset
 
-, there are two objectives that can be defined and can be pursued:
+, there are two objectives that can be defined and must be pursued:
 \end_layout
 
 \begin_layout Enumerate
@@ -6653,8 +7045,15 @@ in an optimal way.
 \end_layout
 
 \begin_layout Standard
-Since homomorphic encryption supports only additions and multiplications,
- only polynomial functions can be computed in a straightforward way, thus
+Since homomorphic encryption supports only additions and multiplications
+ (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approximations-For-HE"
+
+\end_inset
+
+), only polynomial functions can be computed in a straightforward way, thus
  the transformation of 
 \begin_inset Formula $\varPhi$
 \end_inset
@@ -6668,16 +7067,6 @@ Since homomorphic encryption supports only additions and multiplications,
 \end_inset
 
  contains only polynomial functions.
- 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-come scritto nel capitolo sulle CNN
-\end_layout
-
-\end_inset
-
  The transformation of 
 \begin_inset Formula $\varPhi$
 \end_inset
@@ -6870,6 +7259,7 @@ f
 
 
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -6921,10 +7311,6 @@ name "fig:Transformation"
 
 \end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
 The function 
 \emph on
 f
@@ -6936,8 +7322,226 @@ reference "OptimizationProblem1"
 
 \end_inset
 
- 1.
+ 1.The first term of the objective function is the prediction error of the
+ encoded CNN 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+, that can cause a significant loss in accuracy with respect to the one
+ of the original model 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.
+ There is also the need to find the minimal 
+\emph on
+n, q
+\emph default
+ and 
+\emph on
+t 
+\emph default
+that preserve the original accuracy of the model in order to introduce the
+ smallest possible performance's overhead in terms of memory and computational
+ complexities required by the encoded model 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+.
+ One can set parameters 
+\begin_inset Formula $\alpha,\gamma,\delta,\beta$
+\end_inset
+
+ depending on its needs and the application field of the CNN.
+ For example 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ can be set to be small if a bigger prediction error is tolerated.
+ 
+\begin_inset Newline newline
+\end_inset
+
+These parameters are subject to a number of constraints given by the BFV
+ HE scheme that has been previously described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:BFV"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+In detail, as mentioned before in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ the plaintext modulus 
+\emph on
+t 
+\emph default
+must be smaller than the coefficient modulus 
+\emph on
+q
+\emph default
+ (Eq.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:tleq}
+\end_layout
+
+\end_inset
+
+) and 
+\emph on
+q 
+\emph default
+must be at least two (Eq.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:biggerthan2}
+\end_layout
+
+\end_inset
+
+).
+ Constraint in Eq.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:infNorm}
+\end_layout
+
+\end_inset
+
+ is of crucial importance as written in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+ and requires that the infinity norm of every generic computation in 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ , both internal to a single layer or at the end of it, and thus the encrypted
+ polynomial that represent this result, never exceed the plaintext modulus
+ 
+\emph on
+t.
+
+\emph default
+ Constraint in Eq.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NBB}
+\end_layout
+
+\end_inset
+
+ refers to the one introduced in Eq.
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:NOISE_BUDGET"
+
+\end_inset
+
+ and states that the NB in the freshly encrypted image must be sufficiently
+ large to support all the operations performed by each layer in 
+\begin_inset Formula $\widetilde{\varPhi}$
+\end_inset
+
+, thus the NB consumed by each computation that depends itself by the encryption
+ parameters selected.
+ Constraint in Eq.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:Q2}
+\end_layout
+
+\end_inset
+
+ is referred to the security of the encryption since the total bit count
+ of 
+\begin_inset Formula $q$
+\end_inset
+
+ must be smaller than the upper bound (UB) showed in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for a given security level 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and polynomial modulus degree 
+\emph on
+n.
+
+\emph default
+ The last constraint 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:N}
+\end_layout
+
+\end_inset
+
+ states that
+\emph on
+ n
+\emph default
+ must be a power of 
+\begin_inset Formula $2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status collapsed
@@ -7232,227 +7836,6 @@ end{align}
 
 \end_inset
 
-The first term of the objective function is the prediction error of the
- encoded CNN 
-\begin_inset Formula $\widetilde{\varPhi}$
-\end_inset
-
-, that can cause a significant loss in accuracy with respect to the one
- of the original model 
-\begin_inset Formula $\varPhi$
-\end_inset
-
-.
- There is also the need to find the minimal 
-\emph on
-n, q
-\emph default
- and 
-\emph on
-t 
-\emph default
-that preserve the original accuracy of the model in order to introduce the
- smallest possible performance's overhead in terms of memory and computational
- complexities required by the encoded model 
-\begin_inset Formula $\widetilde{\varPhi}$
-\end_inset
-
-.
- One can set parameters 
-\begin_inset Formula $\alpha,\gamma,\delta,\beta$
-\end_inset
-
- depending on its needs and the application field of the CNN.
- For example 
-\begin_inset Formula $\alpha$
-\end_inset
-
- can be set to be small if a bigger prediction error is tolerated.
- 
-\begin_inset Newline newline
-\end_inset
-
-These parameters are subject to a number of constraints given by the BFV
- HE scheme that has been previously described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:BFV"
-
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-In details, as mentioned before in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Encryption-Parameters"
-
-\end_inset
-
- the plaintext modulus 
-\emph on
-t 
-\emph default
-must be smaller than the coefficient modulus 
-\emph on
-q
-\emph default
- (Eq.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:tleq}
-\end_layout
-
-\end_inset
-
-) and 
-\emph on
-q 
-\emph default
-must be at least two (Eq.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:biggerthan2}
-\end_layout
-
-\end_inset
-
-).
- Constraint in Eq.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:infNorm}
-\end_layout
-
-\end_inset
-
- is of crucial importance as written in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Encryption-Parameters"
-
-\end_inset
-
- and requires that the infinity norm of every generic computation in 
-\begin_inset Formula $\tilde{\varPhi}$
-\end_inset
-
- , both internal to a single layer or at the end of it, and thus the encrypted
- polynomial that represent this result, never exceed the plaintext modulus
- 
-\emph on
-t.
-
-\emph default
- Constraint in Eq.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:TOTAL_NBB}
-\end_layout
-
-\end_inset
-
- refers to the one introduced in Eq.
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:NOISE_BUDGET"
-
-\end_inset
-
- and states that the NB in the freshly encrypted image must be sufficiently
- large to support all the operations performed by each layer in 
-\begin_inset Formula $\widetilde{\varPhi}$
-\end_inset
-
-, thus the NB consumed by each computation that depends itself by the encryption
- parameters selected.
- Constraint in Eq.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:Q2}
-\end_layout
-
-\end_inset
-
- is referred to the security of the encryption since the total bit count
- of 
-\begin_inset Formula $q$
-\end_inset
-
- must be smaller than the upper bound (UB) showed in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Default-pairs-(n,q)"
-
-\end_inset
-
- for a given security level 
-\begin_inset Formula $\lambda$
-\end_inset
-
- and polynomial modulus degree 
-\emph on
-n.
-
-\emph default
- The last constraint 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:N}
-\end_layout
-
-\end_inset
-
- states that
-\emph on
- n
-\emph default
- must be a power of 
-\begin_inset Formula $2$
-\end_inset
-
-.
-\begin_inset Newline newline
-\end_inset
-
-
-\emph on
- 
-\emph default
 The real hard problem to solve is the exact calculus of the right term of
  constraint in Eq.
  
@@ -7630,17 +8013,18 @@ t
 \begin_inset Formula $\lambda$
 \end_inset
 
- and a tentative staring big coefficient modulus 
+ and a tentative starting big coefficient modulus 
 \begin_inset Formula $q_{0}$
 \end_inset
 
 .
- It recursively testes as 
+ It recursively tests the number in the middle of the two boundaries as
+ 
 \emph on
-t 
+t
 \emph default
-the number in the middle of the two boundaries.
- By testing, is intended the execution on the CNN's model 
+.
+ By testing, it is intended the execution on the CNN's model 
 \begin_inset Formula $\widetilde{\varPhi}{}_{n,q,t}$
 \end_inset
 
@@ -7715,6 +8099,23 @@ i
 \emph default
 the search continues on the left interval, to find if it exists, a smaller
  plaintext modulus.
+ This is done because if the testing is successful the heuristic wants to
+ find the smallest possible 
+\emph on
+t, 
+\emph default
+while if the noise budget is insufficient, by decreasing 
+\emph on
+t 
+\emph default
+the noise budget is increased (see Eq.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:NOISE_BUDGET"
+
+\end_inset
+
+).
  Instead, if exists an image 
 \emph on
 i
@@ -7728,8 +8129,7 @@ i
 
 \emph default
 , i.
- e.
- there is a misprediction with respect to the original CNN 
+ e., there is a misprediction with respect to the original CNN 
 \begin_inset Formula $\varPhi$
 \end_inset
 
@@ -7768,7 +8168,7 @@ reference "alg:Test-plaintext-modulus"
 
 \end_inset
 
- describe in details how the testing is performed.
+ describes in detail how the testing is performed.
  
 \begin_inset Newline newline
 \end_inset
@@ -8655,7 +9055,7 @@ and run again the binary search, to bring back to case (a).
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align left
@@ -8670,13 +9070,11 @@ status collapsed
 \begin_layout Plain Layout
 \align center
 (a) Optimal case
-\begin_inset Newline newline
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
+\noindent
+\align left
 \begin_inset Graphics
 	filename Img/bsko.pdf
 
@@ -9545,7 +9943,7 @@ key "SEALManual"
 \begin_inset Newline newline
 \end_inset
 
-In details, as mentioned before in Section 
+In detail, as mentioned before in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Practical-Encryption-Parameters"
@@ -9716,7 +10114,7 @@ eqref{eq:infinityNorm}
  how difficult is to estimate the grow of the infinity norm by considering
  the specific operation to perform.
  In SEAL 2.3.1 there is the possibility to use an automatic parameter selection
- module that given a computation to perform basically builds a graph of
+ module that, given a computation to perform, basically builds a graph of
  that computation instead of actually calculating it and tries to estimates
  the grow of infinity norm and noise so to find appropriate overall parameters.
  The problem is that, for example, given an addition operation and two polynomia
@@ -9812,7 +10210,7 @@ reference "sec:Structure"
 \end_inset
 
 .
- CrCNN has basically these two main functionalities:
+ CrCNN satisfies these two main requirements:
 \end_layout
 
 \begin_layout Description
@@ -10152,7 +10550,7 @@ two dimensional matrix of
 \begin_inset Newline newline
 \end_inset
 
-The functionality described in 
+
 \series bold
 Requirement 1
 \series default
@@ -10186,11 +10584,15 @@ reference "subsec:Approximations-For-HE"
 Requirement 2.
 \end_layout
 
-\begin_layout Description
+\begin_layout Paragraph*
 \begin_inset Formula $\mathtt{Layer}$
 \end_inset
 
-s The abstract class 
+s 
+\end_layout
+
+\begin_layout Standard
+The abstract class 
 \begin_inset Formula $\mathtt{Layer}$
 \end_inset
 
@@ -10214,11 +10616,11 @@ reference "fig:UML"
 
  shows which are the implemented layers.
  For the most computationally intensive layers (i.e., 
-\begin_inset Formula $\mathtt{Convolutinal,Fully}$
+\begin_inset Formula $\mathtt{Convolutional,Fully}$
 \end_inset
 
  
-\begin_inset Formula $\mathtt{Connected\;\text{and }SqaureLayer}$
+\begin_inset Formula $\mathtt{Connected\;\text{and }SquareLayer}$
 \end_inset
 
 ) there is the possibility to run the 
@@ -10242,14 +10644,14 @@ reference "fig:UML"
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Img/Layers.pdf
 	display false
-	scale 55
+	scale 60
 
 \end_inset
 
@@ -10281,8 +10683,8 @@ name "fig:UML"
 
 \end_inset
 
- Each operation including a division is implemented as a multiplication
- for the inverse of the divisor.
+ The division operation is implemented as a multiplication for the inverse
+ of the divisor.
  The only difference between the 
 \begin_inset Formula $\mathtt{PoolingLayer}$
 \end_inset
@@ -10320,11 +10722,15 @@ name "fig:UML"
  should be used.
 \end_layout
 
-\begin_layout Description
+\begin_layout Paragraph*
 \begin_inset Formula $\mathtt{\mathtt{CnnBuilder}}$
 \end_inset
 
- is the class responsible for encoding (see Section 
+ 
+\end_layout
+
+\begin_layout Standard
+is the class responsible for encoding (see Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Problem-Formulation"
@@ -10362,14 +10768,18 @@ reference "sec:Problem-Formulation"
 \end_inset
 
  is also able to write and read a previously encoded CNN.
- 
+ It supports the import of a PyTorch CNN's model.
 \end_layout
 
-\begin_layout Description
+\begin_layout Paragraph*
 \begin_inset Formula $\mathtt{Globals}$
 \end_inset
 
- is a set of functions that contains all the routines for the encryption
+ 
+\end_layout
+
+\begin_layout Standard
+is a set of functions that contains all the routines for the encryption
  and decryption of the images and for the setting of the encryption 
 \emph on
 context
@@ -10503,8 +10913,8 @@ This Chapter focuses on the practical conversion of a plain pre-trained
 \begin_inset Newline newline
 \end_inset
 
-The goal of this Chapter is to provide a practical example of how it is
- possible to implement the methodology proposed in Chapter 
+The goal of this Chapter is to show how it is possible to implement the
+ methodology proposed in Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Methodology"
@@ -10518,9 +10928,33 @@ reference "chap:Practical-Methodology"
 
 \end_inset
 
-.
- In particular, the metamorphosis of a starting plain CNN along all the
- steps described in Section 
+, and to display the associated results.
+ In particular two case studies that consider two different CNNs, trained
+ on the same MNIST dataset (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MNIST-Dataset"
+
+\end_inset
+
+) will be reported.
+ In practice Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
+\end_inset
+
+ focuses on a "Big" CNN, while Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-2"
+
+\end_inset
+
+ focuses on a smaller CNN called "Tiny".
+ For each case study, the metamorphosis of the starting plain CNN along
+ all the steps described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Problem-Formulation"
@@ -10685,400 +11119,10 @@ key "MNIST"
 \end_layout
 
 \begin_layout Section
-CNN Structure 
+Heuristic comparisons and metrics
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:CNN-Structure"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The starting pre-trained CNN 
-\begin_inset Formula $\dot{\varPhi}$
-\end_inset
-
- before the approximation step (see Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Approximation-steps-CNN"
-
-\end_inset
-
-) has 9 layers.
- Its structure is the following:
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Convolution Layer: 
-\emph default
-The input image is 
-\begin_inset Formula $28\times28\times1$
-\end_inset
-
-.
- The convolution has 
-\begin_inset Formula $20$
-\end_inset
-
- kernels of size 
-\begin_inset Formula $5\times5$
-\end_inset
-
- with a stride of 
-\begin_inset Formula $2\times2$
-\end_inset
-
-.
- The output of this layer is therefore 
-\begin_inset Formula $12\times12\times20.$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Average Pooling Layer: 
-\emph default
-This layer has windows of dimension 
-\begin_inset Formula $2\times2\times1$
-\end_inset
-
- with a stride of 
-\begin_inset Formula $1\times1$
-\end_inset
-
-.
- The output of this layer is therefore 
-\begin_inset Formula $11\times11\times20.$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Batch Normalization Layer: 
-\emph default
-This layer normalizes separately each dimension in input and make it have
- mean 0 and variance 1.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Convolution Layer: 
-\emph default
-The convolution has 
-\begin_inset Formula $50$
-\end_inset
-
- kernels of size 
-\begin_inset Formula $3\times3$
-\end_inset
-
- with a stride of 
-\begin_inset Formula $2\times2$
-\end_inset
-
-.
- The output of this layer is therefore 
-\begin_inset Formula $5\times5\times50$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-ReLu Activation Layer: 
-\emph default
-This layer applies the ReLu function to each input node.
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Average Pooling Layer: 
-\emph default
-This layer has windows of dimension 
-\begin_inset Formula $2\times2\times1$
-\end_inset
-
- with a stride of 
-\begin_inset Formula $1\times1$
-\end_inset
-
-.
- The output of this layer is therefore 
-\begin_inset Formula $4\times4\times50.$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Batch Normalization Layer: 
-\emph default
-This layer normalizes separately each dimension in input and make it have
- mean 0 and variance 1.
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Fully Connected Layer: 
-\emph default
-This layer fully connects the incoming 
-\begin_inset Formula $4\cdot4\cdot50=800$
-\end_inset
-
- nodes to the outgoing 500 nodes.
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Fully Connected Layer: 
-\emph default
-This layer fully connects the incoming 500 nodes to the outgoing 10 nodes.
-\end_layout
-
-\begin_layout Subsection
-STEP 1: Approximation 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:STEP-1"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-During the 
-\emph on
-approximation 
-\emph default
-(
-\noun on
-step 1 
-\noun default
-see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Problem-Formulation"
-
-\end_inset
-
-) phase the CNN 
-\begin_inset Formula $\dot{\varPhi}$
-\end_inset
-
- becomes 
-\begin_inset Formula $\varPhi$
-\end_inset
-
-.
- The structure of 
-\begin_inset Formula $\varPhi$
-\end_inset
-
- is the same of 
-\begin_inset Formula $\dot{\varPhi}$
-\end_inset
-
- except for Layer 5, where the ReLu Activation is substituted with the 
-\emph on
-Square Activation Layer 
-\emph default
-that squares the value at each input node.
- The CNN 
-\begin_inset Formula $\varPhi$
-\end_inset
-
- is trained again.
-\end_layout
-
-\begin_layout Subsection
-STEP 2: Encoding
-\end_layout
-
-\begin_layout Standard
-In the 
-\emph on
-encoding 
-\emph default
-(
-\noun on
-step 2 
-\noun default
-see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Problem-Formulation"
-
-\end_inset
-
-) phase the Binary Search algorithm described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
- is run in order to find suitable encryption parameters 
-\emph on
-n, t 
-\emph default
-and 
-\emph on
-q 
-\emph default
-(see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Encryption-Parameters"
-
-\end_inset
-
-).
- The algorithm finds two sets of possible encryption parameters, then each
- weight in 
-\begin_inset Formula $\varPhi$
-\end_inset
-
- is encoded as a fixed precision floating point number as described in the
- Fractional Encoding part of Subsection 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Encoding"
-
-\end_inset
-
- using 
-\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32$
-\end_inset
-
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
- bits for the fractional part and a base 
-\begin_inset Formula $S=3.$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
- The two produced encoded network 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
-\end_inset
-
-, for the two sets of parameters found have the same structure of the one
- in input but they are able to predict over encrypted data, provided that
- images are encrypted using the same 
-\emph on
-n, t 
-\emph default
-and 
-\emph on
-q 
-\emph default
-(see Subsection 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Encryption-Scheme"
-
-\end_inset
-
-).
- The encoding of each CNN and the encryption of the data is achieved through
- the appropriate methods of the CrCnn library described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Structure"
-
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Subsection
-STEP 3: Testing
-\end_layout
-
-\begin_layout Standard
-The
-\emph on
- testing 
-\emph default
-(
-\noun on
-step 3 
-\noun default
-see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Problem-Formulation"
-
-\end_inset
-
-) is carried over all the 10000 test images of the MNIST Dataset.
- The parameters found by the Binary Search are valid under the assumption
- that a re-encryption step is introduced (as explained in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
-) .
- The results of this testing for the two encoded networks, is detailed in
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-Heuristic results and comparisons
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Heuristic-results-and"
+name "sec:Heuristic-metrics"
 
 \end_inset
 
@@ -11342,36 +11386,12 @@ reference "subsec:Fractional-Encoding"
 \end_inset
 
 ) as in the case of CNNs.
- The usage of this tool on the approximated CNN (i.e., on the computations
- that this model provides) described in Subsection 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:STEP-1"
-
-\end_inset
-
-, outputs that there are no valid encryption parameters.
- This shows that this methodology that overestimates the encryption parameters
- needed is not suitable in the case there are many computations to perform
- as in a CNN, since it is unable to find any valid result.
- 
 \end_layout
 
 \begin_layout Standard
-The heuristic binary search can be run on a subset of the testing set (
-\noun on
-Partial
-\noun default
- run) or on the entire testing set (
-\noun on
-Full
-\noun default
- run).
- 
-\begin_inset Newline newline
-\end_inset
-
-If 
+In order to test the goodness of the proposed Binary Search Heuristic and
+ thus of the outputted encryption parameters the following metric is introduced.
+ If 
 \begin_inset Formula $D$
 \end_inset
 
@@ -11401,7 +11421,15 @@ the classification error
 \end_inset
 
  define respectively the classification error of the plain-approximated
- and the encoded CNN, where 
+ 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ and the encoded 
+\begin_inset Formula $\tilde{\varPhi}$
+\end_inset
+
+ CNN, where 
 \begin_inset Formula 
 \[
 \epsilon_{\tilde{\varPhi}}=\epsilon_{\varPhi}+\frac{1}{|D|}\cdot\sum_{i\in|D|}(\mathbb{I}(y_{i}\neq\tilde{y}_{i})),
@@ -11413,9 +11441,9 @@ since the second term is the error that can be added to the encoded model
  by non-optimal encryption parameters.
  Thus the relative testing error 
 \begin_inset Formula 
-\[
-\epsilon_{\Delta}=\epsilon_{\varPhi}-\epsilon_{\tilde{\varPhi}}\geq0
-\]
+\begin{equation}
+\epsilon_{\Delta}=\epsilon_{\varPhi}-\epsilon_{\tilde{\varPhi}}\geq0\label{eq:relative-testing-error}
+\end{equation}
 
 \end_inset
 
@@ -11429,6 +11457,459 @@ since the second term is the error that can be added to the encoded model
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Case Study 1: Big CNN 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Case-Study-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This case study considers the application of the methodology proposed in
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Methodology"
+
+\end_inset
+
+ on a starting pre-trained CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ with 9 layers.
+ Its structure before the approximation step (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Approximation-steps-CNN"
+
+\end_inset
+
+) is the following:
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The input image is 
+\begin_inset Formula $28\times28\times1$
+\end_inset
+
+.
+ The convolution has 
+\begin_inset Formula $20$
+\end_inset
+
+ kernels of size 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $12\times12\times20.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $11\times11\times20.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Batch Normalization Layer: 
+\emph default
+This layer normalizes separately each dimension in input and make it have
+ mean 0 and variance 1.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The convolution has 
+\begin_inset Formula $50$
+\end_inset
+
+ kernels of size 
+\begin_inset Formula $3\times3$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $5\times5\times50$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+ReLu Activation Layer: 
+\emph default
+This layer applies the ReLu function to each input node.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $4\times4\times50.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Batch Normalization Layer: 
+\emph default
+This layer normalizes separately each dimension in input and make it have
+ mean 0 and variance 1.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 
+\begin_inset Formula $4\cdot4\cdot50=800$
+\end_inset
+
+ nodes to the outgoing 500 nodes.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 500 nodes to the outgoing 10 nodes.
+\end_layout
+
+\begin_layout Subsection
+STEP 1: Approximation 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:STEP-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+During the 
+\emph on
+approximation 
+\emph default
+(
+\noun on
+step 1 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) phase the CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ becomes 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.
+ The structure of 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is the same of 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ except for Layer 5, where the ReLu Activation is substituted with the 
+\emph on
+Square Activation Layer 
+\emph default
+that squares the value at each input node.
+ The CNN 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is trained again.
+\end_layout
+
+\begin_layout Subsection
+STEP 2: Encoding
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:STEP-2:-Encoding"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the 
+\emph on
+encoding 
+\emph default
+(
+\noun on
+step 2 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) phase the Binary Search algorithm described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+ is run in order to find suitable encryption parameters 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q 
+\emph default
+(see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Encryption-Parameters"
+
+\end_inset
+
+).
+ The algorithm finds two sets of possible encryption parameters, then each
+ weight in 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is encoded as a fixed precision floating point number as described in the
+ Fractional Encoding part of Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+ using 
+\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ bits for the fractional part and a base 
+\begin_inset Formula $S=3.$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ The two produced encoded network 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+, for the two sets of parameters found have the same structure of the one
+ in input but they are able to predict over encrypted data, provided that
+ images are encrypted using the same 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q 
+\emph default
+(see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+).
+ The encoding of each CNN and the encryption of the data is achieved through
+ the appropriate methods of the CrCnn library described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Structure"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+STEP 3: Testing
+\end_layout
+
+\begin_layout Standard
+The
+\emph on
+ testing 
+\emph default
+(
+\noun on
+step 3 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) is carried over all the 10000 test images of the MNIST Dataset.
+ The parameters found by the Binary Search are valid under the assumption
+ that a re-encryption step is introduced (as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+) .
+ The results of this testing for the two encoded networks, is detailed in
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Heuristic metrics and comparison results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Heuristic-results-and"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The usage of the automatic parameter selection tool of SEAL explained in
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-metrics"
+
+\end_inset
+
+ and applied on the approximated CNN (i.e., on the computations that this
+ model provides) described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-1"
+
+\end_inset
+
+, outputs that there are no valid encryption parameters.
+ This shows that this methodology that overestimates the encryption parameters
+ needed is not suitable in the case there are many computations to perform
+ as in a CNN, since it is unable to find any valid result.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The heuristic binary search can be run on a subset of the testing set (
+\noun on
+Partial
+\noun default
+ run) or on the entire testing set (
+\noun on
+Full
+\noun default
+ run).
+ 
 \begin_inset Newline newline
 \end_inset
 
@@ -11448,7 +11929,15 @@ reference "tab:Heuristic-performances"
 \begin_inset Formula $\epsilon_{\Delta}$
 \end_inset
 
- , the time in seconds for a forward on an encrypted image 
+ (see Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative-testing-error"
+
+\end_inset
+
+), the time in seconds for a forward on an encrypted image 
 \begin_inset Formula $Time_{FW}$
 \end_inset
 
@@ -11456,7 +11945,7 @@ reference "tab:Heuristic-performances"
 \begin_inset Formula $NB$
 \end_inset
 
- in bits for the network 
+ in bits for the Big network 
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
 \end_inset
 
@@ -11509,8 +11998,14 @@ reference "sec:Binary-Search-Results"
 .
  The binary search puts the allowed re-encryption step before layer 7.
  The network encoded with these parameters can be seen as the suboptimal
- encoded CNN, because the testing error on the whole dataset is greater
- than zero.
+ encoded CNN, because the relative testing error (see Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative-testing-error"
+
+\end_inset
+
+) on the whole dataset is greater than zero.
 \end_layout
 
 \begin_layout Description
@@ -11556,16 +12051,28 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Encoded CNN performances at the varying of the plaintext modulus 
+
+\size small
+Column Binary Search reports the encoded "Big" CNN performances at the varying
+ of the plaintext modulus 
 \emph on
 t
 \emph default
-, that is obtained with a different number of images tested in the binary
- search 
+, that is obtained with a different number of images tested in the heuristic.
+\begin_inset Newline newline
+\end_inset
+
+Column SEAL tool reports the results of the SEAL automatic encryption parameters
+ selection for the same "Big" CNN.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:Heuristic-performances"
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -11577,13 +12084,52 @@ name "tab:Heuristic-performances"
 \end_layout
 
 \begin_layout Plain Layout
-\align left
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
+<lyxtabular version="3" rows="6" columns="4">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Search 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SEAL tool
+\end_layout
+
+\end_inset
+</cell>
+</row>
 <row>
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
@@ -11602,14 +12148,11 @@ name "tab:Heuristic-performances"
 \series bold
 \noun on
 Partial
-\series default
-\noun default
- (#images=40)
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11617,9 +12160,15 @@ Partial
 \series bold
 \noun on
 Full
-\series default
-\noun default
- (#images=10000)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -11647,7 +12196,7 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -11655,6 +12204,15 @@ Full
 \end_inset
 
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Found
 \end_layout
 
 \end_inset
@@ -11682,11 +12240,20 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
 \end_layout
 
 \end_inset
@@ -11714,11 +12281,20 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 70.63
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
 \end_layout
 
 \end_inset
@@ -11746,11 +12322,20 @@ Full
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 68
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
 \end_layout
 
 \end_inset
@@ -11844,7 +12429,7 @@ version.
  after layer 6).
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 
 \noun on
 Partial
@@ -11860,6 +12445,35 @@ name "sec:Binary-Search-Results"
 \end_layout
 
 \begin_layout Standard
+In this Subsection and in the following Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+, the focus is on the CNN 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ encoded with the parameters given by the 
+\noun on
+partial 
+\noun default
+binary search run, because it is the network that in a real use-case one
+ would have chosen, since it is impractical to make an exhaustive run of
+ the binary search on the entire testing dataset just to choose the exact
+ plaintext modulus, as in the case of the 
+\noun on
+full 
+\noun default
+binary search run.
+ Thus in reality, one would have accepted a small testing error, in change
+ of finding suitable encryption parameters in a reasonable time.
+ 
+\begin_inset Newline newline
+\end_inset
+
 The results of the 
 \noun on
 partial
@@ -12067,7 +12681,7 @@ reference "sec:Heuristic-results-and"
 .
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Analysis Of The Suboptimal CNN 
 \begin_inset CommandInset label
 LatexCommand label
@@ -12078,36 +12692,7 @@ name "sec:AnalysisSuboptimalCNN"
 
 \end_layout
 
-\begin_layout Standard
-In this Section and in the following Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Binary-Search-Results"
-
-\end_inset
-
-, the focus is on the CNN 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
-\end_inset
-
- encoded with the parameters given by the 
-\noun on
-partial 
-\noun default
-binary search run, because it is the network that in a real use-case one
- would have chosen, since it is impractical to make an exhaustive run of
- the binary search on the entire testing dataset just to choose the exact
- plaintext modulus, as in the case of the 
-\noun on
-full 
-\noun default
-binary search run.
- Thus in reality, one would have accepted a small testing error, in change
- of finding suitable encryption parameters in a reasonable time.
- 
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Subsubsection
 Timings and noise 
 \end_layout
 
@@ -12117,7 +12702,7 @@ The
 testing 
 \emph default
 of the encoded CNN 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q,t=2^{29}}$
 \end_inset
 
  using the CrCNN library gives the following results in terms of timings.
@@ -12200,8 +12785,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Testing times of the suboptimal 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+Testing times of the suboptimal Big 
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1,},q_{2}\},t=2^{29}}$
 \end_inset
 
  and noise budget consumption in the input data (encrypted with the same
@@ -12237,6 +12822,7 @@ name "tab:Testing-times"
 \begin_layout Plain Layout
 
 \series bold
+\size small
 Layer #
 \end_layout
 
@@ -12248,6 +12834,7 @@ Layer #
 \begin_layout Plain Layout
 
 \series bold
+\size small
 Operation
 \end_layout
 
@@ -12259,6 +12846,7 @@ Operation
 \begin_layout Plain Layout
 
 \series bold
+\size small
 Threads' #
 \end_layout
 
@@ -12270,6 +12858,7 @@ Threads' #
 \begin_layout Plain Layout
 
 \series bold
+\size small
 Time(s)
 \end_layout
 
@@ -12281,6 +12870,7 @@ Time(s)
 \begin_layout Plain Layout
 
 \series bold
+\size small
 NB
 \end_layout
 
@@ -12292,6 +12882,8 @@ NB
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 1
 \end_layout
 
@@ -12301,6 +12893,8 @@ Layer 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Convolution 
 \begin_inset Formula $(5\times5\times20)$
 \end_inset
@@ -12314,6 +12908,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 20
 \end_layout
 
@@ -12323,6 +12919,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 30.73
 \end_layout
 
@@ -12332,6 +12930,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 69
 \end_layout
 
@@ -12343,6 +12943,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 2
 \end_layout
 
@@ -12352,6 +12954,8 @@ Layer 2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Average Pooling 
 \begin_inset Formula $(2\times2\times1)$
 \end_inset
@@ -12365,6 +12969,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -12374,6 +12980,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 2.45
 \end_layout
 
@@ -12383,6 +12991,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 64
 \end_layout
 
@@ -12394,6 +13004,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 3
 \end_layout
 
@@ -12403,6 +13015,8 @@ Layer 3
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Batch Normalization 
 \end_layout
 
@@ -12412,6 +13026,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -12421,6 +13037,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 2.03
 \end_layout
 
@@ -12430,6 +13048,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 61
 \end_layout
 
@@ -12441,6 +13061,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 4
 \end_layout
 
@@ -12450,6 +13072,8 @@ Layer 4
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Convolution 
 \begin_inset Formula $(3\times3\times50)$
 \end_inset
@@ -12463,6 +13087,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 50
 \end_layout
 
@@ -12472,6 +13098,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 7.89
 \end_layout
 
@@ -12481,6 +13109,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 59
 \end_layout
 
@@ -12492,6 +13122,8 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 5
 \end_layout
 
@@ -12501,6 +13133,8 @@ Layer 5
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Square
 \end_layout
 
@@ -12510,6 +13144,8 @@ Square
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 50
 \end_layout
 
@@ -12519,6 +13155,8 @@ Square
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0.65
 \end_layout
 
@@ -12528,6 +13166,8 @@ Square
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 53
 \end_layout
 
@@ -12539,6 +13179,8 @@ Square
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 6
 \end_layout
 
@@ -12548,6 +13190,8 @@ Layer 6
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Average Pooling 
 \begin_inset Formula $(2\times2\times1)$
 \end_inset
@@ -12561,6 +13205,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -12570,6 +13216,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0.76
 \end_layout
 
@@ -12579,6 +13227,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 13
 \end_layout
 
@@ -12590,6 +13240,8 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Re-encryption
 \end_layout
 
@@ -12599,6 +13251,8 @@ Re-encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Decryption+Encryption
 \end_layout
 
@@ -12608,6 +13262,8 @@ Decryption+Encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -12617,6 +13273,8 @@ Decryption+Encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 3.20
 \end_layout
 
@@ -12626,6 +13284,8 @@ Decryption+Encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 7
 \end_layout
 
@@ -12637,6 +13297,8 @@ Decryption+Encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 7
 \end_layout
 
@@ -12646,6 +13308,8 @@ Layer 7
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Batch Normalization
 \end_layout
 
@@ -12655,6 +13319,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -12664,6 +13330,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0.68
 \end_layout
 
@@ -12673,6 +13341,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 69
 \end_layout
 
@@ -12684,6 +13354,8 @@ Batch Normalization
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 8
 \end_layout
 
@@ -12693,6 +13365,8 @@ Layer 8
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Fully Connected 
 \begin_inset Formula $(800,500)$
 \end_inset
@@ -12706,6 +13380,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 40
 \end_layout
 
@@ -12715,6 +13391,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 18.23
 \end_layout
 
@@ -12724,6 +13402,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 67
 \end_layout
 
@@ -12735,6 +13415,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Layer 9
 \end_layout
 
@@ -12744,6 +13426,8 @@ Layer 9
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Fully Connected 
 \begin_inset Formula $(500,10)$
 \end_inset
@@ -12757,6 +13441,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 50
 \end_layout
 
@@ -12766,6 +13452,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 2.45
 \end_layout
 
@@ -12775,6 +13463,8 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 59
 \end_layout
 
@@ -12857,7 +13547,7 @@ reference "subsec:Operations-and-Noise"
  Connected layers).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Accuracy Tracking Through Transformation's Steps
 \end_layout
 
@@ -12951,7 +13641,7 @@ name "tab:CNN's-accuracy-mutation"
 \begin_layout Plain Layout
 
 \series bold
-Accuracy
+Accuracy Big CNN
 \end_layout
 
 \end_inset
@@ -13046,6 +13736,1812 @@ Encoded
 
 \begin_layout Plain Layout
 96.93%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Case Study 2: Tiny CNN
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Case-Study-2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This case study considers the application of the methodology proposed in
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Methodology"
+
+\end_inset
+
+ on a starting pre-trained CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ with 6 layers.
+ This Tiny CNN is simpler than the Big CNN considered in the previous case
+ study (Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
+\end_inset
+
+).
+ Its structure before the approximation step (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Approximation-steps-CNN"
+
+\end_inset
+
+) is the following:
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The input image is 
+\begin_inset Formula $28\times28\times1$
+\end_inset
+
+.
+ The convolution has 
+\begin_inset Formula $32$
+\end_inset
+
+ kernels of size 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $24\times24\times32.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $12\times12\times32.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Convolution Layer: 
+\emph default
+The convolution has 
+\begin_inset Formula $64$
+\end_inset
+
+ kernels of size 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $1\times1$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $8\times8\times64.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Average Pooling Layer: 
+\emph default
+This layer has windows of dimension 
+\begin_inset Formula $2\times2\times1$
+\end_inset
+
+ with a stride of 
+\begin_inset Formula $2\times2$
+\end_inset
+
+.
+ The output of this layer is therefore 
+\begin_inset Formula $4\times4\times64.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 
+\begin_inset Formula $4\cdot4\cdot64=1024$
+\end_inset
+
+ nodes to the outgoing 512 nodes.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Fully Connected Layer: 
+\emph default
+This layer fully connects the incoming 512 nodes to the outgoing 10 nodes.
+\end_layout
+
+\begin_layout Subsection
+STEP 1: Approximation 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:STEP-1-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For this Tiny CNN the 
+\emph on
+approximation 
+\emph default
+(
+\noun on
+step 1 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) phase is unnecessary since it already contains only layers with polynomial
+ function.
+ Thus this step is skipped and the structure of the approximated 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ coincides with the one of the starting CNN 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+STEP 2: Encoding
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+encoding 
+\emph default
+(
+\noun on
+step 2 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) is exactly the same of the previous case study (Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:STEP-2:-Encoding"
+
+\end_inset
+
+), since the Binary Search finds two sets of possible encryption parameters
+ and each weight in 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ is encoded as a fixed precision floating point number as described in the
+ Fractional Encoding part of Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encoding"
+
+\end_inset
+
+ using 
+\begin_inset Formula $n_{i}=64\text{ bits for the integr part, }n_{f}=32$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ bits for the fractional part and a base 
+\begin_inset Formula $S=3.$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ The two produced encoded network 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+, for the two sets of parameters found have the same structure of the one
+ in input but they are able to predict over encrypted data, provided that
+ images are encrypted using the same 
+\emph on
+n, t 
+\emph default
+and 
+\emph on
+q 
+\emph default
+(see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Encryption-Scheme"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Subsection
+STEP 3: Testing
+\end_layout
+
+\begin_layout Standard
+Also for this CNN the
+\emph on
+ testing 
+\emph default
+(
+\noun on
+step 3 
+\noun default
+see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-Formulation"
+
+\end_inset
+
+) is carried over all the 10000 test images of the MNIST Dataset.
+ The parameters found by the Binary Search are valid under the assumption
+ that a re-encryption step is introduced (as explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-metrics"
+
+\end_inset
+
+) .
+ The results of this testing for the two encoded networks, is detailed in
+ Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Heuristic-resultsTiny"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Heuristic metrics and comparison results 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Heuristic-resultsTiny"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The automatic parameter selection tool of SEAL explained in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-metrics"
+
+\end_inset
+
+ is applied on the approximated Tiny CNN (i.e., on the computations that this
+ model provides) described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-2"
+
+\end_inset
+
+, but also in this case no valid parameters are found, as reposted in Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Heuristic-performances-1"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Also in this case study the heuristic binary search is run on a subset of
+ the testing set (
+\noun on
+Partial
+\noun default
+ run) and on the entire testing set (
+\noun on
+Full
+\noun default
+ run).
+ 
+\begin_inset Newline newline
+\end_inset
+
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Heuristic-performances-1"
+
+\end_inset
+
+ reports the results of the testing on the whole testing set 
+\begin_inset Formula $D$
+\end_inset
+
+ of 10000 images, and in particular it reports the relative testing error
+ 
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+ (see Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative-testing-error"
+
+\end_inset
+
+), the time in seconds for a forward on an encrypted image 
+\begin_inset Formula $Time_{FW}$
+\end_inset
+
+ and the initial noise budget 
+\begin_inset Formula $NB$
+\end_inset
+
+ in bits for the Tiny network 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\end_inset
+
+ encoded with two different sets of parameters.
+ 
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Partial
+\noun default
+ column shows the result with the plaintext modulus 
+\begin_inset Formula $t=2^{16}$
+\end_inset
+
+ obtained by running the binary search only on 40 randomly sampled images
+ and setting as 
+\begin_inset Formula $n=2048,\;q=18014398492704769,$
+\end_inset
+
+ where 
+\begin_inset Formula $log_{2}q=54$
+\end_inset
+
+ that is compliant with the security standards described in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for 128-bit security.
+ The maximum number of re-encryption steps is set to one.
+ The binary search puts the allowed re-encryption step before layer 5.
+ The network encoded with these parameters can be seen as the suboptimal
+ encoded CNN, because the relative testing error (see Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative-testing-error"
+
+\end_inset
+
+) on the whole dataset 
+\emph on
+D 
+\emph default
+is greater than zero.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Full
+\noun default
+\color black
+ column shows the result with the plaintext modulus 
+\color inherit
+
+\begin_inset Formula $t=2^{30}$
+\end_inset
+
+ obtained by running the binary search on the whole testing dataset of 10000
+ images and setting the same 
+\emph on
+n 
+\emph default
+and 
+\emph on
+q 
+\emph default
+and maximum number of re-encryptions of the 
+\noun on
+partial 
+\noun default
+case.
+ The binary search puts the allowed re-encryption step before layer 6.
+ The network encoded with these parameters can be seen as the optimal encoded
+ CNN for the given dataset, because the testing error on the whole dataset
+ is equal to zero.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size small
+Column Binary Search reports the encoded "Tiny" CNN performances at the
+ varying of the plaintext modulus 
+\emph on
+t
+\emph default
+, that is obtained with a different number of images tested in the heuristic.
+\begin_inset Newline newline
+\end_inset
+
+Column SEAL tool reports the results of the SEAL automatic encryption parameters
+ selection for the same "Tiny" CNN.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Heuristic-performances-1"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary Search 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SEAL tool
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\noun on
+Partial
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\noun on
+Full
+\series default
+\noun default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=2^{16}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Found
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Time_{FW}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35.58
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NB$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not defined
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The results reported in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Heuristic-performances-1"
+
+\end_inset
+
+ show that the suboptimal 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+ found by running the binary search on the 0.4% of the entire testing dataset
+ is not far form the "optimal" (for the given dataset) plaintext modulus
+ 
+\begin_inset Formula $t=2^{30}$
+\end_inset
+
+
+\emph on
+.
+ 
+\emph default
+The suboptimal 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+ causes a decrease in accuracy with respect to the plain non-encoded CNN
+ 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ of only 0.04%, since the encoded model 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+\end_inset
+
+ mispredicts only 7 of 10000 images more than the non-encoded 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.
+ Indeed 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+ has an accuracy of the 97% while the accuracy of 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+\end_inset
+
+ is of 96.93%.
+ This decrease in performances can be considered negligible considering
+ that the time needed to obtain that result for the binary search is of
+ about 4 hours, that is significantly less than the time needed to run the
+ heuristic on the entire test dataset as in the 
+\noun on
+full 
+\noun default
+version.
+ As expected the forward time on an image does not meaningfully increase
+ at the varying of the plaintext modulus, this can be explained considering
+ that the polynomial modulus degree is kept the same in the two versions
+ (i.e., 
+\begin_inset Formula $n=4096$
+\end_inset
+
+) and it is what mostly affect the computational time, since it determines
+ the maximum degree of the polynomial with which computations are performed.
+ The slight difference of 1.56 s in the two versions of the CNN can be due
+ to the fact that the re-encryption step is put in two different points,
+ since the noise budget of a ciphertext in input to the "optimal" CNN has
+ one bit less than the suboptimal one.
+ This means that the re-encryption step in the "optimal" CNN is slower since
+ it has more data to re-encrypt than the re-encryption in the suboptimal
+ CNN, because in the former it is put before the sub-sampling step performed
+ by the Average Pooling Layer (i.e.
+ before layer 6), while in the latter it is put soon after the Average Pooling
+ layer (i.e.
+ after layer 6).
+\end_layout
+
+\begin_layout Subsection
+Analysis Of The Suboptimal CNN 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:AnalysisSuboptimalCNN-1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Timings and noise 
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+testing 
+\emph default
+of the encoded CNN 
+\begin_inset Formula $\tilde{\varPhi}_{n=2048,q,t=2^{16}}$
+\end_inset
+
+ using the CrCNN library gives the following results in terms of timings.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Encryption.
+ It takes on average 1.26 seconds to encrypt pixel by pixel (as explained
+ in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+) a 
+\begin_inset Formula $28\times28\times1$
+\end_inset
+
+ image.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Decryption.
+ The decryption procedure (as explained in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+) takes on average 0.005 seconds.
+\end_layout
+
+\begin_layout Standard
+Both encryption and decryption take about half of the time needed with the
+ parameters in the previous case study (see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+).
+ This is due to the fact that the polynomial modulus degree 
+\emph on
+
+\begin_inset Formula $n=2048$
+\end_inset
+
+ 
+\emph default
+is
+\emph on
+ 
+\emph default
+halved with respect to the previous case study, where 
+\begin_inset Formula $n=4096.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Testing times of the suboptimal Tiny 
+\begin_inset Formula $\tilde{\varPhi}_{n=2048,q,t=2^{16}}$
+\end_inset
+
+ and noise budget consumption in the input data (encrypted with the same
+ parameters) through layers 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Testing-times-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Layer #
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Operation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Threads' #
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Time(s)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+NB
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Convolution 
+\begin_inset Formula $(5\times5\times32)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+3.35
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Average Pooling 
+\begin_inset Formula $(2\times2\times1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1.22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Convolution 
+\begin_inset Formula $(5\times5\times64)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+23.88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Average Pooling 
+\begin_inset Formula $(2\times2\times1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+0.39
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Re-encryption
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Decryption+Encryption
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+1.77
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Fully Connected 
+\begin_inset Formula $(1024,512)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+4.34
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Layer 6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Fully Connected 
+\begin_inset Formula $(512,10)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+0.62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The timings reported in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Testing-times-1"
+
+\end_inset
+
+ are obtained by running the forward on an encrypted image.
+ The Convolution Layer 1 is run with 32 threads in parallel, this means
+ that each thread performs a single one dimensional convolution with a kernel
+ of dimensions 
+\begin_inset Formula $5\times5$
+\end_inset
+
+.
+ The Convolution Layer 3 is run with 64 threads in parallel and this means
+ that each thread performs one convolution of dimensions 
+\begin_inset Formula $5\times5$
+\end_inset
+
+ over an input image of 
+\begin_inset Formula $12\times12\times32.$
+\end_inset
+
+ In the Fully Connected Layer 5, 41 threads perform the operation over 24
+ input neurons (i.e.
+ 1024/42), while one thread executes the operations on the remaining 
+\begin_inset Formula $1024/42+1024\%42=24+16=40$
+\end_inset
+
+ input neurons, while in the last Fully Connected Layer all the threads
+ except one perform the operation over 12 (i.e.
+ 512/42) input neurons and one of them executes the operations on the remaining
+ 20 input neurons.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The most computationally intensive layer is the second Convolution Layers,
+ since there are 64 filters to compute and 
+\begin_inset Newline newline
+\end_inset
+
+The Noise Budget column reports the amount of noise budget, expressed in
+ bits, in input to the corresponding layer/ re-encryption step and shows
+ that the Square Layer 5 is the one that consumes most of the budget.
+ This is an expected result since a ciphertext by ciphertext multiplication
+ is performed and, as explained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Operations-and-Noise"
+
+\end_inset
+
+, it is less efficient than a ciphertext by plaintext multiplication that
+ is performed most of the times in the CNN (i.e., Convolution and in Fully
+ Connected layers).
+\end_layout
+
+\begin_layout Subsubsection
+Accuracy Tracking Through Transformation's Steps
+\end_layout
+
+\begin_layout Standard
+The approximation step is skipped since it is unnecessary, thus the accuracy
+ of the starting CNN 
+\series bold
+
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ is equal to the accuracy of the approximated CNN
+\series default
+ 
+\series bold
+
+\begin_inset Formula $\varPhi$
+\end_inset
+
+
+\series default
+, because
+\series bold
+ 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+ is trivially equal to
+\series default
+ 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+.The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:CNN's-accuracy-mutation-1"
+
+\end_inset
+
+ shows that the last transformation step that involves the encoding and
+ thus the application of the CNN to encrypted images slightly affect performance
+s.
+ This implies that the suboptimal parameter 
+\begin_inset Formula $t=2^{16}$
+\end_inset
+
+ found by the 
+\noun on
+partial 
+\noun default
+Binary Search run is close to the best value that is possible to find with
+ the given dataset (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+), but is not the optimal one.
+ The starting accuracy of this network is 8 points percentage less than
+ the "Big" CNN described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
+\end_inset
+
+, this is due to the simpler structure of this "Tiny" CNN.
+ However this simpler structure allows to perform less operations.
+ This implies to have an initial smaller noise budget and thus the possibility
+ to employ a smaller 
+\emph on
+n.
+ 
+\emph default
+This halves the time needed to perform a forward on an image with respect
+ to the "Big" CNN case.
+
+\emph on
+ 
+\emph default
+
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CNN's accuracy mutation 
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:CNN's-accuracy-mutation-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Accuracy Tiny CNN
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Starting 
+\begin_inset Formula $\dot{\varPhi}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Approximated 
+\begin_inset Formula $\varPhi$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Encoded 
+\begin_inset Formula $\tilde{\varPhi}_{n=2048,q,t=2^{16}}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
