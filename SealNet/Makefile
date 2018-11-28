@@ -13,12 +13,12 @@
 #put source here
 SRC_DIR=src
 
-SRC = convolutionalLayer.cpp poolingLayer.cpp fullyConnectedLayer.cpp squareLayer.cpp batchNormLayer.cpp layer.cpp  globals.cpp utils.cpp cnnBuilder.cpp network.cpp H5Easy.cpp mainnet.cpp
+SRC = convolutionalLayer.cpp poolingLayer.cpp avgPoolingLayer.cpp fullyConnectedLayer.cpp squareLayer.cpp batchNormLayer.cpp layer.cpp  globals.cpp utils.cpp cnnBuilder.cpp network.cpp H5Easy.cpp optimalParametersChooser.cpp #mainparams.cpp # mainsimulator.cpp    #ReadH5Model.cpp  #mainexample.cpp #provanewNet.cpp  #sof.cpp   
 #your compiler
 CXX = c++
 
 #your flags
-CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -I./include/h5
+CXXFLAGS= -std=c++17 -I./$(SRC_DIR) -I./include -I./include/h5 #-g -O0 #-fsanitize=address -g -O0 #-fsanitize=thread -g #-Og
 
 
 LDFLAGS=-lseal -lpthread -Wl,-rpath,./lib -lz -ldl -lm

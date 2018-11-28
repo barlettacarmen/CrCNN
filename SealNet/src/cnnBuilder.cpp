@@ -106,14 +106,14 @@ using namespace std;
 
 
 	Network CnnBuilder::buildNetwork(string file_name){
-		int th_count=40,th_count2=50;
+		int th_count=40,th_count2=50,th_tiny=32,th_tiny2=42;
 		Network net;
 		ifstream *infile=NULL;
 		if(file_name!=""){
 			infile = new ifstream(file_name, ifstream::binary);
 		}
 		//----ApproxPlainModel.h5-----
-		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
+		/*ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,2,2,5,5,20,th_count,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		AvgPoolingLayer *pool1 = buildAvgPoolingLayer("pool1",12,12,20,1,1,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
@@ -131,6 +131,7 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
 		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",500,10,th_count2,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));
+		*/
 		//----------------------------
 		//----PlainNetWoPad.h5-------
 		
@@ -154,18 +155,18 @@ using namespace std;
 		net.getLayers().push_back(shared_ptr<Layer> (fc2));*/
 		//------------------------------ 
 		//----PlainNetTiny.h5---------
-		/*ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,1,1,5,5,32,th_count,infile);
+		ConvolutionalLayer *conv1 = buildConvolutionalLayer("pool1_features.conv1",28,28,1,1,1,5,5,32,th_tiny,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv1));
 		AvgPoolingLayer *pool1 = buildAvgPoolingLayer("pool1",24,24,32,2,2,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool1));
-		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",12,12,32,1,1,5,5,64,th_count,infile);
+		ConvolutionalLayer *conv2= buildConvolutionalLayer("pool2_features.conv2",12,12,32,1,1,5,5,64,th_tiny*2,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (conv2));
 		AvgPoolingLayer *pool2= buildAvgPoolingLayer("pool2",8,8,64,2,2,2,2);
 		net.getLayers().push_back(shared_ptr<Layer> (pool2));
-		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*64,512,th_count,infile);
+		FullyConnectedLayer *fc1= buildFullyConnectedLayer("classifier.fc3",4*4*64,512,th_tiny2,infile);
 		net.getLayers().push_back(shared_ptr<Layer> (fc1));
-		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",512,10,th_count,infile);
-		net.getLayers().push_back(shared_ptr<Layer> (fc2));*/
+		FullyConnectedLayer *fc2= buildFullyConnectedLayer("classifier.fc4",512,10,th_tiny2,infile);
+		net.getLayers().push_back(shared_ptr<Layer> (fc2));
 
 
 
@@ -211,15 +212,15 @@ using namespace std;
 		Then we simulate the forward by calling appropriate methods
 		*/
 		vector<float> w,b;
-		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 20, w=getPretrained("pool1_features.conv1.weight"), b=getPretrained("pool1_features.conv1.bias"));
+		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 32, w=getPretrained("pool1_features.conv1.weight"), b=getPretrained("pool1_features.conv1.bias"));
 		sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
-		sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool1_features.norm1.running_mean"),b=getPretrained("pool1_features.norm1.running_var"));
-		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,3,3, 50, w=getPretrained("pool2_features.conv2.weight"), b=getPretrained("pool2_features.conv2.bias"));
-		sim_input=SquareLayer::squareSimulator(sim_input);
-		// sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
+		//sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool1_features.norm1.running_mean"),b=getPretrained("pool1_features.norm1.running_var"));
+		sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 64, w=getPretrained("pool2_features.conv2.weight"), b=getPretrained("pool2_features.conv2.bias"));
+		//sim_input=SquareLayer::squareSimulator(sim_input);
+		sim_input=PoolingLayer::poolingSimulator(sim_input, 2, 2);
 		// sim_input=BatchNormLayer::batchNormSimulator(sim_input,w=getPretrained("pool2_features.norm2.running_mean"),b=getPretrained("pool2_features.norm2.running_var"));
-		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc3.weight"), b=getPretrained("classifier.fc3.bias"));
-		// sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc4.weight"), b=getPretrained("classifier.fc4.bias"));
+		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc3.weight"), b=getPretrained("classifier.fc3.bias"));
+		sim_input=FullyConnectedLayer::fullyConnectedSimulator(sim_input, w=getPretrained("classifier.fc4.weight"), b=getPretrained("classifier.fc4.bias"));
 
 		// ChooserPoly sim_input(10,1);
 		// sim_input=ConvolutionalLayer::convolutionalSimulator(sim_input,5,5, 1);

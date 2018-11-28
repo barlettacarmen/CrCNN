@@ -274,19 +274,19 @@ vector<ChooserPoly> ConvolutionalLayer::convolutionalSimulator(vector<ChooserPol
         int span=kernel_size*n;
             for(int i=0;i<xf*yf*zf;i++){
                     cout<<n<<","<<i<<","<<weights[i+span]*approx<<flush<<endl;
-                    // int weight=weights[i+span]*approx;
-                    // if(weight==0)
-                    //     tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],31,1);
-                    // else    
-                    //     tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],chooser_encoder->encode(weight));
-                    tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],encodeFractionalChooser(weights[i+span]));  
+                    int weight=weights[i+span]*approx;
+                    if(weight==0)
+                        tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],31,1);
+                    else    
+                        tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],chooser_encoder->encode(weight));
+                    //tmp_sim[i]=chooser_evaluator->multiply_plain(sim_input[int(i/(xf*yf))],encodeFractionalChooser(weights[i+span]));  
                 }
-            // int bias=biases[n]*approx;
-            // if(bias==0)
-            //     tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],31,1);
-            // else
-            //     tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
-            tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],encodeFractionalChooser(biases[n]));
+            int bias=biases[n]*approx;
+            if(bias==0)
+                tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],31,1);
+            else
+                tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],chooser_encoder->encode(bias));
+            //tmp_sim[0]=chooser_evaluator->add_plain(tmp_sim[0],encodeFractionalChooser(biases[n]));
             out_sim[n]=chooser_evaluator->add_many(tmp_sim);
     }
     cout<<"ended conv"<<flush;

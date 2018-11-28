@@ -21,13 +21,14 @@ using namespace std;
 using namespace seal;
 
 enum exit_status_forward{SUCCESS, OUT_OF_BUDGET,MISPREDICTED};
+string model="PlainModelTiny.h5";
 
 //about 1.56 min needed (da rimisuarare)
 Network setParametersAndSaveNetwork(int poly_modulus, uint64_t plain_modulus){
 	setAndSaveParameters("pub_key.txt","sec_key.txt","eval_key.txt",poly_modulus,plain_modulus);
 	//Build Network structure reading model weights form file 
 	cout<<"keys done"<<endl<<flush;
-	CnnBuilder build("PlainModelWoPad.h5");
+	CnnBuilder build(model);
 	Network net=build.buildAndSaveNetwork("encoded_model.txt");
 	cout<<"bulit and saved net"<<endl<<flush;
 	//net.printNetworkStructure();
@@ -37,7 +38,7 @@ Network setParametersAndSaveNetwork(int poly_modulus, uint64_t plain_modulus){
 // about 0.935s
 Network getParametersAndReadNetwork(int poly_modulus, uint64_t plain_modulus){
 	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt",poly_modulus, plain_modulus);
-	CnnBuilder build("PlainModelWoPad.h5");
+	CnnBuilder build(model);
 	Network net=build.buildNetwork("encoded_model.txt");
 	//net.printNetworkStructure();
 	return net;
@@ -45,7 +46,7 @@ Network getParametersAndReadNetwork(int poly_modulus, uint64_t plain_modulus){
 //about 1m47.044s
 Network getParametersAndSaveNetwork(int poly_modulus, uint64_t plain_modulus){
 	initFromKeys("pub_key.txt","sec_key.txt","eval_key.txt",poly_modulus, plain_modulus);
-	CnnBuilder build("PlainModelWoPad.h5");
+	CnnBuilder build(model);
 	Network net=build.buildAndSaveNetwork("encoded_model.txt");
 	//net.printNetworkStructure();
 	return net;
@@ -59,68 +60,29 @@ void getParametersAndSaveImages(int from, int to,int poly_modulus, uint64_t plai
 	
 }
 
-/*int main(){
-
-	vector<unsigned char>labels=loadMNISTestLabels("../PlainModel/MNISTdata/raw");
-	floatCube image(1, vector<vector<float> > (10,vector<float>(1)));
-	
-	chrono::high_resolution_clock::time_point time_start, time_end;
-	chrono::microseconds time_forward(0);
-
-	 Network net=getParametersAndReadNetwork();
-
-	for(int i=0;i<2;i++){
-		ciphertext3D encrypted_image=loadEncryptedImage(1, 28, 28, "./Cipher_Imgs/cipher_image_"+to_string(i+1)+".txt");
-
-		time_start = chrono::high_resolution_clock::now();
-		encrypted_image = net.forward(encrypted_image);
-		time_end = chrono::high_resolution_clock::now();
-
-		time_forward += chrono::duration_cast<chrono::microseconds>(time_end - time_start);
-
-		cout<<chrono::duration_cast<chrono::microseconds>(time_end - time_start).count()<<endl;
-
-		//Decrypt Image
-		
-		image=decryptImage(encrypted_image);
-
-		//predicted image
-		
-		auto it = max_element(begin(image[0]), end(image[0]));
-	    cout << it - image[0].begin();
-
-	    //true class
-	    cout<<','<<(unsigned short)labels[i]<<endl;
-	}
-
-    cout<<"avg_forward_time= "<<time_forward.count()/2<<endl;
-	
-	delParameters();
-
-}*/
 
 int main(){
 
 	/*Load and normalize your dataset*/
 	vector<vector<float> > test_set=loadAndNormalizeMNISTestSet("../PlainModel/MNISTdata/raw");
 	/*Load labels*/
-	vector<unsigned char> predicted_labels=loadMNISTPlainModelPredictions("../PlainModel/predictionsPlainModelWoPad.csv");
+	vector<unsigned char> predicted_labels=loadMNISTPlainModelPredictions("../PlainModel/predictionsPlainModelTiny.csv");
 	// chrono::high_resolution_clock::time_point time_start, time_end;
 	// chrono::microseconds time_encrypt(0);
 	// chrono::microseconds time_decrypt(0);
 
-	int num_images_to_test=9999;
-	int poly_modulus=4096;
-	uint64_t plain_modulus=1UL<<29;
+	int num_images_to_test=100;
+	int poly_modulus=2048;
+	uint64_t plain_modulus=1UL<<18;
 	
-	cout<<"TEST IMAGES FROM 100 TO 9999 WITH n=4096, t=2^29, threads=40"<<endl;
-	//Network net=setParametersAndSaveNetwork(poly_modulus,plain_modulus);
-	Network net=getParametersAndReadNetwork(poly_modulus,plain_modulus);
-	//cout<<"INDEX_IMG,T_LAYER_0,T_REENC_0,...,T_LAYER_N,T_REENC_N,T_ENC,T_DEC,PREDICTION"<<endl;
-	cout<<"INDEX_IMG,PREDICTION"<<endl;
+	cout<<"TEST TINY TIME 2^18"<<endl;
+	Network net=setParametersAndSaveNetwork(poly_modulus,plain_modulus);
+	//Network net=getParametersAndReadNetwork(poly_modulus,plain_modulus);
+	cout<<"INDEX_IMG,T_LAYER_0,...,T_REENC,T_LAYER_4,T_LAYER_5,PREDICTION"<<endl;
+	//cout<<"INDEX_IMG,PREDICTION"<<endl;
 
 	/*Encrypt and test "num_images_to_test"*/
-	for(int i=100;i<num_images_to_test;i++){
+	for(int i=0;i<num_images_to_test;i++){
 		cout<<"OUTPUT: "<<i<<",";
 		exit_status_forward ret_value=SUCCESS;
 		//time_start = chrono::high_resolution_clock::now();
