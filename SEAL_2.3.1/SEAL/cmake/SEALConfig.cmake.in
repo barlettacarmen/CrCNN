@@ -1,0 +1,16 @@
+include(${CMAKE_CURRENT_LIST_DIR}/SEALTargets.cmake)
+message(STATUS "SEAL detected (version ${SEAL_VERSION})")
+
+set(SEAL_BUILD_TYPE @CMAKE_BUILD_TYPE@)
+message(STATUS "SEAL build type: ${SEAL_BUILD_TYPE}")
+
+set(SEAL_DEBUG @SEAL_DEBUG@)
+message(STATUS "SEAL debug mode: ${SEAL_DEBUG}")
+
+set(SEAL_USE_MSGSL @SEAL_USE_MSGSL@)
+if(SEAL_USE_MSGSL)
+    set(MSGSL_INCLUDE_DIR @MSGSL_INCLUDE_DIR@)
+    message(STATUS "SEAL using Microsoft GSL (target `SEAL::msgsl' available): ${SEAL_USE_MSGSL}")
+else()
+    message(STATUS "SEAL using Microsoft GSL: ${SEAL_USE_MSGSL}")
+endif()

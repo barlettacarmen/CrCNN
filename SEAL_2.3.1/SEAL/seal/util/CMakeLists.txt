@@ -1,0 +1,63 @@
+target_sources(seal 
+    PRIVATE 
+        ${CMAKE_CURRENT_LIST_DIR}/baseconverter.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/clipnormal.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/computation.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/globals.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/hash.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/mempool.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/modulus.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/ntt.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/numth.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/nussbaumer.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polyarith.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polyarithmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polyarithsmallmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polyfftmultmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polyfftmultsmallmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/polymodulus.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/smallntt.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/uintarith.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/uintarithmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/uintarithsmallmod.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/uintcore.cpp
+)
+
+# Create the config file
+configure_file(${CMAKE_CURRENT_LIST_DIR}/config.h.in ${CMAKE_CURRENT_LIST_DIR}/config.h)
+
+install(
+    FILES
+        ${CMAKE_CURRENT_LIST_DIR}/baseconverter.h
+        ${CMAKE_CURRENT_LIST_DIR}/clang.h
+        ${CMAKE_CURRENT_LIST_DIR}/clipnormal.h
+        ${CMAKE_CURRENT_LIST_DIR}/common.h
+        ${CMAKE_CURRENT_LIST_DIR}/computation.h
+        ${CMAKE_CURRENT_LIST_DIR}/config.h
+        ${CMAKE_CURRENT_LIST_DIR}/defines.h
+        ${CMAKE_CURRENT_LIST_DIR}/gcc.h
+        ${CMAKE_CURRENT_LIST_DIR}/globals.h
+        ${CMAKE_CURRENT_LIST_DIR}/hash.h
+        ${CMAKE_CURRENT_LIST_DIR}/locks.h
+        ${CMAKE_CURRENT_LIST_DIR}/mempool.h
+        ${CMAKE_CURRENT_LIST_DIR}/modulus.h
+        ${CMAKE_CURRENT_LIST_DIR}/msvc.h
+        ${CMAKE_CURRENT_LIST_DIR}/ntt.h
+        ${CMAKE_CURRENT_LIST_DIR}/numth.h
+        ${CMAKE_CURRENT_LIST_DIR}/nussbaumer.h
+        ${CMAKE_CURRENT_LIST_DIR}/polyarith.h
+        ${CMAKE_CURRENT_LIST_DIR}/polyarithmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/polyarithsmallmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/polycore.h
+        ${CMAKE_CURRENT_LIST_DIR}/polyfftmultmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/polyfftmultsmallmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/polymodulus.h
+        ${CMAKE_CURRENT_LIST_DIR}/randomtostd.h
+        ${CMAKE_CURRENT_LIST_DIR}/smallntt.h
+        ${CMAKE_CURRENT_LIST_DIR}/uintarith.h
+        ${CMAKE_CURRENT_LIST_DIR}/uintarithmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/uintarithsmallmod.h
+        ${CMAKE_CURRENT_LIST_DIR}/uintcore.h
+    DESTINATION
+        ${SEAL_INCLUDES_INSTALL_DIR}/seal/util
+)

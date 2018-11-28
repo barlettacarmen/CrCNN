@@ -1,0 +1,29 @@
+C++ projects:
+    - SEAL (main library)
+    - SEALExamples (extensively documented examples of using SEAL)
+    - SEALTest (MSVC unit tests for SEAL)
+
+.NET Framework projects (Windows only):
+    - SEALNET (.NET Framework wrappers for SEAL)
+    - SEALNETExamples (extensively documented examples of using SEALNET)
+    - SEALNETTest (MSVC unit tests for SEALNET)
+
+
+Building and installation:
+
+    Windows: Use Microsoft Visual Studio to build all projects in the solution SEAL.sln. 
+
+    Linux/OS X:
+        - Make sure cmake is installed.
+        - For system-wide install of SEAL do: 
+            cd SEAL
+            cmake .
+            make
+            sudo make install 
+            cd ..
+        - To build SEALExamples do:
+            cd SEALExamples
+            cmake .
+            make
+        - The sealexamples executable can be found in bin/.
+        - See SEALExamples/CMakeLists.txt for an example of how to import SEAL using cmake.
