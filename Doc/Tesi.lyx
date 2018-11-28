@@ -224,11 +224,11 @@ status collapsed
 
 \end_inset
 
-Parameters Estimation Methodology for Homomorphic Encryption 
+Privacy-Preserving Convolutional Neural Networks
 \begin_inset Newline newline
 \end_inset
 
-on Convolutional Neural Networks
+ through Homomorphic Encryption
 \begin_inset ERT
 status collapsed
 
@@ -401,6 +401,159 @@ end{titlepage}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter*
+Ringraziamenti
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Questi 5 anni universitari si concludono con tante consapevolezze in più.
+ Una e la più preziosa è che non importa quante difficoltà dovrò ancora
+ affrontare, perché so che al mio fianco avrò sempre sei persone straordinarie
+ pronte a sostenermi e a farmi capire quanto sono fortunata.
+\begin_inset Newline newline
+\end_inset
+
+ Ringrazio Matteo, una persona speciale, che soprattutto in questi ultimi
+ mesi ha dimostrato di avere un pazienza infinita, fingendo di lavorare
+ anche nel tempo libero solo per non farmi sentire l’unica sfigata, vestendo
+ i panni del coach armato di “bastone e carota” per spronarmi e consolarmi
+ in ogni momento.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ringrazio Mamma e Papà che hanno costantemente vegliato su di me e non si
+ sono mai stancati di dispensare importantissimi consigli infondendomi coraggio
+ e sicurezza.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ringrazio Giò che è sempre stata un esempio da seguire per me, la roccia
+ su cui contare e la sorella che mi ha sempre dato uno spunto per crescere
+ e sognare.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ringrazio Stè per tutte le chiacchierate, i momenti spensierati, il sorriso
+ e gli abbracci che ha saputo donarmi incondizionatamente.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ringrazio Annalisa, l’amica di una vita, per non avermi mai chiuso la porta
+ in faccia soprattutto quando ne avevo più bisogno.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questo traguardo lo dedico a voi perché ve lo meritate e perché spero che
+ insieme ne raggiungeremo tanti altri.
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\emph on
+Grazie,
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\emph on
+Carmen
+\end_layout
+
+\begin_layout Chapter*
+Abstract
+\end_layout
+
+\begin_layout Standard
+In the last few years Machine Learning techniques have become popular thanks
+ to their ability to solve complex problems.
+ The most frequently used paradigm considers 
+\emph on
+Software as a Service
+\emph default
+, that is a software distribution model in which a third-party provider,
+ usually a cloud server, hosts applications (i.e., machine learning algorithms)
+ and makes them available to costumers over the Internet.
+ This cloud based machine learning technique is useful on one hand, since
+ it is usually fast and scalable, thus allows to reach a big number of users,
+ but on the other hand it places issues in terms of privacy implications
+ because analyzed data, on the untrusted cloud server, are usually sensible
+ data.
+ This drawback must be taken into special consideration after the recent
+ approval of the European's General Data Protection Regulation
+\series bold
+.
+
+\series default
+ This thesis provides a practical implementation of how it is possible to
+ achieve privacy-preserving machine learning through the usage of the Homomorphi
+c Encryption (HE).
+ More precisely, this work focuses on Convolutional Neural Networks (CNNs)
+ and presents both a methodology and a library to convert a learned neural
+ network to a network that can be applied on encrypted data, by employing
+ the Brakerski, Fan and Vercauteren (BFV) HE scheme.
+ Moreover it offers a mathematical formulation for the problem of finding
+ appropriate and optimal encryption parameters for the BFV encryption scheme.
+ It also provides to the reader a heuristic, based on a binary search algorithm,
+ to solve the problem of the parameters' choice, tailored on the specific
+ CNN one wishes to use with encrypted data.
+ The heuristic thus aims to find the best transformation for the given CNN.
+ The experimental results show that the proposed methodology is versatile,
+ because it works on CNNs of varying dimensions and with different structures.
+ The results also prove that privacy-preserving deep learning is possible
+ at the cost of a small loss in accuracy and slower predictions.
+\end_layout
+
+\begin_layout Chapter*
+Estratto
+\end_layout
+
+\begin_layout Standard
+Negli ultimi anni le tecniche di Machine Learning si sono diffuse ampiamente
+ poiché esse permettono di risolvere problemi complessi.
+ Il Software as a Service è il paradigma più comunemente usato.
+ Si tratta di un modello di distribuzione del software nel quale un terzo,
+ solitamente un server cloud, ospita le applicazioni (ovvero, gli algoritmi
+ di machine learning) e le rende fruibili ai clienti attraverso Internet.
+ Questa tecnica di machine learning basata sul cloud, se da un lato risulta
+ utile poiché è solitamente veloce e scalabile e quindi permette di raggiungere
+ un gran numero di utenti, dall'altro lato pone seri problemi in termini
+ di implicazioni relative alla privacy, poiché i dati analizzati sul server
+ considerato inaffidabile, sono spesso dati sensibili.
+ Questo aspetto negativo deve essere considerato soprattutto alla luce della
+ recente approvazione dell'European's General Data Protection Regulation.
+ Questa tesi fornisce un'implementazione pratica di come è possibile preservare
+ la privacy dei dati analizzati con algoritmi di machine learning, attraverso
+ l'impiego della crittografia omomorfica.
+ Più precisamente, questo lavoro si focalizza sulle Reti Neurali Convoluzionali
+ (CNNs) e presenta sia una metodologia che una libreria per convertire una
+ rete neurale già addestrata in una rete che può essere applicata su dati
+ cifrati, utilizzando lo schema omomorfico di Brakerski, Fan and Vercauteren
+ (BFV).
+ Inoltre, viene proposta una formulazione matematica relativa al problema
+ di trovare parametri di crittografia appropriati e ottimali per lo schema
+ omomorfico BFV.
+ Questa tesi fornisce al lettore anche un'euristica, basata sull'algoritmo
+ di ricerca binaria, per risolvere il problema della scelta dei parametri
+ considerando una specifica CNN che si vuole usare con dati cifrati.
+ L'euristica mira quindi a trovare la miglior trasformazione per la data
+ rete.
+ I risultati sperimentali mostrano che la metodologia proposta è versatile,
+ perché funziona su CNNs di varie dimensioni e con strutture differenti.
+ I risultati provano anche che è possibile preservare la privacy dei dati
+ analizzati con algoritmi di machine learning, pagando un piccolo prezzo
+ in termini di perdita di accuratezza e tempi di predizione più lenti.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -907,14 +1060,14 @@ reference "subsec:Operations-and-Noise"
 
 \end_inset
 
-
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Operations-with-plaintext"
 
 \end_inset
 
- ) and the plaintext encoding (Subsection 
+) and the plaintext encoding (Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Encoding"
@@ -1254,7 +1407,11 @@ m.
 
 \emph default
 -evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval,Dec})$
+\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\end_inset
+
+ 
+\begin_inset Formula $\mathsf{Dec)}$
 \end_inset
 
  is said to 
@@ -2655,6 +2812,10 @@ The discrete Gaussian distribution
 
  over the integers is the probability distribution that assigns a probability
  proportional to 
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $exp(\text{−}π|x|^{2}/σ^{2})$
 \end_inset
 
@@ -2971,7 +3132,7 @@ pk=(\boldsymbol{p}_{0},\boldsymbol{p}_{1})\coloneqq([\text{−}(\boldsymbol{a}\t
 \end_inset
 
  for 
-\begin_inset Formula $i=0,...,l=\lfloor logT(q)\rfloor$
+\begin_inset Formula $i=0,...,l=\lfloor log_{T}(q)\rfloor$
 \end_inset
 
  and 
@@ -3593,9 +3754,9 @@ key "SEALManual"
 
 \begin_inset Formula 
 \begin{align*}
-||v_{mult}||_{\infty}\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||_{\infty}+\frac{nt}{2}\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||_{\infty}\\
-+ & \Bigg[(N_{m_{2}}+n)||m_{2}||_{\infty}+\frac{nt}{2}\frac{n^{j_{2}+1}-1}{n-1})\Bigg]||v_{1}||_{\infty}\\
-+ & 3n||v_{1}||_{\infty}||v_{2}||_{\infty}+\frac{t}{2q}\frac{n^{j_{1}+j_{2}+1}-1}{n-1}).
+||v_{mult}||_{\infty}\leq & \Bigg[(N_{m_{1}}+n)||m_{1}||_{\infty}+\frac{nt}{2}\cdot\frac{n^{j_{1}+1}-1}{n-1})\Bigg]||v_{2}||_{\infty}\\
++ & \Bigg[(N_{m_{2}}+n)||m_{2}||_{\infty}+\frac{nt}{2}\cdot\frac{n^{j_{2}+1}-1}{n-1})\Bigg]||v_{1}||_{\infty}\\
++ & 3n||v_{1}||_{\infty}||v_{2}||_{\infty}+\frac{t}{2q}\Bigl(\frac{n^{j_{1}+j_{2}+1}-1}{n-1}\Bigr).
 \end{align*}
 
 \end_inset
@@ -5802,14 +5963,8 @@ reference "sec:BFV"
 
  and below it is explained which are the relations that these parameters
  have each other.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
+placement h
 wide false
 sideways false
 status collapsed
@@ -5946,6 +6101,10 @@ A power of 2
 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 Before to encrypt a number it must be encoded as a plaintext polynomial
@@ -10620,7 +10779,11 @@ reference "fig:UML"
 \end_inset
 
  
-\begin_inset Formula $\mathtt{Connected\;\text{and }SquareLayer}$
+\begin_inset Formula $\mathtt{Connected\;\text{and }Square}$
+\end_inset
+
+ 
+\begin_inset Formula $\mathtt{Layer}$
 \end_inset
 
 ) there is the possibility to run the 
@@ -10928,7 +11091,15 @@ reference "chap:Practical-Methodology"
 
 \end_inset
 
-, and to display the associated results.
+, and to display the associated results by calculating the metrics reported
+ in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-metrics"
+
+\end_inset
+
+.
  In particular two case studies that consider two different CNNs, trained
  on the same MNIST dataset (see Section 
 \begin_inset CommandInset ref
@@ -10984,12 +11155,19 @@ reference "sec:Heuristic:-Binary-Search"
  will be tested and compared with other methodologies (Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic-results-and"
+reference "sec:Heuristic-metrics"
 
 \end_inset
 
-) and the algorithm will be examined considering its speed to converge to
- a reliable result (Section 
+) and, for case study 1 in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
+\end_inset
+
+, the algorithm will be examined considering its speed to converge to a
+ reliable result (Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Binary-Search-Results"
@@ -11017,11 +11195,7 @@ Experimental Setup
 
 \begin_layout Standard
 All the experiments reported in this Chapter has been executed on a 40-cores
- Intel Xeon CPU E5-2640 @ 2.40GHz with 128GB of RAM (
-\color red
-model?
-\color inherit
-).
+ Intel Xeon CPU E5-2640 @ 2.40GHz with 128GB of RAM DIMM Synchronous @ 2400MHz.
  SEAL 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -11048,14 +11222,21 @@ key "pytorch"
 
 \end_inset
 
- has been used for the trainings of the CNN 
+ has been used for the trainings of the starting CNNs 
 \begin_inset Formula $\dot{\varPhi}$
 \end_inset
 
- (Section 
+ (Sections 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:CNN-Structure"
+reference "sec:Case-Study-1"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-2"
 
 \end_inset
 
@@ -11063,7 +11244,7 @@ reference "sec:CNN-Structure"
 \begin_inset Formula $\varPhi$
 \end_inset
 
- (Subsection 
+ in case study 1 (Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:STEP-1"
@@ -11176,8 +11357,8 @@ reference "fig:Binary-Search-Cases"
 
 (a)).
  The binary search eventually outputs also the best point in the CNN where
- to perform this/these re-encryption step/s.This methodology has the following
- main three goals:
+ to perform this/these re-encryption step/s.
+ This methodology has the following main three goals:
 \end_layout
 
 \begin_layout Enumerate
@@ -11895,7 +12076,15 @@ reference "subsec:STEP-1"
 , outputs that there are no valid encryption parameters.
  This shows that this methodology that overestimates the encryption parameters
  needed is not suitable in the case there are many computations to perform
- as in a CNN, since it is unable to find any valid result.
+ as in a CNN, since it is unable to find any valid result, as written in
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Heuristic-performances"
+
+\end_inset
+
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -11951,96 +12140,6 @@ reference "eq:relative-testing-error"
 
  encoded with two different sets of parameters.
  
-\end_layout
-
-\begin_layout Description
-
-\noun on
-Partial
-\noun default
- column shows the result with the plaintext modulus 
-\begin_inset Formula $t=2^{29}$
-\end_inset
-
- obtained by running the binary search only on 40 randomly sampled images
- and setting as 
-\begin_inset Formula $n=4096,\;q=\{q_{1}=36028797005856769,\;q_{2}=18014398492704769\},$
-\end_inset
-
- where 
-\begin_inset Formula $\sum_{i=1}^{2}log_{2}q_{i}=log_{2}q_{1}+log_{2}q_{2}=55+54=109$
-\end_inset
-
- that is compliant with the security standards described in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Default-pairs-(n,q)"
-
-\end_inset
-
- for 128-bit security.
- The maximum number of re-encryption steps is set to one.
- The details of the 
-\noun on
-partial
-\noun default
- binary search
-\emph on
- 
-\emph default
-run are given in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Binary-Search-Results"
-
-\end_inset
-
-.
- The binary search puts the allowed re-encryption step before layer 7.
- The network encoded with these parameters can be seen as the suboptimal
- encoded CNN, because the relative testing error (see Equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:relative-testing-error"
-
-\end_inset
-
-) on the whole dataset is greater than zero.
-\end_layout
-
-\begin_layout Description
-
-\noun on
-Full
-\noun default
-\color black
- column shows the result with the plaintext modulus 
-\color inherit
-
-\begin_inset Formula $t=2^{30}$
-\end_inset
-
- obtained by running the binary search on the whole testing dataset of 10000
- images and setting the same 
-\emph on
-n 
-\emph default
-and 
-\emph on
-q 
-\emph default
-and maximum number of re-encryptions of the 
-\noun on
-partial 
-\noun default
-case.
- The binary search puts the allowed re-encryption step before layer 6.
- The network encoded with these parameters can be seen as the optimal encoded
- CNN for the given dataset, because the testing error on the whole dataset
- is equal to zero.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
 placement h
 wide false
@@ -12097,6 +12196,8 @@ name "tab:Heuristic-performances"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Binary Search 
 \end_layout
 
@@ -12124,6 +12225,8 @@ Binary Search
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 SEAL tool
 \end_layout
 
@@ -12350,6 +12453,94 @@ Not defined
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Partial
+\noun default
+ column shows the result with the plaintext modulus 
+\begin_inset Formula $t=2^{29}$
+\end_inset
+
+ obtained by running the binary search only on 40 randomly sampled images
+ and setting as 
+\begin_inset Formula $n=4096,\;q=\{q_{1}=36028797005856769,\;q_{2}=18014398492704769\},$
+\end_inset
+
+ where 
+\begin_inset Formula $\sum_{i=1}^{2}log_{2}q_{i}=log_{2}q_{1}+log_{2}q_{2}=55+54=109$
+\end_inset
+
+ that is compliant with the security standards described in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for 128-bit security.
+ The maximum number of re-encryption steps is set to one.
+ The details of the 
+\noun on
+partial
+\noun default
+ binary search
+\emph on
+ 
+\emph default
+run are given in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Binary-Search-Results"
+
+\end_inset
+
+.
+ The binary search puts the allowed re-encryption step before layer 7.
+ The network encoded with these parameters can be seen as the suboptimal
+ encoded CNN, because the relative testing error 
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+ on the whole dataset is greater than zero.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Full
+\noun default
+\color black
+ column shows the result with the plaintext modulus 
+\color inherit
+
+\begin_inset Formula $t=2^{30}$
+\end_inset
+
+ obtained by running the binary search on the whole testing dataset of 10000
+ images and setting the same 
+\emph on
+n 
+\emph default
+and 
+\emph on
+q 
+\emph default
+and maximum number of re-encryptions of the 
+\noun on
+partial 
+\noun default
+case.
+ The binary search puts the allowed re-encryption step before layer 6.
+ The network encoded with these parameters can be seen as the optimal encoded
+ CNN for the given dataset, because the relative testing error on the whole
+ dataset is equal to zero.
+\end_layout
+
+\begin_layout Standard
 The results reported in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -12381,8 +12572,8 @@ The suboptimal
 \begin_inset Formula $\varPhi$
 \end_inset
 
- of only 0.04%, since the encoded model 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+ of only 0.07%, since the encoded model 
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
 \end_inset
 
  mispredicts only 7 of 10000 images more than the non-encoded 
@@ -12395,7 +12586,7 @@ The suboptimal
 \end_inset
 
  has an accuracy of the 97% while the accuracy of 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
 \end_inset
 
  is of 96.93%.
@@ -12453,7 +12644,7 @@ reference "sec:AnalysisSuboptimalCNN"
 \end_inset
 
 , the focus is on the CNN 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t}$
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
 \end_inset
 
  encoded with the parameters given by the 
@@ -12478,21 +12669,21 @@ The results of the
 \noun on
 partial
 \noun default
- Binary Search Heuristic described in Section 
+ Binary Search Heuristic introduced in Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Binary-Search-Results"
+reference "sec:Heuristic-results-and"
 
 \end_inset
 
- showed by the plot in Figure 
+ are showed by the plot in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:scatterPlot"
 
 \end_inset
 
- are obtained using the following input parameters:
+ and are obtained using the following input parameters:
 \end_layout
 
 \begin_layout Itemize
@@ -12702,7 +12893,7 @@ The
 testing 
 \emph default
 of the encoded CNN 
-\begin_inset Formula $\tilde{\varPhi}_{n=4096,q,t=2^{29}}$
+\begin_inset Formula $\tilde{\varPhi}_{n=4096,q=\{q_{1},q_{2}\},t=2^{29}}$
 \end_inset
 
  using the CrCNN library gives the following results in terms of timings.
@@ -13611,7 +13802,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-CNN's accuracy mutation 
+Big CNN's accuracy mutation 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:CNN's-accuracy-mutation"
@@ -13942,7 +14133,7 @@ reference "sec:Problem-Formulation"
 \end_inset
 
 ) phase is unnecessary since it already contains only layers with polynomial
- function.
+ functions.
  Thus this step is skipped and the structure of the approximated 
 \begin_inset Formula $\varPhi$
 \end_inset
@@ -14119,7 +14310,7 @@ reference "sec:Case-Study-2"
 
 \end_inset
 
-, but also in this case no valid parameters are found, as reposted in Table
+, but also in this case no valid parameters are found, as reported in Table
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -14140,8 +14331,25 @@ Partial
 \noun on
 Full
 \noun default
- run).
+ run), however the plaintext modulus 
+\emph on
+t 
+\emph default
+is searched in the powers of two between 
+\begin_inset Formula $2^{10}$
+\end_inset
+
+ and 
+\begin_inset Formula $2^{20}$
+\end_inset
+
+ because this Tiny CNN has less layers and thus the infinity norm of a polynomia
+l during the overall computation has less possibility to grow further than
  
+\begin_inset Formula $2^{20}$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -14183,84 +14391,6 @@ reference "eq:relative-testing-error"
 
  encoded with two different sets of parameters.
  
-\end_layout
-
-\begin_layout Description
-
-\noun on
-Partial
-\noun default
- column shows the result with the plaintext modulus 
-\begin_inset Formula $t=2^{16}$
-\end_inset
-
- obtained by running the binary search only on 40 randomly sampled images
- and setting as 
-\begin_inset Formula $n=2048,\;q=18014398492704769,$
-\end_inset
-
- where 
-\begin_inset Formula $log_{2}q=54$
-\end_inset
-
- that is compliant with the security standards described in Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:Default-pairs-(n,q)"
-
-\end_inset
-
- for 128-bit security.
- The maximum number of re-encryption steps is set to one.
- The binary search puts the allowed re-encryption step before layer 5.
- The network encoded with these parameters can be seen as the suboptimal
- encoded CNN, because the relative testing error (see Equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq:relative-testing-error"
-
-\end_inset
-
-) on the whole dataset 
-\emph on
-D 
-\emph default
-is greater than zero.
-\end_layout
-
-\begin_layout Description
-
-\noun on
-Full
-\noun default
-\color black
- column shows the result with the plaintext modulus 
-\color inherit
-
-\begin_inset Formula $t=2^{30}$
-\end_inset
-
- obtained by running the binary search on the whole testing dataset of 10000
- images and setting the same 
-\emph on
-n 
-\emph default
-and 
-\emph on
-q 
-\emph default
-and maximum number of re-encryptions of the 
-\noun on
-partial 
-\noun default
-case.
- The binary search puts the allowed re-encryption step before layer 6.
- The network encoded with these parameters can be seen as the optimal encoded
- CNN for the given dataset, because the testing error on the whole dataset
- is equal to zero.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
 placement h
 wide false
@@ -14317,6 +14447,8 @@ name "tab:Heuristic-performances-1"
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Binary Search 
 \end_layout
 
@@ -14344,6 +14476,8 @@ Binary Search
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 SEAL tool
 \end_layout
 
@@ -14423,7 +14557,7 @@ Full
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $t=$
+\begin_inset Formula $t=2^{18}$
 \end_inset
 
 
@@ -14458,7 +14592,7 @@ Not Found
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+15/10000
 \end_layout
 
 \end_inset
@@ -14508,7 +14642,7 @@ Not defined
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+35.55
 \end_layout
 
 \end_inset
@@ -14540,7 +14674,7 @@ Not defined
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+28
 \end_layout
 
 \end_inset
@@ -14549,7 +14683,7 @@ Not defined
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+26
 \end_layout
 
 \end_inset
@@ -14573,6 +14707,97 @@ Not defined
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Partial
+\noun default
+ column shows the result with the plaintext modulus 
+\begin_inset Formula $t=2^{16}$
+\end_inset
+
+ obtained by running the binary search only on 40 randomly sampled images
+ and setting as 
+\begin_inset Formula $n=2048\text{ and }q=18014398492704769,$
+\end_inset
+
+ where 
+\begin_inset Formula $log_{2}q=54$
+\end_inset
+
+ that is compliant with the security standards described in Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Default-pairs-(n,q)"
+
+\end_inset
+
+ for 128-bit security.
+ The maximum number of re-encryption steps is set to one.
+ The binary search puts the allowed re-encryption step before layer 5.
+ The network encoded with these parameters can be seen as the suboptimal
+ encoded CNN, because the relative testing error 
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+ (see Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:relative-testing-error"
+
+\end_inset
+
+) on the whole dataset 
+\emph on
+D 
+\emph default
+is greater than zero.
+\end_layout
+
+\begin_layout Description
+
+\noun on
+Full
+\noun default
+\color black
+ column shows the result with the plaintext modulus 
+\color inherit
+
+\begin_inset Formula $t=2^{18}$
+\end_inset
+
+ obtained by running the binary search on the whole testing dataset of 10000
+ images and setting the same 
+\emph on
+n 
+\emph default
+and 
+\emph on
+q 
+\emph default
+and maximum number of re-encryptions of the 
+\noun on
+partial 
+\noun default
+case.
+ The binary search puts the allowed re-encryption step before layer 5, at
+ the same point of the 
+\noun on
+partial 
+\noun default
+case.
+ The network encoded with these parameters can be seen as the optimal encoded
+ CNN for the given dataset, because the relative testing error 
+\begin_inset Formula $\epsilon_{\Delta}$
+\end_inset
+
+ on the whole dataset is equal to zero.
+\end_layout
+
+\begin_layout Standard
 The results reported in Table 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -14581,13 +14806,13 @@ reference "tab:Heuristic-performances-1"
 \end_inset
 
  show that the suboptimal 
-\begin_inset Formula $t=2^{29}$
+\begin_inset Formula $t=2^{16}$
 \end_inset
 
  found by running the binary search on the 0.4% of the entire testing dataset
  is not far form the "optimal" (for the given dataset) plaintext modulus
  
-\begin_inset Formula $t=2^{30}$
+\begin_inset Formula $t=2^{18}$
 \end_inset
 
 
@@ -14596,7 +14821,7 @@ reference "tab:Heuristic-performances-1"
  
 \emph default
 The suboptimal 
-\begin_inset Formula $t=2^{29}$
+\begin_inset Formula $t=2^{16}$
 \end_inset
 
  causes a decrease in accuracy with respect to the plain non-encoded CNN
@@ -14604,11 +14829,11 @@ The suboptimal
 \begin_inset Formula $\varPhi$
 \end_inset
 
- of only 0.04%, since the encoded model 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+ of 0.15%, since the encoded model 
+\begin_inset Formula $\tilde{\varPhi}_{n=2048,q,t=2^{16}}$
 \end_inset
 
- mispredicts only 7 of 10000 images more than the non-encoded 
+ mispredicts only 15 of 10000 images more than the non-encoded 
 \begin_inset Formula $\varPhi$
 \end_inset
 
@@ -14617,39 +14842,62 @@ The suboptimal
 \begin_inset Formula $\varPhi$
 \end_inset
 
- has an accuracy of the 97% while the accuracy of 
-\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
+ has an accuracy of the 90% while the accuracy of 
+\begin_inset Formula $\tilde{\varPhi}_{n=2048,q,t=2^{16}}$
 \end_inset
 
- is of 96.93%.
+ is of 89.85%.
  This decrease in performances can be considered negligible considering
- that the time needed to obtain that result for the binary search is of
- about 4 hours, that is significantly less than the time needed to run the
- heuristic on the entire test dataset as in the 
+ that the time needed to obtain that suboptimal plaintext modulus for the
+ binary search is of less than 2 hours, that is significantly less than
+ the time needed to run the heuristic on the entire test dataset as in the
+ 
 \noun on
 full 
 \noun default
 version.
- As expected the forward time on an image does not meaningfully increase
- at the varying of the plaintext modulus, this can be explained considering
- that the polynomial modulus degree is kept the same in the two versions
- (i.e., 
-\begin_inset Formula $n=4096$
+ The re-encryption step is set in both the two versions of the binary search
+ at the same level, that is before layer 5.
+ As explained in the previous case study in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
 \end_inset
 
-) and it is what mostly affect the computational time, since it determines
- the maximum degree of the polynomial with which computations are performed.
- The slight difference of 1.56 s in the two versions of the CNN can be due
- to the fact that the re-encryption step is put in two different points,
- since the noise budget of a ciphertext in input to the "optimal" CNN has
- one bit less than the suboptimal one.
- This means that the re-encryption step in the "optimal" CNN is slower since
- it has more data to re-encrypt than the re-encryption in the suboptimal
- CNN, because in the former it is put before the sub-sampling step performed
- by the Average Pooling Layer (i.e.
- before layer 6), while in the latter it is put soon after the Average Pooling
- layer (i.e.
- after layer 6).
+ the varying of the plaintext modulus does not affect a lot the forward
+ time, since it is the polynomial modulus degree that mostly influences
+ it.
+ This is also demonstrated by the fact that the forward time needed by this
+ Tiny CNN (i.e., 35.58 s) is about one half of the one needed by the Big CNN
+ (i.e., 69.07 s see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+).
+ Indeed, even if the Tiny network is shorter (i.e., it has 6 layers) than
+ the Big network (i.e., it has 9 layers see Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+), it is composed of more convolutional filters and bigger fully connected
+ layers, that are considered the mostly computationally intensive layers
+ as showed in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+.
+ However in the Tiny CNN all these heavy computations are performed with
+ polynomials of a smaller degree, thus they are considerably accelerated.
 \end_layout
 
 \begin_layout Subsection
@@ -14661,6 +14909,25 @@ name "sec:AnalysisSuboptimalCNN-1"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+This analysis focuses on the suboptimal Tiny CNN 
+\begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{16}}$
+\end_inset
+
+ encoded with the parameters given by the 
+\noun on
+partial 
+\noun default
+binary search run, because it is the network that in a real use-case one
+ would have chosen, since it is impractical to make an exhaustive run of
+ the binary search on the entire testing dataset just to choose the exact
+ plaintext modulus, as in the case of the 
+\noun on
+full 
+\noun default
+binary search run.
 \end_layout
 
 \begin_layout Subsubsection
@@ -14739,14 +15006,11 @@ halved with respect to the previous case study, where
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \paragraph_spacing onehalf
@@ -14898,7 +15162,7 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+28
 \end_layout
 
 \end_inset
@@ -14957,7 +15221,7 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+23
 \end_layout
 
 \end_inset
@@ -15016,7 +15280,7 @@ Convolution
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+20
 \end_layout
 
 \end_inset
@@ -15075,7 +15339,7 @@ Average Pooling
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+12
 \end_layout
 
 \end_inset
@@ -15130,7 +15394,7 @@ Decryption+Encryption
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+7
 \end_layout
 
 \end_inset
@@ -15189,7 +15453,7 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+28
 \end_layout
 
 \end_inset
@@ -15248,7 +15512,7 @@ Fully Connected
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+20
 \end_layout
 
 \end_inset
@@ -15287,39 +15551,50 @@ reference "tab:Testing-times-1"
 \begin_inset Formula $12\times12\times32.$
 \end_inset
 
- In the Fully Connected Layer 5, 41 threads perform the operation over 24
- input neurons (i.e.
+ In the Fully Connected Layer 5, 41 threads perform the operations over
+ 24 input neurons (i.e.
  1024/42), while one thread executes the operations on the remaining 
 \begin_inset Formula $1024/42+1024\%42=24+16=40$
 \end_inset
 
  input neurons, while in the last Fully Connected Layer all the threads
- except one perform the operation over 12 (i.e.
+ except one perform the operations over 12 (i.e.
  512/42) input neurons and one of them executes the operations on the remaining
  20 input neurons.
  
 \begin_inset Newline newline
 \end_inset
 
-The most computationally intensive layer is the second Convolution Layers,
- since there are 64 filters to compute and 
+The most computationally intensive layer is the second Convolution Layer,
+ since there are 64 filters to compute, and this result confirms the one
+ found in the previous case study in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:AnalysisSuboptimalCNN"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
 The Noise Budget column reports the amount of noise budget, expressed in
- bits, in input to the corresponding layer/ re-encryption step and shows
- that the Square Layer 5 is the one that consumes most of the budget.
- This is an expected result since a ciphertext by ciphertext multiplication
- is performed and, as explained in 
+ bits, in input to the corresponding layer/ re-encryption step.
+ The second Convolution and the first Fully Connected layers consume about
+ 8 bits of noise budget, since there many ciphertext by plaintext multiplication
+s and ciphertext by ciphertext additions.
+ However there is no layer that performs the heaviest operation, in terms
+ of noise budget consumption, that is the ciphertext by ciphertext multiplicatio
+n, as in the case of the Square layer (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Operations-and-Noise"
+reference "sec:AnalysisSuboptimalCNN"
 
 \end_inset
 
-, it is less efficient than a ciphertext by plaintext multiplication that
- is performed most of the times in the CNN (i.e., Convolution and in Fully
- Connected layers).
+) and this decreases significantly the amount of noise budget needed to
+ carry on the entire computation.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -15334,78 +15609,26 @@ The approximation step is skipped since it is unnecessary, thus the accuracy
 \begin_inset Formula $\dot{\varPhi}$
 \end_inset
 
- is equal to the accuracy of the approximated CNN
-\series default
- 
-\series bold
 
+\series default
+ is equal to the accuracy of the approximated
+\series bold
+ 
+\series default
+CNN 
 \begin_inset Formula $\varPhi$
 \end_inset
 
-
-\series default
-, because
-\series bold
- 
+, because 
 \begin_inset Formula $\dot{\varPhi}$
 \end_inset
 
- is trivially equal to
-\series default
- 
+ is trivially equal to 
 \begin_inset Formula $\varPhi$
 \end_inset
 
-.The Table 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:CNN's-accuracy-mutation-1"
-
-\end_inset
-
- shows that the last transformation step that involves the encoding and
- thus the application of the CNN to encrypted images slightly affect performance
-s.
- This implies that the suboptimal parameter 
-\begin_inset Formula $t=2^{16}$
-\end_inset
-
- found by the 
-\noun on
-partial 
-\noun default
-Binary Search run is close to the best value that is possible to find with
- the given dataset (see Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Heuristic-results-and"
-
-\end_inset
-
-), but is not the optimal one.
- The starting accuracy of this network is 8 points percentage less than
- the "Big" CNN described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Case-Study-1"
-
-\end_inset
-
-, this is due to the simpler structure of this "Tiny" CNN.
- However this simpler structure allows to perform less operations.
- This implies to have an initial smaller noise budget and thus the possibility
- to employ a smaller 
-\emph on
-n.
+.
  
-\emph default
-This halves the time needed to perform a forward on an image with respect
- to the "Big" CNN case.
-
-\emph on
- 
-\emph default
-
 \begin_inset Float table
 placement h
 wide false
@@ -15417,7 +15640,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-CNN's accuracy mutation 
+Tiny CNN's accuracy mutation 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:CNN's-accuracy-mutation-1"
@@ -15541,7 +15764,7 @@ Encoded
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+89.85%
 \end_layout
 
 \end_inset
@@ -15556,7 +15779,51 @@ Encoded
 
 \end_inset
 
+The Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:CNN's-accuracy-mutation-1"
 
+\end_inset
+
+ shows that the last and unique transformation step that involves the encoding
+ and thus the application of the CNN to encrypted images slightly affect
+ performances.
+ This implies that the suboptimal parameter 
+\begin_inset Formula $t=2^{16}$
+\end_inset
+
+ found by the 
+\noun on
+partial 
+\noun default
+Binary Search run is close to the best value that is possible to find with
+ the given dataset (see Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+), but is not the optimal one.
+ The starting accuracy of this network is 8 points percentage less than
+ the "Big" CNN described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Case-Study-1"
+
+\end_inset
+
+, this is due to the simpler structure of this "Tiny" CNN.
+ However this simpler structure allows to perform less operations.
+ This implies to have an initial smaller noise budget and thus the possibility
+ to employ a smaller 
+\emph on
+n.
+ 
+\emph default
+This halves the time needed to perform a forward on an image with respect
+ to the "Big" CNN case.
 \end_layout
 
 \begin_layout Chapter
@@ -15611,17 +15878,27 @@ This document proposes a methodology and a library to transform a normal
  to solve the problem of the parameters' choice, tailored on the specific
  CNN one wishes to use with encrypted data and that thus aims to find the
  best transformation for the CNN.
+ The tradeoff between accuracy and time to obtain the encrypted prediction
+ at the varying of the CNN and the parameters found by the heuristic is
+ also exploded.
  The results show that the proposed methodology is effective since it enables
- to use a CNN with 9 layers and two convolution and fully connected layers,
- to make predictions on encrypted images, even if the time needed to complete
- a forward on a single image is bigger than the time that would have been
- necessary without the encryption.
+ to use a CNN with 9 layers (called "Big" CNN) and two convolution and fully
+ connected layers, to make predictions on encrypted images, even if the
+ time needed to complete a forward on a single image is bigger than the
+ time that would have been necessary without the encryption.
  The transformation of the CNN introduces a small loss in accuracy, in part
  due to the approximations of the functions computed by the layers to polynomial
  functions and in part due to the encryption parameters found.
  However considering that the time needed to find the suboptimal encryption
  parameters by using the binary search is reasonably small, the loss in
- accuracy of 0.04% can be considered negligible.
+ accuracy of 0.07% can be considered negligible.
+ The proposed methodology is also tested on a smaller CNN with 6 layers
+ (called "Tiny" CNN) that does not require any approximations to be compliant
+ with the possible operations of the HE.
+ This Tiny CNN has a lower starting accuracy with respect to the Big CNN
+ and the loss in accuracy introduced by the suboptimal encryption parameters
+ found by the proposed heuristic is of 0.15%, however it requires about half
+ of the time needed by the Big CNN to compute a forward on an image.
  Moreover the heuristic proposed is a powerful instrument for who wants
  to use a CNN with encrypted images, but has not a strong background in
  the field of homomorphic encryption.
@@ -15660,12 +15937,6 @@ description "Single Instruction Multiple Data"
 \end_inset
 
 operations, allowed by the BFV encryption scheme.
- It could also be interesting to analyze HE performances and in particular
- the goodness of the encryption parameters found at the varying of the CNN
- and of the dataset.
- This means that it could be worth to analyze less deep CNNs, but with more
- weights and to explore the tradeoff between accuracy and time to obtain
- the encrypted prediction.
  Moreover, the consideration of a real scenario with a third party server
  to which send encrypted data can be useful in order to understand transmission
  times and message sizes.
