@@ -410,7 +410,8 @@ Ringraziamenti
 \begin_layout Standard
 
 \emph on
-Questi 5 anni universitari si concludono con tante consapevolezze in più.
+Questi cinque anni universitari si concludono con tante consapevolezze in
+ più.
  Una e la più preziosa è che non importa quante difficoltà dovrò ancora
  affrontare, perché so che al mio fianco avrò sempre sei persone straordinarie
  pronte a sostenermi e a farmi capire quanto sono fortunata.
@@ -477,41 +478,37 @@ Abstract
 \begin_layout Standard
 In the last few years Machine Learning techniques have become popular thanks
  to their ability to solve complex problems.
- The most frequently used paradigm considers 
+ A popular machine-learning application paradigm considers 
 \emph on
 Software as a Service
 \emph default
 , that is a software distribution model in which a third-party provider,
  usually a cloud server, hosts applications (i.e., machine learning algorithms)
- and makes them available to costumers over the Internet.
- This cloud based machine learning technique is useful on one hand, since
+ and makes them available to customers over the Internet.
+ On the one hand this cloud-based machine-learning parading is useful since
  it is usually fast and scalable, thus allows to reach a big number of users,
- but on the other hand it places issues in terms of privacy implications
- because analyzed data, on the untrusted cloud server, are usually sensible
- data.
- This drawback must be taken into special consideration after the recent
- approval of the European's General Data Protection Regulation
-\series bold
-.
-
-\series default
- This thesis provides a practical implementation of how it is possible to
- achieve privacy-preserving machine learning through the usage of the Homomorphi
-c Encryption (HE).
+ but, on the other hand, it poses sever issues in terms of privacy because
+ analyzed data, on the untrusted cloud server, might be sensible data.
+ This issue is also particularly relevant after the recent approval of the
+ European’s General Data Protection Regulation.
+ This thesis provides a methodological solution about how to design a privacy-pr
+eserving machine-learning system based on Homomorphic Encryption (HE).
  More precisely, this work focuses on Convolutional Neural Networks (CNNs)
- and presents both a methodology and a library to convert a learned neural
- network to a network that can be applied on encrypted data, by employing
+ and presents both a methodology and a library to convert a pre-trained
+ CNN to a privacy-preserving CNN able to process encrypted data, by employing
  the Brakerski, Fan and Vercauteren (BFV) HE scheme.
- Moreover it offers a mathematical formulation for the problem of finding
- appropriate and optimal encryption parameters for the BFV encryption scheme.
- It also provides to the reader a heuristic, based on a binary search algorithm,
- to solve the problem of the parameters' choice, tailored on the specific
- CNN one wishes to use with encrypted data.
- The heuristic thus aims to find the best transformation for the given CNN.
- The experimental results show that the proposed methodology is versatile,
- because it works on CNNs of varying dimensions and with different structures.
+ Moreover, this thesis provides a mathematical formulation for the problem
+ of finding the best encryption parameters for the BFV encryption scheme
+ as well as a heuristic, based on a binary search algorithm, to solve the
+ problem of the parameters’ choice, tailored on the privacy-preserving CNN.
+ The proposed heuristic aims to find the best transformation for the given
+ CNN.
+ The experimental results show that the proposed methodology is able to
+ operate on CNNs characterized by different architectures and processing
+ pipelines.
  The results also prove that privacy-preserving deep learning is possible
  at the cost of a small loss in accuracy and slower predictions.
+ 
 \end_layout
 
 \begin_layout Chapter*
@@ -521,38 +518,39 @@ Estratto
 \begin_layout Standard
 Negli ultimi anni le tecniche di Machine Learning si sono diffuse ampiamente
  poiché esse permettono di risolvere problemi complessi.
- Il Software as a Service è il paradigma più comunemente usato.
+ Uno dei modelli di machine-learning più comunemente usati è il Software
+ as a Service.
  Si tratta di un modello di distribuzione del software nel quale un terzo,
  solitamente un server cloud, ospita le applicazioni (ovvero, gli algoritmi
  di machine learning) e le rende fruibili ai clienti attraverso Internet.
- Questa tecnica di machine learning basata sul cloud, se da un lato risulta
- utile poiché è solitamente veloce e scalabile e quindi permette di raggiungere
- un gran numero di utenti, dall'altro lato pone seri problemi in termini
- di implicazioni relative alla privacy, poiché i dati analizzati sul server
- considerato inaffidabile, sono spesso dati sensibili.
- Questo aspetto negativo deve essere considerato soprattutto alla luce della
- recente approvazione dell'European's General Data Protection Regulation.
- Questa tesi fornisce un'implementazione pratica di come è possibile preservare
- la privacy dei dati analizzati con algoritmi di machine learning, attraverso
- l'impiego della crittografia omomorfica.
+ Da un lato questa tecnica di machine learning basata sul cloud risulta
+ utile poiché è solitamente veloce e scalabile, quindi permette di raggiungere
+ un gran numero di utenti, ma, dall'altro lato pone seri problemi in termini
+ di privacy, poiché i dati analizzati sul server, considerato inaffidabile,
+ potrebbero essere dati sensibili.
+ Questo aspetto negativo è particolarmente rilevante soprattutto alla luce
+ della recente approvazione dell'European's General Data Protection Regulation.
+ Questa tesi fornisce una soluzione metodologica alla progettazione di un
+ sistema di machine-learning in grado di preservare la privacy dei dati
+ analizzati, detto privacy-preserving, attraverso l'impiego della crittografia
+ omomorfica.
  Più precisamente, questo lavoro si focalizza sulle Reti Neurali Convoluzionali
  (CNNs) e presenta sia una metodologia che una libreria per convertire una
- rete neurale già addestrata in una rete che può essere applicata su dati
- cifrati, utilizzando lo schema omomorfico di Brakerski, Fan and Vercauteren
- (BFV).
- Inoltre, viene proposta una formulazione matematica relativa al problema
- di trovare parametri di crittografia appropriati e ottimali per lo schema
- omomorfico BFV.
- Questa tesi fornisce al lettore anche un'euristica, basata sull'algoritmo
- di ricerca binaria, per risolvere il problema della scelta dei parametri
- considerando una specifica CNN che si vuole usare con dati cifrati.
- L'euristica mira quindi a trovare la miglior trasformazione per la data
- rete.
- I risultati sperimentali mostrano che la metodologia proposta è versatile,
- perché funziona su CNNs di varie dimensioni e con strutture differenti.
+ rete neurale già addestrata in una rete in grado di preservare la privacy,
+ utilizzando lo schema omomorfico di Brakerski, Fan and Vercauteren (BFV).
+ Inoltre, questo lavoro propone una formulazione matematica relativa al
+ problema di trovare i migliori parametri di crittografia per lo schema
+ omomorfico BFV, nonché un'euristica, basata sull'algoritmo di ricerca binaria,
+ per risolvere il problema della scelta dei parametri considerando una specifica
+ privacy-preserving CNN.
+ L'euristica proposta mira quindi a trovare la miglior trasformazione per
+ la data rete convoluzionale.
+ I risultati sperimentali mostrano che la metodologia proposta è in grado
+ di funzionare su CNNs caratterizzate da differenti architetture e pipelines
+ di elaborazione.
  I risultati provano anche che è possibile preservare la privacy dei dati
- analizzati con algoritmi di machine learning, pagando un piccolo prezzo
- in termini di perdita di accuratezza e tempi di predizione più lenti.
+ analizzati con algoritmi di deep learning, pagando un piccolo prezzo in
+ termini di perdita di accuratezza e tempi di predizione più lenti.
  
 \end_layout
 
@@ -666,7 +664,7 @@ It is a type of learning algorithm that is vaguely inspired by biological
  applications across industries, also thanks to the availability of huge
  amounts of data, coupled with an increase in processing power and access
  to cheaper and greater storage capacity.
- The most frequently used paradigm considers 
+ A popular machine-learning application paradigm considers 
 \emph on
 Software as a Service
 \emph default
@@ -682,8 +680,7 @@ s, image and speech recognition and others useful tasks.
  in terms of privacy implications, since the server is an untrusted party
  considered as a "honest but curious sever", that handles computations correctly
  but tries to capture informations from analyzed data.
- This problem has become even more important after the approval of the European'
-s
+ This problem has become even more relevant after the approval of the European's
 \series bold
  General Data Protection Regulation (GDPR).
  
@@ -884,14 +881,14 @@ name "sec:Goals"
 \end_layout
 
 \begin_layout Standard
-This study aims to provide a practical implementation of how it is possible
- to achieve privacy-preserving machine learning through the usage of the
- homomorphic encryption.
+This study aims to provide a methodological solution about how to design
+ a privacy-preserving machine learning system through the usage of the Homomorph
+ic Encryption (HE).
  More precisely, this work focuses on one of the most used and versatile
  machine learning algorithms for image analysis, the Convolutional Neural
  Networks (CNNs) and presents both a methodology and a library to convert
- a learned neural network to a network that can be applied on encrypted
- data (encoded network), by employing a Homomorphic Encryption scheme.
+ a pre-trained CNN to a privacy-preserving CNN (encoded network), by employing
+ a Homomorphic Encryption scheme.
  The HE scheme considered is the one proposed by Brakerski, Fan and Vercauteren
  (BFV) that is mathematically based on polynomial rings.
  Moreover, since the usage of HE introduces some limitations in the number
@@ -905,8 +902,8 @@ ic encryption world, given a specific task to solve and some computational
 \end_layout
 
 \begin_layout Itemize
-Provide a library able to convert a plain model of CNN in the world of the
- HE end to execute calculi on encrypted data (i.e., images).
+Provide a library to convert a plain CNN in a privacy-preserving CNN end
+ able to execute calculi on encrypted data (i.e., images).
 \end_layout
 
 \begin_layout Itemize
@@ -15872,12 +15869,11 @@ name "sec:Conclusions"
 This document proposes a methodology and a library to transform a normal
  CNN in a network able to process homomorphically encrypted images.
  Moreover it offers a mathematical formulation for the problem of finding
- appropriate and optimal encryption parameters for the BFV encryption scheme,
- by also considering the practical aspects of this problem.
- It also offers to the reader a heuristic, based on a binary search algorithm,
+ the best encryption parameters for the BFV encryption scheme, by also consideri
+ng the practical aspects of this problem.
+ It also provides to the reader a heuristic, based on a binary search algorithm,
  to solve the problem of the parameters' choice, tailored on the specific
- CNN one wishes to use with encrypted data and that thus aims to find the
- best transformation for the CNN.
+ privacy-preserving CNN.
  The tradeoff between accuracy and time to obtain the encrypted prediction
  at the varying of the CNN and the parameters found by the heuristic is
  also exploded.
