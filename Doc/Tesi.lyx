@@ -522,7 +522,7 @@ Negli ultimi anni le tecniche di Machine Learning si sono diffuse ampiamente
  as a Service.
  Si tratta di un modello di distribuzione del software nel quale un terzo,
  solitamente un server cloud, ospita le applicazioni (ovvero, gli algoritmi
- di machine learning) e le rende fruibili ai clienti attraverso Internet.
+ di machine learning) e le rende fruibili agli utenti attraverso Internet.
  Da un lato questa tecnica di machine learning basata sul cloud risulta
  utile poiché è solitamente veloce e scalabile, quindi permette di raggiungere
  un gran numero di utenti, ma, dall'altro lato pone seri problemi in termini
@@ -676,10 +676,10 @@ Software as a Service
  This model enables to collect and analyze many data that are not property
  of the cloud server, but of some data providers, and to use them for prediction
 s, image and speech recognition and others useful tasks.
- However in most of cases these data are sensible data and this places issues
- in terms of privacy implications, since the server is an untrusted party
- considered as a "honest but curious sever", that handles computations correctly
- but tries to capture informations from analyzed data.
+ However, in most of cases these data are sensible data and this places
+ issues in terms of privacy implications, since the server is an untrusted
+ party considered as an "honest but curious sever", that handles computations
+ correctly but tries to capture informations from analyzed data.
  This problem has become even more relevant after the approval of the European's
 \series bold
  General Data Protection Regulation (GDPR).
@@ -689,10 +689,10 @@ The answer to the question as to whether it is possible to use machine learning
  techniques and protect people’s data while doing so, is yes.
  It is both possible and necessary in order to safeguard fundamental personal
  data protection rights.
- The field of cryptography and in particular of homomorphic encryption (HE)
- offers some promising possibilities.
- By employing a Homomorphic Encryption (HE) scheme, a data owner can encrypt
- his data, with his public key, before to send them to a cloud service that
+ The field of cryptography and in particular of Homomorphic Encryption (HE)
+ offers promising possibilities.
+ By employing a Homomorphic Encryption scheme, a data owner can encrypt
+ its data, with its public key, before to send them to a cloud service that
  hosts the algorithm to compute.
  The encryption ensures that the data remain confidential since the cloud
  has not access to the secret key needed to decrypt the data, but at the
@@ -744,7 +744,7 @@ status collapsed
 \begin_layout Plain Layout
 Colloquially, the term "artificial intelligence" is applied when a machine
  mimics "cognitive" functions that humans associate with other human minds,
- such as "learning" and "problem solving.
+ such as "learning" and "problem solving".
 \end_layout
 
 \end_inset
@@ -773,10 +773,11 @@ reach
 \emph on
 decisions
 \emph default
- about individuals, as for example in CNNs that analyze sensible images.
-\end_layout
+ about individuals, as for example in Convolutional Neural Networks (CNNs)
+ that analyze sensible images.
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 It is important to clarify what one means when he speaks about 
 \emph on
 personal data
@@ -811,9 +812,9 @@ processing
  means any operation or set of operations which is performed on personal
  data, such as collection, recording, organization, structuring, storage,
  alteration, retrieval, consultation or use (GDPR Article 4 (2)).
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 Article 5 of the GDPR lists the principles that apply to all personal data
  processing.
  The most important one is the 
@@ -828,7 +829,7 @@ processed in a way that ensures adequate personal data protection
 \begin_inset Newline newline
 \end_inset
 
-A new requirements that is especially relevant for organizations using AI,
+A new requirement that is especially relevant for organizations using AI,
  is the 
 \emph on
 privacy by design
@@ -841,7 +842,7 @@ privacy by design
  To enable privacy by design, the data controller shall build privacy protection
  into the system and ensure that data protection is safeguarded in the system’s
  standard settings.
- These requirements are described in Article 25 of the GDPR and apply when
+ This requirement is described in Article 25 of the GDPR and apply when
  developing software, ordering new systems, solutions and services, as well
  as when developing these further.
  The rules require that data protection is given due consideration in all
@@ -883,7 +884,7 @@ name "sec:Goals"
 \begin_layout Standard
 This study aims to provide a methodological solution about how to design
  a privacy-preserving machine learning system through the usage of the Homomorph
-ic Encryption (HE).
+ic Encryption.
  More precisely, this work focuses on one of the most used and versatile
  machine learning algorithms for image analysis, the Convolutional Neural
  Networks (CNNs) and presents both a methodology and a library to convert
@@ -940,15 +941,15 @@ reference "chap:Background"
  introduces the reader to context of the research, giving an overview on
  the Homomorphic Encryption, its limitations and advantages, with a strong
  focus on the BFV HE scheme.
- Chapter 
+ Moreover Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "chap:Background"
 
 \end_inset
 
- also gives an overview on the Convolutional Neural Networks and the approximati
-ons needed to allow their functioning in the HE world.
+ gives an overview on the Convolutional Neural Networks and the approximations
+ needed to allow their functioning in the HE world.
  Chapter 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1088,8 +1089,14 @@ reference "subsec:Approximations-For-HE"
 
 \end_inset
 
-).
- 
+) and the mention of some CNNs examples in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Convolutional-Neural-Networks in Lit"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1147,11 +1154,11 @@ structure-preserving
 \end_inset
 
  we have that 
-\begin_inset Formula $\Phi(z_{1}+z_{2})=\Phi(z_{1})\oplus\Phi(z_{2})$
+\begin_inset Formula $\varPhi(z_{1}+z_{2})=\varPhi(z_{1})\oplus\varPhi(z_{2})$
 \end_inset
 
  and 
-\begin_inset Formula $\Phi(z_{1}\cdot z_{2})=\Phi(z_{1})\otimes\Phi(z_{2})$
+\begin_inset Formula $\varPhi(z_{1}\cdot z_{2})=\varPhi(z_{1})\otimes\varPhi(z_{2})$
 \end_inset
 
  where 
@@ -1303,7 +1310,7 @@ is the public key used for encryption,
 \emph on
 sk 
 \emph default
-is the secret key used foe decryption and 
+is the secret key used for decryption and 
 \emph on
 evk 
 \emph default
@@ -1328,7 +1335,11 @@ and a plaintext
 m.
  
 \emph default
-It outputs a ciphertext c.
+It outputs a ciphertext 
+\emph on
+c
+\emph default
+.
 \end_layout
 
 \begin_layout Description
@@ -1697,11 +1708,11 @@ key "brakerski2014efficient"
 
 \emph default
 -evaluation scheme 
-\begin_inset Formula $(\mathsf{Gen,Enc,Eval},$
+\begin_inset Formula $(\mathsf{Gen,Enc,}$
 \end_inset
 
  
-\begin_inset Formula $\mathsf{Dec)}$
+\begin_inset Formula $\mathsf{Eval,Dec)}$
 \end_inset
 
  that is compact, correct, and where 
@@ -1733,7 +1744,7 @@ This definition means that the scheme can evaluate any circuit of arbitrary
 \begin_inset Newline newline
 \end_inset
 
-However it is fair to say that FHE mostly exists on papers.
+However, it is fair to say that FHE mostly exists on papers.
 \end_layout
 
 \begin_layout Subsection
@@ -2082,7 +2093,7 @@ key "homenc"
 shared-secret key 
 \emph default
 among all parties.
- However it requires an 
+ However, it requires an 
 \emph on
 interactive 
 \emph default
@@ -2250,7 +2261,7 @@ key "SEALManual"
  For example, the homomorphic execution of the forward phase of a CNN on
  encrypted data does not guarantee the secrecy of the CNN model (i.e.
  anyone could see the structure of the network).
- However it is possible to solve this problem and obtain 
+ However, it is possible to solve this problem and obtain 
 \emph on
 function privacy 
 \emph default
@@ -2313,9 +2324,9 @@ f
 m
 \emph default
 .
- For example, suppose that a user sends an encrypted message o a bank containing
-, say, "TRANSFER $0000100.00 TO ACCOUNT #199." If an attacker can modify the
- message on the wire, and can guess the format of the unencrypted message,
+ For example, suppose that a user sends an encrypted message to a bank containin
+g, say, "TRANSFER $0000100.00 TO ACCOUNT #199." If an attacker can modify
+ the message on the wire, and can guess the format of the unencrypted message,
  the attacker could be able to change the amount of the transaction, or
  the recipient of the funds, e.g.
  "TRANSFER $0100000.00 TO ACCOUNT #227".
@@ -2336,8 +2347,8 @@ reference "subsec:History-of-HE"
 
 \end_inset
 
-) is a malleable cryptosystem, however if used together with padding methods
- such as OAEP 
+) is a malleable cryptosystem, however if it is used together with padding
+ methods such as OAEP 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Bellare1995OptimalAE"
@@ -2848,7 +2859,7 @@ bound on the distribution
 \begin_inset Formula $\chi$
 \end_inset
 
-, that is it is supported on 
+, that is, it is supported on 
 \begin_inset Formula $[-B,B]$
 \end_inset
 
@@ -2867,7 +2878,7 @@ name "subsec:RLWE-Problem"
 \end_layout
 
 \begin_layout Standard
-Most of HE schemas base their security on the hardness of the Ring-Learning
+Most of HE schemes base their security on the hardness of the Ring-Learning
  With Errors problem.
  The RLWE 
 \begin_inset CommandInset nomenclature
@@ -3253,14 +3264,14 @@ All existing schemes have the common trait that they add a small “noise”
  Computing homomorphically on ciphertexts will cause these noises to grow
  up to the point when they become so large that decryption fails.
  In particular the noise growth caused by homomorphic multiplication has
- been the major obstacle to designing efficient schemes.
+ been the major obstacle to designing efficient schemes 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cryptoeprint:2012:144"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Definition
@@ -3725,7 +3736,8 @@ It is possible to prove that: if
 \begin_inset Formula $N_{m_{2}}$
 \end_inset
 
- be upper bounds on the number of non-zero terms in the polynomials 
+ are the upper bounds on the number of non-zero terms in the polynomials
+ 
 \begin_inset Formula $m_{1}$
 \end_inset
 
@@ -4016,7 +4028,7 @@ that can be seen as a particular case of the
 \begin_inset Formula $\mathsf{MUL(}$
 \end_inset
 
- 
+
 \begin_inset Formula $\mathsf{ct_{1,}ct_{2},rlk)}$
 \end_inset
 
@@ -4038,7 +4050,7 @@ m
  that does not need to be protected.
  The following Lemma 12 and Lemma 13 show mathematically how it is possible
  to perform these operations and which are the advantages in terms of grow
- of noise budget that they can bring with respect to 
+ of noise that they can bring with respect to 
 \begin_inset Formula $\mathsf{ADD\text{ and }\mathsf{MUL}}$
 \end_inset
 
@@ -4510,7 +4522,7 @@ if a reduction modulo the polynomial modulus
 \end_inset
 
  occurs, i.e., during homomorphic multiplications the degree of the underlying
- encoded plaintext become grater than the degree of the polynomial modulus
+ encoded plaintext become greater than the degree of the polynomial modulus
 \end_layout
 
 \begin_layout Standard
@@ -4801,12 +4813,12 @@ stride)
 n, to reduce the number of parameters and amount of computation in the network,
  and hence to also control overfitting
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 The overfitting issue does not allow to the CNN to generalize well when
- analyzing new unseen data, thus the CNN performances decreases during testing
- with respect to the training.
+ analyzing new unseen data, thus the CNN performances decrease during testing
+ with respect to training.
 \end_layout
 
 \end_inset
@@ -4886,7 +4898,7 @@ fully connected
  it is similar to a regular feed-forward neural network, since the receptive
  field of a neuron in a fully connected layer are all the neurons of the
  previous layer.
- The activation of a neuron in thus layer can be computed with a matrix
+ The activation of a neuron in this layer can be computed with a matrix
  multiplication for a matrix of weights, followed by a bias offset.
 \end_layout
 
@@ -4970,14 +4982,14 @@ function.
 n
 \emph default
  
-\emph on
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Bioinformatics"
 
 \end_inset
 
+
+\emph on
 .
  
 \emph default
@@ -5020,6 +5032,13 @@ reference "subsec:Operations-with-plaintext"
 
 \begin_layout Subsection
 Convolutional Neural Networks In Literature
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Convolutional-Neural-Networks in Lit"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5262,7 +5281,7 @@ key "Barni2006APP"
  The server can apply the second layer and send the output back to the data
  owner.
  The process continues until all the layers have been computed.
- However in 2007 Orlandi et al.
+ However, in 2007 Orlandi et al.
  in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5310,9 +5329,8 @@ key "inverse"
  Due to its simple structure ELM has relatively fast learning speed and
  higher accuracy as a nonlinear classifier and since only one homomorphic
  addition is performed, the computational overhead added is quite small.
- On the other hand this simplicity does not allow to accomplish more complex
- tasks, such as object recognition in images as it is possible to do with
- CNNs.
+ However, this simplicity does not allow to accomplish more complex tasks,
+ such as object recognition in images as it is possible to do with CNNs.
 \begin_inset Newline newline
 \end_inset
 
@@ -5499,14 +5517,14 @@ key "DBLP:journals/dke/SametM12"
 \end_inset
 
  focus their work on training ELM networks when data is vertically or horizontal
-ly distributed distributed among parties (data owners), using as sub-protocols
- secure multi-party multiplication and secure multi-party addition.
+ly distributed among parties (data owners), using as sub-protocols secure
+ multi-party multiplication and secure multi-party addition.
  The model (i.e.
  the network) is securely constructed and distributed among the parties
  involved.
  Indeed, at the end of the learning protocol the parties can jointly use
  the model on target data to predict the corresponding output.
- This seems to be a different approach with respect to the the two previous
+ This seems to be a different approach with respect to the the two previously
  presented works (
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5514,7 +5532,7 @@ key "DBLP:conf/ssci/Kuri0OOAP0M17"
 
 \end_inset
 
- , 
+, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DBLP:journals/iacr/PhongAHWM17"
@@ -5578,28 +5596,19 @@ key "Graepel:2012:MCM:2482419.2482421"
  functions that learn low degree polynomials.
  As a result, most of the algorithms proposed are of the linear discrimination
  type and therefore for many tasks they do not deliver the same level of
- accuracy as neural networks are capable of delivering.
+ accuracy as neural networks are capable of.
 \begin_inset Newline newline
 \end_inset
 
-Yoshinori Aono et al, (2016) 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-single data provider
-\end_layout
-
-\end_inset
-
-in 
+Yoshinori Aono et al.
+ (2016) in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DBLP:conf/codaspy/AonoHPW16"
 
 \end_inset
 
- has proposed an homomorphism-aware logistic regression via approximation
+ have proposed a homomorphism-aware logistic regression via approximation
  of the logarithm in the cost function to minimize, with a polynomial of
  degree 
 \emph on
@@ -5627,11 +5636,20 @@ Differential privacy
 
 \begin_layout Standard
 is a technique that aims to maximize the accuracy of queries from statistical
- databases (here, the term statistical database means a set of data that
- are collected under the pledge of confidentiality for the purpose of producing
- statistics that, by their production, do not compromise the privacy of
- those individuals who provided the data) while measuring impact on individuals
- whose information is in the database.
+ databases
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Here, the term statistical database means a set of data that are collected
+ under the pledge of confidentiality for the purpose of producing statistics
+ that, by their production, do not compromise the privacy of those individuals
+ who provided the data
+\end_layout
+
+\end_inset
+
+ while measuring impact on individuals whose information is in the database.
  Intuitively it can be explained by saying that if there are two datasets
  
 \begin_inset Formula $D_{1}$
@@ -5747,7 +5765,7 @@ key "cryptonets-applying-neural-networks-to-encrypted-data-with-high-throughput-
  The difference with respect all the other works is given by the fact that
  CNNs are really powerful classification machine learning model and are
  way more complex than ELM or logistic regression.
- They propose a method to convert learned neural networks to CryptoNets,
+ They propose a method to convert pre-trained neural networks to CryptoNets,
  neural networks that can be applied to encrypted data.
  This work focuses only on the inference stage and the assumption is that
  the cloud (that has to perform the prediction) already has the model.
@@ -5861,7 +5879,7 @@ key "Kalman"
  in the communication network or at the estimator node.
  They consider that sensor measurements are valid but they can be overheard
  during communications.
- Furthermore, they assume a curious- but-honest estimator; i.e., the estimator
+ Furthermore, they assume a curious-but-honest estimator; i.e., the estimator
  carries out the estimation faithfully, but it may try to learn as much
  as possible about the inputs and/or outputs of the estimation.
  They use RSA since there is only the need of a multiplicative homomorphic
@@ -6245,9 +6263,8 @@ reference "sec:BFV"
 \begin_inset Formula $(x^{n}+1)$
 \end_inset
 
- with
+ where 
 \series bold
- 
 \emph on
 n
 \series default
@@ -6784,7 +6801,7 @@ name "sec:Problem-Formulation"
 \end_layout
 
 \begin_layout Standard
-The task of preserving privacy of data provider while his data are processed
+The task of preserving privacy of data provider while its data are processed
  by an outsourced CNN on a server can be achieved in different ways.
  Given that HE is used to guarantee the privacy of data, there can be two
  possibilities:
@@ -6793,8 +6810,8 @@ The task of preserving privacy of data provider while his data are processed
 \begin_layout Enumerate
 One can train the CNN from scratch on plain publicly available datasets
  or take a publicly available pre-trained CNN.
- In the latter case the CNN must be transformed it in a way that allows
- to compute only polynomial functions, to be compliant with the operations
+ In the latter case the CNN must be transformed in a way that allows to
+ compute only polynomial functions, to be compliant with the operations
  that it will be able to perform on encrypted data (as explained in Subsection
  
 \begin_inset CommandInset ref
@@ -7089,11 +7106,9 @@ description "Convolutional Neural Network"
 
 \end_inset
 
- where there are many nested computations to perform (i.
- e.
- the depth of the circuit to compute on input data is generally high) and
- the number of parameters (i.e.
- weights) that composes the CNN's model is huge as shown in 
+ where there are many nested computations to perform (i.e., the depth of the
+ circuit to compute on input data is generally high) and the number of parameter
+s (i.e., weights) that composes the CNN's model is huge as shown in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Alippi:2018:MCN:3207947.3207995"
@@ -8020,19 +8035,19 @@ p
 \emph on
 p
 \emph default
-, but since operations are performed homomorphically, i.e.
- the polynomial in input as first is encoded as a polynomial in 
+, but since operations are performed homomorphically (i.e., the polynomial
+ in input is encoded first as a polynomial in 
 \begin_inset Formula $R_{t}$
 \end_inset
 
- as described in Subsection 
+, as described in Subsection 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "subsec:Encoding"
 
 \end_inset
 
- and then encrypted as a polynomial in 
+, and then is encrypted as a polynomial in 
 \begin_inset Formula $R_{q}$
 \end_inset
 
@@ -8043,17 +8058,17 @@ reference "subsec:Encryption-Scheme"
 
 \end_inset
 
-), only after decryption is achievable to understand if a reduction modulo
+)), only after decryption is achievable to understand if a reduction modulo
  
 \emph on
 t 
 \emph default
 has occurred, since the result is different from the expected one.
- One can observe that is possible to estimate the grow of such infinity
+ One can observe that it is possible to estimate the grow of such infinity
  norm by considering the specific operation to perform (e.g.
  addition) and considering the shape of the two polynomials in input, before
  to encrypt them.
- However this approach can be useful only if a very small number of operations
+ However, this approach can be useful only if a very small number of operations
  should be evaluated on the input ciphertext and this is not the case of
  CNNs, because otherwise this estimate would be so rough that no valid plaintext
  modulus 
@@ -8063,12 +8078,30 @@ t
 would be found, as will be informally explained in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Practical-Encryption-Parameters"
+reference "sec:Heuristic-results-and"
 
 \end_inset
 
 .
+ Moreover, if it is not possible to find a valid 
+\emph on
+t
+\emph default
+, then it is impossible to satisfy the constraint in Eq.
  
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+eqref{eq:TOTAL_NBB}
+\end_layout
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -8295,20 +8328,20 @@ i
 \begin_inset Formula $t_{list}=[2,2^{2},2^{3}..,2^{59}]$
 \end_inset
 
- , for the formula of the NB 
+, for the formula of the NB Eq.
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:NOISE_BUDGET"
 
 \end_inset
 
 , the initial amount of NB changes significantly between different runs
- of the binary search, while if the search is carried on all integers i.e.
+ of the binary search, while if the search is carried on all integers i.e.,
  
 \begin_inset Formula $t_{list}=[2,3,4..,2^{59}]$
 \end_inset
 
- the difference in NB between different runs of the algorithm is not really
+ the difference in NB between successive runs of the algorithm is not really
  significant.
  Algorithm 
 \begin_inset CommandInset ref
@@ -9288,9 +9321,9 @@ reference "sec:Encryption-Parameters"
 
 \end_inset
 
- the encryption parameters with their relationships has been described form
- a theoretical point of view depending on the underling BFV scheme that
- has been considered.
+ the encryption parameters with their relationships have been described
+ form a theoretical point of view depending on the underling BFV scheme
+ that has been considered.
 \begin_inset Newline newline
 \end_inset
 
@@ -9338,7 +9371,7 @@ reference "sec:Optimization-Problem"
 \end_layout
 
 \begin_layout Section
-Simple Encrypted Arithmetic Library (SEAL) 
+Simple Encrypted Arithmetic Library (SEAL 2.3.1) 
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:SEAL"
@@ -9352,7 +9385,7 @@ name "sec:SEAL"
 The Simple Encrypted Arithmetic Library is written in the C++ language and
  implements the BFV encryption scheme by offering primitives to handle operation
 s, encryption and decryption procedures.
- However the library differs in some aspects form the original BFV scheme.
+ However, the library differs in some aspects form the original BFV scheme.
  Indeed the bootstrapping operation (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -10249,73 +10282,6 @@ t.
 
 \emph default
  
-\begin_inset Newline newline
-\end_inset
-
-Concerning constraint in Eq.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:infinityNorm}
-\end_layout
-
-\end_inset
-
- it is possible to provide a more practical example, to give an idea of
- how difficult is to estimate the grow of the infinity norm by considering
- the specific operation to perform.
- In SEAL 2.3.1 there is the possibility to use an automatic parameter selection
- module that, given a computation to perform, basically builds a graph of
- that computation instead of actually calculating it and tries to estimates
- the grow of infinity norm and noise so to find appropriate overall parameters.
- The problem is that, for example, given an addition operation and two polynomia
-ls 
-\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
-\end_inset
-
- to sum with infinity norm respectively 
-\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
-\end_inset
-
- the infinity norm of 
-\begin_inset Formula $p_{3}=p_{1}+p_{2}$
-\end_inset
-
- is computed as 
-\begin_inset Formula $||p_{3}||_{\infty}=a_{1}+a_{2}$
-\end_inset
-
- that is a really pessimistic case, since it true only if coefficients 
-\begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
-\end_inset
-
- are associated to the same power in their respective polynomials 
-\begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
-\end_inset
-
-.
- It is important to underline the fact that this estimate is used also to
- calculate the noise added to the resulting polynomial and thus that will
- induce a rough computation also of the right term in Eq.
- 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-eqref{eq:TOTAL_NB}
-\end_layout
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Chapter
@@ -10331,7 +10297,14 @@ name "chap:CrCNN:A-CNN-Library"
 
 \begin_layout Standard
 This Chapter will focus on the description of the developed Crypto Convolutional
- Neural Network (CrCNN) library.
+ Neural Network (CrCNN) library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CrCNN"
+
+\end_inset
+
+.
  This library is the first example of tool that allows to build CNNs able
  to make predictions homomorphically over encrypted images.
  Indeed, even if in literature (see Section 
@@ -10757,7 +10730,7 @@ The abstract class
 \begin_inset Formula $\mathtt{forward}$
 \end_inset
 
- method that allow to perform the different operations according to the
+ method that allows to perform the different operations according to the
  layer in order to compute the predicted class of an input 
 \begin_inset Formula $\mathtt{ciphertext3D}$
 \end_inset
@@ -10955,7 +10928,7 @@ context
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathtt{\mathsf{\mathtt{ciphertext3D\;encryptImage(vector<float>image,int\;zd,int\;xd,}}}$
+\begin_inset Formula $\mathtt{\mathsf{\mathtt{ciphertext3D\;encryptImage(vector<float>image,int\;zd,int\;}}}$
 \end_inset
 
 
@@ -10963,7 +10936,7 @@ context
 \end_inset
 
 
-\begin_inset Formula $\mathtt{int\;yd)}$
+\begin_inset Formula $\mathtt{xd,int\;yd)}$
 \end_inset
 
 : this function encrypts an image stored as a vector of floats and returns
@@ -10981,7 +10954,7 @@ context
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathsf{\mathtt{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;zd,}}$
+\begin_inset Formula $\mathsf{\mathtt{ciphertext3D\;encryptAndSaveImage(vector<float>image,int\;}}$
 \end_inset
 
  
@@ -10989,7 +10962,7 @@ context
 \end_inset
 
  
-\begin_inset Formula $\mathtt{int\;xd,int\;yd,string\;file_{-}name)}$
+\begin_inset Formula $\mathtt{zd,int\;xd,int\;yd,string\;file_{-}name)}$
 \end_inset
 
 : this function performs the same task of 
@@ -11008,7 +10981,11 @@ context
 \begin_inset Formula $\mathtt{encryptImage}$
 \end_inset
 
-, but it also saves the encrypted image in 
+, but it also saves the encrypted image in
+\begin_inset Newline newline
+\end_inset
+
+ 
 \begin_inset Formula $\mathtt{file_{-}name}$
 \end_inset
 
@@ -11042,7 +11019,7 @@ context
 \begin_inset Formula $\mathsf{\mathtt{floatCube\;decryptImage(ciphertext3D\;encrypted_{-}image)}}$
 \end_inset
 
-: this functions decrypts an than decode (i.e.
+: this function decrypts an then decode (i.e.
  transforms a polynomial into a number) an 
 \begin_inset Formula $\mathtt{encrypted_{-}image}$
 \end_inset
@@ -11191,7 +11168,7 @@ Experimental Setup
 \end_layout
 
 \begin_layout Standard
-All the experiments reported in this Chapter has been executed on a 40-cores
+All the experiments reported in this Chapter have been executed on a 40-cores
  Intel Xeon CPU E5-2640 @ 2.40GHz with 128GB of RAM DIMM Synchronous @ 2400MHz.
  SEAL 
 \begin_inset CommandInset citation
@@ -11223,7 +11200,7 @@ key "pytorch"
 \begin_inset Formula $\breve{\varPhi}$
 \end_inset
 
- (Sections 
+ in both case studies (Sections 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Case-Study-1"
@@ -11339,11 +11316,12 @@ reference "sec:Heuristic:-Binary-Search"
 
 \end_inset
 
-, as input to the Binary Search it is possible to set a 
+, it is possible to set a 
 \emph on
 maximum number of re-encryption steps
 \emph default
- that one can accept to perform during the forward phase.
+ that one can accept to perform during the forward phase as input of the
+ Binary Search.
  This increases the probability to find feasible encryption parameters and
  thus to fall in the best case (see Figure 
 \begin_inset CommandInset ref
@@ -11437,7 +11415,7 @@ minimal
 t 
 \emph default
 that satisfies the previous two constraints.
- This because by fixing 
+ Indeed, by fixing 
 \emph on
 t
 \emph default
@@ -11457,12 +11435,12 @@ reference "tab:Default-pairs-(n,q)"
 n
 \emph default
 .
- This in principle on the one hand has the drawback of decreasing the initial
- noise budget in a ciphertext, but if there is the possibility to put a
- re-encryption step that brings back the level of the noise budget to the
- starting one, the effect of this negative aspect can be mitigated; on the
- other hand this gives the advantage of dealing with polynomial of a lower
- degree and thus speeding up computations an using less memory.
+ This, on the one hand has the drawback of decreasing the initial noise
+ budget in a ciphertext, but if there is the possibility to put a re-encryption
+ step that brings back the level of the noise budget to the starting one,
+ the effect of this negative aspect can be mitigated; on the other hand
+ this gives the advantage of dealing with polynomial of a lower degree and
+ thus speeding up computations an using less memory.
 \end_layout
 
 \begin_layout Standard
@@ -11478,7 +11456,7 @@ Choose a random plaintext modulus
 t 
 \emph default
 in the allowed range.
- However in this case the "goodness" of 
+ However, in this case the "goodness" of 
 \emph on
 t 
 \emph default
@@ -11500,11 +11478,11 @@ key "SEALManual"
 \end_inset
 
 .
- Essentially given the circuit to compute on encrypted data (i.e., the series
+ Essentially, given the circuit to compute on encrypted data (i.e., the series
  of operations on a ciphertext) this tool builds a graph of the computation
  instead of actually calculating it and tries to estimates the grow of infinity
  norm and noise so to find appropriate overall parameters.
- The ciphertexet in input is also simulated in the sense that it is represented
+ The ciphertext in input is also simulated in the sense that it is represented
  as a polynomial with a certain initial infinity norm and a maximum number
  of nonzero coefficients.
  This tool consists of two parts: a 
@@ -11517,7 +11495,11 @@ ed estimates based on the type of operation, and a
 \end_inset
 
  component, which estimates the growth of the coefficients in the underlying
- plaintext polynomials, and uses Simulator to simulate noise growth.
+ plaintext polynomials, and uses 
+\family typewriter
+Simulator
+\family default
+ to simulate noise growth.
  The problem is that, for example, given an addition operation and two polynomia
 ls 
 \begin_inset Formula $p_{1}\text{\;{and}\;}p_{2}$
@@ -11535,7 +11517,8 @@ ls
 \begin_inset Formula $||p_{3}||_{\infty}=a_{1}+a_{2}$
 \end_inset
 
- that is a really pessimistic case, since it true only if coefficients 
+ that is a really pessimistic case, since it is true only if coefficients
+ 
 \begin_inset Formula $a_{1}\text{\;{and}\;}a_{2}$
 \end_inset
 
@@ -11545,8 +11528,8 @@ ls
 
 .
  It is important to underline the fact that this estimate is used also to
- calculate the noise added to the resulting polynomial and thus that will
- induce a rough computation also in the growth of the noise in the ciphertext.
+ compute the noise added to the resulting polynomial and thus it will induce
+ a rough computation also in the growth of the noise in the ciphertext.
  Moreover this automatic parameter selection is only designed to work with
  polynomial codifying an integer number (see Subsection 
 \begin_inset CommandInset ref
@@ -12082,7 +12065,7 @@ name "sec:Heuristic-results-and"
 \end_layout
 
 \begin_layout Standard
-The usage of the automatic parameter selection tool of SEAL explained in
+The usage of the automatic parameter selection tool of SEAL, explained in
  Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -12697,14 +12680,14 @@ name "sec:Binary-Search-Results"
 \end_layout
 
 \begin_layout Standard
-In this Subsection and in the following Subsection 
+In this Subsection and in the following (Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:AnalysisSuboptimalCNN"
 
 \end_inset
 
-, the focus is on the CNN 
+), the focus is on the CNN 
 \begin_inset Formula $\tilde{\varPhi}_{n,q,t=2^{29}}$
 \end_inset
 
@@ -12910,7 +12893,8 @@ t
 \begin_inset Formula $2^{28}$
 \end_inset
 
-, thus for approximation to the next power of two, if the mean should have
+.
+ Thus, for approximation to the next power of two, if the mean should have
  been considered as an estimator for 
 \begin_inset Formula $t,$
 \end_inset
@@ -12920,8 +12904,8 @@ t
 \end_inset
 
 .
- However in this case the maximum plaintext modulus found is the best estimator,
- since the goal is to determine the maximum infinity norm of a polynomial
+ However, in this case the maximum plaintext modulus found is the best estimator
+, since the goal is to determine the maximum infinity norm of a polynomial
  during computations and this depends on the input data as explained in
  Section 
 \begin_inset CommandInset ref
@@ -13833,8 +13817,8 @@ reference "tab:CNN's-accuracy-mutation"
 
  shows that this approximation step causes the starting accuracy of 98%
  to decrease of 1 point percentage, that is not a big performance's loss.
- The last transformation step that involves the encoding and thus the applicatio
-n of the CNN to encrypted images slightly affect performances.
+ The last transformation step that involves the encoding, and thus the applicati
+on of the CNN to encrypted images, slightly affects performances.
  This implies that the suboptimal parameter 
 \begin_inset Formula $t=2^{29}$
 \end_inset
@@ -13843,8 +13827,8 @@ n of the CNN to encrypted images slightly affect performances.
 \noun on
 partial 
 \noun default
-Binary Search run is close to the best value that is possible to find with
- the given dataset (see Section 
+Binary Search run is close to the best value that it is possible to find
+ with the given dataset (see Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -14972,7 +14956,7 @@ reference "sec:AnalysisSuboptimalCNN"
 \end_inset
 
 .
- However in the 6-layers CNN all these heavy computations are performed
+ However, in the 6-layers CNN all these heavy computations are performed
  with polynomials of a smaller degree, thus they are considerably accelerated.
 \end_layout
 
@@ -15659,7 +15643,7 @@ The Noise Budget column reports the amount of noise budget, expressed in
  The second Convolution and the first Fully Connected layers consume about
  8 bits of noise budget, since there many ciphertext by plaintext multiplication
 s and ciphertext by ciphertext additions.
- However there is no layer that performs the heaviest operation, in terms
+ However, there is no layer that performs the heaviest operation, in terms
  of noise budget consumption, that is the ciphertext by ciphertext multiplicatio
 n, as in the case of the Square layer (see Subsection 
 \begin_inset CommandInset ref
@@ -15891,7 +15875,7 @@ reference "sec:Case-Study-1"
 \end_inset
 
 , this is due to the simpler structure of this 6-layers CNN.
- However this simpler structure allows to perform less operations.
+ However, this simpler structure allows to perform less operations.
  This implies to have an initial smaller noise budget and thus the possibility
  to employ a smaller 
 \emph on
@@ -15955,7 +15939,7 @@ ng the practical aspects of this problem.
  privacy-preserving CNN.
  The tradeoff between accuracy and time to obtain the encrypted prediction
  at the varying of the CNN and the parameters found by the heuristic is
- also exploded.
+ also explored.
  The results show that the proposed methodology is effective since it enables
  to use a 9-layers CNN with two convolution and fully connected layers,
  to make predictions on encrypted images, even if the time needed to complete
@@ -15964,7 +15948,7 @@ ng the practical aspects of this problem.
  The transformation of the CNN introduces a small loss in accuracy, in part
  due to the approximations of the functions computed by the layers to polynomial
  functions and in part due to the encryption parameters found.
- However considering that the time needed to find the suboptimal encryption
+ However, considering that the time needed to find the suboptimal encryption
  parameters by using the binary search is reasonably small, the loss in
  accuracy of 0.07% can be considered negligible.
  The proposed methodology is also tested on a smaller CNN with 6 layers
@@ -15973,17 +15957,17 @@ ng the practical aspects of this problem.
  This 6-layers CNN has a lower starting accuracy with respect to the 9-layers
  CNN and the loss in accuracy introduced by the suboptimal encryption parameters
  found by the proposed heuristic is of 0.15%, however it requires about half
- of the time needed by the9-layers CNN to compute a forward on an image.
- Moreover the heuristic proposed is a powerful instrument for who wants
- to use a CNN with encrypted images, but has not a strong background in
- the field of homomorphic encryption.
+ of the time needed by the 9-layers CNN to compute a forward on an image.
+ Moreover, the heuristic proposed is a powerful instrument for those who
+ want to use a CNN with encrypted images, but they have not a strong background
+ in the field of homomorphic encryption.
 \begin_inset Newline newline
 \end_inset
 
-This thesis proves that the possibility to use HE in couple with CNNs is
- a concrete solution to the privacy issues that arise by the usage of cloud
- based machine learning techniques and opens the way to many possible improvemen
-ts and alternatives.
+This thesis proves that the possibility to use HE in together with CNNs
+ is a concrete solution to the privacy issues that arise by the usage of
+ cloud based machine learning techniques and opens the way to many possible
+ improvements and alternatives.
 \end_layout
 
 \begin_layout Section
@@ -15998,8 +15982,8 @@ name "sec:Future-Works"
 \end_layout
 
 \begin_layout Standard
-There are many possible related field of research that can be explored as
- a continuous of this work.
+There are many possible related fields of research that can be explored
+ as a continuation of this work.
  One of this consists in enhancing the performances of the encoded CNN in
  terms of times and in particular in terms of throughput.
  This could be done by introducing in the developed CrCNN library the possibilit
@@ -16038,9 +16022,9 @@ Other alternatives researches can involve the implementation of techniques
 \end_inset
 
 From the point of view of the homomorphic encryption theory and its implementati
-on, it could be useful to think of a way to allow multiple data providers
- to use the same public key to encrypt data and different secret keys to
- decrypt the result.
+on, it could be useful to think of an efficient way to allow multiple data
+ providers to use the same public key to encrypt data and different secret
+ keys to decrypt the result.
  This could permit to the outsourced server to analyze data coming from
  different users.
  
