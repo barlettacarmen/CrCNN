@@ -419,10 +419,9 @@ Questi cinque anni universitari si concludono con tante consapevolezze in
 \end_inset
 
  Ringrazio Matteo, una persona speciale, che soprattutto in questi ultimi
- mesi ha dimostrato di avere un pazienza infinita, fingendo di lavorare
- anche nel tempo libero solo per non farmi sentire l’unica sfigata, vestendo
- i panni del coach armato di “bastone e carota” per spronarmi e consolarmi
- in ogni momento.
+ mesi ha dimostrato di avere un pazienza infinita, lavorando anche nel tempo
+ libero solo per non farmi sentire l’unica sfigata, vestendo i panni del
+ coach armato di “bastone e carota” per spronarmi e consolarmi in ogni momento.
  
 \begin_inset Newline newline
 \end_inset
@@ -485,10 +484,11 @@ Software as a Service
 , that is a software distribution model in which a third-party provider,
  usually a cloud server, hosts applications (i.e., machine learning algorithms)
  and makes them available to customers over the Internet.
- On the one hand this cloud-based machine-learning parading is useful since
- it is usually fast and scalable, thus allows to reach a big number of users,
- but, on the other hand, it poses sever issues in terms of privacy because
- analyzed data, on the untrusted cloud server, might be sensible data.
+ On the one hand this cloud-based machine-learning paradigm is useful since
+ it is usually fast and scalable, thus it allows to reach a big number of
+ users, but, on the other hand, it poses severe issues in terms of privacy
+ because analyzed data, on the untrusted cloud server, might be sensible
+ data.
  This issue is also particularly relevant after the recent approval of the
  European’s General Data Protection Regulation.
  This thesis provides a methodological solution about how to design a privacy-pr
@@ -9393,18 +9393,19 @@ reference "subsec:Operations-and-Noise"
 
 \end_inset
 
-) is not implemented, for this reason the number of operations that is possible
- to perform on a ciphertext is not unlimited as in a Fully HE scheme but
- it depends on the encryption parameters chosen as in a Somewhat HE scheme.
- Moreover in SEAL, the compactness property (see Subsection 
+) is not implemented.
+ For this reason, the number of operations that is possible to perform on
+ a ciphertext is not unlimited as in a Fully HE scheme, but it depends on
+ the encryption parameters chosen as in a Somewhat HE scheme.
+ Moreover, the compactness property (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Classification-of-Homomorphic"
 
 \end_inset
 
-) is lost since ciphertexts can be of arbitrary length (at least two) and
- not of fixed length as in the original BFV scheme.
+) is not preserved in SEAL, since ciphertexts can be of arbitrary length
+ (at least two) and not of fixed length as in the original BFV scheme.
  SIMD techniques to perform batching and operations ciphertext-plaintext
  (see Subsection 
 \begin_inset CommandInset ref
@@ -9445,8 +9446,8 @@ t
 \series default
  
 \emph default
-in SEAL can be any positive integer at least 2 and at most 60 bits length,
- thus 
+in SEAL can be any positive integer of size between 2 and 60 bits, thus
+ 
 \begin_inset Formula $2\leq t\leq2^{59}$
 \end_inset
 
@@ -10139,7 +10140,7 @@ reference "sec:Practical-Encryption-Parameters"
 
 \end_inset
 
- the plaintext modulus 
+, the plaintext modulus 
 \emph on
 t 
 \emph default
