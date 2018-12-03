@@ -1051,7 +1051,7 @@ reference "subsec:Encryption-Scheme"
 
 \end_inset
 
-), the possible arithmetic operations (Subsesctions 
+), the possible arithmetic operations (Subsections 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Operations-and-Noise"
@@ -1819,7 +1819,7 @@ description "Chosen Plaintext Attacks "
 \end_inset
 
 which presumes that the attacker can obtain the ciphertexts for arbitrary
- plaintexts 
+ plaintext 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Biryukov2011"
@@ -1928,8 +1928,8 @@ key "jager2012generic"
 \begin_inset Newline newline
 \end_inset
 
-Before 2005, all proposed cryptosystems' homomorphic properties where restiricte
-d to only either addition or multiplication operation.
+Before 2005, all proposed cryptosystems' homomorphic properties where restricted
+ to only either addition or multiplication operation.
  An important step toward an FHE scheme was the BGN 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
@@ -1993,7 +1993,7 @@ bootstrapping
  that allow to evaluate unlimited number of operations.
  Basically squashing is a preliminary operation for the bootstrapping and
  aims at reducing the decryption algorithm complexity, while the bootstrapping
- is a "recrypting" procedure (see Subsection 
+ is a "re-encrypting" procedure (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Operations-and-Noise"
@@ -3846,7 +3846,7 @@ is the ciphertext encrypting
 \emph on
 m
 \emph default
-, obtained by the relinarization of 
+, obtained by the relinearization of 
 \begin_inset Formula $\mathsf{ct_{mult}}$
 \end_inset
 
@@ -11440,7 +11440,7 @@ n
  step that brings back the level of the noise budget to the starting one,
  the effect of this negative aspect can be mitigated; on the other hand
  this gives the advantage of dealing with polynomial of a lower degree and
- thus speeding up computations an using less memory.
+ thus speeding up computations and using less memory.
 \end_layout
 
 \begin_layout Standard
