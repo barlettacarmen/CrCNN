@@ -2401,7 +2401,7 @@ key "cryptoeprint:2012:144"
 \end_inset
 
 .
- In this section this homomorphic scheme will be described in detail since
+ In this Section this homomorphic scheme will be described in detail since
  it is the one used for the practical part of this thesis.
  
 \end_layout
@@ -8075,7 +8075,7 @@ has occurred, since the result is different from the expected one.
 \emph on
 t 
 \emph default
-would be found, as will be informally explained in Section 
+would be found, as will be informally explained in Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -9748,7 +9748,7 @@ reference "sec:Optimization-Problem"
 \end_inset
 
  must be changed according to the new and more detailed description of the
- parameters of Subsection 
+ parameters of Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Practical-Encryption-Parameters"
@@ -11065,7 +11065,7 @@ reference "chap:Practical-Methodology"
 
 \end_inset
 
-, and to display the associated results by calculating the metrics reported
+, and to display the associated results by computing the metrics reported
  in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11480,7 +11480,7 @@ key "SEALManual"
 .
  Essentially, given the circuit to compute on encrypted data (i.e., the series
  of operations on a ciphertext) this tool builds a graph of the computation
- instead of actually calculating it and tries to estimates the grow of infinity
+ instead of actually calculating it and tries to estimate the grow of infinity
  norm and noise so to find appropriate overall parameters.
  The ciphertext in input is also simulated in the sense that it is represented
  as a polynomial with a certain initial infinity norm and a maximum number
@@ -11739,7 +11739,7 @@ This layer has windows of dimension
 \emph on
 Batch Normalization Layer: 
 \emph default
-This layer normalizes separately each dimension in input and make it have
+This layer normalizes separately each dimension in input and makes it have
  mean 0 and variance 1.
  
 \end_layout
@@ -11803,7 +11803,7 @@ This layer has windows of dimension
 \emph on
 Batch Normalization Layer: 
 \emph default
-This layer normalizes separately each dimension in input and make it have
+This layer normalizes separately each dimension in input and makes it have
  mean 0 and variance 1.
 \end_layout
 
@@ -11913,7 +11913,7 @@ reference "sec:Problem-Formulation"
 ) phase the Binary Search algorithm described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic-results-and"
+reference "sec:Heuristic:-Binary-Search"
 
 \end_inset
 
@@ -11933,6 +11933,14 @@ reference "sec:Encryption-Parameters"
 \end_inset
 
 ).
+ This step is described in Subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Heuristic-results-and"
+
+\end_inset
+
+.
  The algorithm finds two sets of possible encryption parameters, then each
  weight in 
 \begin_inset Formula $\varPhi$
@@ -12001,7 +12009,7 @@ reference "subsec:Encryption-Scheme"
 
 ).
  The encoding of each CNN and the encryption of the data is achieved through
- the appropriate methods of the CrCnn library described in Section 
+ the appropriate methods of the CrCNN library described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Structure"
@@ -12037,13 +12045,13 @@ reference "sec:Problem-Formulation"
  that a re-encryption step is introduced (as explained in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic-results-and"
+reference "sec:Heuristic-metrics"
 
 \end_inset
 
 ) .
  The results of this testing for the two encoded networks, is detailed in
- Section 
+ Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -12082,8 +12090,8 @@ reference "subsec:STEP-1"
 \end_inset
 
 , outputs that there are no valid encryption parameters.
- This shows that this methodology that overestimates the encryption parameters
- needed is not suitable in the case there are many computations to perform
+ This shows that this methodology, that overestimates the encryption parameters
+ needed, is not suitable in the case there are many computations to perform
  as in a CNN, since it is unable to find any valid result, as written in
  Table 
 \begin_inset CommandInset ref
@@ -12165,12 +12173,17 @@ Column Binary Search shows the encoded 9-layers CNN performances at the
 \emph on
 t
 \emph default
-, that is obtained with a different number of images tested in the heuristic.
+.
+ Each 
+\emph on
+t 
+\emph default
+is obtained with a different number of images tested in the heuristic.
 \begin_inset Newline newline
 \end_inset
 
 Column SEAL tool shows the results of the SEAL automatic encryption parameters
- selection for the same 9-layers CNN.
+ selection tool for the same 9-layers CNN.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -12502,7 +12515,7 @@ partial
 \emph on
  
 \emph default
-run are given in Section 
+run are given in Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Binary-Search-Results"
@@ -12635,7 +12648,7 @@ The suboptimal
 
  is of 96.93%.
  This decrease in performances can be considered negligible considering
- that the time needed to obtain that result for the binary search is of
+ that, the time needed to obtain that result for the binary search, is of
  about 4 hours, that is significantly less than the time needed to run the
  heuristic on the entire test dataset as in the 
 \noun on
@@ -12652,10 +12665,10 @@ version, that is 250 times greater.
 ) and it is what mostly affect the computational time, since it determines
  the maximum degree of the polynomial with which computations are performed.
  The difference of 1.56 s in the two versions of the CNN can be due to the
- fact that the re-encryption step is put in two different points, since
- the noise budget of a ciphertext in input to the optimal CNN has one bit
- less than the suboptimal one.
- This means that the re-encryption step in the "optimal" CNN is slower since
+ fact that the re-encryption step is put in two different points.
+ Indeed, the noise budget of a ciphertext in input to the optimal CNN has
+ one bit less than the suboptimal one.
+ This means that the re-encryption step in the optimal CNN is slower since
  it has more data to re-encrypt than the re-encryption in the suboptimal
  CNN, because in the former it is put before the sub-sampling step performed
  by the Average Pooling Layer (i.e.
@@ -12696,9 +12709,10 @@ reference "sec:AnalysisSuboptimalCNN"
 partial 
 \noun default
 binary search run, because it is the network that in a real use-case one
- would have chosen, since it is impractical to make an exhaustive run of
- the binary search on the entire testing dataset just to choose the exact
- plaintext modulus, as in the case of the 
+ would have chosen.
+ Indeed, it is impractical to make an exhaustive run of the binary search
+ on the entire testing dataset just to choose the exact plaintext modulus,
+ as in the case of the 
 \noun on
 full 
 \noun default
@@ -12867,7 +12881,7 @@ The algorithm is run for 10 times and at each run a number of
 \begin_inset Formula $t=2^{29}$
 \end_inset
 
-, as explained in Section 
+, as explained in Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -12884,8 +12898,8 @@ reference "tab:Testing-times"
 \end_inset
 
 .
- The average result found increases with the batch size, indeed for a batch
- size of 8 images the mean of the 
+ The average result found increases with the batch size.
+ Indeed, for a batch size of 8 images the mean of the 
 \emph on
 t
 \emph default
@@ -12910,7 +12924,7 @@ t
  Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic-results-and"
+reference "sec:Heuristic-metrics"
 
 \end_inset
 
@@ -13771,7 +13785,7 @@ The Noise Budget column reports the amount of noise budget, expressed in
  bits, in input to the corresponding layer/ re-encryption step and shows
  that the Square Layer 5 is the one that consumes most of the budget.
  This is an expected result since a ciphertext by ciphertext multiplication
- is performed and, as explained in 
+ is performed and, as explained in Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:Operations-and-Noise"
@@ -13789,14 +13803,14 @@ Accuracy Tracking Through Transformation's Steps
 
 \begin_layout Standard
 During the transformation's steps the CNN is subject to redefinitions that
- could cause a loss in accuracy as already exposed in Sections 
+ could cause a loss in accuracy as already exposed in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Problem-Formulation"
 
 \end_inset
 
- and 
+ and Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -13828,7 +13842,7 @@ on of the CNN to encrypted images, slightly affects performances.
 partial 
 \noun default
 Binary Search run is close to the best value that it is possible to find
- with the given dataset (see Section 
+ with the given dataset (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Heuristic-results-and"
@@ -14316,7 +14330,7 @@ reference "sec:Heuristic-metrics"
 
 \end_inset
 
-) .
+).
  The results of this testing for the two encoded networks, is detailed in
  Subsection 
 \begin_inset CommandInset ref
@@ -14453,12 +14467,17 @@ Column Binary Search shows the encoded 6-layers CNN performances at the
 \emph on
 t
 \emph default
-, that is obtained with a different number of images tested in the heuristic.
+.
+ Each 
+\emph on
+t
+\emph default
+ is obtained with a different number of images tested in the heuristic.
 \begin_inset Newline newline
 \end_inset
 
 Column SEAL tool shows the results of the SEAL automatic encryption parameters
- selection for the same 6-layers CNN.
+ selection tool for the same 6-layers CNN.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -15858,10 +15877,10 @@ reference "tab:CNN's-accuracy-mutation-1"
 partial 
 \noun default
 Binary Search run is close to the best value that is possible to find with
- the given dataset (see Section 
+ the given dataset (see Subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Heuristic-results-and"
+reference "subsec:Heuristic-resultsTiny"
 
 \end_inset
 
@@ -15964,10 +15983,10 @@ ng the practical aspects of this problem.
 \begin_inset Newline newline
 \end_inset
 
-This thesis proves that the possibility to use HE in together with CNNs
- is a concrete solution to the privacy issues that arise by the usage of
- cloud based machine learning techniques and opens the way to many possible
- improvements and alternatives.
+This thesis proves that the possibility to use HE together with CNNs is
+ a concrete solution to the privacy issues that arise by the usage of cloud
+ based machine learning techniques and opens the way to many possible improvemen
+ts and alternatives.
 \end_layout
 
 \begin_layout Section
